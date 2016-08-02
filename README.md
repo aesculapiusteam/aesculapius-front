@@ -2,6 +2,8 @@
 Aesculapius Front End
 
 ## Steps to run:
+This steps are made for running the project in a nodejs server, using grunt. If you wan't also contribute to this project, do the "Steps to develop" below after the steps to run.
+
 1. Install npm and node:  
 
   - Windows, Mac and Linux: *From official page: https://docs.npmjs.com/getting-started/installing-node*
@@ -32,3 +34,13 @@ Aesculapius Front End
 
 4. Run:
   - **grunt serve** (This should open your browser to see the page, if not, enter the link in the grunt output. Default: http://localhost:9000)
+
+## Steps to develop
+
+1. Install yeoman, generator-angular and generator-karma
+
+  - **npm install -g yo generator-angular generator-karma**
+
+## Some useful tricks to develop
+
+  - Look here (the README.md) for automatized creation of angular controllers, views, routes, etc: https://github.com/yeoman/generator-angular
