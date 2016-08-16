@@ -40,3 +40,32 @@ We use yeoman with generator-angular for automatized creation of angular control
 You can install yeoman, generator-angular and generator-karma with this command
 
     npm install -g yo generator-angular generator-karma
+
+### Documentation
+The generator-angular package for yeoman already creates a default documentation comment in every controller/route/filter/etc that you create for your angular code using the ngdoc standard. To generate a html app with the docs we use grunt-ngdocs, but be free to use the one you like the most.
+
+**Generate the docs:**
+
+    grunt ngdocs
+
+**Now go to the new docs directory and you will find a new web app. Serve it with whatever you like. We use the python module SimpleHTTPServer:**
+
+    cd docs
+    python -m SimpleHTTPServer
+
+**For documenting specific methods that generator-angular doesn't cover use:**
+
+    /**
+     * @ngdoc method
+     * @name methodName
+     * @methodOf module.ControllerName
+     * @description
+     * Describe the method here...
+     *
+     * @param {string} Description of parameter
+     * @returns {Array} The returned item...
+     */
+
+**If for some reason you need to document something else manually, use the ngdoc documentation:**
+
+https://github.com/angular/angular.js/wiki/Writing-AngularJS-Documentation
