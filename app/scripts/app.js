@@ -19,7 +19,8 @@ angular
     'ngSanitize',
     'ngTouch',
     'ngMaterial',
-    'angular-carousel'
+    // 'angular-carousel',
+    // 'jkAngularCarousel'
   ])
   .config(function ($routeProvider) {
     $routeProvider
