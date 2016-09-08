@@ -1,0 +1,6 @@
+md-input-container label:not(._md-container-ignore) {
+    position: absolute;
+    bottom: 100%;
+    /* left: 0; */
+    right: auto;
+}
