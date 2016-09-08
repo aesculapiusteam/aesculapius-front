@@ -1,0 +1,28 @@
+
+<div ng-controller="EmployeesCtrl" layout-margin>
+
+  <md-card style="margin:0px">
+    <md-subheader>Filter by search</md-subheader>
+
+    <md-input-container style="margin:15px;">
+      <label>Search</label>
+      <input type="text">
+    </md-input-container>
+  </md-card>
+
+  <mdt-table paginated-rows="{isEnabled: true, rowsPerPageValues: [5,10,20,100]}">
+    <mdt-header-row>
+      <mdt-column align-rule="left">Tipo</mdt-column>
+      <mdt-column align-rule="right">Nombre y Apellido</mdt-column>
+      <mdt-column align-rule="right">Especialidad</mdt-column>
+      <mdt-column align-rule="right">Editar</mdt-column>
+
+    </mdt-header-row>
+    <mdt-row ng-repeat="employee in employeesList">
+      <mdt-cell>{{employee.type}}</mdt-cell>
+      <mdt-cell>{{employee.name}}</mdt-cell>
+      <mdt-cell>{{employee.specialty}}</mdt-cell>
+      <mdt-cell><i class="material-icons">edit</i></mdt-cell>
+    </mdt-row>
+  </mdt-table>
+</div>
