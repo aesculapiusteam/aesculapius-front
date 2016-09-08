@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Directive: ngConsult', function () {
+describe('Directive: consult', function () {
 
   // load the directive's module
   beforeEach(module('aesculapiusFrontApp'));
@@ -13,8 +13,8 @@ describe('Directive: ngConsult', function () {
   }));
 
   it('should make hidden element visible', inject(function ($compile) {
-    element = angular.element('<ng-consult></ng-consult>');
+    element = angular.element('<consult></consult>');
     element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the ngConsult directive');
+    expect(element.text()).toBe('this is the consult directive');
   }));
 });

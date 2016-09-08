@@ -1,0 +1,55 @@
+<div>
+  <div layout="row">
+    <md-toolbar layout="row">
+      <div class="md-toolbar-tools">Consulta</div>
+      <div style="margin-top:10px">
+        <md-button class="md-icon-button">
+          <md-icon ng-click="">close</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+  </div>
+  <md-divider></md-divider>
+  <md-content layout="column" layout-padding>
+    <div layout="row">
+      <p> Paciente: <b>NOMBRE PACIENTE</b></p>
+    </div>
+    <div layout="row">
+      <p> Médico: <b>NOMBRE MEDICO</b></p>
+    </div>
+    <div layout="row">
+      <p> Fecha: <b>FE / CH / AA</b></p>
+    </div>
+    <div layout="row" layout-align="space-between center">
+      <p>Detalles: </p>
+      <md-button class="md-icon-button md-primary">
+        <md-icon>border_color</md-icon>
+      </md-button>
+    </div>
+    <div>
+      <md-input-container class="md-block">
+        <label></label>
+        <textarea ng-model="a" md-maxlength="150" rows="5" disabled></textarea>
+      </md-input-container>
+    </div>
+    <div layout="row" layout-align="space-between">
+      <md-button class="md-primary md-raised">
+        <label>Guardar</label>
+        <md-icon>save</md-icon>
+      </md-button>
+      <md-button class="md-primary md-raised">
+        <label>Imprimir</label>
+        <md-icon>print</md-icon>
+      </md-button>
+      <md-button class="md-primary md-raised">
+        <label>Eliminar</label>
+        <md-icon>delete</md-icon>
+      </md-button>
+      <md-button class="md-warn md-raised">
+        <label>Cancelar</label>
+        <md-icon>cancel</md-icon>
+      </md-button>
+    </div>
+  </md-content>
+</div>
