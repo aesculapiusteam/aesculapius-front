@@ -91,3 +91,8 @@ md-card {
 footer {
   background-color: #ccc;
 }
+
+ /* No buscamos como docuemntar xd css*/
+.loginLogo {
+  padding: 2rem 1rem;
+}

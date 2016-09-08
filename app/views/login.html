@@ -1,36 +1,40 @@
-<div layout="column" layout-fill>
-  <md-toolbar>
+<div class="back" layout="column" layout-align="space-between stretch" flex>
 
-    <div class="md-toolbar-tools">
-      <span>Aesculapius</span>
+  <div layout=row layout-align="center center">
+    <img class="loginLogo" flex="15" src="images/logo.png"> </img>
+  </div>
 
-      <!-- fill up the space between left and right area -->
-      <span flex></span>
+  <div layout="row" layout-align="center center">
+    <md-whiteframe class="md-whiteframe-10dp" flex-sm="45" flex-gt-sm="25" flex-gt-md="20">
 
-      <div md-theme="docs-dark" layout-gt-sm="row" layout-padding>
-        <md-input-container>
-          <label>Usuario</label>
-          <input ng-model="user.title">
+      <div class="white" layout="column" layout layout-align="center center">
+
+        <div layout=row layout-align="center center">
+          <p class="md-body-2">Log in to your account</p>
+        </div>
+
+        <md-input-container md-no-float class="md-block">
+          <input ng-model="user.user" placeholder="Address">
         </md-input-container>
 
-        <md-input-container>
-          <label>Pass</label>
-          <input ng-model="user.email" type="email">
+        <md-input-container md-no-float class="md-block">
+          <input ng-model="user.pass" placeholder="Password">
         </md-input-container>
+
       </div>
 
-      <md-button> Ingresar <md-icon> face </md-icon> </md-button>
-    </div>
-  </md-toolbar>
-  <md-content>
-    <slider></slider>
-  </md-content>
+      <div class="white" layout="column" flex>
+        <md-button class="grey" layout="column"> LOGIN </md-button>
+      </div>
 
-
+    </md-whiteframe>
   </div>
 
-<footer>
-  <div layout="row" layout-align="center center">
-    <h2>Aesculapius</h2>
-  </div>
-</footer>
+</div>
+
+<style media="screen">
+.white{background-color:white;}
+.grey{background-color:#E0E0E0;}
+.back{background-image: url("http://materializecss.com/templates/parallax-template/background3.jpg");}
+
+</style>
