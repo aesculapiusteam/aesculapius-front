@@ -9,7 +9,7 @@
 */
 (function(){
   angular.module('aesculapiusFrontApp')
-  .controller('PersonasCtrl', function ($scope, $mdToast){
+  .controller('PersonasCtrl', function ($scope){
 
 
 

@@ -6,7 +6,7 @@
     <md-input-container style="margin:15px;" layout="row">
       <div class="" flex="90">
         <label>Buscar</label>
-        <input type="text" flex>
+        <input type="text" flex ng-model="filterText">
       </div>
 
       <md-button style="align:right;" class="md-icon-button md-primary" aria-label="AddPerson" flex="10">
@@ -20,10 +20,10 @@
   <mdt-table paginated-rows="{isEnabled: true, rowsPerPageValues: [5,10,20,100]}">
     <mdt-header-row>
       <mdt-column align-rule="left">Tipo</mdt-column>
-      <mdt-column align-rule="right">Nombre y Apellido</mdt-column>
-      <mdt-column align-rule="right">Especialidad</mdt-column>
-      <mdt-column align-rule="right">Editar</mdt-column>
-      <mdt-column align-rule="right">Ver HC</mdt-column>
+      <mdt-column align-rule="left">Nombre y Apellido</mdt-column>
+      <mdt-column align-rule="left">Especialidad</mdt-column>
+      <mdt-column align-rule="left">Editar</mdt-column>
+      <mdt-column align-rule="left">Ver HC</mdt-column>
 
     </mdt-header-row>
     <mdt-row ng-repeat="person in peopleList">
