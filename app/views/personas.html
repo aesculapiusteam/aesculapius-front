@@ -1,16 +1,15 @@
-
-<div ng-controller="EmployeesCtrl" layout-margin>
+<div ng-controller="PersonasCtrl" layout-margin>
 
   <md-card style="margin:0px">
-    <md-subheader >Buscar Empleados</md-subheader>
+    <md-subheader >Buscar Personas</md-subheader>
 
     <md-input-container style="margin:15px;" layout="row">
       <div class="" flex="90">
         <label>Buscar</label>
-        <input type="text" flex>
+        <input type="text" flex ng-model="filterText">
       </div>
 
-      <md-button style="align:right;" class="md-icon-button md-primary" aria-label="AddEmployee" flex="10">
+      <md-button style="align:right;" class="md-icon-button md-primary" aria-label="AddPerson" flex="10">
         <md-icon>person_add</md-icon>
       </md-button>
     </md-input-container>
@@ -24,15 +23,21 @@
       <mdt-column align-rule="left">Nombre y Apellido</mdt-column>
       <mdt-column align-rule="left">Especialidad</mdt-column>
       <mdt-column align-rule="left">Editar</mdt-column>
+      <mdt-column align-rule="left">Ver HC</mdt-column>
 
     </mdt-header-row>
-    <mdt-row ng-repeat="employee in employeesList">
-      <mdt-cell>{{employee.type}}</mdt-cell>
-      <mdt-cell>{{employee.name}}</mdt-cell>
-      <mdt-cell>{{employee.specialty}}</mdt-cell>
+    <mdt-row ng-repeat="person in peopleList">
+      <mdt-cell>{{person.type}}</mdt-cell>
+      <mdt-cell>{{person.name}}</mdt-cell>
+      <mdt-cell>{{person.specialty}}</mdt-cell>
       <mdt-cell html-content="true">
-        <md-button class="md-icon-button md-primary" aria-label="Edit">
+        <md-button class="md-icon-button md-primary" aria-label="EditPerson">
           <md-icon>edit</md-icon>
+        </md-button>
+      </mdt-cell>
+      <mdt-cell html-content="true">
+        <md-button class="md-icon-button md-primary" aria-label="SeeCH">
+            <md-icon>description</md-icon>
         </md-button>
       </mdt-cell>
     </mdt-row>

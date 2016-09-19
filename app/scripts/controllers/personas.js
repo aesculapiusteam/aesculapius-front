@@ -2,20 +2,18 @@
 
 /**
 * @ngdoc function
-* @name aesculapiusFrontApp.controller:EmployeesCtrl
+* @name aesculapiusFrontApp.controller:PersonasCtrl
 * @description
-* # EmployeesCtrl
+* # PersonasCtrl
 * Controller of the aesculapiusFrontApp
 */
 (function(){
-
-
   angular.module('aesculapiusFrontApp')
-  .controller('EmployeesCtrl', function($scope, $mdToast){
+  .controller('PersonasCtrl', function ($scope){
 
 
 
-    $scope.employeesList = [
+    $scope.peopleList = [
       {
         type: 'Profesional',
         name: 'Alfachoca Tracalanduda',

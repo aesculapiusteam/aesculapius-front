@@ -60,6 +60,11 @@ angular
         controller: 'EmployeesCtrl',
         controllerAs: 'employees'
       })
+      .when('/personas', {
+        templateUrl: 'views/personas.html',
+        controller: 'PersonasCtrl',
+        controllerAs: 'personas'
+      })
       .otherwise({
         redirectTo: '/'
       });
