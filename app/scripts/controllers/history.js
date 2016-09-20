@@ -11,7 +11,7 @@ var DialogController = function ($scope, $mdDialog) {
 
   $scope.consultList = [
     {
-      Fecha: '2016-09-06T00:43:43.931Z',
+      Fecha: '2016-01-06T00:43:43.931Z',
       Medico: 'Alfachoca Tracalanduda',
       Descripcion: 'esto describe',
     },
@@ -23,6 +23,9 @@ var DialogController = function ($scope, $mdDialog) {
 
 
   ];
+  $scope.cancel = function() {
+    $mdDialog.cancel();
+  };
 };
 
 
