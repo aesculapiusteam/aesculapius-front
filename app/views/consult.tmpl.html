@@ -1,0 +1,55 @@
+<md-dialog>
+  <div layout="row">
+    <md-toolbar layout="row">
+      <div class="md-toolbar-tools">Consulta</div>
+      <div style="margin-top:10px">
+        <md-button class="md-icon-button">
+          <md-icon ng-click="cancel()">close</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+  </div>
+  <md-divider></md-divider>
+  <md-dialog-content layout="column" layout-padding flex>
+    <div layout="row">
+      <p> Paciente: <b>{{ patient }}</b></p>
+    </div>
+    <div layout="row">
+      <p> Médico: <b>{{ doctor }}</b></p>
+    </div>
+    <div layout="row">
+      <p>Fecha: <b>0{{ myDate.getDate() }} / 0{{ myDate.getMonth() }} / {{ myDate. getFullYear() }}</b></p>
+    </div>
+    <div layout="row" layout-align="space-between center">
+      <p>Detalles: </p>
+      <md-button class="md-icon-button md-primary" ng-click="edit()">
+        <md-icon>border_color</md-icon>
+      </md-button>
+    </div>
+    <div>
+      <md-input-container class="md-block">
+        <label></label>
+        <textarea ng-model="details" ng-change="change()" rows="1" ng-disabled="enable"></textarea>
+      </md-input-container>
+    </div>
+  </md-dialog-content>
+  <md-dialog-actions layout="row" layout-align="space-between">
+    <md-button class="md-primary" ng-disabled="buttons[0]">
+      <label>Guardar</label>
+      <md-icon>save</md-icon>
+    </md-button>
+    <md-button class="md-primary" ng-disabled="buttons[1]">
+      <label>Imprimir</label>
+      <md-icon>print</md-icon>
+    </md-button>
+    <md-button class="md-primary" ng-disabled="buttons[2]">
+      <label>Eliminar</label>
+      <md-icon>delete</md-icon>
+    </md-button>
+    <md-button class="md-warn" ng-click="cancel()" ng-disabled="buttons[3]">
+      <label>Cancelar</label>
+      <md-icon>cancel</md-icon>
+    </md-button>
+  </md-dialog-actions>
+</md-dialog>
