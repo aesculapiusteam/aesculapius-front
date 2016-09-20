@@ -1,0 +1,41 @@
+
+<div ng-controller="EmployeesCtrl" layout-margin>
+
+  <md-card style="margin:0px">
+    <md-subheader >Buscar Empleados</md-subheader>
+
+    <md-input-container style="margin:15px;" layout="row">
+      <div class="" flex="90">
+        <label>Buscar</label>
+        <input type="text" flex>
+      </div>
+
+      <md-button style="align:right;" class="md-icon-button md-primary" aria-label="AddEmployee" flex="10">
+        <md-icon>person_add</md-icon>
+      </md-button>
+    </md-input-container>
+
+
+  </md-card>
+
+  <mdt-table paginated-rows="{isEnabled: true, rowsPerPageValues: [5,10,20,100]}">
+    <mdt-header-row>
+      <mdt-column align-rule="left">Tipo</mdt-column>
+      <mdt-column align-rule="left">Nombre y Apellido</mdt-column>
+      <mdt-column align-rule="left">Especialidad</mdt-column>
+      <mdt-column align-rule="left">Editar</mdt-column>
+
+    </mdt-header-row>
+    <mdt-row ng-repeat="employee in employeesList">
+      <mdt-cell>{{employee.type}}</mdt-cell>
+      <mdt-cell>{{employee.name}}</mdt-cell>
+      <mdt-cell>{{employee.specialty}}</mdt-cell>
+      <mdt-cell html-content="true">
+        <md-button class="md-icon-button md-primary" aria-label="Edit">
+          <md-icon>edit</md-icon>
+        </md-button>
+      </mdt-cell>
+    </mdt-row>
+  </mdt-table>
+
+</div>
