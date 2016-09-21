@@ -14,7 +14,6 @@
       </md-button>
     </md-input-container>
 
-
   </md-card>
 
   <mdt-table paginated-rows="{isEnabled: true, rowsPerPageValues: [5,10,20,100]}">
@@ -36,11 +35,10 @@
         </md-button>
       </mdt-cell>
       <mdt-cell html-content="true">
-        <md-button class="md-icon-button md-primary" aria-label="SeeCH">
+        <md-button class="md-icon-button md-primary" ng-controller="HistoryCtrl" ng-click="showTabDialog($event)" aria-label="SeeCH">
             <md-icon>description</md-icon>
         </md-button>
       </mdt-cell>
     </mdt-row>
   </mdt-table>
-
 </div>
