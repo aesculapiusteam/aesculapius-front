@@ -1,0 +1,40 @@
+<md-dialog>
+  <div layout="row">
+    <md-toolbar layout="row">
+      <div class="md-toolbar-tools">Historia Clínica</div>
+      <div style="margin-top:10px">
+        <md-button class="md-icon-button">
+          <md-icon ng-click="cancel()">close</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+  </div>
+  <md-divider></md-divider>
+  <md-dialog-content layout="column" layout-padding flex>
+    <mdt-table>
+      <mdt-header-row>
+
+        <mdt-column align-rule="right">Fecha</mdt-column>
+        <mdt-column align-rule="right">Médico</mdt-column>
+        <mdt-column align-rule="right">Descripción</mdt-column>
+        <mdt-column align-rule="right">Detalles</mdt-column>
+      </mdt-header-row>
+      <mdt-row ng-repeat="consult in consultList">
+        <mdt-cell>{{consult.Fecha | date}}</mdt-cell>
+        <mdt-cell>{{consult.Medico}}</mdt-cell>
+        <mdt-cell>{{consult.Descripcion}}</mdt-cell>
+        <mdt-cell html-content="true">
+          <md-dialog-actions>
+            <md-button class="md-icon-button md-primary">
+              <md-icon>assignment</md-icon>
+            </md-button>
+          </md-dialog-actions>
+        </mdt-cell>
+      </mdt-row>
+    </mdt-table>
+
+
+  </md-dialog-content>
+
+</md-dialog>
