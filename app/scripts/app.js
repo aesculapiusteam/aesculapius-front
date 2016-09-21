@@ -26,23 +26,13 @@ angular
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';
     $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
 
-    //set the base url for api calls on our RESTful services
-    var newBaseUrl = "";
-    if (window.location.hostname === "localhost") {
-      newBaseUrl = "http://localhost:8000/api/";
-    } else {
-      var deployedAt = window.location.href.substring(0, window.location.href);
-      newBaseUrl = deployedAt + "/api/";
-    }
-    RestangularProvider.setBaseUrl(newBaseUrl);
+    var apiUrl = "http://" + window.location.hostname + ":8000/api/";
+    RestangularProvider.setBaseUrl(apiUrl);
     RestangularProvider.addResponseInterceptor(function(data, operation) {
-      var extractedData;
       if (operation === "getList" && data.results) {
-        extractedData = data.results;
-      } else {
-        extractedData = data;
+        data = data.results;
       }
-      return extractedData;
+      return data;
     });
     $routeProvider
       .when('/', {

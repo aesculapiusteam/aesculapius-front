@@ -14,17 +14,17 @@
         </div>
 
         <md-input-container md-no-float class="md-block">
-          <input ng-model="user.user" placeholder="Address">
+          <input ng-model="credentials.username" placeholder="Address">
         </md-input-container>
 
         <md-input-container md-no-float class="md-block">
-          <input ng-model="user.pass" placeholder="Password">
+          <input ng-model="credentials.password" placeholder="Password">
         </md-input-container>
 
       </div>
 
       <div class="white" layout="column" flex>
-        <md-button class="grey" layout="column"> LOGIN </md-button>
+        <md-button class="grey" layout="column" ng-click="logIn()"> LOGIN </md-button>
       </div>
 
     </md-whiteframe>
