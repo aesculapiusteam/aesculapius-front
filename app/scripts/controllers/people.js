@@ -2,14 +2,14 @@
 
 /**
 * @ngdoc function
-* @name aesculapiusFrontApp.controller:PersonasCtrl
+* @name aesculapiusFrontApp.controller:PeopleCtrl
 * @description
-* # PersonasCtrl
+* # PeopleCtrl
 * Controller of the aesculapiusFrontApp
 */
 (function(){
   angular.module('aesculapiusFrontApp')
-  .controller('PersonasCtrl', function ($scope){
+  .controller('PeopleCtrl', function ($scope){
 
     $scope.peopleList = [
       {

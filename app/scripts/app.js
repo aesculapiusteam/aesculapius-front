@@ -60,10 +60,10 @@ angular
         controller: 'EmployeesCtrl',
         controllerAs: 'employees'
       })
-      .when('/personas', {
-        templateUrl: 'views/personas.html',
-        controller: 'PersonasCtrl',
-        controllerAs: 'personas'
+      .when('/people', {
+        templateUrl: 'views/people.html',
+        controller: 'PeopleCtrl',
+        controllerAs: 'people'
       })
       .when('/history', {
         templateUrl: 'views/history.html',
