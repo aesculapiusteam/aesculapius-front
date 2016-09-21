@@ -22,7 +22,8 @@ angular
     'mdDataTable',
     'restangular'
   ])
-  .config(function ($routeProvider, $httpProvider, RestangularProvider) {
+  .config(['$httpProvider', 'RestangularProvider',
+  function ($httpProvider, RestangularProvider) {
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';
     $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
 
@@ -34,6 +35,8 @@ angular
       }
       return data;
     });
+  }])
+  .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -68,4 +71,11 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-  });
+    }])
+    .run(['Restangular', function(Restangular) {
+      if (window.localStorage.token) {
+        Restangular.setDefaultHeaders(
+          { Authorization: 'Token ' + window.localStorage.token }
+        );
+      }
+    }]);

@@ -19,6 +19,7 @@ angular.module('aesculapiusFrontApp')
           Restangular.setDefaultHeaders(
             { Authorization: 'Token ' + response.token }
           );
+          window.localStorage.token = response.token;
           return response;
         }
       );
