@@ -22,28 +22,21 @@ angular
     'mdDataTable',
     'restangular'
   ])
-  .config(function ($routeProvider, $httpProvider, RestangularProvider) {
+  .config(['$httpProvider', 'RestangularProvider',
+  function ($httpProvider, RestangularProvider) {
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';
     $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
 
-    //set the base url for api calls on our RESTful services
-    var newBaseUrl = "";
-    if (window.location.hostname === "localhost") {
-      newBaseUrl = "http://localhost:8000/api/";
-    } else {
-      var deployedAt = window.location.href.substring(0, window.location.href);
-      newBaseUrl = deployedAt + "/api/";
-    }
-    RestangularProvider.setBaseUrl(newBaseUrl);
+    var apiUrl = "http://" + window.location.hostname + ":8000/api/";
+    RestangularProvider.setBaseUrl(apiUrl);
     RestangularProvider.addResponseInterceptor(function(data, operation) {
-      var extractedData;
       if (operation === "getList" && data.results) {
-        extractedData = data.results;
-      } else {
-        extractedData = data;
+        data = data.results;
       }
-      return extractedData;
+      return data;
     });
+  }])
+  .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -55,22 +48,39 @@ angular
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
-      .when('/consult', {
-        templateUrl: 'views/consult.html',
-        controller: 'ConsultCtrl',
-        controllerAs: 'consult'
-        })
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl',
+        controllerAs: 'login'
+      })
       .when('/employees', {
         templateUrl: 'views/employees.html',
         controller: 'EmployeesCtrl',
         controllerAs: 'employees'
       })
-      .when('/personas', {
-        templateUrl: 'views/personas.html',
-        controller: 'PersonasCtrl',
-        controllerAs: 'personas'
+      .when('/consult', {
+        templateUrl: 'views/consult.html',
+        controller: 'ConsultCtrl',
+        controllerAs: 'consult'
+        })
+      .when('/people', {
+        templateUrl: 'views/people.html',
+        controller: 'PeopleCtrl',
+        controllerAs: 'people'
+      })
+      .when('/history', {
+        templateUrl: 'views/history.html',
+        controller: 'HistoryCtrl',
+        controllerAs: 'history'
       })
       .otherwise({
         redirectTo: '/'
       });
-  });
+    }])
+    .run(['Restangular', function(Restangular) {
+      if (window.localStorage.token) {
+        Restangular.setDefaultHeaders(
+          { Authorization: 'Token ' + window.localStorage.token }
+        );
+      }
+    }]);

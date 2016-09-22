@@ -1,0 +1,40 @@
+<div class="back" layout="column" layout-align="space-between stretch" flex>
+
+  <div layout=row layout-align="center center">
+    <img class="loginLogo" flex="15" src="images/logo.png"> </img>
+  </div>
+
+  <div layout="row" layout-align="center center">
+    <md-whiteframe class="md-whiteframe-10dp" flex-sm="45" flex-gt-sm="25" flex-gt-md="20">
+
+      <div class="white" layout="column" layout layout-align="center center">
+
+        <div layout=row layout-align="center center">
+          <p class="md-body-2">Log in to your account</p>
+        </div>
+
+        <md-input-container md-no-float class="md-block">
+          <input ng-model="credentials.username" placeholder="Address">
+        </md-input-container>
+
+        <md-input-container md-no-float class="md-block">
+          <input ng-model="credentials.password" placeholder="Password">
+        </md-input-container>
+
+      </div>
+
+      <div class="white" layout="column" flex>
+        <md-button class="grey" layout="column" ng-click="logIn()"> LOGIN </md-button>
+      </div>
+
+    </md-whiteframe>
+  </div>
+
+</div>
+
+<style media="screen">
+.white{background-color:white;}
+.grey{background-color:#E0E0E0;}
+.back{background-image: url("http://materializecss.com/templates/parallax-template/background3.jpg");}
+
+</style>

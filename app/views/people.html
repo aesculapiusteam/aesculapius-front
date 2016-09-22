@@ -1,4 +1,4 @@
-<div ng-controller="PersonasCtrl" layout-margin>
+<div ng-controller="PeopleCtrl" layout-margin>
 
   <md-card style="margin:0px">
     <md-subheader >Buscar Personas</md-subheader>
@@ -13,7 +13,6 @@
         <md-icon>person_add</md-icon>
       </md-button>
     </md-input-container>
-
 
   </md-card>
 
@@ -36,11 +35,10 @@
         </md-button>
       </mdt-cell>
       <mdt-cell html-content="true">
-        <md-button class="md-icon-button md-primary" aria-label="SeeCH">
+        <md-button class="md-icon-button md-primary" ng-controller="HistoryCtrl" ng-click="showTabDialog($event)" aria-label="SeeCH">
             <md-icon>description</md-icon>
         </md-button>
       </mdt-cell>
     </mdt-row>
   </mdt-table>
-
 </div>
