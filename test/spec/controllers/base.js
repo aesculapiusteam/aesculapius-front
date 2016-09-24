@@ -1,23 +1,23 @@
 'use strict';
 
-describe('Controller: MainCtrl', function () {
+describe('Controller: BaseCtrl', function () {
 
   // load the controller's module
   beforeEach(module('aesculapiusFrontApp'));
 
-  var MainCtrl,
+  var BaseCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    MainCtrl = $controller('MainCtrl', {
+    BaseCtrl = $controller('BaseCtrl', {
       $scope: scope
       // place here mocked dependencies
     });
   }));
 
   it('should attach a list of awesomeThings to the scope', function () {
-    expect(MainCtrl.awesomeThings.length).toBe(3);
+    expect(BaseCtrl.awesomeThings.length).toBe(3);
   });
 });

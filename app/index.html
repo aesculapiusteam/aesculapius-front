@@ -20,39 +20,28 @@
   </head>
   <body ng-app="aesculapiusFrontApp">
     <!--[if lte IE 8]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
+    <md-toolbar class="md-whiteframe-4dp">
+      <div class="md-toolbar-tools">
 
-    <!-- Add your site or application content here -->
-    <div class="header">
-      <div class="navbar navbar-default" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
-
-            <a class="navbar-brand" href="#/">aesculapiusFront</a>
-          </div>
-
-          <div class="collapse">
-
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="#/">Home</a></li>
-              <li><a ng-href="#/about">About</a></li>
-              <li><a ng-href="#/">Contact</a></li>
-            </ul>
-          </div>
-        </div>
+        <h2>Aesculapius</h2>
+        <span flex></span>
+        <md-button>
+          <md-icon>person</md-icon>
+          Ricardao Moraleas
+          <md-tooltip>Ver Perfil</md-tooltip>
+        </md-button>
+        <md-button>
+          <md-tooltip>Salir de Aesculapius</md-tooltip>
+          <md-icon>close</md-icon>
+        </md-button>
       </div>
-    </div>
+    </md-toolbar>
 
-    <div class="container">
-    <div ng-view=""></div>
-    </div>
-
-    <div class="footer">
-      <div class="container">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div>
-    </div>
+    <md-content>
+      <div ng-view=""></div>
+    </md-content>
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
@@ -78,7 +67,7 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/base.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/login.js"></script>
         <script src="scripts/controllers/employees.js"></script>
