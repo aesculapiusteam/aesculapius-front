@@ -2,13 +2,13 @@
 
 /**
 * @ngdoc service
-* @name aesculapiusFrontApp.login
+* @name aesculapiusFrontApp.auth
 * @description
-* # login
-* This service allows you to login into the api using token auth.
+* # auth
+* This service allows you to auth into the api using token auth.
 */
 angular.module('aesculapiusFrontApp')
-.service('login', ['Restangular', function (Restangular) {
+.service('auth', ['Restangular', function (Restangular) {
   this.tokenAuthUrl = 'token-auth/';
 
   this.token = function(credentials){
@@ -26,7 +26,7 @@ angular.module('aesculapiusFrontApp')
     } else {
       throw new Error(
         'You must provide a credentials object with ' +
-        'username and password fields to login.token()'
+        'username and password fields to auth.token()'
     );
     }
   };
