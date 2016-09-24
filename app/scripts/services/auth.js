@@ -27,7 +27,7 @@ angular.module('aesculapiusFrontApp')
       throw new Error(
         'You must provide a credentials object with ' +
         'username and password fields to auth.token()'
-    );
+      );
     }
   };
 

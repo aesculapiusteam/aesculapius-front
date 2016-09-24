@@ -1,19 +1,17 @@
 <div ng-controller="PeopleCtrl" layout-margin>
 
-  <md-card style="margin:0px">
+  <md-card>
     <md-subheader >Buscar Personas</md-subheader>
-
-    <md-input-container style="margin:15px;" layout="row">
-      <div class="" flex="90">
+    <md-input-container layout="row">
+      <div flex="90">
         <label>Buscar</label>
         <input type="text" flex ng-model="filterText">
       </div>
-
-      <md-button style="align:right;" class="md-icon-button md-primary" aria-label="AddPerson" flex="10">
+      
+      <md-button class="md-primary" aria-label="AddPerson">
         <md-icon>person_add</md-icon>
       </md-button>
     </md-input-container>
-
   </md-card>
 
   <mdt-table paginated-rows="{isEnabled: true, rowsPerPageValues: [5,10,20,100]}">
@@ -30,13 +28,13 @@
       <mdt-cell>{{person.name}}</mdt-cell>
       <mdt-cell>{{person.specialty}}</mdt-cell>
       <mdt-cell html-content="true">
-        <md-button class="md-icon-button md-primary" aria-label="EditPerson">
+        <md-button class="md-icon-button md-primary">
           <md-icon>edit</md-icon>
         </md-button>
       </mdt-cell>
       <mdt-cell html-content="true">
         <md-button class="md-icon-button md-primary" ng-controller="HistoryCtrl" ng-click="showTabDialog($event)" aria-label="SeeCH">
-            <md-icon>description</md-icon>
+          <md-icon>description</md-icon>
         </md-button>
       </mdt-cell>
     </mdt-row>
