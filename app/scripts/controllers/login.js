@@ -11,6 +11,8 @@ angular.module('aesculapiusFrontApp')
 .controller('LoginCtrl', ['$scope', '$location', 'login',
   function ($scope, $location, login) {
     if (window.localStorage.token) {
+      console.log(typeof window.localStorage.token);
+      console.log(window.localStorage.token);
       $location.path("/people"); //TODO DRY make this a login method
     }
     $scope.credentials = {

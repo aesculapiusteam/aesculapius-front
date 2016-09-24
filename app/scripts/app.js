@@ -64,7 +64,7 @@ angular
         controllerAs: 'history'
       })
       .otherwise({
-        redirectTo: '/people'
+        redirectTo: '/login'
       });
     }])
     .run(['Restangular', function(Restangular) {

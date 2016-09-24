@@ -8,7 +8,11 @@
 * Controller of the aesculapiusFrontApp
 */
 angular.module('aesculapiusFrontApp')
-.controller('BaseCtrl', ['$scope', '$mdSidenav',
-function ($scope, $mdSidenav) {
+.controller('BaseCtrl', ['$scope', '$location', 'login',
+function ($scope, $location, login) {
+  $scope.logout = function(){
+    login.logout();
+    $location.path("/login");
+  };
 
 }]);

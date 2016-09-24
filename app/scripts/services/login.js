@@ -30,4 +30,9 @@ angular.module('aesculapiusFrontApp')
     );
     }
   };
+
+  this.logout = function(){
+    window.localStorage.token = "";
+  };
+
 }]);
