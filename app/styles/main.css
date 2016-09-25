@@ -25,3 +25,8 @@ ae-navbar-title {
   /*filter: brightness(0) invert(1);*/
   height: 32px;
 }
+
+/* Buttons */
+.md-button:not([disabled]):hover {
+  background-color: rgba(200, 200, 200, 0.4);
+}
