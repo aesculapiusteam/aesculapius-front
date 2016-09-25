@@ -42,7 +42,7 @@
     <span style="line-height:48px;">{{value}}<span>
   </mdt-custom-cell>
   <mdt-custom-cell column-key="edit">
-    <mdt-button icon="edit"></mdt-button>
+    <mdt-button ng-controller="ProfileCtrl" ng-click="showTabDialog($event)" icon="edit"></mdt-button>
   </mdt-custom-cell>
   <mdt-custom-cell column-key="hc">
     <mdt-button ng-controller="HistoryCtrl" ng-click="showTabDialog($event)" icon="description"></mdt-button>

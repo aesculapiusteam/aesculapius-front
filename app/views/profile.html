@@ -1,0 +1,106 @@
+<md-dialog>
+  <div layout="row">
+    <md-toolbar layout="row">
+      <div class="md-toolbar-tools">Editar Perfil</div>
+      <div style="margin-top:10px">
+        <md-button class="md-icon-button">
+          <md-icon ng-click="cancel()">close</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+  </div>
+  <md-divider></md-divider>
+
+  <md-dialog-content class="md-padding" layout-xs="column" layout="row">
+    <div layout="column" layout-padding ng-cloak>
+
+      <br/>
+
+
+      <md-content layout-padding="">
+        <form name="profileForm">
+
+          <div layout="row">
+            <md-input-container flex="50">
+              <label>Nombre</label>
+              <input required="" name="name" ng-model="user.name">
+              <div ng-messages="profileForm.name.$error">
+                <div ng-message="required">Campo obligatorio</div>
+              </div>
+            </md-input-container>
+
+            <md-input-container flex="50">
+              <label>Apellido</label>
+              <input name="lastName" >
+            </md-input-container>
+
+            <md-input-container flex="50">
+              <label>DNI</label>
+              <input name="dni" >
+            </md-input-container>
+          </div>
+
+          <div layout="row">
+            <md-input-container class="md-block" flex="50">
+              <label>Email</label>
+              <input name="email">
+            </md-input-container>
+            <md-datepicker ng-model="myDate" md-placeholder="Nacimiento" flex="50">
+            </md-datepicker>
+          </div>
+          <md-input-container class="md-block">
+            <label>Dirección</label>
+            <input name="address">
+          </md-input-container>
+          <div layout="row">
+            <md-input-container class="md-block" flex="50">
+              <label>Número de teléfono</label>
+              <input name="phone">
+            </md-input-container>
+            <md-input-container class="md-block" flex="50">
+              <label>Número de celular</label>
+              <input name="cellphone">
+            </div>
+          </md-input-container>
+
+          <div layout="row">
+            <md-input-container flex="50">
+              <label>Nueva Contraseña</label>
+              <input name="newPass" type="password">
+            </md-input-container>
+
+            <md-input-container flex="50">
+              <label>Repita Contraseña</label>
+              <input name="repeatPass" type="password">
+            </md-input-container>
+          </div>
+          <!-- Si se puede hacer el boton guardar type="submit" sería genial
+          <div>
+          <md-button type="submit">Submit</md-button>
+        </div>
+      -->
+    </form>
+  </md-content>
+
+</div>
+
+
+
+
+</md-dialog-content>
+
+<md-dialog-actions layout="row">
+  <md-button>
+    Eliminar
+  </md-button>
+  <span flex></span>
+  <md-button>
+    Cancelar
+  </md-button>
+  <md-button>
+    Guardar
+  </md-button>
+</md-dialog-actions>
+
+</md-dialog>
