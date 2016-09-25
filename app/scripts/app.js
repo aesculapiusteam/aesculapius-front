@@ -31,7 +31,9 @@ angular
     RestangularProvider.setBaseUrl(apiUrl);
     RestangularProvider.addResponseInterceptor(function(data, operation) {
       if (operation === "getList" && data.results) {
-        data = data.results;
+        var extractedData = data.results;
+        extractedData.count = data.count;
+        data = extractedData;
       }
       return data;
     });

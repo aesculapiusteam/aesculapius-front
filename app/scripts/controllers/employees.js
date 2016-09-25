@@ -13,7 +13,7 @@
   angular.module('aesculapiusFrontApp')
   .controller('EmployeesCtrl', ['$scope', '$mdToast', 'Restangular',
   function($scope, $mdToast, Restangular){
-    // $scope.keysearch = "";
+    $scope.filterText = "";
     var allEmployees = Restangular.all('employees');
     // allEmployees.getList().then(function(response){
     //   $scope.employees = response;
@@ -31,24 +31,21 @@
 
     $scope.$watch('filterText', function(){
       if(loadPageCallbackWithDebounce){
-        console.log("BANANARFRITA2");
         loadPageCallbackWithDebounce();
       }
     });
 
     $scope.getLoadResultsCallback = function (loadPageCallback){
-      console.log("BANANARFRITA3");
-      loadPageCallbackWithDebounce = _.debounce(loadPageCallback, 2000);
+      loadPageCallbackWithDebounce = _.debounce(loadPageCallback, 1000);
     };
 
     $scope.paginatorCallback = function (page, pageSize){
       console.log("BANANARFRITA4");
-      // var offset = (page-1) * pageSize;
-      // var query = $scope.filterText ? $scope.filterText : '';
-      return allEmployees.getList({search: $scope.filterText}).then(function(result){
+      var offset = (page-1) * pageSize;
+      return allEmployees.getList({search: $scope.filterText, limit: pageSize, offset:offset}).then(function(result){
         return {
           results: result,
-          totalResultCount: result.total
+          totalResultCount: result.count
         };
       });
     };

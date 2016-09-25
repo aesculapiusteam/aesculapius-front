@@ -12,30 +12,30 @@
 </md-card>
 
 <md-card>
-<mdt-table paginated-rows="{isEnabled: true, rowsPerPageValues: [3,10,20,100]}"
-mdt-row-paginator="paginatorCallback(page, pageSize)"
-mdt-row-paginator-error-message="Hubo un error al cargar los empleados."
-mdt-trigger-request="getLoadResultsCallback(loadPageCallback)"
-mdt-row="{
-  'table-row-id-key': 'id',
-  'column-keys': [
-  'charge',
-  'profile',
-  'profile.email',
-  'id'
-  ],
-}">
-<mdt-header-row>
-  <mdt-column align-rule="left">Tipo</mdt-column>
-  <mdt-column align-rule="left">Nombre y Apellido</mdt-column>
-  <mdt-column align-rule="left">Email</mdt-column>
-  <mdt-column align-rule="left">Editar</mdt-column>
-</mdt-header-row>
-<mdt-custom-cell column-key="profile">
-  <span>{{value.first_name}} {{value.last_name}}</span>
-</mdt-custom-cell>
-<mdt-custom-cell column-key="id">
-  <mdt-custom-cell-button></mdt-custom-cell-button>
-</mdt-custom-cell>
+  <mdt-table paginated-rows="{isEnabled: true, rowsPerPageValues: [3,10,20,50]}"
+  mdt-row-paginator="paginatorCallback(page, pageSize)"
+  mdt-row-paginator-error-message="Hubo un error al cargar los empleados."
+  mdt-trigger-request="getLoadResultsCallback(loadPageCallback)"
+  mdt-row="{
+    'table-row-id-key': 'id',
+    'column-keys': [
+    'charge',
+    'profile',
+    'profile.email',
+    'id'
+    ],
+  }">
+  <mdt-header-row>
+    <mdt-column align-rule="left">Tipo</mdt-column>
+    <mdt-column align-rule="left">Nombre y Apellido</mdt-column>
+    <mdt-column align-rule="left">Email</mdt-column>
+    <mdt-column align-rule="left">Editar</mdt-column>
+  </mdt-header-row>
+  <mdt-custom-cell column-key="profile">
+    <span>{{value.first_name}} {{value.last_name}}</span>
+  </mdt-custom-cell>
+  <mdt-custom-cell column-key="id">
+    <mdt-custom-cell-button></mdt-custom-cell-button>
+  </mdt-custom-cell>
 </mdt-table>
 </md-card>
