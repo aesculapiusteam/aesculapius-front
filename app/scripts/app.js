@@ -73,4 +73,10 @@ angular
           { Authorization: 'Token ' + window.localStorage.token }
         );
       }
-    }]);
+    }])
+    .config(function($mdThemingProvider) {
+      $mdThemingProvider.theme('default')
+      .primaryPalette('blue')
+      .accentPalette('pink')
+      .warnPalette('red');
+    });
