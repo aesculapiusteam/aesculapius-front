@@ -8,11 +8,9 @@
 * Controller of the aesculapiusFrontApp
 */
 (function(){
-
-
   angular.module('aesculapiusFrontApp')
-  .controller('EmployeesCtrl', ['$scope', '$mdToast', 'Restangular',
-  function($scope, $mdToast, Restangular){
+  .controller('EmployeesCtrl', ['$scope', 'Restangular',
+  function($scope, Restangular){
     $scope.filterText = "";
     var allEmployees = Restangular.all('employees');
     var loadPageCallbackWithDebounce;

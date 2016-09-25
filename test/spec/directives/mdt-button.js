@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Directive: mdtCustomCellButton', function () {
+describe('Directive: mdtButton', function () {
 
   // load the directive's module
   beforeEach(module('aesculapiusFrontApp'));
@@ -13,8 +13,8 @@ describe('Directive: mdtCustomCellButton', function () {
   }));
 
   it('should make hidden element visible', inject(function ($compile) {
-    element = angular.element('<mdt-custom-cell-button></mdt-custom-cell-button>');
+    element = angular.element('<mdt-button></mdt-button>');
     element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the mdtCustomCellButton directive');
+    expect(element.text()).toBe('this is the mdtButton directive');
   }));
 });
