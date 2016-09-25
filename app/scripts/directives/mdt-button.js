@@ -12,9 +12,8 @@ angular.module('aesculapiusFrontApp')
     restrict: 'EA',
     template: '<md-button class="md-primary"><md-icon>{{icon}}</md-icon>{{text}}</md-button>',
     link: function(scope, element, attributes) {
-      console.log(attributes);
-      scope.icon = attributes['icon'];
-      scope.text = attributes['text'];
+      scope.icon = attributes.icon;
+      scope.text = attributes.text;
     }
   };
 });
