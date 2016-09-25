@@ -22,8 +22,8 @@ angular
     'mdDataTable',
     'restangular'
   ])
-  .config(['$httpProvider', 'RestangularProvider',
-  function ($httpProvider, RestangularProvider) {
+  .config(['$httpProvider', 'RestangularProvider', '$mdDateLocaleProvider',
+  function ($httpProvider, RestangularProvider, $mdDateLocaleProvider) {
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';
     $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
 
@@ -35,6 +35,12 @@ angular
       }
       return data;
     });
+    $mdDateLocaleProvider.formatDate = function(date) {
+      var day = date.getDate();
+      var monthIndex = date.getMonth();
+      var year = date.getFullYear();
+      return ("0" + day).slice(-2) + '/' + ("0" + (monthIndex + 1)).slice(-2) + '/' + year;
+    };
   }])
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
@@ -67,6 +73,11 @@ angular
         templateUrl: 'views/history.html',
         controller: 'HistoryCtrl',
         controllerAs: 'history'
+      })
+      .when('/profile', {
+        templateUrl: 'views/profile.html',
+        controller: 'ProfileCtrl',
+        controllerAs: 'profile'
       })
       .otherwise({
         redirectTo: '/'

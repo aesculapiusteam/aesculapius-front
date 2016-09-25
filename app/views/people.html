@@ -1,4 +1,4 @@
-<div ng-controller="PeopleCtrl" layout-margin>
+<div layout-margin>
 
   <md-card style="margin:0px">
     <md-subheader >Buscar Personas</md-subheader>
@@ -30,7 +30,7 @@
       <mdt-cell>{{person.name}}</mdt-cell>
       <mdt-cell>{{person.specialty}}</mdt-cell>
       <mdt-cell html-content="true">
-        <md-button class="md-icon-button md-primary" aria-label="EditPerson">
+        <md-button class="md-icon-button md-primary" ng-controller="ProfileCtrl" ng-click="showTabDialog($event)" aria-label="EditPerson">
           <md-icon>edit</md-icon>
         </md-button>
       </mdt-cell>
