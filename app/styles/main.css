@@ -20,13 +20,17 @@ md-tooltip ._md-content {
     background-color: black;
 }
 
-/* Navbar Title */
-ae-navbar-title {
-  /*filter: brightness(0) invert(1);*/
-  height: 32px;
-}
-
 /* Buttons */
 .md-button:not([disabled]):hover {
   background-color: rgba(200, 200, 200, 0.4);
+}
+
+/* Common */
+.unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
