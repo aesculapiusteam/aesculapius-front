@@ -61,10 +61,10 @@ angular
         controller: 'EmployeesCtrl',
         controllerAs: 'employees'
       })
-      .when('/people', {
-        templateUrl: 'views/people.html',
-        controller: 'PeopleCtrl',
-        controllerAs: 'people'
+      .when('/profiles', {
+        templateUrl: 'views/profiles.html',
+        controller: 'ProfilesCtrl',
+        controllerAs: 'profiles'
       })
       .when('/history', {
         templateUrl: 'views/history.html',

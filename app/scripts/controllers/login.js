@@ -11,7 +11,7 @@ angular.module('aesculapiusFrontApp')
 .controller('LoginCtrl', ['$scope', '$location', 'auth',
 function ($scope, $location, auth) {
   if (window.localStorage.token) {
-    $location.path("/people"); //TODO DRY make this a succesfulLogin method or similar
+    $location.path("/profiles"); //TODO DRY make this a succesfulLogin method or similar
   }
   $scope.credentials = {
     username: '',
@@ -20,8 +20,7 @@ function ($scope, $location, auth) {
   $scope.logIn = function() {
     auth.token(this.credentials).then(
       function(response) {
-        console.log(response);
-        $location.path("/people");
+        $location.path("/profiles");
       },
       function(response) {
         console.log(response);

@@ -2,14 +2,14 @@
 
 /**
 * @ngdoc function
-* @name aesculapiusFrontApp.controller:PeopleCtrl
+* @name aesculapiusFrontApp.controller:ProfilesCtrl
 * @description
-* # PeopleCtrl
+* # ProfilesCtrl
 * Controller of the aesculapiusFrontApp
 */
 (function(){
   angular.module('aesculapiusFrontApp')
-  .controller('PeopleCtrl',['$scope', 'Restangular',
+  .controller('ProfilesCtrl',['$scope', 'Restangular',
   function ($scope, Restangular){
     $scope.filterText = "";
     var allProfiles = Restangular.all('profiles');

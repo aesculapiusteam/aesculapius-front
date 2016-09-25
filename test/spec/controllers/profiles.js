@@ -1,23 +1,23 @@
 'use strict';
 
-describe('Controller: PeopleCtrl', function () {
+describe('Controller: ProfilesCtrl', function () {
 
   // load the controller's module
   beforeEach(module('aesculapiusFrontApp'));
 
-  var PeopleCtrl,
+  var ProfilesCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    PeopleCtrl = $controller('PeopleCtrl', {
+    ProfilesCtrl = $controller('ProfilesCtrl', {
       $scope: scope
       // place here mocked dependencies
     });
   }));
 
   it('should attach a list of awesomeThings to the scope', function () {
-    expect(PeopleCtrl.awesomeThings.length).toBe(3);
+    expect(ProfilesCtrl.awesomeThings.length).toBe(3);
   });
 });
