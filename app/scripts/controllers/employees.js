@@ -15,18 +15,6 @@
   function($scope, $mdToast, Restangular){
     $scope.filterText = "";
     var allEmployees = Restangular.all('employees');
-    // allEmployees.getList().then(function(response){
-    //   $scope.employees = response;
-    // });
-
-    // $scope.search = function(){
-    //   if ($scope.keysearch.length >= 3) {
-    //     allEmployees.getList({search: $scope.keysearch}).then(function(response){
-    //       $scope.employees = response;
-    //     });
-    //   }
-    // };
-
     var loadPageCallbackWithDebounce;
 
     $scope.$watch('filterText', function(){
@@ -39,8 +27,7 @@
       loadPageCallbackWithDebounce = _.debounce(loadPageCallback, 1000);
     };
 
-    $scope.paginatorCallback = function (page, pageSize){
-      console.log("BANANARFRITA4");
+    $scope.refreshTable = function (page, pageSize){
       var offset = (page-1) * pageSize;
       return allEmployees.getList({search: $scope.filterText, limit: pageSize, offset:offset}).then(function(result){
         return {

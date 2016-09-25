@@ -12,8 +12,9 @@
 </md-card>
 
 <md-card>
-  <mdt-table paginated-rows="{isEnabled: true, rowsPerPageValues: [3,10,20,50]}"
-  mdt-row-paginator="paginatorCallback(page, pageSize)"
+  <mdt-table sortable-columns="true" animate-sort-icon="true"
+  paginated-rows="{isEnabled: true, rowsPerPageValues: [3,10,20,50]}"
+  mdt-row-paginator="refreshTable(page, pageSize)"
   mdt-row-paginator-error-message="Hubo un error al cargar los empleados."
   mdt-trigger-request="getLoadResultsCallback(loadPageCallback)"
   mdt-row="{
