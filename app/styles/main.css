@@ -14,7 +14,7 @@ footer {
 }
 
 /* Tooltip */
-md-tooltip ._md-content {
+md-tooltip .md-content{
     font-size: 14px;
     padding: 0.5rem 1rem;
     background-color: black;
