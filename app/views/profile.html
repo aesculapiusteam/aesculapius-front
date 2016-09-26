@@ -4,11 +4,10 @@
       <div class="md-toolbar-tools">Editar Perfil</div>
       <div style="margin-top:10px">
         <md-button class="md-icon-button">
-          <md-icon ng-click="cancel()">close</md-icon>
+          <md-icon ng-click="$root.cancel()">close</md-icon>
         </md-button>
       </div>
     </md-toolbar>
-
   </div>
   <md-divider></md-divider>
 
@@ -16,7 +15,6 @@
     <div layout="column" layout-padding ng-cloak>
         <form name="profileForm">
           <h2 class="md-title">Información de Cuenta</h2>
-          <md-subhead></md-divider>
           <div layout="row">
             <md-input-container flex="50">
               <label>Nombre de Usuario</label>
@@ -34,9 +32,15 @@
               <input name="repeat_password" type="password"/>
             </md-input-container>
           </div>
+          <h3 class="md-subhead">Asistido por/Asiste a...</h3>
+          <!-- {{$root.profile}} -->
+          <div layout="row">
+            <md-checkbox class="md-primary" ng-repeat="x in charges()">
+              {{ x }}
+            </md-checkbox>
+          </div>
 
           <h2 class="md-title">Información Personal</h2>
-          <md-subhead></md-divider>
           <div layout="row">
             <md-input-container flex="50">
               <label>Nombre</label>

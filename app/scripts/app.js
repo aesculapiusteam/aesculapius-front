@@ -17,7 +17,6 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch',
     'ngMaterial',
     'mdDataTable',
     'restangular'
@@ -38,10 +37,13 @@ angular
       return data;
     });
     $mdDateLocaleProvider.formatDate = function(date) {
-      var day = date.getDate();
-      var monthIndex = date.getMonth();
-      var year = date.getFullYear();
-      return ("0" + day).slice(-2) + '/' + ("0" + (monthIndex + 1)).slice(-2) + '/' + year;
+      if (date) {
+        var day = date.getDate();
+        var monthIndex = date.getMonth();
+        var year = date.getFullYear();
+        return ("0" + day).slice(-2) + '/' + ("0" + (monthIndex + 1)).slice(-2) + '/' + year;
+      }
+      return "";
     };
   }])
   .config(['$routeProvider', function ($routeProvider) {

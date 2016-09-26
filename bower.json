@@ -10,7 +10,6 @@
     "angular-resource": "^1.4.0",
     "angular-route": "^1.4.0",
     "angular-sanitize": "^1.4.0",
-    "angular-touch": "^1.4.0",
     "angular-material": "^1.1.0",
     "material-design-icons": "^3.0.1",
     "mdDataTable": "^1.6.6",

@@ -25,7 +25,7 @@
     'last_name',
     'dni',
     'email',
-    'edit',
+    'id',
     'hc'
     ],
   }">
@@ -41,11 +41,11 @@
     <ae-profile-icon name={{value}} size=32></ae-profile-icon>
     <span style="line-height:48px;">{{value}}<span>
     </mdt-custom-cell>
-    <mdt-custom-cell column-key="edit">
-      <mdt-button ng-controller="ProfileCtrl" ng-click="showTabDialog($event)" icon="edit"></mdt-button>
+    <mdt-custom-cell column-key="id">
+      <mdt-button id="profile" profileId={{value}} ng-click="$root.showDialog($event, this)" icon="edit">{{value}}</mdt-button>
     </mdt-custom-cell>
     <mdt-custom-cell column-key="hc">
-      <mdt-button ng-controller="HistoryCtrl" ng-click="showTabDialog($event)" icon="description"></mdt-button>
+      <mdt-button id="history" ng-click="$root.showDialog($event)" icon="description"></mdt-button>
     </mdt-custom-cell>
   </mdt-table>
 </md-card>
