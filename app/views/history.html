@@ -1,40 +1,40 @@
-<md-dialog>
+<div>
   <div layout="row">
     <md-toolbar layout="row">
       <div class="md-toolbar-tools">Historia Clínica</div>
-      <div style="margin-top:10px">
-        <md-button class="md-icon-button">
-          <md-icon ng-click="$root.cancel()">close</md-icon>
-        </md-button>
-      </div>
+    </div>
     </md-toolbar>
-
   </div>
-  <md-divider></md-divider>
-  <md-dialog-content layout="column" layout-padding flex>
-    <mdt-table>
+  <md-content layout="column" layout-padding flex>
+    <mdt-table sortable-columns="true" animate-sort-icon="true"
+    paginated-rows="{isEnabled: true, rowsPerPageValues: [10,20,50]}"
+    mdt-row-paginator="getData(page, pageSize)"
+    mdt-row-paginator-error-message="Hubo un error al cargar las personas."
+    mdt-row-paginator-no-results-message="No hubo resultados de la busqueda."
+    mdt-row="{
+      'table-row-id-key': 'id',
+      'column-keys': [
+      'datetime',
+      'doctor_name',
+      'detail_summary',
+      'moreButton'
+      ],
+    }">
       <mdt-header-row>
-
         <mdt-column align-rule="right">Fecha</mdt-column>
         <mdt-column align-rule="right">Médico</mdt-column>
         <mdt-column align-rule="right">Descripción</mdt-column>
         <mdt-column align-rule="right">Detalles</mdt-column>
       </mdt-header-row>
-      <mdt-row ng-repeat="consult in consultList">
-        <mdt-cell>{{consult.Fecha | date}}</mdt-cell>
-        <mdt-cell>{{consult.Medico}}</mdt-cell>
-        <mdt-cell>{{consult.Descripcion}}</mdt-cell>
-        <mdt-cell html-content="true">
-          <md-dialog-actions>
-            <md-button class="md-icon-button md-primary">
-              <md-icon>assignment</md-icon>
-            </md-button>
-          </md-dialog-actions>
-        </mdt-cell>
-      </mdt-row>
+      <mdt-custom-cell column-key="datetime" aria-label="More">
+        {{value|date}}
+      </mdt-custom-cell>
+      <mdt-custom-cell column-key="moreButton" aria-label="More">
+        <mdt-button ng-click="" icon="more"></mdt-button>
+      </mdt-custom-cell>
     </mdt-table>
 
 
-  </md-dialog-content>
+  </md-content>
 
-</md-dialog>
+</div>
