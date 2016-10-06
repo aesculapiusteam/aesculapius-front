@@ -78,6 +78,11 @@ angular
         controller: 'ProfileCtrl',
         controllerAs: 'profile'
       })
+      .when('/stock', {
+        templateUrl: 'views/stock.html',
+        controller: 'StockCtrl',
+        controllerAs: 'stock'
+      })
       .otherwise({
         redirectTo: '/login'
       });

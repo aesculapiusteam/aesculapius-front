@@ -1,0 +1,16 @@
+<div ng-app="aesculapiusFrontApp" ng-controller="StockCtrl" layout-margin>
+  <mdt-table save-row-callback="saveRowCallback(row)">
+    <mdt-header-row>
+      <mdt-column align-rule="left">Nombre</mdt-column>
+      <mdt-column align-rule="left">Cantidad</mdt-column>
+      <mdt-column align-rule="left">Detalle</mdt-column>
+      <mdt-column align-rule="left"> </mdt-column>
+    </mdt-header-row>
+    <mdt-row ng-repeat="nutrition in nutritionList">
+      <mdt-cell editable-field="smallEditDialog">{{nutrition.name}}</mdt-cell>
+      <mdt-cell editable-field="smallEditDialog">{{nutrition.quantity}}</mdt-cell>
+      <mdt-cell editable-field="smallEditDialog">{{nutrition.detail}}</mdt-cell>
+      <mdt-cell icon="description">{{nutrition.protein}}</mdt-cell>
+    </mdt-row>
+  </mdt-table>
+</div>
