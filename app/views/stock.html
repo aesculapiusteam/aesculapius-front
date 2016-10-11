@@ -1,16 +1,31 @@
 <div ng-app="aesculapiusFrontApp" ng-controller="StockCtrl" layout-margin>
-  <mdt-table save-row-callback="saveRowCallback(row)">
+
+  <md-card style="margin:0px">
+    <md-input-container layout="row">
+      <div flex="90">
+        <label>Search</label>
+        <input flex ng-model="filterText" type="text">
+      </div>
+      <md-button class="md-primary md-accent" ng-click="showDrugDialog($event)">
+        <md-icon>add</md-icon>
+      </md-button>
+    </md-input-container>
+  </md-card>
+
+  <mdt-table>
     <mdt-header-row>
       <mdt-column align-rule="left">Nombre</mdt-column>
       <mdt-column align-rule="left">Cantidad</mdt-column>
       <mdt-column align-rule="left">Detalle</mdt-column>
-      <mdt-column align-rule="left"> </mdt-column>
+      <mdt-column align-rule="left"></mdt-column>
     </mdt-header-row>
     <mdt-row ng-repeat="nutrition in nutritionList">
-      <mdt-cell editable-field="smallEditDialog">{{nutrition.name}}</mdt-cell>
-      <mdt-cell editable-field="smallEditDialog">{{nutrition.quantity}}</mdt-cell>
-      <mdt-cell editable-field="smallEditDialog">{{nutrition.detail}}</mdt-cell>
-      <mdt-cell icon="description">{{nutrition.protein}}</mdt-cell>
+      <mdt-cell editable-field="largeEditDialog" editable-field-title="Editar Nombre">{{nutrition.namedrug}}</mdt-cell>
+      <mdt-cell editable-field="largeEditDialog" editable-field-title="Cantidad">{{nutrition.quantity}}</mdt-cell>
+      <mdt-cell editable-field="largeEditDialog"
+      editable-field-title="Editar el detalle">
+      {{nutrition.detail}}</mdt-cell>
+      <mdt-cell html-content="true"><mdt-button icon="delete"></mdt-button></mdt-cell>
     </mdt-row>
   </mdt-table>
 </div>

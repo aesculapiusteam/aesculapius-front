@@ -83,6 +83,11 @@ angular
         controller: 'StockCtrl',
         controllerAs: 'stock'
       })
+      .when('/modaldrug', {
+        templateUrl: 'views/modaldrug.html',
+        controller: 'ModaldrugCtrl',
+        controllerAs: 'modaldrug'
+      })
       .otherwise({
         redirectTo: '/login'
       });
