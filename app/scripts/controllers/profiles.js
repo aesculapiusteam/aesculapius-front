@@ -10,8 +10,8 @@
 (function(){
   angular.module('aesculapiusFrontApp')
   .controller('ProfilesCtrl',[
-  '$scope', '$rootScope', '$mdDialog', 'Restangular', 'aeData',
-  function ($scope, $rootScope, $mdDialog, Restangular, aeData){
+  '$scope', '$location', '$rootScope', '$mdDialog', 'Restangular', 'aeData',
+  function ($scope, $location, $rootScope, $mdDialog, Restangular, aeData){
     $scope.filterText = "";
     var allProfiles = Restangular.all('profiles');
     var loadPageCallbackWithDebounce;
@@ -37,8 +37,15 @@
       });
     };
 
+    $scope.cHistory = function (scope){
+      aeData.historyId = angular.element(scope)[0].$$prevSibling.value;
+      console.log(aeData.historyId);
+      $location.path('history');
+    };
+
     $rootScope.showDialog = function(ev, scope) {
       aeData.profile = aeData.profiles.get(scope.value).$object;
+      console.log(scope);
       $mdDialog.show({
         controller: _.capitalize(ev.currentTarget.id) + 'Ctrl',
         controllerAs: ev.currentTarget.id,

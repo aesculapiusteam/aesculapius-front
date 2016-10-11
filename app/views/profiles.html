@@ -44,7 +44,7 @@
       <mdt-button id="profile" ng-click="$root.showDialog($event, this)" icon="edit"></mdt-button>
     </mdt-custom-cell>
     <mdt-custom-cell column-key="hc">
-      <mdt-button id="history" ng-click="$root.showDialog($event)" icon="description"></mdt-button>
+      <mdt-button id="history" ng-click="clientScope.cHistory(this)" icon="description"></mdt-button>
     </mdt-custom-cell>
   </mdt-table>
 </md-card>

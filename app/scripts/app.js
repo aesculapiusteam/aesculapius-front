@@ -78,6 +78,11 @@ angular
         controller: 'ProfileCtrl',
         controllerAs: 'profile'
       })
+      .when('/consult', {
+        templateUrl: 'views/consult.html',
+        controller: 'ConsultCtrl',
+        controllerAs: 'consult'
+        })
       .otherwise({
         redirectTo: '/login'
       });

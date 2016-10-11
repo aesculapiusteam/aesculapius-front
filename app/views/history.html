@@ -17,7 +17,7 @@
       'datetime',
       'doctor_name',
       'detail_summary',
-      'moreButton'
+      'id'
       ],
     }">
       <mdt-header-row>
@@ -29,8 +29,8 @@
       <mdt-custom-cell column-key="datetime" aria-label="More">
         {{value|date}}
       </mdt-custom-cell>
-      <mdt-custom-cell column-key="moreButton" aria-label="More">
-        <mdt-button ng-click="" icon="more"></mdt-button>
+      <mdt-custom-cell column-key="id" aria-label="More">
+        <mdt-button id="consult" ng-click="$root.showDialog($event, this)" icon="more"></mdt-button>
       </mdt-custom-cell>
     </mdt-table>
 
