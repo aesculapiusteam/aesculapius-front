@@ -7,38 +7,47 @@
 * # StockCtrl
 * Controller of the aesculapiusFrontApp
 */
-angular.module('aesculapiusFrontApp')
-.controller('StockCtrl', ['$scope', '$rootScope', '$mdDialog', 'Restangular', 'aeData', function ($scope, $rootScope, $mdDialog, Restangular, aeData) {
+(function(){
+  angular.module('aesculapiusFrontApp')
+  .controller('StockCtrl', ['$scope', '$rootScope', '$mdDialog', 'Restangular', 'aeData',
+  function ($scope, $rootScope, $mdDialog, Restangular, aeData) {
+    $scope.filterText = "";
+    var allDrugs=Restangular.all('drugs');
+    var loadPageCallbackWithDebounce;
 
-  $rootScope.showDrugDialog = function(ev, scope) {
-    //aeData.drug = aeData.drugs.get(scope.value).$object;
-    $mdDialog.show({
-      controller: 'ModaldrugCtrl',
-      controllerAs: 'modaldrug',
-      templateUrl: 'views/modaldrug.html',
-      parent: angular.element(document.body),
-      targetEvent: ev,
-      clickOutsideToClose:true,
-      escapeToClose: true,
+    $scope.$watch('filterText', function(){
+      if(loadPageCallbackWithDebounce){
+        loadPageCallbackWithDebounce();
+      }
     });
-  };
 
+    $scope.getLoadResultsCallback = function (loadPageCallback){
+      loadPageCallbackWithDebounce = _.debounce(loadPageCallback, 1000);
+    };
 
-  $scope.nutritionList = [
-    {
-      namedrug: "ibutuvieja",
-      quantity: 6,
-      detail: "es un medicamento así como re loco",
-    },
-    {
-      namedrug: "ibutuvieja",
-      quantity: 6,
-      detail: "es un medicamento así como re loco",
-    },
-    {
-      namedrug: "ibutuvieja",
-      quantity: 6,
-      detail: "es un medicamento así como re loco",
-    }
-  ];
-}]);
+    $scope.refreshTable = function (page, pageSize){
+      var offset = (page-1) * pageSize;
+      return allDrugs.getList({search: $scope.filterText, limit: pageSize, offset:offset}).then(function(result){
+        aeData.drugs = result;
+        return {
+          results: result,
+          totalResultCount: result.count
+        };
+      });
+    };
+
+    $rootScope.showDrugDialog = function(ev) {
+      //aeData.drug = aeData.drugs.get(scope.value).$object;
+      $mdDialog.show({
+        controller: 'ModaldrugCtrl',
+        controllerAs: 'modaldrug',
+        templateUrl: 'views/modaldrug.html',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose:true,
+        escapeToClose: true,
+      });
+    };
+
+  }]);
+}());

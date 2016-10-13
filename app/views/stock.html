@@ -12,7 +12,20 @@
     </md-input-container>
   </md-card>
 
-  <mdt-table paginated-rows="{isEnabled: true, rowsPerPageValues: [5,10,20,100]}">
+  <mdt-table sortable-columns="true" animate-sort-icon="true"
+  paginated-rows="{isEnabled: true, rowsPerPageValues: [5,10,20,50]}"
+  mdt-row-paginator="refreshTable(page, pageSize)"
+  mdt-row-paginator-error-message="Hubo un error al cargar el stock."
+  mdt-row-paginator-no-results-message="No hubo resultados de la busqueda."
+  mdt-trigger-request="getLoadResultsCallback(loadPageCallback)"
+  mdt-row="{
+    'table-row-id-key': 'id',
+    'column-keys': [
+    'name',
+    'quantity',
+    'description'
+    ],
+  }">
     <mdt-header-row>
       <mdt-column align-rule="left">Nombre</mdt-column>
       <mdt-column align-rule="left">Cantidad</mdt-column>
@@ -20,12 +33,10 @@
       <mdt-column align-rule="left"></mdt-column>
     </mdt-header-row>
     <mdt-row ng-repeat="nutrition in nutritionList">
-      <mdt-cell editable-field="largeEditDialog" editable-field-title="Editar Nombre">{{nutrition.namedrug}}</mdt-cell>
-      <mdt-cell editable-field="largeEditDialog" editable-field-title="Cantidad">{{nutrition.quantity}}</mdt-cell>
-      <mdt-cell editable-field="largeEditDialog"
-      editable-field-title="Editar el detalle">
-      {{nutrition.detail}}</mdt-cell>
-      <mdt-cell html-content="true"><mdt-button icon="delete"></mdt-button></mdt-cell>
+      <mdt-custom-cell column-key="name" editable-field="largeEditDialog" editable-field-title="Editar Nombre"></mdt-custom-cell>
+      <mdt-custom-cell column-key="quantity" editable-field="largeEditDialog" editable-field-title="Cantidad"></mdt-custom-cell>
+      <mdt-custom-cell column-key="description" editable-field="largeEditDialog" editable-field-title="Editar el detalle"></mdt-custom-cell>
+      <mdt-custom-cell html-content="true"><mdt-button icon="delete"></mdt-button></mdt-custom-cell>
     </mdt-row>
   </mdt-table>
 </div>
