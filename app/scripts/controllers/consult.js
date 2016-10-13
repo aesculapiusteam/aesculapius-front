@@ -39,6 +39,30 @@ angular.module('aesculapiusFrontApp')
       $scope.saveButton = false;
     };
 
+    $scope.delete = function(){
+      aeData.visitObj.remove().then(
+        function(){
+          $mdDialog.cancel();
+          $mdToast.show(
+            $mdToast.simple()
+            .textContent('Consulta eliminada con exito!')
+            .position('top', 'left')
+            .hideDelay(3000)
+          );
+          aeData.reloadHistoryTable();
+        },
+        function(){
+          $mdDialog.cancel();
+          $mdToast.show(
+            $mdToast.simple()
+            .textContent('Lamentablemente hubo un error al eliminar la consulta.')
+            .position('top', 'left')
+            .hideDelay(3000)
+          );
+        }
+      );
+    };
+
     $scope.save = function(){
       var errorDetail = aeData.visitObj.detail;
       var errorDate = aeData.visitObj.datetime;
@@ -53,6 +77,7 @@ angular.module('aesculapiusFrontApp')
             .position('top', 'left')
             .hideDelay(3000)
           );
+          aeData.reloadHistoryTable();
         },
         function(){
           aeData.visitObj.detail = errorDetail;
@@ -67,33 +92,4 @@ angular.module('aesculapiusFrontApp')
         }
       );
     };
-
-
-  // $scope.showTabDialog = function(ev, visitList, pos) {
-  //   var visit = visitList[pos];
-  //   $scope.doctor = "";
-  //   $scope.patient = "";
-  //   Restangular.one('employees', visit.doctor).get().then(
-  //     function(response){
-  //       $scope.doctor = response.profile.first_name + " " +
-  //       response.profile.last_name;
-  //       Restangular.one('profiles', visit.pacient).get().then(
-  //         function(response){
-  //           $scope.patient = response.first_name + " " + response.last_name;
-  //           $mdDialog.show({
-  //             controller: consultDialog,
-  //             templateUrl: 'views/consult.tmpl.html',
-  //             locals: {buttons:[true,false,false,false], visit:visit,
-  //               doctor:$scope.doctor, patient:$scope.patient,
-  //               date:visit.datetime},
-  //               parent: angular.element(document.body),
-  //               targetEvent: ev,
-  //               clickOutsideToClose:true,
-  //               escapeToClose: true,
-  //             });
-  //         }
-  //       );
-  //     }
-  //   );
-  // };
   }]);

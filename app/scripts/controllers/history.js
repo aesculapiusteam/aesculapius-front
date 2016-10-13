@@ -13,6 +13,7 @@ angular.module('aesculapiusFrontApp')
  'Restangular','aeData', '$location', '$rootScope',
 function ($scope, Restangular, aeData, $location, $rootScope) {
 
+//De no haber un profile al que mostrar la historia Clinica. Ir a profiles
   if(!aeData.historyId){
     $location.path('profiles');
   }
@@ -22,6 +23,12 @@ function ($scope, Restangular, aeData, $location, $rootScope) {
     return $scope.patientName;
   });
 
+//Refresca la pagina. reloadHistoryTable esta en aeData para poder refrescar la tabla desde ConsultCtrl
+  $scope.getLoadResultsCallback = function (callback){
+    aeData.reloadHistoryTable = callback;
+  };
+
+//Peticion para setear la info en la tabla. pacient:aeData.historyId es lo que determina el paciente.
   $scope.getData = function (page, pageSize){
     var offset = (page-1) * pageSize;
     return Restangular.all('visits').getList({pacient:aeData.historyId, limit: pageSize, offset:offset}).then(function(result){
@@ -32,6 +39,7 @@ function ($scope, Restangular, aeData, $location, $rootScope) {
     });
   };
 
+//Setea el objeto Restangular que se necesita en aeData para mostrarla en el dialog ConsultCtrl
   $scope.goToDialog = function (id, ev, that){
     Restangular.one('visits', id).get()
     .then(function(response){
