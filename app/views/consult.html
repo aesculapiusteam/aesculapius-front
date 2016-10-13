@@ -4,7 +4,7 @@
       <div class="md-toolbar-tools">Consulta</div>
       <div style="margin-top:10px">
         <md-button class="md-icon-button">
-          <md-icon ng-click="$root.cancel()">close</md-icon>
+          <md-icon ng-click="cancel()">close</md-icon>
         </md-button>
       </div>
     </md-toolbar>
@@ -13,13 +13,13 @@
   <md-divider></md-divider>
   <md-dialog-content layout="column" layout-padding flex>
     <div layout="row">
-      <p> Paciente: <b ng-bind="htmlVar.patient"></b></p>
+      <p> Paciente: <b ng-bind="visit.patient_name"></b></p>
     </div>
     <div layout="row">
-      <p> Médico: <b ng-bind="htmlVar.doctor"></b></p>
+      <p> Médico: <b ng-bind="visit.doctor_name"></b></p>
     </div>
     <div layout="row">
-      <p>Fecha: <b ng-bind="htmlVar.date"></b></p>
+      <p>Fecha: <b ng-bind="visit.datetime|date"></b></p>
     </div>
     <div layout="row" layout-align="space-between center">
       <p>Detalles: </p>
@@ -28,26 +28,23 @@
       </md-button>
     </div>
     <div>
-      <md-input-container class="md-block">
+      <md-input-container class="md-block" style="height: inherit;
+    overflow-y: auto;">
         <label></label>
-        <textarea ng-model="htmlVar.detail" ng-change="change()" rows="1" ng-disabled="htmlVar.enable"></textarea>
+        <textarea ng-model="detail" ng-change="change()" rows="3" ng-disabled="enable" md-no-autogrow></textarea>
       </md-input-container>
     </div>
   </md-dialog-content>
   <md-dialog-actions layout="row" layout-align="space-between">
-    <md-button class="md-primary" ng-click="save()" ng-disabled="htmlVar.buttons[0]">
+    <md-button class="md-primary" ng-click="save()" ng-disabled="saveButton">
       <label>Guardar</label>
       <md-icon>save</md-icon>
     </md-button>
-    <md-button class="md-primary" ng-disabled="htmlVar.buttons[1]">
-      <label>Imprimir</label>
-      <md-icon>print</md-icon>
-    </md-button>
-    <md-button class="md-primary" ng-disabled="htmlVar.buttons[2]">
+    <md-button class="md-primary">
       <label>Eliminar</label>
       <md-icon>delete</md-icon>
     </md-button>
-    <md-button class="md-warn" ng-click="cancel()" ng-disabled="htmlVar.buttons[3]">
+    <md-button class="md-warn" ng-click="cancel()">
       <label>Cancelar</label>
       <md-icon>cancel</md-icon>
     </md-button>

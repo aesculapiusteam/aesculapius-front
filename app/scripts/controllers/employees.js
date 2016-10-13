@@ -12,7 +12,7 @@
   .controller('EmployeesCtrl', ['$scope', 'Restangular',
   function($scope, Restangular){
     $scope.filterText = "";
-    var allEmployees = Restangular.all('employees/brief');
+    var allEmployees = Restangular.all('employees');
     var loadPageCallbackWithDebounce;
 
     $scope.$watch('filterText', function(){
