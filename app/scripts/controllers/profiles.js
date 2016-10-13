@@ -10,9 +10,10 @@
 (function(){
   angular.module('aesculapiusFrontApp')
   .controller('ProfilesCtrl',[
-  '$scope', '$rootScope', '$mdDialog', 'Restangular', 'aeData',
-  function ($scope, $rootScope, $mdDialog, Restangular, aeData){
+  '$scope', '$location', '$rootScope', '$mdDialog', 'Restangular', 'aeData',
+  function ($scope, $location, $rootScope, $mdDialog, Restangular, aeData){
     $scope.filterText = "";
+    $scope.curId = null;
     var allProfiles = Restangular.all('profiles');
     var loadPageCallbackWithDebounce;
 
@@ -35,6 +36,10 @@
           totalResultCount: result.count
         };
       });
+    };
+    $scope.cHistory = function (ev){
+      aeData.historyId = ev.currentTarget.parentElement.parentElement.parentElement.children[5].children[0].children[0].attributes[1].nodeValue;
+      $location.path('history');
     };
 
     $rootScope.showDialog = function(ev, scope) {

@@ -7,38 +7,45 @@
 * # HistoryCtrl
 * Controller of the aesculapiusFrontApp
 */
-var DialogController = function ($scope, $mdDialog) {
-
-  $scope.consultList = [
-    {
-      Fecha: '2016-01-06T00:43:43.931Z',
-      Medico: 'Alfachoca Tracalanduda',
-      Descripcion: 'esto describe',
-    },
-    {
-      Fecha: '2016-09-06T00:43:43.931Z',
-      Medico: 'pamparama',
-      Descripcion: 'gripe y fiebre',
-    },
-
-
-  ];
-  $scope.cancel = function() {
-    $mdDialog.cancel();
-  };
-};
-
 
 angular.module('aesculapiusFrontApp')
-.controller('HistoryCtrl', ['$scope', '$mdDialog', function ($scope, $mdDialog) {
-  $scope.showTabDialog = function(ev) {
-    $mdDialog.show({
-      controller: DialogController,
-      templateUrl: 'views/history.html',
-      parent: angular.element(document.body),
-      targetEvent: ev,
-      clickOutsideToClose:true,
-      escapeToClose: true,
+.controller('HistoryCtrl', ['$scope',
+ 'Restangular','aeData', '$location', '$rootScope',
+function ($scope, Restangular, aeData, $location, $rootScope) {
+
+//De no haber un profile al que mostrar la historia Clinica. Ir a profiles
+  if(!aeData.historyId){
+    $location.path('profiles');
+  }
+
+  Restangular.one('profiles', String(aeData.historyId)).get().then(function(response){
+    $scope.patientName = response.first_name + " " + response.last_name;
+    return $scope.patientName;
+  });
+
+//Refresca la pagina. reloadHistoryTable esta en aeData para poder refrescar la tabla desde ConsultCtrl
+  $scope.getLoadResultsCallback = function (callback){
+    aeData.reloadHistoryTable = callback;
+  };
+
+//Peticion para setear la info en la tabla. pacient:aeData.historyId es lo que determina el paciente.
+  $scope.getData = function (page, pageSize){
+    var offset = (page-1) * pageSize;
+    return Restangular.all('visits').getList({pacient:aeData.historyId, limit: pageSize, offset:offset}).then(function(result){
+      return {
+        results: result,
+        totalResultCount: result.count
+      };
+    });
+  };
+
+//Setea el objeto Restangular que se necesita en aeData para mostrarla en el dialog ConsultCtrl
+  $scope.goToDialog = function (id, ev, that){
+    Restangular.one('visits', id).get()
+    .then(function(response){
+      aeData.visitObj = response;
+      $rootScope.showDialog(ev, that);
+      return response;
     });
   };
 }]);
