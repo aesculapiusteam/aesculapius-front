@@ -33,7 +33,6 @@
             </md-input-container>
           </div>
           <h3 class="md-subhead">Asistido por/Asiste a...</h3>
-          <!-- {{getProfile()}} -->
           <div layout="row">
             <md-checkbox class="md-primary" ng-repeat="x in charges()">
               {{ x }}
@@ -45,7 +44,7 @@
             <md-input-container flex="50">
               <label>Nombre</label>
               <md-icon class="md-primary">person</md-icon>
-              <input required="" name="name" ng-model="user.name"/>
+              <input name="comments" required="" name="name" ng-model="profile.first_name"/>
               <div ng-messages="profileForm.name.$error">
                 <div ng-message="required">Campo obligatorio</div>
               </div>
@@ -54,13 +53,13 @@
             <md-input-container flex="50">
               <label>Apellido</label>
               <md-icon class="md-primary">face</md-icon>
-              <input name="last_name"/>
+              <input name="last_name" ng-model="profile.last_name"/>
             </md-input-container>
 
             <md-input-container flex="50">
               <label>DNI</label>
               <md-icon class="md-primary">chrome_reader_mode</md-icon>
-              <input name="dni"/>
+              <input name="dni" ng-model="profile.dni"/>
             </md-input-container>
           </div>
 
@@ -68,26 +67,26 @@
             <md-input-container class="md-block" flex="50">
               <label>Email</label>
               <md-icon class="md-primary">mail</md-icon>
-              <input name="email"/>
+              <input name="email" ng-model="profile.email"/>
             </md-input-container>
-            <md-datepicker class="md-primary" ng-model="myDate" md-placeholder="Nacimiento" flex="50">
+            <md-datepicker class="md-primary" ng-model="profile.birth_date" md-placeholder="Nacimiento" flex="50">
             </md-datepicker>
           </div>
-          <md-input-container class="md-block">
+          <md-input-container class="md-block">profile.birth_date
             <label>Dirección</label>
             <md-icon class="md-primary">location_on</md-icon>
-            <input name="address"/>
+            <input name="address" ng-model="profile.address"/>
           </md-input-container>
           <div layout="row">
             <md-input-container class="md-block" flex="50">
               <label>Número de teléfono</label>
               <md-icon class="md-primary">phone</md-icon>
-              <input name="phone"/>
+              <input name="phone" ng-model="profile.phone"/>
             </md-input-container>
             <md-input-container class="md-block" flex="50">
               <label>Número de celular</label>
               <md-icon class="md-primary">phone</md-icon>
-              <input name="cellphone"/>
+              <input name="cellphone" ng-model="profile.cellphone"/>
             </div>
           </md-input-container>
     </form>

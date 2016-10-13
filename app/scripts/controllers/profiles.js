@@ -38,7 +38,11 @@
     };
 
     $rootScope.showDialog = function(ev, scope) {
-      aeData.profile = aeData.profiles.get(scope.value).$object;
+      if (scope && scope.value) {
+        aeData.profile = aeData.profiles.get(scope.value).$object;
+      } else {
+
+      }
       $mdDialog.show({
         controller: _.capitalize(ev.currentTarget.id) + 'Ctrl',
         controllerAs: ev.currentTarget.id,
