@@ -1,7 +1,6 @@
-<md-content layout="row" flex layout-align="center">
+<div layout="row" flex layout-align="center">
 
-  <div class="login-form pad-2" md-whiteframe="3" layout="column" layout-fill>
-
+  <form ng-submit="logIn()" class="login-form pad-2" md-whiteframe="3" layout="column" layout-fill>
 
     <div layout="column" layout-align="center center">
       <img src="images/logo_circle_shadow.png" class="login-logo"/>
@@ -18,10 +17,10 @@
       <input type="password" ng-model="credentials.password" placeholder="Contraseña">
     </md-input-container>
 
-    <md-button class="md-primary md-raised row-4" layout="row" ng-click="logIn()">
+    <md-button type="submit" class="md-primary md-raised row-4" layout="row">
       <md-icon layout>arrow_forward</md-icon>
     </md-button>
 
-  </div>
+  </form>
 
-</md-content>
+</div>
