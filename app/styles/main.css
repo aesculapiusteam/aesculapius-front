@@ -34,3 +34,24 @@ md-tooltip .md-content{
   -ms-user-select: none;
   user-select: none;
 }
+
+md-content {
+  height: 100%;
+  padding: 2rem;
+}
+
+.pad-1 {
+  padding: 1rem;
+}
+
+.pad-2 {
+  padding: 2rem;
+}
+
+.row-4 {
+  height: 4rem;
+}
+
+.icon-valign {
+  vertical-align: middle;
+}
