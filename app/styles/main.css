@@ -46,6 +46,10 @@ md-tooltip .md-content {
   user-select: none;
 }
 
+.pad-0-5{
+  padding: 0.5rem;
+}
+
 .pad-1 {
   padding: 1rem;
 }
@@ -70,5 +74,13 @@ md-tooltip .md-content {
 }
 
 .thin-text {
-  font-weight: 100;
+  font-weight: 100 !important;
+}
+
+.spacing-1 {
+  letter-spacing: 0.1rem;
+}
+
+.font-2 {
+  font-size: 1.1rem;
 }

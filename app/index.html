@@ -8,9 +8,9 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
-    <link rel="stylesheet" href="bower_components/angular-material-icons/angular-material-icons.css" />
-    <link rel="stylesheet" href="bower_components/mdDataTable/dist/md-data-table-style.css" />
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css"/>
+    <link rel="stylesheet" href="bower_components/angular-material-icons/angular-material-icons.css"/>
+    <link rel="stylesheet" href="bower_components/mdDataTable/dist/md-data-table-style.css"/>
     <!-- endbower -->
     <!-- endbuild -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,400" rel="stylesheet">
@@ -23,38 +23,53 @@
     <!-- endbuild -->
   </head>
   <body ng-app="aesculapiusFrontApp" ng-controller="BaseCtrl as base">
-    <!--[if lte IE 8]>
-    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+    <!--[if lte IE 8]> <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p> <![endif]-->
 
     <!-- Nav Bar -->
     <md-toolbar class="md-whiteframe-4dp">
       <div class="md-toolbar-tools">
+
         <a layout="row" href="#" md-ink-ripple class="unselectable hoverable base-link">
           <img class="base-logo center" src="images/logo_nobackground.png"/>
           <span class="base-title">Aesculapius</span>
         </a>
-        <span flex="5"></span>
-        <md-button href="#/employees">
-          <md-icon>people</md-icon>
-          Empleados
-          <md-tooltip>Ver Empleados</md-tooltip>
-        </md-button>
-        <md-button href="#/profiles">
-          <md-icon>local_hospital</md-icon>
-          Pacientes
-          <md-tooltip>Ver Pacientes</md-tooltip>
-        </md-button>
+
+        <div ng-show="authenticated">
+          <span flex="5"></span>
+          <md-button href="#/employees">
+            <md-icon>people</md-icon>
+            Empleados
+            <md-tooltip>Ver Empleados</md-tooltip>
+          </md-button>
+          <md-button href="#/profiles">
+            <md-icon>local_hospital</md-icon>
+            Pacientes
+            <md-tooltip>Ver Pacientes</md-tooltip>
+          </md-button>
+        </div>
+
         <span flex></span>
-        <md-button>
-          <md-icon>person</md-icon>
-          Ricardao Moraleas
-          <md-tooltip>Ver Perfil</md-tooltip>
-        </md-button>
-        <md-button ng-click="logout()">
-          <md-tooltip>Salir de Aesculapius</md-tooltip>
-          <md-icon>close</md-icon>
-        </md-button>
+
+        <div ng-show="authenticated">
+          <md-button>
+            <md-icon>person</md-icon>
+            Ricardao Moraleas
+            <md-tooltip>Ver Perfil</md-tooltip>
+          </md-button>
+          <md-button ng-click="logout()">
+            <md-tooltip>Salir de Aesculapius</md-tooltip>
+            <md-icon>close</md-icon>
+          </md-button>
+        </div>
+
+        <div ng-hide="authenticated">
+          <md-button class="font-2" target="_blank" ng-href="https://www.facebook.com/Parroquia-Santa-Maria-de-la-Paz-495991100463679/">
+            <md-icon md-svg-src="images/facebook.svg"></md-icon>
+            <span hide-xs class="pad-0-5 thin-text spacing-1">Parroquia Santa María de la Paz</span>
+            <md-tooltip>Ver Perfil</md-tooltip>
+          </md-button>
+        </div>
+
       </div>
     </md-toolbar>
 
@@ -90,20 +105,20 @@
     <script src="bower_components/angular-i18n/angular-locale_es-ar.js"></script>
     <!-- endbuild -->
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/base.js"></script>
-        <script src="scripts/controllers/about.js"></script>
-        <script src="scripts/controllers/login.js"></script>
-        <script src="scripts/controllers/consult.js"></script>
-        <script src="scripts/controllers/employees.js"></script>
-        <script src="scripts/controllers/profiles.js"></script>
-        <script src="scripts/controllers/history.js"></script>
-        <script src="scripts/controllers/profile.js"></script>
-        <script src="scripts/services/auth.js"></script>
-        <script src="scripts/directives/mdt-button.js"></script>
-        <script src="scripts/directives/ae-profile-icon.js"></script>
-        <script src="scripts/services/aedata.js"></script>
-        <!-- endbuild -->
-</body>
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/base.js"></script>
+    <script src="scripts/controllers/about.js"></script>
+    <script src="scripts/controllers/login.js"></script>
+    <script src="scripts/controllers/consult.js"></script>
+    <script src="scripts/controllers/employees.js"></script>
+    <script src="scripts/controllers/profiles.js"></script>
+    <script src="scripts/controllers/history.js"></script>
+    <script src="scripts/controllers/profile.js"></script>
+    <script src="scripts/services/auth.js"></script>
+    <script src="scripts/directives/mdt-button.js"></script>
+    <script src="scripts/directives/ae-profile-icon.js"></script>
+    <script src="scripts/services/aedata.js"></script>
+    <!-- endbuild -->
+  </body>
 </html>

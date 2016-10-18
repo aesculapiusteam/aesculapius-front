@@ -97,6 +97,7 @@ angular
       $rootScope.loading = false;
     });
     if (window.localStorage.token) {
+      $rootScope.authenticated = true;
       Restangular.setDefaultHeaders({
         Authorization: 'Token ' + window.localStorage.token
       });
