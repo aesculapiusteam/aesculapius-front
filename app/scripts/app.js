@@ -88,7 +88,7 @@ angular
         redirectTo: '/login'
       });
   }])
-  .run(['Restangular', '$rootScope', function(Restangular, $rootScope) {
+  .run(['$rootScope', 'auth', function($rootScope, auth) {
     $rootScope.loading = true;
     $rootScope.$on("$routeChangeStart", function() {
       $rootScope.loading = true;
@@ -96,12 +96,7 @@ angular
     $rootScope.$on('$routeChangeSuccess', function() {
       $rootScope.loading = false;
     });
-    if (window.localStorage.token) {
-      $rootScope.authenticated = true;
-      Restangular.setDefaultHeaders({
-        Authorization: 'Token ' + window.localStorage.token
-      });
-    }
+    auth.autoLogin();
   }])
   .config(function($mdThemingProvider) {
     $mdThemingProvider.theme('default')

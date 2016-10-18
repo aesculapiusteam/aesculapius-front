@@ -53,7 +53,7 @@
         <div ng-show="authenticated">
           <md-button>
             <md-icon>person</md-icon>
-            Ricardao Moraleas
+            <span>{{me.profile.first_name + " " + me.profile.last_name}}</span>
             <md-tooltip>Ver Perfil</md-tooltip>
           </md-button>
           <md-button ng-click="logout()">

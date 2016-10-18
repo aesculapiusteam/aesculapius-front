@@ -9,5 +9,11 @@
  */
 angular.module('aesculapiusFrontApp')
   .service('aeData', function () {
-    // AngularJS will instantiate a singleton by calling "new" on this function
+    this.me = null;
+    this.profile = null;
+    this.profiles = null;
+    this.employees = null;
+    this.visitObj = null;
+    this.reloadHistoryTable = null;
+    this.historyId = null;
   });
