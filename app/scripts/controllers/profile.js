@@ -9,46 +9,40 @@
 */
 angular.module('aesculapiusFrontApp')
 .controller('ProfileCtrl', [
-  '$scope', '$mdDialog', '$rootScope', 'aeData',
-  function ($scope, $mdDialog, $rootScope, aeData) {
+  '$scope', '$mdDialog', '$rootScope', 'aeData', 'Restangular',
+  function ($scope, $mdDialog, $rootScope, aeData, Restangular) {
     $scope.profile = aeData.profile;
+    $scope.saveProfile = function(){
 
-    console.log($scope.profile);
+      if (!_.isEmpty($scope.profile)) {
+        Restangular.copy($scope.profile).save().then(function() {
+          aeData.refreshProfilesTable();
+          $mdDialog.cancel();
+        });
+      }
+    };
 
-    $scope.$watch('profile.first_name', function(){
-      window.alert($scope.profile.first_name);
-      $scope.profile.save();
-      $scope.profile.post("Buildings", myBuilding).then(function() {
-    console.log("Object saved OK");
-    });
+    $scope.deleteProfile = function(){
+      $scope.profile.remove().then(function(){
+        aeData.refreshProfilesTable();
+        $mdDialog.cancel();
+      });
+      console.log('El perfil de ' + $scope.profile.first_name + ' se borro');
+    };
 
-    // $scope.saveProfile = function(profilePos){
-    //   $scope.x = Restangular.copy($scope.profile);
-    //   window.alert($scope.x);
-    //   };
+    $scope.addProfile = function(){
 
-    // $scope.$watch('aeData.profile', function(){
-    //   window.alert(5 + 6);
-    // });
+    };
 
-    // $scope.showProfile = function(){
-    // };
-    // $scope.getProfile = function() {
-    //   // Caches the profile in $scope, also checks if profiles is an employee
-    //   // And if it is, makes a petition to get username, etc.
-    //   if (_.isEmpty($scope.profile)) {
-    //     console.log(aeData.profile);
-    //     if (aeData.profile.employee) {
-    //       console.log("ES EMPLOYEE");
-    //       //HACER PETICION A EMPLOYEES
-    //       // $scope.profile = aeData.profile;
-    //     } else {
-    //       console.log("NO LO ES EMPLOYEE");
-    //       $scope.profile = aeData.profile;
-    //     }
-    //   }
-    //   return $scope.profile;
-    // };
+    console.log('AAAAAAAAAAAAA');
+
+    $scope.a = $scope.profile.birth_date;
+
+    $scope.b = new Date($scope.a);
+    console.log($scope.b);
+
+    console.log('BBBBBBBBBBB');
+
 
     $rootScope.cancel = function() {
       $mdDialog.cancel();

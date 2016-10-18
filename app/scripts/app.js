@@ -19,7 +19,8 @@ angular
     'ngSanitize',
     'ngMaterial',
     'mdDataTable',
-    'restangular'
+    'restangular',
+    'datetime'
   ])
   .config(['$httpProvider', 'RestangularProvider', '$mdDateLocaleProvider',
   function ($httpProvider, RestangularProvider, $mdDateLocaleProvider) {
