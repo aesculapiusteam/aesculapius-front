@@ -9,10 +9,11 @@
 */
 (function(){
   angular.module('aesculapiusFrontApp')
-  .controller('StockCtrl', ['$scope', '$rootScope', '$mdDialog', 'Restangular', 'aeData',
-  function ($scope, $rootScope, $mdDialog, Restangular, aeData) {
+  .controller('StockCtrl', ['$scope', '$rootScope', '$mdDialog', 'Restangular',
+  'aeData', '$mdToast',
+  function ($scope, $rootScope, $mdDialog, Restangular, aeData, $mdToast) {
     $scope.filterText = "";
-    var allDrugs=Restangular.all('drugs');
+    var allDrugs = Restangular.all('drugs');
     var loadPageCallbackWithDebounce;
 
     $scope.$watch('filterText', function(){
@@ -48,6 +49,13 @@
         escapeToClose: true,
       });
     };
+
+    $scope.deleteRowCallback = function(rows){
+      for (var row = 0; row < rows.length; row++) {
+        Restangular.one('drugs', rows[row]).remove();
+      }
+    };
+
 
   }]);
 }());

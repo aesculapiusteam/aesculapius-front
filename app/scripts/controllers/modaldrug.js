@@ -7,14 +7,26 @@
 * # ModaldrugCtrl
 * Controller of the aesculapiusFrontApp
 */
-angular.module('aesculapiusFrontApp')
-.controller('ModaldrugCtrl', [
-  '$scope', '$mdDialog', '$rootScope', 'aeData',
-  function ($scope, $mdDialog, $rootScope, aeData) {
-    $scope.drug = {};
+(function(){
+  angular.module('aesculapiusFrontApp')
+  .controller('ModaldrugCtrl', ['$scope', '$mdDialog', '$rootScope', 'Restangular', 'aeData',
+  function ($scope, $rootScope, $mdDialog, Restangular, aeData) {
+    var allDrugs = Restangular.all('drugs');
 
-    $rootScope.cancel = function() {
-      $mdDialog.cancel();
+    $scope.addDrug = function() {
+      console.log("tuvieja");
+      var newDrug = {
+        "name": $scope.name,
+        "description": $scope.description,
+        "quantity": $scope.quantity,
+      };
+      Restangular.all('drugs').post(newDrug);
+
+    };
+
+    $rootScope.cancelAddDrug = function() {
+      $mdDialog.cancelAddDrug();
     };
 
   }]);
+}());
