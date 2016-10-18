@@ -20,9 +20,9 @@ angular.module('aesculapiusFrontApp')
     $scope.cancel = function() {
       $mdToast.show(
         $mdToast.simple()
-        .textContent('Nada ha cambiado')
-        .position('top', 'left')
-        .hideDelay(3000)
+        .textContent('No se han hecho modificaciones')
+        .position('bottom right')
+        .hideDelay(2000)
       );
       $mdDialog.cancel();
     };
