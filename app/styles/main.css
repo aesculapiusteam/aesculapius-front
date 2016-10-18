@@ -46,7 +46,7 @@ md-tooltip .md-content {
   user-select: none;
 }
 
-.pad-0-5{
+.pad-0-5 {
   padding: 0.5rem;
 }
 
@@ -83,4 +83,11 @@ md-tooltip .md-content {
 
 .font-2 {
   font-size: 1.1rem;
+}
+
+.with-background {
+  background-image: url('../images/back.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
