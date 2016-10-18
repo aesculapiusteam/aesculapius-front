@@ -22,6 +22,10 @@ angular.module('aesculapiusFrontApp')
     var allProfiles = Restangular.all('profiles');
     var allDrugs = Restangular.all('drugs');
 
+    $scope.re = function(){
+      console.log("JA!");
+    };
+
     $scope.done = function(){
       var finalItems = [];
       for (var i=0;i<$scope.nActions.length;i++){
@@ -80,6 +84,8 @@ angular.module('aesculapiusFrontApp')
     $scope.peopleList = function(){
       return allProfiles.getList({search: $scope.filterTextP, limit:5}).then(
         function(response){
+          console.log(response);
+          response.push('necesito esto para el boton añadir en el autocomplete');
           return response;
         });
     };

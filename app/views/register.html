@@ -8,7 +8,7 @@
         <md-card>
           <md-card-title>
             <div layout="column">
-              <span class="md-headline">Introdusca un Nombre</span>
+              <span class="md-headline">Introduzca un Nombre</span>
             </div>
           </md-card-title>
           <md-card-content>
@@ -20,18 +20,24 @@
             md-delay="1000"
             md-floating-label="Persona a tratar">
             <md-item-template>
-              <span class="item-title">
-                <md-icon>person</md-icon>
-                <span> {{item.first_name}} </span>
-              </span>
-              <span class="item-metadata">
-                <span class="item-metastat">
-                  <strong>{{item.last_name}}</strong>
+              <div ng-if="item.first_name">
+                <span class="item-title">
+                  <md-icon>person</md-icon>
+                  <span> {{item.first_name}} </span>
                 </span>
-                <span class="item-metastat">
-                  - DNI: <strong>{{item.dni}}</strong>
+                <span class="item-metadata">
+                  <span class="item-metastat">
+                    <strong>{{item.last_name}}</strong>
+                  </span>
+                  <span class="item-metastat" ng-if="item.dni">
+                    - DNI: <strong>{{item.dni}}</strong>
+                  </span>
                 </span>
-              </span>
+              </div>
+              <md-button class="md-primary" aria-label="Person Add" ng-click="re()">
+                <md-icon>person_add</md-icon>
+                <label>Añadir Persona</label>
+              </md-button>
             </md-item-template>
           </md-autocomplete>
         </md-card-content>
@@ -40,7 +46,7 @@
       <md-card flex>
         <md-card-title>
           <div layout="column">
-            <span class="md-headline">Introdusca el capital y el tipo de acción</span>
+            <span class="md-headline">Introduzca el capital y el tipo de acción</span>
           </div>
         </md-card-title>
         <md-card-content layout-padding layout="row" layout-align="none center" ng-repeat="action in nActions">
