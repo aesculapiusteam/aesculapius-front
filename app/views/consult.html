@@ -1,0 +1,52 @@
+<md-dialog>
+  <div layout="row">
+    <md-toolbar layout="row">
+      <div class="md-toolbar-tools">Consulta</div>
+      <div style="margin-top:10px">
+        <md-button class="md-icon-button">
+          <md-icon ng-click="cancel()">close</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+  </div>
+  <md-divider></md-divider>
+  <md-dialog-content layout="column" layout-padding flex>
+    <div layout="row">
+      <p> Paciente: <b ng-bind="visit.patient_name"></b></p>
+    </div>
+    <div layout="row">
+      <p> Médico: <b ng-bind="visit.doctor_name"></b></p>
+    </div>
+    <div layout="row">
+      <p>Fecha: <b ng-bind="visit.datetime|date"></b></p>
+    </div>
+    <div layout="row" layout-align="space-between center">
+      <p>Detalles: </p>
+      <md-button class="md-icon-button md-primary" ng-click="edit()">
+        <md-icon>border_color</md-icon>
+      </md-button>
+    </div>
+    <div>
+      <md-input-container class="md-block" style="height: inherit;
+    overflow-y: auto;">
+        <label></label>
+        <textarea ng-model="detail" ng-change="change()" rows="3" ng-disabled="enable" md-no-autogrow></textarea>
+      </md-input-container>
+    </div>
+  </md-dialog-content>
+  <md-dialog-actions layout="row">
+    <md-button class="md-warn" ng-click="delete()" layout-align="start center">
+      <label>Eliminar</label>
+      <md-icon>delete</md-icon>
+    </md-button>
+    <md-button ng-click="cancel()" layout-align="end center">
+      <label>Cancelar</label>
+      <md-icon>cancel</md-icon>
+    </md-button>
+    <md-button class="md-primary" ng-click="save()" ng-disabled="saveButton" layout-align="end center">
+      <label>Guardar</label>
+      <md-icon>save</md-icon>
+    </md-button>
+  </md-dialog-actions>
+</md-dialog>

@@ -1,0 +1,20 @@
+.loading-container {
+  background-color: #3C4252;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  z-index: 999;
+}
+
+.loading-logo {
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 16rem; right: 0;
+  width: 8rem;
+}
+
+.loading-spinner {
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  z-index: 1000;
+}

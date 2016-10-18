@@ -1,6 +1,7 @@
 <md-card>
-  <md-subheader>Buscar Empleados</md-subheader>
-  <md-input-container layout="row">
+    <md-toolbar layout="row">
+      <div class="md-toolbar-tools">Buscar Empleados</div>
+    </md-toolbar>  <md-input-container layout="row">
     <div flex="90">
       <label>Buscar</label>
       <input ng-model="filterText" type="text">
@@ -21,21 +22,23 @@
   mdt-row="{
     'table-row-id-key': 'id',
     'column-keys': [
-    'profile',
+    'profile.first_name',
+    'profile.last_name',
     'charge',
     'profile.email',
     'id'
     ],
   }">
   <mdt-header-row>
-    <mdt-column align-rule="left">Nombre y Apellido</mdt-column>
+    <mdt-column align-rule="left">Nombre</mdt-column>
+    <mdt-column align-rule="left">Apellido</mdt-column>
     <mdt-column align-rule="left">Tipo</mdt-column>
     <mdt-column align-rule="left">Email</mdt-column>
     <mdt-column align-rule="left">Editar</mdt-column>
   </mdt-header-row>
-  <mdt-custom-cell column-key="profile">
-    <ae-profile-icon name={{value.first_name}} size=32></ae-profile-icon>
-    <span style="line-height:48px;">{{value.first_name}} {{value.last_name}}</span>
+  <mdt-custom-cell column-key="profile.first_name">
+    <ae-profile-icon name={{value}} size=32></ae-profile-icon>
+    <span style="line-height:48px;">{{value}}</span>
   </mdt-custom-cell>
   <mdt-custom-cell column-key="id">
     <mdt-button icon="edit"></mdt-button>

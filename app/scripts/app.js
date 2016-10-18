@@ -22,31 +22,32 @@ angular
     'restangular'
   ])
   .config(['$httpProvider', 'RestangularProvider', '$mdDateLocaleProvider',
-  function ($httpProvider, RestangularProvider, $mdDateLocaleProvider) {
-    $httpProvider.defaults.xsrfCookieName = 'csrftoken';
-    $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+    function($httpProvider, RestangularProvider, $mdDateLocaleProvider) {
+      $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+      $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
 
-    var apiUrl = "http://" + window.location.hostname + ":8000/api/";
-    RestangularProvider.setBaseUrl(apiUrl);
-    RestangularProvider.addResponseInterceptor(function(data, operation) {
-      if (operation === "getList" && data.results) {
-        var extractedData = data.results;
-        extractedData.count = data.count;
-        data = extractedData;
-      }
-      return data;
-    });
-    $mdDateLocaleProvider.formatDate = function(date) {
-      if (date) {
-        var day = date.getDate();
-        var monthIndex = date.getMonth();
-        var year = date.getFullYear();
-        return ("0" + day).slice(-2) + '/' + ("0" + (monthIndex + 1)).slice(-2) + '/' + year;
-      }
-      return "";
-    };
-  }])
-  .config(['$routeProvider', function ($routeProvider) {
+      var apiUrl = "http://" + window.location.hostname + ":8000/api/";
+      RestangularProvider.setBaseUrl(apiUrl);
+      RestangularProvider.addResponseInterceptor(function(data, operation) {
+        if (operation === "getList" && data.results) {
+          var extractedData = data.results;
+          extractedData.count = data.count;
+          data = extractedData;
+        }
+        return data;
+      });
+      $mdDateLocaleProvider.formatDate = function(date) {
+        if (date) {
+          var day = date.getDate();
+          var monthIndex = date.getMonth();
+          var year = date.getFullYear();
+          return ("0" + day).slice(-2) + '/' + ("0" + (monthIndex + 1)).slice(-2) + '/' + year;
+        }
+        return "";
+      };
+    }
+  ])
+  .config(['$routeProvider', function($routeProvider) {
     $routeProvider
       .when('/about', {
         templateUrl: 'views/about.html',
@@ -88,20 +89,28 @@ angular
         controller: 'ModaldrugCtrl',
         controllerAs: 'modaldrug'
       })
+      .when('/consult', {
+        templateUrl: 'views/consult.html',
+        controller: 'ConsultCtrl',
+        controllerAs: 'consult'
+      })
       .otherwise({
         redirectTo: '/login'
       });
-    }])
-    .run(['Restangular', function(Restangular) {
-      if (window.localStorage.token) {
-        Restangular.setDefaultHeaders(
-          { Authorization: 'Token ' + window.localStorage.token }
-        );
-      }
-    }])
-    .config(function($mdThemingProvider) {
-      $mdThemingProvider.theme('default')
+  }])
+  .run(['$rootScope', 'auth', function($rootScope, auth) {
+    $rootScope.loading = true;
+    $rootScope.$on("$routeChangeStart", function() {
+      $rootScope.loading = true;
+    });
+    $rootScope.$on('$routeChangeSuccess', function() {
+      $rootScope.loading = false;
+    });
+    auth.autoLogin();
+  }])
+  .config(function($mdThemingProvider) {
+    $mdThemingProvider.theme('default')
       .primaryPalette('blue')
       .accentPalette('pink')
       .warnPalette('red');
-    });
+  });
