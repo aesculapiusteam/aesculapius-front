@@ -93,7 +93,8 @@ angular
         redirectTo: '/login'
       });
   }])
-  .run(['$rootScope', 'auth', function($rootScope, auth) {
+  .run(['$rootScope', 'auth', 'aeData', '$mdDialog',
+   function($rootScope, auth, aeData, $mdDialog) {
     $rootScope.loading = true;
     $rootScope.$on("$routeChangeStart", function() {
       $rootScope.loading = true;
@@ -102,6 +103,20 @@ angular
       $rootScope.loading = false;
     });
     auth.autoLogin();
+    $rootScope.showDialog = function(ev, scope) {
+      if (scope.value){
+        aeData.profile = aeData.profiles.get(scope.value).$object;
+      }
+      $mdDialog.show({
+        controller: _.capitalize(ev.currentTarget.id) + 'Ctrl',
+        controllerAs: ev.currentTarget.id,
+        templateUrl: 'views/' + ev.currentTarget.id + '.html',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose:true,
+        escapeToClose: true,
+      });
+    };
   }])
   .config(function($mdThemingProvider) {
     $mdThemingProvider.theme('default')

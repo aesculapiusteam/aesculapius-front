@@ -34,7 +34,7 @@
                   </span>
                 </span>
               </div>
-              <md-button class="md-primary" aria-label="Person Add" ng-click="re()">
+              <md-button id="profile" class="md-primary" aria-label="Person Add" ng-click="$root.showDialog($event, this)">
                 <md-icon>person_add</md-icon>
                 <label>Añadir Persona</label>
               </md-button>
@@ -64,15 +64,21 @@
           md-delay="1000"
           md-floating-label="Nombre del Medicamento">
             <md-item-template>
-              <span class="drug-title">
-                <md-icon>local_hospital</md-icon>
-                <span>{{drug.name}}</span>
-              </span>
-              <span class="item-metadata">
-                <span class="item-metastat">
-                  - <strong>{{drug.quantity}}</strong>
+              <div ng-if="drug.name">
+                <span class="drug-title">
+                  <md-icon>local_hospital</md-icon>
+                  <span>{{drug.name}}</span>
                 </span>
-              </span>
+                <span class="item-metadata">
+                  <span class="item-metastat">
+                    - <strong>{{drug.quantity}}</strong>
+                  </span>
+                </span>
+              </div>
+              <md-button class="md-primary" aria-label="Person Add" ng-click="re()">
+                <md-icon>add_box</md-icon>
+                <label>Añadir Medicina</label>
+              </md-button>
             </md-item-template>
           </md-autocomplete>
           <md-input-container>
