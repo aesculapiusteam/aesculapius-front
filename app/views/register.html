@@ -12,6 +12,8 @@
             </div>
           </md-card-title>
           <md-card-content>
+            <ae-profile-icon ng-if="selectedItemPeople.first_name"
+             name="{{selectedItemPeople.first_name}}" size=32></ae-profile-icon>
             <md-autocomplete required md-selected-item="selectedItemPeople"
             md-search-text="filterTextP"
             md-items="item in peopleList()"
