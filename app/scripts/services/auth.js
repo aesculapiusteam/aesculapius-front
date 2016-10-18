@@ -61,7 +61,7 @@ angular.module('aesculapiusFrontApp')
   };
 
   this.logout = function(){
-    window.localStorage.token = "";
+    delete window.localStorage.token;
     $rootScope.authenticated = false;
   };
 
