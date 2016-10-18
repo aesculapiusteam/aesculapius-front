@@ -1,0 +1,9 @@
+.base-logo {
+  height: 64px;
+}
+
+.base-title {
+  font-size: 1.4rem !important;
+  padding: 0.25rem;
+  font-weight: 100 !important;
+}

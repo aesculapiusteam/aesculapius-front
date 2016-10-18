@@ -1,31 +1,26 @@
-/* Footer ccs */
+md-content {
+  height: 100%;
+  padding: 2rem;
+}
 
 md-card {
   padding: 20px;
 }
 
 footer {
-  background-color: #ccc;
+  background-color: #3C4252;
 }
 
- /* No buscamos como docuemntar xd css*/
-.loginLogo {
-  padding: 2rem 1rem;
-}
-
-/* Tooltip */
 md-tooltip .md-content{
     font-size: 14px;
     padding: 0.5rem 1rem;
     background-color: black;
 }
 
-/* Buttons */
 .md-button:not([disabled]):hover {
   background-color: rgba(200, 200, 200, 0.4);
 }
 
-/* Common */
 .unselectable {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -33,11 +28,6 @@ md-tooltip .md-content{
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-}
-
-md-content {
-  height: 100%;
-  padding: 2rem;
 }
 
 .pad-1 {
@@ -54,4 +44,15 @@ md-content {
 
 .icon-valign {
   vertical-align: middle;
+}
+
+.center {
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  align-self: center;
+}
+
+.thin-text {
+  font-weight: 100;
 }

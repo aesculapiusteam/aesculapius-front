@@ -13,28 +13,35 @@
     <link rel="stylesheet" href="bower_components/mdDataTable/dist/md-data-table-style.css" />
     <!-- endbower -->
     <!-- endbuild -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,400" rel="stylesheet">
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="bower_components/material-design-icons/iconfont/material-icons.css">
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/login.css">
+    <link rel="stylesheet" href="styles/loading.css">
+    <link rel="stylesheet" href="styles/base.css">
     <!-- endbuild -->
   </head>
   <body ng-app="aesculapiusFrontApp" ng-controller="BaseCtrl as base">
     <!--[if lte IE 8]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
+
+    <!-- Nav Bar -->
     <md-toolbar class="md-whiteframe-4dp">
       <div class="md-toolbar-tools">
-        <h2>Aesculapius</h2>
+        <img class="base-logo center" src="images/logo_nobackground.png"/>
+        <h1 class="base-title">Aesculapius</h1>
         <span flex="5"></span>
         <md-button href="#/employees">
           <md-icon>people</md-icon>
           Empleados
+          <md-tooltip>Ver Empleados</md-tooltip>
         </md-button>
         <md-button href="#/profiles">
           <md-icon>local_hospital</md-icon>
           Pacientes
+          <md-tooltip>Ver Pacientes</md-tooltip>
         </md-button>
         <span flex></span>
         <md-button>
@@ -49,9 +56,16 @@
       </div>
     </md-toolbar>
 
+    <!-- Main Content -->
     <md-content style="background-image:url('images/back.jpg');background-size: 100% !important;background-repeat: no-repeat;background-position: center;">
       <div ng-view=""></div>
     </md-content>
+
+    <!-- Loading Spinner -->
+    <div layout="column" class="loading-container" ng-show="loading">
+      <img class="loading-logo center" src="images/logo_square_shadow.png"/>
+      <md-progress-circular class="loading-spinner" ng-model="loading" md-diameter="96"/>
+    </div>
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
