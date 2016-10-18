@@ -4,7 +4,7 @@
     <md-input-container layout="row">
       <div flex="90">
         <label>Search</label>
-        <input flex ng-model="filterText" type="text">
+        <input ng-model="filterText" type="text">
       </div>
       <md-button class="md-primary md-accent" ng-click="showDrugDialog($event)">
         <md-icon>add</md-icon>
@@ -12,7 +12,12 @@
     </md-input-container>
   </md-card>
 
-  <mdt-table sortable-columns="true" animate-sort-icon="true"
+  <mdt-table table-card="{visible: true, title: 'Stock'}"
+  selectable-rows="true"
+  alternate-headers="'contextual'"
+  delete-row-callback="deleteRowCallback(rows)"
+  sortable-columns="true"
+  animate-sort-icon="true"
   paginated-rows="{isEnabled: true, rowsPerPageValues: [5,10,20,50]}"
   mdt-row-paginator="refreshTable(page, pageSize)"
   mdt-row-paginator-error-message="Hubo un error al cargar el stock."
@@ -23,20 +28,24 @@
     'column-keys': [
     'name',
     'quantity',
-    'description'
+    'description',
     ],
   }">
-    <mdt-header-row>
-      <mdt-column align-rule="left">Nombre</mdt-column>
-      <mdt-column align-rule="left">Cantidad</mdt-column>
-      <mdt-column align-rule="left">Detalle</mdt-column>
-      <mdt-column align-rule="left"></mdt-column>
-    </mdt-header-row>
-    <mdt-row ng-repeat="nutrition in nutritionList">
-      <mdt-custom-cell column-key="name" editable-field="largeEditDialog" editable-field-title="Editar Nombre"></mdt-custom-cell>
-      <mdt-custom-cell column-key="quantity" editable-field="largeEditDialog" editable-field-title="Cantidad"></mdt-custom-cell>
-      <mdt-custom-cell column-key="description" editable-field="largeEditDialog" editable-field-title="Editar el detalle"></mdt-custom-cell>
-      <mdt-custom-cell html-content="true"><mdt-button icon="delete"></mdt-button></mdt-custom-cell>
-    </mdt-row>
-  </mdt-table>
+  <mdt-header-row>
+    <mdt-column align-rule="left">Nombre</mdt-column>
+    <mdt-column align-rule="left">Cantidad</mdt-column>
+    <mdt-column align-rule="left">Detalle</mdt-column>
+  </mdt-header-row>
+  <mdt-row>
+    <mdt-custom-cell column-key="name" editable-field="smallEditDialog" editable-field-max-length="25">
+      {{value}}
+    </mdt-custom-cell>
+    <mdt-custom-cell column-key="quantity">
+      {{value}}
+    </mdt-custom-cell>
+    <mdt-custom-cell column-key="description">
+      {{value}}
+    </mdt-custom-cell>
+  </mdt-row>
+</mdt-table>
 </div>
