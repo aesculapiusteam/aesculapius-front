@@ -22,10 +22,6 @@ angular.module('aesculapiusFrontApp')
     var allProfiles = Restangular.all('profiles');
     var allDrugs = Restangular.all('drugs');
 
-    $scope.re = function(){
-      return false;
-    };
-
     $scope.done = function(){
       var finalItems = [];
       for (var i=0;i<$scope.nActions.length;i++){
