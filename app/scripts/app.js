@@ -99,6 +99,11 @@ angular
         controller: 'RegisterCtrl',
         controllerAs: 'register'
       })
+      .when('/newvisit', {
+        templateUrl: 'views/newvisit.html',
+        controller: 'NewvisitCtrl',
+        controllerAs: 'newvisit'
+      })
       .otherwise({
         redirectTo: '/login'
       });

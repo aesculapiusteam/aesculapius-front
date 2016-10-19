@@ -1,0 +1,63 @@
+<md-toolbar layout="row">
+  <div class="md-toolbar-tools">Nueva Consulta</div>
+</md-toolbar>
+<md-content>
+  <md-card>
+    <md-card-content flex layout="column">
+      <div layout="row">
+        <md-autocomplete flex required md-selected-item="selectedItemPeople"
+            md-search-text="filterTextP"
+            md-items="item in peopleList()"
+            md-item-text="item.first_name+' '+item.last_name"
+            md-min-length="0"
+            md-delay="1000"
+            md-floating-label="Ingrese el nombre, apellido o DNI del paciente">
+            <md-item-template>
+              <div ng-if="item.first_name">
+                <span class="item-title">
+                  <md-icon>person</md-icon>
+                  <span> {{item.first_name}} </span>
+                </span>
+                <span class="item-metadata">
+                  <span class="item-metastat">
+                    <strong>{{item.last_name}}</strong>
+                  </span>
+                  <span class="item-metastat" ng-if="item.dni">
+                    - DNI: <strong>{{item.dni}}</strong>
+                  </span>
+                </span>
+              </div>
+              <div layout="row">
+                <md-button flex id="profile" class="md-primary" aria-label="Person Add" ng-click="$root.showDialog($event, this)">
+                  <md-icon>person_add</md-icon>
+                  <label>Añadir Persona</label>
+                </md-button>
+              </div>
+            </md-item-template>
+          </md-autocomplete>
+          <md-button class="md-icon-button" aria-label="More">
+            <md-icon>more_vert</md-icon>
+          </md-button>
+      </div>
+      <div flex layout="row" layout-align="end center">
+        <span>{{date | date: "dd MMMM yyyy HH:mm"}}</span>
+      </div>
+      <div layout="row">
+        <md-input-container flex>
+          <label>Detalles</label>
+          <textarea ng-model="detail" rows="5"></textarea>
+        </md-input-container>
+      </div>
+    </md-card-content>
+    <md-card-actions layout="row" layout-align="end center">
+      <md-button class="md-primary md-raised" ng-click="done()">
+        <md-icon>done</md-icon>
+        Aceptar
+      </md-button>
+      <md-button class="md-warn" ng-click="cancel()">
+        <md-icon>cancel</md-icon>
+        Cancelar
+      </md-button>
+    </md-card-actions>
+  </md-card>
+</md-content>
