@@ -42,18 +42,5 @@
       $location.path('history');
     };
 
-    $rootScope.showDialog = function(ev, scope) {
-      aeData.profile = aeData.profiles.get(scope.value).$object;
-      $mdDialog.show({
-        controller: _.capitalize(ev.currentTarget.id) + 'Ctrl',
-        controllerAs: ev.currentTarget.id,
-        templateUrl: 'views/' + ev.currentTarget.id + '.html',
-        parent: angular.element(document.body),
-        targetEvent: ev,
-        clickOutsideToClose:true,
-        escapeToClose: true,
-      });
-    };
-
   }]);
 }());
