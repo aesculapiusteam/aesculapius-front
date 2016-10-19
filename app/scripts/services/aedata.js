@@ -15,5 +15,6 @@ angular.module('aesculapiusFrontApp')
     this.employees = null; // Current displayed restangular employees in /employees
     this.visitObj = null; // TODO Document this object
     this.reloadHistoryTable = null; // Execute this function to reload the history table
+    this.reloadStockTable = null; // Execute this function to reload the stock table
     this.historyId = null; // TODO Document this object
   });
