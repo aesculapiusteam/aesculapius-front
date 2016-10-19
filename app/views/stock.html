@@ -14,7 +14,7 @@
 </md-card>
 
 <md-card>
-  <mdt-table
+  <mdt-table table-card="{visible: true, title: 'Inventario'}"
     selectable-rows="true"
     alternate-headers="'contextual'"
     delete-row-callback="deleteRowCallback(rows)"
@@ -31,12 +31,14 @@
     'name',
     'quantity',
     'description',
+    'id',
     ],
   }">
     <mdt-header-row>
       <mdt-column align-rule="left">Nombre</mdt-column>
       <mdt-column align-rule="left">Cantidad</mdt-column>
       <mdt-column align-rule="left">Detalle</mdt-column>
+      <mdt-column align-rule="left">Editar</mdt-column>
     </mdt-header-row>
     <mdt-row>
       <mdt-custom-cell column-key="name" editable-field="smallEditDialog" editable-field-max-length="25">
@@ -47,6 +49,9 @@
       </mdt-custom-cell>
       <mdt-custom-cell column-key="description">
         {{value}}
+      </mdt-custom-cell>
+      <mdt-custom-cell column-key="id">
+        <mdt-button id="drug" value="{{value}}" ng-click="$root.showDialog($event, this)" icon="edit"></mdt-button>
       </mdt-custom-cell>
     </mdt-row>
   </mdt-table>

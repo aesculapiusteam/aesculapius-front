@@ -13,6 +13,7 @@ angular.module('aesculapiusFrontApp')
     this.profile = null; // Current selected restangular profile
     this.profiles = null; // Current displayed restangular profiles in /profiles
     this.employees = null; // Current displayed restangular employees in /employees
+    this.drug = null; // Current displayed restangular drug in /stock
     this.visitObj = null; // TODO Document this object
     this.reloadHistoryTable = null; // Execute this function to reload the history table
     this.reloadStockTable = null; // Execute this function to reload the stock table
