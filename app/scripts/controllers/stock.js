@@ -40,9 +40,9 @@
     $rootScope.showDrugDialog = function(ev) {
       //aeData.drug = aeData.drugs.get(scope.value).$object;
       $mdDialog.show({
-        controller: 'ModaldrugCtrl',
-        controllerAs: 'modaldrug',
-        templateUrl: 'views/modaldrug.html',
+        controller: 'DrugCtrl',
+        controllerAs: 'drug',
+        templateUrl: 'views/drug.html',
         parent: angular.element(document.body),
         targetEvent: ev,
         clickOutsideToClose:true,

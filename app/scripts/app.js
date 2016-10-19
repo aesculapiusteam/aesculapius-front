@@ -84,10 +84,10 @@ angular
         controller: 'StockCtrl',
         controllerAs: 'stock'
       })
-      .when('/modaldrug', {
-        templateUrl: 'views/modaldrug.html',
-        controller: 'ModaldrugCtrl',
-        controllerAs: 'modaldrug'
+      .when('/drug', {
+        templateUrl: 'views/drug.html',
+        controller: 'DrugCtrl',
+        controllerAs: 'drug'
       })
       .when('/consult', {
         templateUrl: 'views/consult.html',
