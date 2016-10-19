@@ -1,0 +1,59 @@
+<md-card>
+  <md-toolbar layout="row">
+    <div class="md-toolbar-tools">Buscar Medicamentos</div>
+  </md-toolbar>
+  <md-input-container layout="row">
+    <div flex="90">
+      <label>Buscar</label>
+      <input ng-model="filterText" type="text">
+    </div>
+    <md-button class="md-primary md-accent" id="drug" ng-click="$root.showDialog($event)">
+      <md-icon>add</md-icon>
+    </md-button>
+  </md-input-container>
+</md-card>
+
+<md-card>
+  <mdt-table
+    table-card="{visible: true, title: 'Inventario'}"
+    selectable-rows="true"
+    alternate-headers="'contextual'"
+    delete-row-callback="deleteRowCallback(rows)"
+    sortable-columns="true"
+    animate-sort-icon="true"
+    paginated-rows="{isEnabled: true, rowsPerPageValues: [5,10,20,50]}"
+    mdt-row-paginator="refreshTable(page, pageSize)"
+    mdt-row-paginator-error-message="Hubo un error al cargar el stock."
+    mdt-row-paginator-no-results-message="No hubo resultados de la busqueda."
+    mdt-trigger-request="getLoadResultsCallback(loadPageCallback)"
+    mdt-row="{
+    'table-row-id-key': 'id',
+    'column-keys': [
+    'name',
+    'quantity',
+    'description',
+    'id',
+    ],
+  }">
+    <mdt-header-row>
+      <mdt-column align-rule="left">Nombre</mdt-column>
+      <mdt-column align-rule="left">Cantidad</mdt-column>
+      <mdt-column align-rule="left">Detalle</mdt-column>
+      <mdt-column align-rule="left">Editar</mdt-column>
+    </mdt-header-row>
+    <mdt-row>
+      <mdt-custom-cell column-key="name" editable-field="smallEditDialog" editable-field-max-length="25">
+        {{value}}
+      </mdt-custom-cell>
+      <mdt-custom-cell column-key="quantity">
+        {{value}}
+      </mdt-custom-cell>
+      <mdt-custom-cell column-key="description">
+        {{value}}
+      </mdt-custom-cell>
+      <mdt-custom-cell column-key="id">
+        <mdt-button id="drug" value="{{value}}" ng-click="$root.showDialog($event, this)" icon="edit"></mdt-button>
+      </mdt-custom-cell>
+    </mdt-row>
+  </mdt-table>
+</md-card>
