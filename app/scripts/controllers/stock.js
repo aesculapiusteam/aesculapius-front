@@ -59,6 +59,7 @@
           for (var row = 0; row < rows.length; row++) {
             Restangular.one('drugs', rows[row]).remove();
           }
+          aeData.reloadStockTable();
         };
 
 

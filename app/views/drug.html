@@ -18,19 +18,19 @@
           <md-input-container flex="50">
             <label>Nombre del Medicamento</label>
             <md-icon class="md-primary">healing</md-icon>
-            <input name="name" ng-model="name"/>
+            <input name="name" ng-model="drug.name"/>
           </md-input-container>
 
           <md-input-container class="md-block">
             <label>Cantidad</label>
             <md-icon class="md-primary">vertical_align_center</md-icon>
-            <input name="quantity" type="number" ng-model="quantity">
+            <input name="quantity" type="number" ng-model="drug.quantity">
           </md-input-container>
 
           <md-input-container flex="50">
             <label>Detalle</label>
             <md-icon class="md-primary">content_paste</md-icon>
-            <textarea name="description" ng-model="description"></textarea>
+            <textarea name="description" ng-model="drug.description"></textarea>
           </md-input-container>
         </div>
 
@@ -49,7 +49,7 @@
       <label>Cancelar</label>
       <md-icon>cancel</md-icon>
     </md-button>
-    <md-button class="md-primary" ng-click="addDrug()" layout-align="end center">
+    <md-button class="md-primary" ng-click="save()" layout-align="end center">
       <label>Guardar</label>
       <md-icon>save</md-icon>
     </md-button>

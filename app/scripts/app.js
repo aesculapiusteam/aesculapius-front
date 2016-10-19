@@ -93,7 +93,7 @@ angular
         templateUrl: 'views/consult.html',
         controller: 'ConsultCtrl',
         controllerAs: 'consult'
-        })
+      })
       .when('/register', {
         templateUrl: 'views/register.html',
         controller: 'RegisterCtrl',
@@ -104,30 +104,34 @@ angular
       });
   }])
   .run(['$rootScope', 'auth', 'aeData', '$mdDialog',
-   function($rootScope, auth, aeData, $mdDialog) {
-    $rootScope.loading = true;
-    $rootScope.$on("$routeChangeStart", function() {
+    function($rootScope, auth, aeData, $mdDialog) {
       $rootScope.loading = true;
-    });
-    $rootScope.$on('$routeChangeSuccess', function() {
-      $rootScope.loading = false;
-    });
-    auth.autoLogin();
-    $rootScope.showDialog = function(ev, scope) {
-      if (scope.value){
-        aeData.profile = aeData.profiles.get(scope.value).$object;
-      }
-      $mdDialog.show({
-        controller: _.capitalize(ev.currentTarget.id) + 'Ctrl',
-        controllerAs: ev.currentTarget.id,
-        templateUrl: 'views/' + ev.currentTarget.id + '.html',
-        parent: angular.element(document.body),
-        targetEvent: ev,
-        clickOutsideToClose:true,
-        escapeToClose: true,
+      $rootScope.$on("$routeChangeStart", function() {
+        $rootScope.loading = true;
       });
-    };
-  }])
+      $rootScope.$on('$routeChangeSuccess', function() {
+        $rootScope.loading = false;
+      });
+      auth.autoLogin();
+      $rootScope.showDialog = function(ev, scope) {
+        if (scope && scope.value) {
+          aeData[ev.currentTarget.id] = aeData[ev.currentTarget.id + 's'].get(scope.value).$object;
+        } else {
+          aeData[ev.currentTarget.id] = null;
+        }
+        aeData.selected = ev.currentTarget.id;
+        $mdDialog.show({
+          controller: _.capitalize(ev.currentTarget.id) + 'Ctrl',
+          controllerAs: ev.currentTarget.id,
+          templateUrl: 'views/' + ev.currentTarget.id + '.html',
+          parent: angular.element(document.body),
+          targetEvent: ev,
+          clickOutsideToClose: true,
+          escapeToClose: true,
+        });
+      };
+    }
+  ])
   .config(function($mdThemingProvider) {
     $mdThemingProvider.theme('default')
       .primaryPalette('blue')

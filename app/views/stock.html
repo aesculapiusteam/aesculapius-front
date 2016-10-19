@@ -7,14 +7,15 @@
       <label>Buscar</label>
       <input ng-model="filterText" type="text">
     </div>
-    <md-button class="md-primary md-accent" ng-click="showDrugDialog($event)">
+    <md-button class="md-primary md-accent" id="drug" ng-click="$root.showDialog($event)">
       <md-icon>add</md-icon>
     </md-button>
   </md-input-container>
 </md-card>
 
 <md-card>
-  <mdt-table table-card="{visible: true, title: 'Inventario'}"
+  <mdt-table
+    table-card="{visible: true, title: 'Inventario'}"
     selectable-rows="true"
     alternate-headers="'contextual'"
     delete-row-callback="deleteRowCallback(rows)"
