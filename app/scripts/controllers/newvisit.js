@@ -8,9 +8,10 @@
  * Controller of the aesculapiusFrontApp
  */
 angular.module('aesculapiusFrontApp')
-  .controller('NewvisitCtrl', ['$scope','Restangular', function ($scope, Restangular){
+  .controller('NewvisitCtrl', ['$scope','Restangular', '$mdToast', function ($scope, Restangular, $mdToast){
 
     var allProfiles = Restangular.all('profiles');
+    var allVisits = Restangular.all('visits');
     $scope.date = new Date();
 
     $scope.peopleList = function(){
@@ -19,5 +20,38 @@ angular.module('aesculapiusFrontApp')
           response.push('necesito esto para el boton añadir en el autocomplete');
           return response;
         });
+      };
+
+      $scope.cancel = function(){
+        $scope.detail = "";
+        $scope.selectedItemPeople = "";
+      };
+
+      $scope.done = function() {
+        var data = {
+          'pacient': $scope.selectedItemPeople.id,
+          'detail': $scope.detail
+        };
+        allVisits.post(data).then(
+          function(){
+            $mdToast.show(
+              $mdToast.simple()
+              .textContent('Nueva consulta añadida a la Historia Clinica de '+
+              $scope.selectedItemPeople.first_name + " " + $scope.selectedItemPeople.last_name)
+              .position('bottom right')
+              .hideDelay(3000)
+            );
+            $scope.cancel();
+          },
+          function(){
+            $mdToast.show(
+              $mdToast.simple()
+              .textContent('Hubo un error al realizar la consulta, ¿esta usted logueado?')
+              .position('bottom right')
+              .hideDelay(3000)
+            );
+            $scope.cancel();
+          }
+        );
       };
   }]);
