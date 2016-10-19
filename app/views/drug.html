@@ -1,0 +1,58 @@
+<md-dialog>
+  <div layout="row">
+    <md-toolbar layout="row">
+      <div class="md-toolbar-tools">Agregar Medicamento</div>
+      <div style="margin-top:10px">
+        <md-button class="md-icon-button">
+          <md-icon ng-click="cancel()">close</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+  </div>
+  <md-divider></md-divider>
+
+  <md-dialog-content class="md-padding" layout-xs="column" layout="row">
+    <div layout="column" layout-padding ng-cloak>
+      <form name="drugForm">
+        <div layout="row">
+          <md-input-container flex="50">
+            <label>Nombre del Medicamento</label>
+            <md-icon class="md-primary">healing</md-icon>
+            <input name="name" ng-model="drug.name"/>
+          </md-input-container>
+
+          <md-input-container class="md-block">
+            <label>Cantidad</label>
+            <md-icon class="md-primary">vertical_align_center</md-icon>
+            <input name="quantity" type="number" ng-model="drug.quantity">
+          </md-input-container>
+
+          <md-input-container flex="50">
+            <label>Detalle</label>
+            <md-icon class="md-primary">content_paste</md-icon>
+            <textarea name="description" ng-model="drug.description"></textarea>
+          </md-input-container>
+        </div>
+
+      </form>
+
+    </div>
+
+  </md-dialog-content>
+
+  <md-dialog-actions layout="row">
+    <md-button class="md-warn" ng-show="drug" ng-click="delete()" layout-align="start center">
+      <label>Eliminar</label>
+      <md-icon>delete</md-icon>
+    </md-button>
+    <md-button ng-click="cancel()" layout-align="end center">
+      <label>Cancelar</label>
+      <md-icon>cancel</md-icon>
+    </md-button>
+    <md-button class="md-primary" ng-click="save()" layout-align="end center">
+      <label>Guardar</label>
+      <md-icon>save</md-icon>
+    </md-button>
+  </md-dialog-actions>
+
+</md-dialog>
