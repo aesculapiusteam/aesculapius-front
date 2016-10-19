@@ -65,6 +65,12 @@
           }
         };
 
+        $scope.delete = function() {
+          $scope.drug.remove();
+          $scope.cancel();
+          aeData.reloadStockTable();
+        };
+
         $scope.cancel = function() {
           $mdDialog.cancel();
         };
