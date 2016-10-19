@@ -114,23 +114,32 @@ angular
         $rootScope.loading = false;
       });
       auth.autoLogin();
+
       $rootScope.showDialog = function(ev, scope) {
         if (scope && scope.value) {
           aeData[ev.currentTarget.id] = aeData[ev.currentTarget.id + 's'].get(scope.value).$object;
         } else {
           aeData[ev.currentTarget.id] = null;
         }
+
+        //XXX CODIGO RANCIO
+        var employeeProfile; //Uses profile.html/ProfileCtrl if is employee because there is not employee.html
+        if (ev.currentTarget.id === "employee") {
+          employeeProfile = "profile";
+        }
+
         aeData.selected = ev.currentTarget.id;
         $mdDialog.show({
-          controller: _.capitalize(ev.currentTarget.id) + 'Ctrl',
-          controllerAs: ev.currentTarget.id,
-          templateUrl: 'views/' + ev.currentTarget.id + '.html',
+          controller: _.capitalize(employeeProfile || ev.currentTarget.id) + 'Ctrl',
+          controllerAs: employeeProfile || ev.currentTarget.id,
+          templateUrl: 'views/' + (employeeProfile || ev.currentTarget.id) + '.html',
           parent: angular.element(document.body),
           targetEvent: ev,
           clickOutsideToClose: true,
           escapeToClose: true,
         });
       };
+
     }
   ])
   .config(function($mdThemingProvider) {

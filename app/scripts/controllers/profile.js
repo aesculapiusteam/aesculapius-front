@@ -1,51 +1,60 @@
 'use strict';
 
 /**
-* @ngdoc function
-* @name aesculapiusFrontApp.controller:ProfileCtrl
-* @description
-* # ProfileCtrl
-* Controller of the aesculapiusFrontApp
-*/
+ * @ngdoc function
+ * @name aesculapiusFrontApp.controller:ProfileCtrl
+ * @description
+ * # ProfileCtrl
+ * Controller of the aesculapiusFrontApp
+ */
 angular.module('aesculapiusFrontApp')
-.controller('ProfileCtrl', [
-  '$scope', '$mdDialog', '$rootScope', 'aeData', 'Restangular',
-  function ($scope, $mdDialog, $rootScope, aeData, Restangular) {
-    $scope.profile = aeData.profile;
-    $scope.saveProfile = function(){
+  .controller('ProfileCtrl', [
+    '$scope', '$mdDialog', '$rootScope', 'aeData', 'Restangular', '$mdToast',
+    function($scope, $mdDialog, $rootScope, aeData, Restangular, $mdToast) {
+      $scope.person = aeData.getSelected();
 
-      if (!_.isEmpty($scope.profile)) {
-        Restangular.copy($scope.profile).save().then(function() {
-          aeData.refreshProfilesTable();
+      $scope.add = function() {
+        Restangular.all(aeData.selected + 's').post($scope.person).then(
+          function() {
+            $scope.cancel();
+            $mdToast.show(
+              $mdToast.simple()
+              .textContent($scope.profile.name + ' ha sido añadido.')
+              .position('bottom right')
+              .hideDelay(2000)
+            );
+            aeData.reloadSelectedTable();
+          },
+          function(error) {
+            $mdToast.show(
+              $mdToast.simple()
+              .textContent(error.data)
+              .position('bottom right')
+              .hideDelay(5000)
+            );
+          }
+        );
+      };
+
+      $scope.save = function() {
+        if (!aeData.getSelected()) {
+          // Must create a new person
+          this.add();
+        } else {
+          // Must modify an existing person TODO
+        }
+      };
+
+      $scope.delete = function() {
+        $scope.profile.remove().then(function() {
+          aeData.reloadProfilesTable();
           $mdDialog.cancel();
         });
-      }
-    };
+      };
 
-    $scope.deleteProfile = function(){
-      $scope.profile.remove().then(function(){
-        aeData.refreshProfilesTable();
+      $scope.cancel = function() {
         $mdDialog.cancel();
-      });
-      console.log('El perfil de ' + $scope.profile.first_name + ' se borro');
-    };
+      };
 
-    $scope.addProfile = function(){
-
-    };
-
-    console.log('AAAAAAAAAAAAA');
-
-    $scope.a = $scope.profile.birth_date;
-
-    $scope.b = new Date($scope.a);
-    console.log($scope.b);
-
-    console.log('BBBBBBBBBBB');
-
-
-    $rootScope.cancel = function() {
-      $mdDialog.cancel();
-    };
-
-  }]);
+    }
+  ]);

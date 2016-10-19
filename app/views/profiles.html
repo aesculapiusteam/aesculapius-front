@@ -1,25 +1,28 @@
 <md-card>
-    <md-toolbar layout="row">
-      <div class="md-toolbar-tools">Buscar Pacientes</div>
-    </md-toolbar>  <md-input-container layout="row">
+  <md-toolbar layout="row">
+    <div class="md-toolbar-tools">Buscar Pacientes</div>
+  </md-toolbar>
+  <md-input-container layout="row">
     <div flex="90">
       <label>Buscar</label>
       <input flex ng-model="filterText" type="text">
     </div>
-    <md-button id="profile" ng-click="$root.showDialog($event)" class="md-primary md-accent">
+    <md-button class="md-primary md-accent" id="profile" ng-click="$root.showDialog($event)">
       <md-icon>person_add</md-icon>
     </md-button>
   </md-input-container>
 </md-card>
 
 <md-card>
-  <mdt-table sortable-columns="true" animate-sort-icon="true"
-  paginated-rows="{isEnabled: true, rowsPerPageValues: [5,10,20,50]}"
-  mdt-row-paginator="refreshTable(page, pageSize)"
-  mdt-row-paginator-error-message="Hubo un error al cargar las personas."
-  mdt-row-paginator-no-results-message="No hubo resultados de la busqueda."
-  mdt-trigger-request="getLoadResultsCallback(loadPageCallback)"
-  mdt-row="{
+  <mdt-table
+    sortable-columns="true"
+    animate-sort-icon="true"
+    paginated-rows="{isEnabled: true, rowsPerPageValues: [5,10,20,50]}"
+    mdt-row-paginator="refreshTable(page, pageSize)"
+    mdt-row-paginator-error-message="Hubo un error al cargar las personas."
+    mdt-row-paginator-no-results-message="No hubo resultados de la busqueda."
+    mdt-trigger-request="getLoadResultsCallback(loadPageCallback)"
+    mdt-row="{
     'table-row-id-key': 'id',
     'column-keys': [
     'first_name',
@@ -30,24 +33,24 @@
     'hc'
     ],
   }">
-  <mdt-header-row>
-    <mdt-column align-rule="left">Nombre</mdt-column>
-    <mdt-column align-rule="left">Apellido</mdt-column>
-    <mdt-column align-rule="left">DNI</mdt-column>
-    <mdt-column align-rule="left">Email</mdt-column>
-    <mdt-column align-rule="left">Editar</mdt-column>
-    <mdt-column align-rule="left">H. Clínica</mdt-column>
-  </mdt-header-row>
-  <mdt-custom-cell column-key="first_name">
-    <ae-profile-icon name={{value}} size=32></ae-profile-icon>
-    <span style="line-height:48px;">{{value}}<span>
-    </mdt-custom-cell>
-    <mdt-custom-cell column-key="id">
-      <mdt-button id="profile" value="{{value}}" ng-click="$root.showDialog($event, this)" icon="edit"></mdt-button>
-    </mdt-custom-cell>
-    <mdt-custom-cell column-key="hc">
-      <mdt-button id="history" ng-click="clientScope.cHistory($event)" icon="description"></mdt-button>
-    </mdt-custom-cell>
+    <mdt-header-row>
+      <mdt-column align-rule="left">Nombre</mdt-column>
+      <mdt-column align-rule="left">Apellido</mdt-column>
+      <mdt-column align-rule="left">DNI</mdt-column>
+      <mdt-column align-rule="left">Email</mdt-column>
+      <mdt-column align-rule="left">Editar</mdt-column>
+      <mdt-column align-rule="left">H. Clínica</mdt-column>
+    </mdt-header-row>
+    <mdt-custom-cell column-key="first_name">
+      <ae-profile-icon name={{value}} size=32></ae-profile-icon>
+      <span style="line-height:48px;">{{value}}
+        <span></mdt-custom-cell>
+        <mdt-custom-cell column-key="id">
+          <mdt-button id="profile" value="{{value}}" ng-click="$root.showDialog($event, this)" icon="edit"></mdt-button>
+        </mdt-custom-cell>
+        <mdt-custom-cell column-key="hc">
+          <mdt-button id="history" ng-click="clientScope.cHistory($event)" icon="description"></mdt-button>
+        </mdt-custom-cell>
 
-  </mdt-table>
-</md-card>
+      </mdt-table>
+    </md-card>

@@ -9,8 +9,8 @@
  */
 (function() {
   angular.module('aesculapiusFrontApp')
-    .controller('StockCtrl', ['$scope', '$rootScope', '$mdDialog', 'Restangular',
-      'aeData',
+    .controller('StockCtrl', [
+      '$scope', '$rootScope', '$mdDialog', 'Restangular', 'aeData',
       function($scope, $rootScope, $mdDialog, Restangular, aeData) {
         $scope.filterText = "";
         var allDrugs = Restangular.all('drugs');
@@ -39,19 +39,6 @@
               results: result,
               totalResultCount: result.count
             };
-          });
-        };
-
-        $rootScope.showDrugDialog = function(ev) {
-          //aeData.drug = aeData.drugs.get(scope.value).$object;
-          $mdDialog.show({
-            controller: 'DrugCtrl',
-            controllerAs: 'drug',
-            templateUrl: 'views/drug.html',
-            parent: angular.element(document.body),
-            targetEvent: ev,
-            clickOutsideToClose: true,
-            escapeToClose: true,
           });
         };
 

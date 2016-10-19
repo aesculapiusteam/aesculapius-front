@@ -4,7 +4,7 @@
       <div class="md-toolbar-tools">Editar Perfil</div>
       <div style="margin-top:10px">
         <md-button class="md-icon-button">
-          <md-icon ng-click="$root.cancel()">close</md-icon>
+          <md-icon ng-click="cancel()">close</md-icon>
         </md-button>
       </div>
     </md-toolbar>
@@ -13,7 +13,8 @@
 
   <md-dialog-content class="md-padding" layout-xs="column" layout="row">
     <div layout="column" layout-padding ng-cloak>
-        <form name="profileForm">
+      <form name="profileForm">
+        <div ng-show = "person.profile">
           <h2 class="md-title">Información de Cuenta</h2>
           <div layout="row">
             <md-input-container flex="50">
@@ -38,80 +39,75 @@
               {{ x }}
             </md-checkbox>
           </div>
-
-          <h2 class="md-title">Información Personal</h2>
-          <div layout="row">
-            <md-input-container flex="50">
-              <label>Nombre</label>
-              <md-icon class="md-primary">person</md-icon>
-              <input name="comments" required="" name="name" ng-model="profile.first_name"/>
-              <div ng-messages="profileForm.name.$error">
-                <div ng-message="required">Campo obligatorio</div>
-              </div>
-            </md-input-container>
-
-            <md-input-container flex="50">
-              <label>Apellido</label>
-              <md-icon class="md-primary">face</md-icon>
-              <input name="last_name" ng-model="profile.last_name"/>
-            </md-input-container>
-
-            <md-input-container flex="50">
-              <label>DNI</label>
-              <md-icon class="md-primary">chrome_reader_mode</md-icon>
-              <input name="dni" ng-model="profile.dni"/>
-            </md-input-container>
-          </div>
-
-          <div layout="row">
-            <md-input-container class="md-block" flex="50">
-              <label>Email</label>
-              <md-icon class="md-primary">mail</md-icon>
-              <input name="email" ng-model="profile.email"/>
-            </md-input-container>
-            <md-datepicker class="md-primary" ng-model="b" md-placeholder="Nacimiento" ng-change="a = b.toISOString()"  flex="50">
-            </md-datepicker>
-          </div>
-          AAAAAA
-          {{a}}
-          AAAAAA
-          <md-input-container class="md-block">
-            <label>Dirección</label>
-            <md-icon class="md-primary">location_on</md-icon>
-            <input name="address" ng-model="profile.address"/>
-          </md-input-container>
-          <div layout="row">
-            <md-input-container class="md-block" flex="50">
-              <label>Número de teléfono</label>
-              <md-icon class="md-primary">phone</md-icon>
-              <input name="phone" ng-model="profile.phone"/>
-            </md-input-container>
-            <md-input-container class="md-block" flex="50">
-              <label>Número de celular</label>
-              <md-icon class="md-primary">phone</md-icon>
-              <input name="cellphone" ng-model="profile.cellphone"/>
+        </div>
+        <h2 class="md-title">Información Personal</h2>
+        <div layout="row">
+          <md-input-container flex="50">
+            <label>Nombre</label>
+            <md-icon class="md-primary">person</md-icon>
+            <input name="comments" required="" name="name" ng-model="person.first_name"/>
+            <div ng-messages="profileForm.name.$error">
+              <div ng-message="required">Campo obligatorio</div>
             </div>
           </md-input-container>
-    </form>
 
-</div>
+          <md-input-container flex="50">
+            <label>Apellido</label>
+            <md-icon class="md-primary">face</md-icon>
+            <input name="last_name" ng-model="person.last_name"/>
+          </md-input-container>
 
+          <md-input-container flex="50">
+            <label>DNI</label>
+            <md-icon class="md-primary">chrome_reader_mode</md-icon>
+            <input name="dni" ng-model="person.dni"/>
+          </md-input-container>
+        </div>
 
+        <div layout="row">
+          <md-input-container class="md-block" flex="50">
+            <label>Email</label>
+            <md-icon class="md-primary">mail</md-icon>
+            <input name="email" ng-model="person.email"/>
+          </md-input-container>
+          <md-datepicker class="md-primary" ng-model="person.birth_date" md-placeholder="Nacimiento" ng-change="a = b.toISOString()" flex="50"></md-datepicker>
+        </div>
 
+        <md-input-container class="md-block">
+          <label>Dirección</label>
+          <md-icon class="md-primary">location_on</md-icon>
+          <input name="address" ng-model="person.address"/>
+        </md-input-container>
+        <div layout="row">
+          <md-input-container class="md-block" flex="50">
+            <label>Número de teléfono</label>
+            <md-icon class="md-primary">phone</md-icon>
+            <input name="phone" ng-model="person.phone"/>
+          </md-input-container>
+          <md-input-container class="md-block" flex="50">
+            <label>Número de celular</label>
+            <md-icon class="md-primary">phone</md-icon>
+            <input name="cellphone" ng-model="person.cellphone"/>
+          </div>
+        </md-input-container>
+      </form>
 
-</md-dialog-content>
+    </div>
 
-<md-dialog-actions layout="row">
-  <md-button ng-click="deleteProfile()">
-    Eliminar
-  </md-button>
-  <span flex></span>
-  <md-button ng-click="$root.cancel()">
-    Cancelar
-  </md-button>
-  <md-button ng-click="saveProfile()">
-    Guardar
-  </md-button>
-</md-dialog-actions>
+  </md-dialog-content>
 
+  <md-dialog-actions layout="row">
+    <md-button class="md-warn" ng-show="person" ng-click="delete()" layout-align="start center">
+      <label>Eliminar</label>
+      <md-icon>delete</md-icon>
+    </md-button>
+    <md-button ng-click="cancel()" layout-align="end center">
+      <label>Cancelar</label>
+      <md-icon>cancel</md-icon>
+    </md-button>
+    <md-button class="md-primary" ng-click="save()" layout-align="end center">
+      <label>Guardar</label>
+      <md-icon>save</md-icon>
+    </md-button>
+  </md-dialog-actions>
 </md-dialog>
