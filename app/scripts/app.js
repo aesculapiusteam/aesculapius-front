@@ -84,6 +84,11 @@ angular
         controller: 'ConsultCtrl',
         controllerAs: 'consult'
       })
+      .when('/newvisit', {
+        templateUrl: 'views/newvisit.html',
+        controller: 'NewvisitCtrl',
+        controllerAs: 'newvisit'
+      })
       .otherwise({
         redirectTo: '/login'
       });

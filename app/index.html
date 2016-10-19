@@ -8,9 +8,9 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css"/>
-    <link rel="stylesheet" href="bower_components/angular-material-icons/angular-material-icons.css"/>
-    <link rel="stylesheet" href="bower_components/mdDataTable/dist/md-data-table-style.css"/>
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+    <link rel="stylesheet" href="bower_components/angular-material-icons/angular-material-icons.css" />
+    <link rel="stylesheet" href="bower_components/mdDataTable/dist/md-data-table-style.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,400" rel="stylesheet">
@@ -45,6 +45,11 @@
             <md-icon>local_hospital</md-icon>
             Pacientes
             <md-tooltip>Ver Pacientes</md-tooltip>
+          </md-button>
+          <md-button href="#/newvisit">
+            <md-icon>note_add</md-icon>
+            Nueva Consulta
+            <md-tooltip>Ir a Nueva Consulta</md-tooltip>
           </md-button>
         </div>
 
@@ -119,6 +124,7 @@
     <script src="scripts/directives/mdt-button.js"></script>
     <script src="scripts/directives/ae-profile-icon.js"></script>
     <script src="scripts/services/aedata.js"></script>
+    <script src="scripts/controllers/newvisit.js"></script>
     <!-- endbuild -->
   </body>
 </html>
