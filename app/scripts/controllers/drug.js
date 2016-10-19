@@ -9,22 +9,39 @@
  */
 (function() {
   angular.module('aesculapiusFrontApp')
-    .controller('DrugCtrl', ['$scope', '$mdDialog', '$rootScope', 'Restangular', 'aeData',
-      function($scope, $rootScope, $mdDialog, Restangular, aeData) {
+    .controller('DrugCtrl', ['$scope', '$rootScope', '$mdDialog', 'Restangular', 'aeData', '$mdToast',
+      function($scope, $rootScope, $mdDialog, Restangular, aeData, $mdToast) {
 
         $scope.addDrug = function() {
-          console.log("tuvieja");
           var newDrug = {
             "name": $scope.name,
             "description": $scope.description,
             "quantity": $scope.quantity,
           };
-          Restangular.all('drugs').post(newDrug);
-          aeData.reloadStockTable();
+          Restangular.all('drugs').post(newDrug).then(
+            function() {
+              $scope.cancel();
+              $mdToast.show(
+                $mdToast.simple()
+                .textContent(newDrug.name + ' ha sido añadido.')
+                .position('bottom right')
+                .hideDelay(2000)
+              );
+              aeData.reloadStockTable();
+            },
+            function(error) {
+              $mdToast.show(
+                $mdToast.simple()
+                .textContent(error.data)
+                .position('bottom right')
+                .hideDelay(2000)
+              );
+            }
+          );
         };
 
-        $rootScope.cancelAddDrug = function() {
-          $mdDialog.cancelAddDrug();
+        $scope.cancel = function() {
+          $mdDialog.cancel();
         };
 
       }

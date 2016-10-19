@@ -4,7 +4,7 @@
       <div class="md-toolbar-tools">Agregar Medicamento</div>
       <div style="margin-top:10px">
         <md-button class="md-icon-button">
-          <md-icon ng-click="$root.cancel()">close</md-icon>
+          <md-icon ng-click="cancel()">close</md-icon>
         </md-button>
       </div>
     </md-toolbar>
@@ -38,16 +38,20 @@
 
     </div>
 
-
   </md-dialog-content>
 
-  <md-dialog-actions >
-    <md-button layout="row" ng-click="$root.cancel()">
-      Cancelar
+  <md-dialog-actions layout="row">
+    <md-button class="md-warn" ng-click="delete()" layout-align="start center">
+      <label>Eliminar</label>
+      <md-icon>delete</md-icon>
     </md-button>
-    <span flex></span>
-    <md-button ng-click="addDrug()">
-      Guardar
+    <md-button ng-click="cancel()" layout-align="end center">
+      <label>Cancelar</label>
+      <md-icon>cancel</md-icon>
+    </md-button>
+    <md-button class="md-primary" ng-click="addDrug()" layout-align="end center">
+      <label>Guardar</label>
+      <md-icon>save</md-icon>
     </md-button>
   </md-dialog-actions>
 
