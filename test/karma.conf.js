@@ -35,6 +35,7 @@ module.exports = function(config) {
       'bower_components/mdDataTable/dist/md-data-table.js',
       'bower_components/mdDataTable/dist/md-data-table-templates.js',
       'bower_components/restangular/dist/restangular.js',
+      'bower_components/angular-datetime/dist/datetime.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

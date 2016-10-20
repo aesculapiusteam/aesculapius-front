@@ -20,6 +20,26 @@ angular.module('aesculapiusFrontApp')
 
     this.visitObj = null; // TODO Document this object
     this.reloadHistoryTable = null; // Execute this function to reload the history table
+    this.reloadEmployeesTable = null; // Execute this function to reload the employees table
+    this.reloadProfilesTable = null; // Execute this function to reload the profiles table
     this.reloadStockTable = null; // Execute this function to reload the stock table
     this.historyId = null; // TODO Document this object
+
+    this.reloadSelectedTable = function() {
+      switch (this.selected) {
+        case "profile":
+          return this.reloadProfilesTable();
+        case "employee":
+          return this.reloadEmployeesTable();
+        case "drug":
+          return this.reloadStockTable();
+        default:
+          return false;
+      }
+    };
+
+    this.getSelected = function () {
+      return this[this.selected];
+    };
+
   });
