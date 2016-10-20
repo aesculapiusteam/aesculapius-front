@@ -8,9 +8,8 @@
  * Controller of the aesculapiusFrontApp
  */
 angular.module('aesculapiusFrontApp')
-  .controller('RegisterCtrl',['$scope', 'Restangular','$mdToast',
-   function ($scope, Restangular, $mdToast) {
-    $scope.filterText = "";
+  .controller('RegisterCtrl',['$scope', 'Restangular','$mdToast', 'aeData','$rootScope',
+   function ($scope, Restangular, $mdToast, aeData, $rootScope) {
     $scope.detail = '';
     $scope.selectedItemPeople = '';
     $scope.nActions = [{
@@ -78,15 +77,15 @@ angular.module('aesculapiusFrontApp')
     $scope.peopleList = function(){
       return allProfiles.getList({search: $scope.filterTextP, limit:5}).then(
         function(response){
-          response.push('necesito esto para el boton añadir en el autocomplete');
+          response.push(' '); //necesito esto para el boton añadir en el autocomplete
           return response;
         });
     };
 
     $scope.drugList = function(){
-      return allDrugs.getList({search: $scope.filterTextM, limit:5}).then(
+      return allDrugs.getList({search: this.filterTextM, limit:5}).then(
         function(response){
-          response.push('necesito esto para el boton añadir en el autocomplete');
+          response.push(' ');//necesito esto para el boton añadir en el autocomplete
           return response;
         });
     };
@@ -115,5 +114,15 @@ angular.module('aesculapiusFrontApp')
         'type':''
       }];
     };
+
+    $scope.goToDialog = function(ev, pos){
+      aeData.pos = pos;
+      $rootScope.showDialog(ev);
+    };
+
+    $scope.$on('drugAdded', function(br, drug){
+      $scope.drugList();
+      $scope.nActions[aeData.pos].drug = drug.drug;
+    });
 
   }]);

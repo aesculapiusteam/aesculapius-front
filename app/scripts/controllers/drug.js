@@ -23,6 +23,8 @@
                 .position('bottom right')
                 .hideDelay(2000)
               );
+              console.log($scope.drug);
+              $rootScope.$broadcast('drugAdded', {drug:$scope.drug});
               aeData.reloadStockTable();
             },
             function(error) {
