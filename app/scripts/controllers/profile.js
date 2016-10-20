@@ -16,9 +16,9 @@ angular.module('aesculapiusFrontApp')
       if ($scope.isEmployeeForm) {
         $scope.allEmployees = Restangular.all('employees').getList().$object; //XXX CODIGO RANCIO, estoy cargando todos los employees cada vez que quiero editar uno
         $scope.repeat_password = "";
-        $scope.person = {}; //XXX CODIGO RANCIO
-        $scope.person.assist_ed = []; //XXX CODIGO RANCIO
-        $scope.person.charge = "secretary"; //XXX CODIGO RANCIO
+        $scope.person = $scope.person || {}; //XXX CODIGO RANCIO
+        $scope.person.assist_ed = $scope.person.assist_ed || []; //XXX CODIGO RANCIO
+        $scope.person.charge = $scope.person.charge || "secretary"; //XXX CODIGO RANCIO
       }
 
       $scope.add = function() {
@@ -73,7 +73,6 @@ angular.module('aesculapiusFrontApp')
       };
 
       $scope.delete = function() {
-        console.log($scope.person);
         $scope.person.remove().then(
           function() {
             $mdToast.show(
