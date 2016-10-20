@@ -17,6 +17,7 @@ angular.module('aesculapiusFrontApp')
     this.employees = null; // Current displayed restangular employees in /employees
     this.drug = null; // Current selected restangular drug
     this.drugs = null; // Current displayed restangular drugs in /stock
+    this.pos = null; //Current position on an ng-repeat of the actions of register
 
     this.visitObj = null; // TODO Document this object
     this.reloadHistoryTable = null; // Execute this function to reload the history table

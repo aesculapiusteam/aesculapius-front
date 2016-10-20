@@ -15,7 +15,7 @@
 
         $scope.add = function() {
           Restangular.all('drugs').post($scope.drug).then(
-            function() {
+            function(response) {
               $scope.cancel();
               $mdToast.show(
                 $mdToast.simple()
@@ -23,6 +23,7 @@
                 .position('bottom right')
                 .hideDelay(2000)
               );
+              $rootScope.$broadcast('drugAdded', {drug:response});
               aeData.reloadStockTable();
             },
             function(error) {

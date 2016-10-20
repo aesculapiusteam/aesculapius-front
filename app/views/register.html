@@ -20,6 +20,7 @@
             md-item-text="item.first_name+' '+item.last_name"
             md-min-length="0"
             md-delay="1000"
+            md-no-cache="true"
             md-floating-label="Persona a tratar">
             <md-item-template>
               <div ng-if="item.first_name">
@@ -36,10 +37,12 @@
                   </span>
                 </span>
               </div>
-              <md-button id="profile" class="md-primary" aria-label="Person Add" ng-click="$root.showDialog($event, this)">
-                <md-icon>person_add</md-icon>
-                <label>Añadir Persona</label>
-              </md-button>
+              <div layout="row">
+                <md-button flex id="profile" class="md-primary" aria-label="Person Add" ng-click="$root.showDialog($event, this)">
+                  <md-icon>person_add</md-icon>
+                  <label>Añadir Persona</label>
+                </md-button>
+              </div>
             </md-item-template>
           </md-autocomplete>
         </md-card-content>
@@ -64,23 +67,27 @@
           md-item-text="drug.name"
           md-min-length="0"
           md-delay="1000"
+          md-no-cache="true"
           md-floating-label="Nombre del Medicamento">
             <md-item-template>
               <div ng-if="drug.name">
                 <span class="drug-title">
-                  <md-icon>local_hospital</md-icon>
+                  <md-icon>healing</md-icon>
                   <span>{{drug.name}}</span>
                 </span>
-                <span class="item-metadata">
-                  <span class="item-metastat">
+                <span class="drug-metadata">
+                  <span class="drug-metastat">
                     - <strong>{{drug.quantity}}</strong>
                   </span>
                 </span>
               </div>
-              <md-button class="md-primary" aria-label="Person Add" ng-click="re()">
-                <md-icon>add_box</md-icon>
-                <label>Añadir Medicina</label>
-              </md-button>
+              <div layout="row">
+                <md-button id="drug" flex class="md-primary" aria-label="Drug Add"
+                ng-click="goToDialog($event, nActions.indexOf(action))">
+                  <md-icon>add_box</md-icon>
+                  <label>Añadir</label>
+                </md-button>
+              </div>
             </md-item-template>
           </md-autocomplete>
           <md-input-container>

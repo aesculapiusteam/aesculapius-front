@@ -15,14 +15,15 @@ angular.module('aesculapiusFrontApp')
 
       $scope.add = function() {
         Restangular.all(aeData.selected + 's').post($scope.person).then(
-          function() {
+          function(response) {
             $scope.cancel();
             $mdToast.show(
               $mdToast.simple()
-              .textContent($scope.profile.name + ' ha sido añadido.')
+              .textContent($scope.person.name + ' ha sido añadido.')
               .position('bottom right')
               .hideDelay(2000)
             );
+            $rootScope.$broadcast('profileAdded', {person:response});
             aeData.reloadSelectedTable();
           },
           function(error) {
