@@ -119,7 +119,7 @@ angular
       });
       auth.autoLogin();
       $rootScope.showDialog = function(ev, scope) {
-        if (scope && scope.value) {
+        if (scope && scope.value && ev.currentTarget.id !== "consult") { //XXX CODIGO RANCIO !==consult, hay que hacer que todos sean iguales no diferenciar para algunos
           aeData[ev.currentTarget.id] = aeData[ev.currentTarget.id + 's'].get(scope.value).$object;
         } else {
           aeData[ev.currentTarget.id] = null;
