@@ -12,12 +12,30 @@ angular.module('aesculapiusFrontApp')
     '$scope', '$mdDialog', '$rootScope', 'aeData', 'Restangular', '$mdToast',
     function($scope, $mdDialog, $rootScope, aeData, Restangular, $mdToast) {
       $scope.person = aeData.getSelected();
+      $scope.isEmployeeForm = aeData.selected === "employee";
+      if ($scope.isEmployeeForm) {
+        $scope.allEmployees = Restangular.all('employees').getList().$object; //XXX CODIGO RANCIO, estoy cargando todos los employees cada vez que quiero editar uno
+        $scope.repeat_password = "";
+        $scope.person = {};//XXX CODIGO RANCIO
+        $scope.person.assist_ed = [];//XXX CODIGO RANCIO
+        $scope.person.charge = "secretary";
+      }
 
       $scope.add = function() {
-        Restangular.all(aeData.selected + 's').post($scope.person).then(
+        if (!$scope.repeat_password || $scope.repeat_password !== $scope.person.password) {
+          $mdToast.show( //XXX CODIGO RANCIO MUCHOS MD TOAST QUE HACNE LO MISMO SIMPLIFICAR
+            $mdToast.simple()
+            .textContent('Debe escribir dos veces su nueva contraseña y deben coincidir.')
+            .position('bottom right')
+            .hideDelay(2000)
+          );
+          return;
+        }
+
+        Restangular.all(aeData.selected + 's').post($scope.person).then( //XXX CODIGO RANCIO la +'s' QUE RANCIO!!!!
           function() {
             $scope.cancel();
-            $mdToast.show(
+            $mdToast.show( //XXX CODIGO RANCIO MUCHOS MD TOAST QUE HACNE LO MISMO SIMPLIFICAR
               $mdToast.simple()
               .textContent($scope.profile.name + ' ha sido añadido.')
               .position('bottom right')
@@ -42,6 +60,15 @@ angular.module('aesculapiusFrontApp')
           this.add();
         } else {
           // Must modify an existing person TODO
+          if ($scope.repeat_password && $scope.person.password !== $scope.repeat_password) {
+            $mdToast.show(
+              $mdToast.simple()
+              .textContent("Las contraseñas no coinciden")
+              .position('bottom right')
+              .hideDelay(2000)
+            );
+            return;
+          }
         }
       };
 
@@ -54,6 +81,20 @@ angular.module('aesculapiusFrontApp')
 
       $scope.cancel = function() {
         $mdDialog.cancel();
+      };
+
+      $scope.assistEdSelection = function(id) {
+        console.log($scope.person);
+        var pos = $scope.person.assist_ed.indexOf(id);
+        if (pos > -1) {
+          $scope.person.assist_ed.splice(pos, 1);
+        } else {
+          $scope.person.assist_ed.push(id);
+        }
+      };
+
+      $scope.isChecked = function(id) { ///XXX CODIGO RANCIO SE EJECUTA COMO 98 VECES LARPTMDRE!!!!
+        return $scope.person.assist_ed.indexOf(id) > -1;
       };
 
     }
