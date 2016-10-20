@@ -22,7 +22,7 @@ angular.module('aesculapiusFrontApp')
       }
 
       $scope.add = function() {
-        if ($scope.isEmployeeForm && (!$scope.repeat_password || $scope.repeat_password !== $scope.person.password)) {
+        if ($scope.isEmployeeForm && (($scope.person.password && !$scope.repeat_password) || Boolean($scope.repeat_password) !== Boolean($scope.person.password))) {
           $mdToast.show( //XXX CODIGO RANCIO MUCHOS MD TOAST QUE HACNE LO MISMO SIMPLIFICAR
             $mdToast.simple()
             .textContent('Debe escribir dos veces su nueva contraseña y deben coincidir.')
@@ -61,15 +61,35 @@ angular.module('aesculapiusFrontApp')
           this.add();
         } else {
           // Must modify an existing person TODO
-          if ($scope.repeat_password && $scope.person.password !== $scope.repeat_password) {
-            $mdToast.show(
+          if ($scope.isEmployeeForm && (($scope.person.password && !$scope.repeat_password) || Boolean($scope.repeat_password) !== Boolean($scope.person.password))) {//XXX CODIGO RANCIO ESTA ARRIBA IGUAL
+            $mdToast.show( //XXX CODIGO RANCIO MUCHOS MD TOAST QUE HACNE LO MISMO SIMPLIFICAR
               $mdToast.simple()
-              .textContent("Las contraseñas no coinciden")
+              .textContent('Debe escribir dos veces su nueva contraseña y deben coincidir.')
               .position('bottom right')
               .hideDelay(2000)
             );
             return;
           }
+          Restangular.copy($scope.person).save().then(
+            function() {
+              $scope.cancel();
+              $mdToast.show(
+                $mdToast.simple()
+                .textContent($scope.person.name + ' ha sido modificado.')
+                .position('bottom right')
+                .hideDelay(2000)
+              );
+              aeData.reloadSelectedTable();
+            },
+            function(error) {
+              $mdToast.show(
+                $mdToast.simple()
+                .textContent(error.data)
+                .position('bottom right')
+                .hideDelay(5000)
+              );
+            }
+          );
         }
       };
 
@@ -101,7 +121,6 @@ angular.module('aesculapiusFrontApp')
       };
 
       $scope.assistEdSelection = function(id) {
-        console.log($scope.person);
         var pos = $scope.person.assist_ed.indexOf(id);
         if (pos > -1) {
           $scope.person.assist_ed.splice(pos, 1);
