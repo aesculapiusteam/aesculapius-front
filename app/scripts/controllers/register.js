@@ -36,7 +36,6 @@ angular.module('aesculapiusFrontApp')
         }
         dic.is_donation = !!parseInt($scope.nActions[i].type);
         finalItems.push(dic);
-        console.log(($scope.nActions[i].drug.quantity - parseInt($scope.nActions[i].quantity)));
         if(($scope.nActions[i].drug.quantity - parseInt($scope.nActions[i].quantity)) < 0 &&
         !dic.is_donation){
         $mdToast.show(
@@ -123,6 +122,11 @@ angular.module('aesculapiusFrontApp')
     $scope.$on('drugAdded', function(br, drug){
       $scope.drugList();
       $scope.nActions[aeData.pos].drug = drug.drug;
+    });
+
+    $scope.$on('profileAdded', function(br, person){
+      $scope.peopleList();
+      $scope.selectedItemPeople = person.person;
     });
 
   }]);
