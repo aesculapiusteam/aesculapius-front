@@ -27,6 +27,11 @@ angular.module('aesculapiusFrontApp')
         $scope.selectedItemPeople = "";
       };
 
+      $scope.$on('profileAdded', function(br, person){
+        $scope.peopleList();
+        $scope.selectedItemPeople = person.person;
+      });
+
       $scope.done = function() {
         var data = {
           'pacient': $scope.selectedItemPeople.id,
