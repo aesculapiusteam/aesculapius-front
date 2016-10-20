@@ -22,7 +22,7 @@ angular.module('aesculapiusFrontApp')
       }
 
       $scope.add = function() {
-        if (!$scope.repeat_password || $scope.repeat_password !== $scope.person.password) {
+        if ($scope.isEmployeeForm && (!$scope.repeat_password || $scope.repeat_password !== $scope.person.password)) {
           $mdToast.show( //XXX CODIGO RANCIO MUCHOS MD TOAST QUE HACNE LO MISMO SIMPLIFICAR
             $mdToast.simple()
             .textContent('Debe escribir dos veces su nueva contraseña y deben coincidir.')
