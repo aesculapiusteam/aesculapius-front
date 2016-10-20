@@ -8,10 +8,14 @@
  * Controller of the aesculapiusFrontApp
  */
 angular.module('aesculapiusFrontApp')
-  .controller('BaseCtrl', ['$scope', '$location', 'auth', 'aeData',
-    function($scope, $location, auth, aeData) {
+  .controller('BaseCtrl', ['$scope', '$location', 'auth', 'aeData', '$rootScope',
+    function($scope, $location, auth, aeData, $rootScope) {
 
       $scope.me = aeData.me;
+
+      $scope.goToDialog = function(ev){
+        $rootScope.showDialog(ev, {'value':$scope.me.id});
+      };
 
       $scope.$on('setMe', function() {
         $scope.me = aeData.me;
