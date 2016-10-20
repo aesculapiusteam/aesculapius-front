@@ -8,9 +8,9 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css"/>
-    <link rel="stylesheet" href="bower_components/angular-material-icons/angular-material-icons.css"/>
-    <link rel="stylesheet" href="bower_components/mdDataTable/dist/md-data-table-style.css"/>
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+    <link rel="stylesheet" href="bower_components/angular-material-icons/angular-material-icons.css" />
+    <link rel="stylesheet" href="bower_components/mdDataTable/dist/md-data-table-style.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,400" rel="stylesheet">
@@ -56,6 +56,11 @@
             Caja
             <md-tooltip>Ir a la caja</md-tooltip>
           </md-button>
+          <md-button href="#/newvisit">
+            <md-icon>note_add</md-icon>
+            Nueva Consulta
+            <md-tooltip>Ir a Nueva Consulta</md-tooltip>
+          </md-button>
         </div>
 
         <span flex></span>
@@ -84,7 +89,7 @@
     </md-toolbar>
 
     <!-- Main Content -->
-    <md-content class="with-background">
+    <md-content class="with-background full-height">
       <div ng-view=""></div>
     </md-content>
 
@@ -111,6 +116,7 @@
     <script src="bower_components/mdDataTable/dist/md-data-table.js"></script>
     <script src="bower_components/mdDataTable/dist/md-data-table-templates.js"></script>
     <script src="bower_components/restangular/dist/restangular.js"></script>
+    <script src="bower_components/angular-datetime/dist/datetime.js"></script>
     <!-- endbower -->
     <script src="bower_components/angular-i18n/angular-locale_es-ar.js"></script>
     <!-- endbuild -->
@@ -131,6 +137,7 @@
     <script src="scripts/controllers/stock.js"></script>
     <script src="scripts/controllers/drug.js"></script>
     <script src="scripts/controllers/register.js"></script>
+    <script src="scripts/controllers/newvisit.js"></script>
     <!-- endbuild -->
   </body>
 </html>

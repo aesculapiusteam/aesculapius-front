@@ -1,37 +1,60 @@
 'use strict';
 
 /**
-* @ngdoc function
-* @name aesculapiusFrontApp.controller:ProfileCtrl
-* @description
-* # ProfileCtrl
-* Controller of the aesculapiusFrontApp
-*/
+ * @ngdoc function
+ * @name aesculapiusFrontApp.controller:ProfileCtrl
+ * @description
+ * # ProfileCtrl
+ * Controller of the aesculapiusFrontApp
+ */
 angular.module('aesculapiusFrontApp')
-.controller('ProfileCtrl', [
-  '$scope', '$mdDialog', '$rootScope', 'aeData',
-  function ($scope, $mdDialog, $rootScope, aeData) {
-    $scope.profile = {};
+  .controller('ProfileCtrl', [
+    '$scope', '$mdDialog', '$rootScope', 'aeData', 'Restangular', '$mdToast',
+    function($scope, $mdDialog, $rootScope, aeData, Restangular, $mdToast) {
+      $scope.person = aeData.getSelected();
 
-    // $scope.getProfile = function() {
-    //   // Caches the profile in $scope, also checks if profiles is an employee
-    //   // And if it is, makes a petition to get username, etc.
-    //   if (_.isEmpty($scope.profile)) {
-    //     console.log(aeData.profile);
-    //     if (aeData.profile.employee) {
-    //       console.log("ES EMPLOYEE");
-    //       //HACER PETICION A EMPLOYEES
-    //       // $scope.profile = aeData.profile;
-    //     } else {
-    //       console.log("NO LO ES EMPLOYEE");
-    //       $scope.profile = aeData.profile;
-    //     }
-    //   }
-    //   return $scope.profile;
-    // };
+      $scope.add = function() {
+        Restangular.all(aeData.selected + 's').post($scope.person).then(
+          function() {
+            $scope.cancel();
+            $mdToast.show(
+              $mdToast.simple()
+              .textContent($scope.profile.name + ' ha sido añadido.')
+              .position('bottom right')
+              .hideDelay(2000)
+            );
+            aeData.reloadSelectedTable();
+          },
+          function(error) {
+            $mdToast.show(
+              $mdToast.simple()
+              .textContent(error.data)
+              .position('bottom right')
+              .hideDelay(5000)
+            );
+          }
+        );
+      };
 
-    $rootScope.cancel = function() {
-      $mdDialog.cancel();
-    };
+      $scope.save = function() {
+        if (!aeData.getSelected()) {
+          // Must create a new person
+          this.add();
+        } else {
+          // Must modify an existing person TODO
+        }
+      };
 
-  }]);
+      $scope.delete = function() {
+        $scope.profile.remove().then(function() {
+          aeData.reloadProfilesTable();
+          $mdDialog.cancel();
+        });
+      };
+
+      $scope.cancel = function() {
+        $mdDialog.cancel();
+      };
+
+    }
+  ]);
