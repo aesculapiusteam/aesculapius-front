@@ -8,7 +8,8 @@
  * Controller of the aesculapiusFrontApp
  */
 angular.module('aesculapiusFrontApp')
-  .controller('NewvisitCtrl', ['$scope','Restangular', '$mdToast', function ($scope, Restangular, $mdToast){
+  .controller('NewvisitCtrl', ['$scope','Restangular', '$mdToast', '$rootScope',
+   function ($scope, Restangular, $mdToast, $rootScope){
 
     var allProfiles = Restangular.all('profiles');
     var allVisits = Restangular.all('visits');
@@ -25,6 +26,11 @@ angular.module('aesculapiusFrontApp')
       $scope.cancel = function(){
         $scope.detail = "";
         $scope.selectedItemPeople = "";
+      };
+
+      $scope.goToDialog = function(ev, id){
+        var fakeScope = {'value':id};
+        $rootScope.showDialog(ev, fakeScope);
       };
 
       $scope.$on('profileAdded', function(br, person){
