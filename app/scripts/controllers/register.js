@@ -22,6 +22,14 @@ angular.module('aesculapiusFrontApp')
     var allProfiles = Restangular.all('profiles');
     var allDrugs = Restangular.all('drugs');
 
+    $scope.itemText = function(item){
+      if(item.last_name){
+        return item.first_name + ' ' + item.last_name;
+      }else{
+        return item.first_name;
+      }
+    };
+
     $scope.done = function(){
       var finalItems = [];
       for (var i=0;i<$scope.nActions.length;i++){

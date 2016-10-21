@@ -17,7 +17,7 @@
             <md-autocomplete required md-selected-item="selectedItemPeople"
             md-search-text="filterTextP"
             md-items="item in peopleList()"
-            md-item-text="item.first_name+' '+item.last_name"
+            md-item-text="itemText(item)"
             md-min-length="0"
             md-delay="1000"
             md-no-cache="true"
