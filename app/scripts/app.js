@@ -109,8 +109,8 @@ angular
         redirectTo: '/login'
       });
   }])
-  .run(['$rootScope', 'auth', 'aeData', '$mdDialog',
-    function($rootScope, auth, aeData, $mdDialog) {
+  .run(['$rootScope', 'auth', 'aeData', '$mdDialog', '$mdToast',
+    function($rootScope, auth, aeData, $mdDialog, $mdToast) {
       $rootScope.loading = true;
       $rootScope.$on("$routeChangeStart", function() {
         $rootScope.loading = true;
@@ -145,6 +145,20 @@ angular
         });
       };
 
+      $rootScope.showActionToast = function(text, ev, scope){
+        var toast = $mdToast.simple()
+      .textContent(text)
+      .action('VER')
+      .highlightAction(true)
+      .highlightClass('md-primary')// Accent is used by default, this just demonstrates the usage.
+      .position('bottom right');
+
+      $mdToast.show(toast).then(function(response) {
+        if ( response === 'ok' ) {
+          $rootScope.showDialog(ev,scope);
+        }
+      });
+      };
     }
   ])
   .config(function($mdThemingProvider) {

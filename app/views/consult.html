@@ -19,7 +19,7 @@
       <p> Médico: <b ng-bind="visit.doctor_name"></b></p>
     </div>
     <div layout="row">
-      <p>Fecha: <b ng-bind="visit.datetime|date"></b></p>
+      <p>Fecha: <b ng-bind="visit.datetime|date: 'dd MMMM yyyy HH:mm'"></b></p>
     </div>
     <div layout="row" layout-align="space-between center">
       <p>Detalles: </p>

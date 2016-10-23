@@ -9,8 +9,8 @@
  */
 
 angular.module('aesculapiusFrontApp')
-  .controller('ConsultCtrl', ['$scope', '$mdDialog', 'Restangular', 'aeData', '$mdToast',
-  function ($scope, $mdDialog, Restangular, aeData, $mdToast) {
+  .controller('ConsultCtrl', ['$scope', '$mdDialog', 'Restangular', 'aeData', '$mdToast', '$rootScope',
+  function ($scope, $mdDialog, Restangular, aeData, $mdToast, $rootScope) {
 
     $scope.enable = true;
     $scope.visit = aeData.visitObj;
@@ -46,7 +46,7 @@ angular.module('aesculapiusFrontApp')
           $mdToast.show(
             $mdToast.simple()
             .textContent('Consulta eliminada con exito!')
-            .position('top', 'left')
+            .position('bottom right')
             .hideDelay(3000)
           );
           aeData.reloadHistoryTable();
@@ -56,7 +56,7 @@ angular.module('aesculapiusFrontApp')
           $mdToast.show(
             $mdToast.simple()
             .textContent('Lamentablemente hubo un error al eliminar la consulta.')
-            .position('top', 'left')
+            .position('bottom right')
             .hideDelay(3000)
           );
         }
@@ -69,14 +69,10 @@ angular.module('aesculapiusFrontApp')
       aeData.visitObj.detail = $scope.detail;
       aeData.visitObj.datetime = Date();
       aeData.visitObj.put().then(
-        function(){
+        function(response){
+          $rootScope.showActionToast('Consulta guardada con exito!',
+           {'currentTarget':{'id':'consult'}}, {'value':response.id});
           $mdDialog.cancel();
-          $mdToast.show(
-            $mdToast.simple()
-            .textContent('Consulta guardada con exito!')
-            .position('top', 'left')
-            .hideDelay(3000)
-          );
           aeData.reloadHistoryTable();
         },
         function(){
@@ -86,7 +82,7 @@ angular.module('aesculapiusFrontApp')
           $mdToast.show(
             $mdToast.simple()
             .textContent('Lamentablemente hubo un error al editar la consulta.')
-            .position('top', 'left')
+            .position('bottom right')
             .hideDelay(3000)
           );
         }

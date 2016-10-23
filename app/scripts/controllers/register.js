@@ -8,7 +8,7 @@
  * Controller of the aesculapiusFrontApp
  */
 angular.module('aesculapiusFrontApp')
-  .controller('RegisterCtrl',['$scope', 'Restangular','$mdToast', 'aeData','$rootScope',
+  .controller('RegisterCtrl',['$scope', 'Restangular','$mdToast', 'aeData', '$rootScope',
    function ($scope, Restangular, $mdToast, aeData, $rootScope) {
     $scope.detail = '';
     $scope.selectedItemPeople = '';
@@ -23,11 +23,7 @@ angular.module('aesculapiusFrontApp')
     var allDrugs = Restangular.all('drugs');
 
     $scope.itemText = function(item){
-      if(item.last_name){
-        return item.first_name + ' ' + item.last_name;
-      }else{
-        return item.first_name;
-      }
+      return aeData.nameOf(item);
     };
 
     $scope.done = function(){
@@ -60,6 +56,12 @@ angular.module('aesculapiusFrontApp')
       };
       Restangular.all('movements').post(finalDic).then(
         function(){
+          $mdToast.show(
+            $mdToast.simple()
+            .textContent('Todas las acciones se han completado')
+            .position('bottom right')
+            .hideDelay(3000)
+          );
           $scope.cancel();
         },
         function(){
@@ -112,7 +114,7 @@ angular.module('aesculapiusFrontApp')
     };
 
     $scope.cancel = function(){
-      $scope.selectedItemPeople = '';
+      $scope.selectedItemPeople = null;
       $scope.nActions = [{
         'capital':'',
         'drug':'',

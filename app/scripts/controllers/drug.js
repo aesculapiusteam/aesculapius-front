@@ -17,12 +17,8 @@
           Restangular.all('drugs').post($scope.drug).then(
             function(response) {
               $scope.cancel();
-              $mdToast.show(
-                $mdToast.simple()
-                .textContent($scope.drug.name + ' ha sido añadido.')
-                .position('bottom right')
-                .hideDelay(2000)
-              );
+              $rootScope.showActionToast($scope.drug.name + ' ha sido añadido.',
+               {'currentTarget':{'id':'drug'}}, {'value':response.id});
               $rootScope.$broadcast('drugAdded', {drug:response});
               aeData.reloadStockTable();
             },
@@ -44,14 +40,10 @@
           } else {
             // Must modify an existing drug
             Restangular.copy($scope.drug).save().then(
-              function() {
+              function(response) {
                 $scope.cancel();
-                $mdToast.show(
-                  $mdToast.simple()
-                  .textContent($scope.drug.name + ' ha sido modificado.')
-                  .position('bottom right')
-                  .hideDelay(2000)
-                );
+                $rootScope.showActionToast($scope.drug.name + ' ha sido modificado.',
+                 {'currentTarget':{'id':'drug'}}, {'value':response.id});
                 aeData.reloadStockTable();
               },
               function(error) {

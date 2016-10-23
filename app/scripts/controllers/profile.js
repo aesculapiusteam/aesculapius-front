@@ -35,12 +35,9 @@ angular.module('aesculapiusFrontApp')
         Restangular.all(aeData.selected + 's').post($scope.person).then( //XXX CODIGO RANCIO la +'s' QUE RANCIO!!!!
           function(response) {
             $scope.cancel();
-            $mdToast.show( //XXX CODIGO RANCIO MUCHOS MD TOAST QUE HACNE LO MISMO SIMPLIFICAR
-              $mdToast.simple()
-              .textContent($scope.person.name + ' ha sido añadido.')
-              .position('bottom right')
-              .hideDelay(2000)
-            );
+            $scope.personName = aeData.nameOf(response);
+            $rootScope.showActionToast($scope.personName + ' ha sido añadido.',
+             {'currentTarget':{'id':'profile'}}, {'value':response.id});
             $rootScope.$broadcast('profileAdded', {person:response});
             aeData.reloadSelectedTable();
           },
@@ -71,14 +68,11 @@ angular.module('aesculapiusFrontApp')
             return;
           }
           Restangular.copy($scope.person).save().then(
-            function() {
+            function(response) {
               $scope.cancel();
-              $mdToast.show(
-                $mdToast.simple()
-                .textContent($scope.person.name + ' ha sido modificado.')
-                .position('bottom right')
-                .hideDelay(2000)
-              );
+              $scope.personName = aeData.nameOf(response);
+              $rootScope.showActionToast($scope.personName + ' ha sido modificado.',
+               {'currentTarget':{'id':'profile'}}, {'value':response.id});
               aeData.reloadSelectedTable();
             },
             function(error) {
