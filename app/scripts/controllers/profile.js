@@ -42,12 +42,8 @@ angular.module('aesculapiusFrontApp')
             aeData.reloadSelectedTable();
           },
           function(error) {
-            $mdToast.show(
-              $mdToast.simple()
-              .textContent(error.data)
-              .position('bottom right')
-              .hideDelay(5000)
-            );
+            $rootScope.showActionToast('Lamentablemente hubo un error al añadir la pesona.','error',
+             error);
           }
         );
       };
@@ -76,12 +72,8 @@ angular.module('aesculapiusFrontApp')
               aeData.reloadSelectedTable();
             },
             function(error) {
-              $mdToast.show(
-                $mdToast.simple()
-                .textContent(error.data)
-                .position('bottom right')
-                .hideDelay(5000)
-              );
+              $rootScope.showActionToast('Lamentablemente hubo un error al modificar la informacion.','error',
+               error);
             }
           );
         }
@@ -100,12 +92,8 @@ angular.module('aesculapiusFrontApp')
             $mdDialog.cancel();
           },
           function(error) {
-            $mdToast.show(
-              $mdToast.simple()
-              .textContent(error.data)
-              .position('bottom right')
-              .hideDelay(5000)
-            );
+            $rootScope.showActionToast('Lamentablemente hubo un error al borrar el perfil','error',
+             error);
           }
         );
       };

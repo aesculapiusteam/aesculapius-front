@@ -9,8 +9,8 @@
  */
 (function() {
   angular.module('aesculapiusFrontApp')
-    .controller('DrugCtrl', ['$scope', '$rootScope', '$mdDialog', 'Restangular', 'aeData', '$mdToast',
-      function($scope, $rootScope, $mdDialog, Restangular, aeData, $mdToast) {
+    .controller('DrugCtrl', ['$scope', '$rootScope', '$mdDialog', 'Restangular', 'aeData',
+      function($scope, $rootScope, $mdDialog, Restangular, aeData) {
         $scope.drug = aeData.drug;
 
         $scope.add = function() {
@@ -23,12 +23,8 @@
               aeData.reloadStockTable();
             },
             function(error) {
-              $mdToast.show(
-                $mdToast.simple()
-                .textContent(error.data)
-                .position('bottom right')
-                .hideDelay(5000)
-              );
+              $rootScope.showActionToast('Lamentablemente hubo un error al añadir el Medicamento.','error',
+               error);
             }
           );
         };
@@ -47,12 +43,8 @@
                 aeData.reloadStockTable();
               },
               function(error) {
-                $mdToast.show(
-                  $mdToast.simple()
-                  .textContent(error.data)
-                  .position('bottom right')
-                  .hideDelay(5000)
-                );
+                $rootScope.showActionToast('Lamentablemente hubo un error al editar el Medicamento.','error',
+                 error);
               }
             );
           }

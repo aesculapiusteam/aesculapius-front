@@ -64,13 +64,9 @@ angular.module('aesculapiusFrontApp')
           );
           $scope.cancel();
         },
-        function(){
-          $mdToast.show(
-            $mdToast.simple()
-            .textContent('Hubo un error al intentar completar el proceso. Ha completado todos los campos correctamente?')
-            .position('bottom right')
-            .hideDelay(3000)
-          );
+        function(error){
+          $rootScope.showActionToast('Hubo un error al intentar completar el proceso.','error',
+           error);
         }
       );
     };

@@ -75,16 +75,12 @@ angular.module('aesculapiusFrontApp')
           $mdDialog.cancel();
           aeData.reloadHistoryTable();
         },
-        function(){
+        function(error){
           aeData.visitObj.detail = errorDetail;
           aeData.visitObj.datetime = errorDate;
           $mdDialog.cancel();
-          $mdToast.show(
-            $mdToast.simple()
-            .textContent('Lamentablemente hubo un error al editar la consulta.')
-            .position('bottom right')
-            .hideDelay(3000)
-          );
+          $rootScope.showActionToast('Lamentablemente hubo un error al editar la consulta.','error',
+           error.data.detail);
         }
       );
     };
