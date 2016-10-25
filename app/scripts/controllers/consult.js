@@ -51,14 +51,10 @@ angular.module('aesculapiusFrontApp')
           );
           aeData.reloadHistoryTable();
         },
-        function(){
+        function(error){
           $mdDialog.cancel();
-          $mdToast.show(
-            $mdToast.simple()
-            .textContent('Lamentablemente hubo un error al eliminar la consulta.')
-            .position('bottom right')
-            .hideDelay(3000)
-          );
+          $rootScope.showActionToast('Lamentablemente hubo un error al eliminar la consulta.','error',
+           error);
         }
       );
     };
@@ -80,7 +76,7 @@ angular.module('aesculapiusFrontApp')
           aeData.visitObj.datetime = errorDate;
           $mdDialog.cancel();
           $rootScope.showActionToast('Lamentablemente hubo un error al editar la consulta.','error',
-           error.data.detail);
+           error);
         }
       );
     };

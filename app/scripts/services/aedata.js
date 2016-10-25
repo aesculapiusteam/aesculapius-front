@@ -43,10 +43,12 @@ angular.module('aesculapiusFrontApp')
     this.nameOf = function(obj){
       if(obj.last_name){
         return obj.first_name + " " + obj.last_name;
-      }else if(obj.profile.last_name){
-        return obj.profile.first_name + " " + obj.profile.last_name;
-      }else if(obj.profile.first_name){
-        return obj.profile.first_name;
+      }else if(obj.profile){
+        if(obj.profile.last_name){
+          return obj.profile.first_name + " " + obj.profile.last_name;
+        }else{
+          return obj.profile.first_name;
+        }
       }else{
         return obj.first_name;
       }
