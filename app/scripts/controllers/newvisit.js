@@ -8,8 +8,8 @@
  * Controller of the aesculapiusFrontApp
  */
 angular.module('aesculapiusFrontApp')
-  .controller('NewvisitCtrl', ['$scope','Restangular', '$mdToast', '$rootScope',
-   function ($scope, Restangular, $mdToast, $rootScope){
+  .controller('NewvisitCtrl', ['$scope','Restangular', '$mdToast', '$rootScope', 'aeData',
+   function ($scope, Restangular, $mdToast, $rootScope, aeData){
 
     var allProfiles = Restangular.all('profiles');
     var allVisits = Restangular.all('visits');
@@ -21,6 +21,10 @@ angular.module('aesculapiusFrontApp')
           response.push('necesito esto para el boton añadir en el autocomplete');
           return response;
         });
+      };
+
+      $scope.itemText = function(item){
+        return aeData.nameOf(item);
       };
 
       $scope.cancel = function(){
@@ -44,14 +48,18 @@ angular.module('aesculapiusFrontApp')
           'detail': $scope.detail
         };
         allVisits.post(data).then(
-          function(){
-            $mdToast.show(
-              $mdToast.simple()
-              .textContent('Nueva consulta añadida a la Historia Clinica de '+
-              $scope.selectedItemPeople.first_name + " " + $scope.selectedItemPeople.last_name)
-              .position('bottom right')
-              .hideDelay(3000)
-            );
+          function(response){
+            var text = 'Nueva consulta añadida a la Historia Clinica de '+ response.patient_name;
+            aeData.visitObj = response;
+            $rootScope.showActionToast(text ,
+             {'currentTarget':{'id':'consult'}}, {'value':response.id});
+            // $mdToast.show(
+            //   $mdToast.simple()
+            //   .textContent('Nueva consulta añadida a la Historia Clinica de '+
+            //   $scope.selectedItemPeople.first_name + " " + $scope.selectedItemPeople.last_name)
+            //   .position('bottom right')
+            //   .hideDelay(3000)
+            // );
             $scope.cancel();
           },
           function(){
