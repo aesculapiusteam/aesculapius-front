@@ -49,7 +49,7 @@
         {{value}}
       </mdt-custom-cell>
       <mdt-custom-cell column-key="description">
-        {{value}}
+        {{value| limitTo: 50}}{{value.length > 100? '...': ''}}
       </mdt-custom-cell>
       <mdt-custom-cell column-key="id">
         <mdt-button id="drug" value="{{value}}" ng-click="$root.showDialog($event, this)" icon="edit"></mdt-button>
