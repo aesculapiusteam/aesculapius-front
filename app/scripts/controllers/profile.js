@@ -14,11 +14,14 @@ angular.module('aesculapiusFrontApp')
       $scope.person = aeData.getSelected();
       $scope.isEmployeeForm = aeData.selected === "employee";
       if ($scope.isEmployeeForm) {
+        $scope.toastId = 'employee';
         $scope.allEmployees = Restangular.all('employees').getList().$object; //XXX CODIGO RANCIO, estoy cargando todos los employees cada vez que quiero editar uno
         $scope.repeat_password = "";
         $scope.person = $scope.person || {}; //XXX CODIGO RANCIO
         $scope.person.assist_ed = $scope.person.assist_ed || []; //XXX CODIGO RANCIO
         $scope.person.charge = $scope.person.charge || "secretary"; //XXX CODIGO RANCIO
+      }else{
+        $scope.toastId = 'profile';
       }
 
       $scope.add = function() {
@@ -34,10 +37,11 @@ angular.module('aesculapiusFrontApp')
 
         Restangular.all(aeData.selected + 's').post($scope.person).then( //XXX CODIGO RANCIO la +'s' QUE RANCIO!!!!
           function(response) {
+            console.log($scope.toastId);
             $scope.cancel();
             $scope.personName = aeData.nameOf(response);
             $rootScope.showActionToast($scope.personName + ' ha sido añadido.',
-             {'currentTarget':{'id':'profile'}}, {'value':response.id});
+             {'currentTarget':{'id':$scope.toastId}}, {'value':response.id});
             $rootScope.$broadcast('profileAdded', {person:response});
             aeData.reloadSelectedTable();
           },
@@ -68,7 +72,7 @@ angular.module('aesculapiusFrontApp')
               $scope.cancel();
               $scope.personName = aeData.nameOf(response);
               $rootScope.showActionToast($scope.personName + ' ha sido modificado.',
-               {'currentTarget':{'id':'profile'}}, {'value':response.id});
+               {'currentTarget':{'id':$scope.toastId}}, {'value':response.id});
               aeData.reloadSelectedTable();
             },
             function(error) {
