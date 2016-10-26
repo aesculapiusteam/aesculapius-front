@@ -1,5 +1,12 @@
 <md-toolbar layout="row">
-  <div class="md-toolbar-tools">Caja Registradora</div>
+  <div class="md-toolbar-tools">
+    <span>Caja Registradora</span>
+    <span flex></span>
+    <md-button md-ink-ripple="true" ng-click="goToMovements()">
+      <span>Mostrar Todo</span>
+      <md-icon>arrow_forward</md-icon>
+    </md-button>
+  </div>
 </md-toolbar>
 <md-content layout="column">
   <md-card>

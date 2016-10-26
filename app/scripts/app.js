@@ -105,6 +105,11 @@ angular
         controller: 'NewvisitCtrl',
         controllerAs: 'newvisit'
       })
+      .when('/movements', {
+        templateUrl: 'views/movements.html',
+        controller: 'MovementsCtrl',
+        controllerAs: 'movements'
+      })
       .otherwise({
         redirectTo: '/login'
       });

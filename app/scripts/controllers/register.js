@@ -8,8 +8,9 @@
  * Controller of the aesculapiusFrontApp
  */
 angular.module('aesculapiusFrontApp')
-  .controller('RegisterCtrl',['$scope', 'Restangular','$mdToast', 'aeData', '$rootScope',
-   function ($scope, Restangular, $mdToast, aeData, $rootScope) {
+  .controller('RegisterCtrl',['$scope', 'Restangular','$mdToast', 'aeData',
+   '$rootScope', '$location',
+   function ($scope, Restangular, $mdToast, aeData, $rootScope, $location) {
     $scope.detail = '';
     $scope.selectedItemPeople = '';
     $scope.nActions = [{
@@ -123,6 +124,10 @@ angular.module('aesculapiusFrontApp')
     $scope.goToDialog = function(ev, pos){
       aeData.pos = pos;
       $rootScope.showDialog(ev);
+    };
+
+    $scope.goToMovements = function(){
+      $location.path('movements');
     };
 
     $scope.$on('drugAdded', function(br, drug){
