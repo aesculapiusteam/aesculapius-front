@@ -9,30 +9,22 @@
  */
 (function() {
   angular.module('aesculapiusFrontApp')
-    .controller('DrugCtrl', ['$scope', '$rootScope', '$mdDialog', 'Restangular', 'aeData', '$mdToast',
-      function($scope, $rootScope, $mdDialog, Restangular, aeData, $mdToast) {
+    .controller('DrugCtrl', ['$scope', '$rootScope', '$mdDialog', 'Restangular', 'aeData',
+      function($scope, $rootScope, $mdDialog, Restangular, aeData) {
         $scope.drug = aeData.drug;
 
         $scope.add = function() {
           Restangular.all('drugs').post($scope.drug).then(
             function(response) {
               $scope.cancel();
-              $mdToast.show(
-                $mdToast.simple()
-                .textContent($scope.drug.name + ' ha sido añadido.')
-                .position('bottom right')
-                .hideDelay(2000)
-              );
+              $rootScope.showActionToast($scope.drug.name + ' ha sido añadido.',
+               {'currentTarget':{'id':'drug'}}, {'value':response.id});
               $rootScope.$broadcast('drugAdded', {drug:response});
               aeData.reloadStockTable();
             },
             function(error) {
-              $mdToast.show(
-                $mdToast.simple()
-                .textContent(error.data)
-                .position('bottom right')
-                .hideDelay(5000)
-              );
+              $rootScope.showActionToast('Lamentablemente hubo un error al añadir el Medicamento.','error',
+               error);
             }
           );
         };
@@ -44,23 +36,15 @@
           } else {
             // Must modify an existing drug
             Restangular.copy($scope.drug).save().then(
-              function() {
+              function(response) {
                 $scope.cancel();
-                $mdToast.show(
-                  $mdToast.simple()
-                  .textContent($scope.drug.name + ' ha sido modificado.')
-                  .position('bottom right')
-                  .hideDelay(2000)
-                );
+                $rootScope.showActionToast($scope.drug.name + ' ha sido modificado.',
+                 {'currentTarget':{'id':'drug'}}, {'value':response.id});
                 aeData.reloadStockTable();
               },
               function(error) {
-                $mdToast.show(
-                  $mdToast.simple()
-                  .textContent(error.data)
-                  .position('bottom right')
-                  .hideDelay(5000)
-                );
+                $rootScope.showActionToast('Lamentablemente hubo un error al editar el Medicamento.','error',
+                 error);
               }
             );
           }

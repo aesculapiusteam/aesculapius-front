@@ -14,11 +14,14 @@ angular.module('aesculapiusFrontApp')
       $scope.person = aeData.getSelected();
       $scope.isEmployeeForm = aeData.selected === "employee";
       if ($scope.isEmployeeForm) {
+        $scope.toastId = 'employee';
         $scope.allEmployees = Restangular.all('employees').getList().$object; //XXX CODIGO RANCIO, estoy cargando todos los employees cada vez que quiero editar uno
         $scope.repeat_password = "";
         $scope.person = $scope.person || {}; //XXX CODIGO RANCIO
         $scope.person.assist_ed = $scope.person.assist_ed || []; //XXX CODIGO RANCIO
         $scope.person.charge = $scope.person.charge || "secretary"; //XXX CODIGO RANCIO
+      }else{
+        $scope.toastId = 'profile';
       }
 
       $scope.add = function() {
@@ -34,23 +37,17 @@ angular.module('aesculapiusFrontApp')
 
         Restangular.all(aeData.selected + 's').post($scope.person).then( //XXX CODIGO RANCIO la +'s' QUE RANCIO!!!!
           function(response) {
+            console.log($scope.toastId);
             $scope.cancel();
-            $mdToast.show( //XXX CODIGO RANCIO MUCHOS MD TOAST QUE HACNE LO MISMO SIMPLIFICAR
-              $mdToast.simple()
-              .textContent($scope.person.name + ' ha sido añadido.')
-              .position('bottom right')
-              .hideDelay(2000)
-            );
+            $scope.personName = aeData.nameOf(response);
+            $rootScope.showActionToast($scope.personName + ' ha sido añadido.',
+             {'currentTarget':{'id':$scope.toastId}}, {'value':response.id});
             $rootScope.$broadcast('profileAdded', {person:response});
             aeData.reloadSelectedTable();
           },
           function(error) {
-            $mdToast.show(
-              $mdToast.simple()
-              .textContent(error.data)
-              .position('bottom right')
-              .hideDelay(5000)
-            );
+            $rootScope.showActionToast('Lamentablemente hubo un error al añadir la pesona.','error',
+             error);
           }
         );
       };
@@ -71,23 +68,16 @@ angular.module('aesculapiusFrontApp')
             return;
           }
           Restangular.copy($scope.person).save().then(
-            function() {
+            function(response) {
               $scope.cancel();
-              $mdToast.show(
-                $mdToast.simple()
-                .textContent($scope.person.name + ' ha sido modificado.')
-                .position('bottom right')
-                .hideDelay(2000)
-              );
+              $scope.personName = aeData.nameOf(response);
+              $rootScope.showActionToast($scope.personName + ' ha sido modificado.',
+               {'currentTarget':{'id':$scope.toastId}}, {'value':response.id});
               aeData.reloadSelectedTable();
             },
             function(error) {
-              $mdToast.show(
-                $mdToast.simple()
-                .textContent(error.data)
-                .position('bottom right')
-                .hideDelay(5000)
-              );
+              $rootScope.showActionToast('Lamentablemente hubo un error al modificar la informacion.','error',
+               error);
             }
           );
         }
@@ -106,12 +96,8 @@ angular.module('aesculapiusFrontApp')
             $mdDialog.cancel();
           },
           function(error) {
-            $mdToast.show(
-              $mdToast.simple()
-              .textContent(error.data)
-              .position('bottom right')
-              .hideDelay(5000)
-            );
+            $rootScope.showActionToast('Lamentablemente hubo un error al borrar el perfil','error',
+             error);
           }
         );
       };

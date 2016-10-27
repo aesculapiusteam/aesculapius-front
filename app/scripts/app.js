@@ -109,8 +109,8 @@ angular
         redirectTo: '/login'
       });
   }])
-  .run(['$rootScope', 'auth', 'aeData', '$mdDialog',
-    function($rootScope, auth, aeData, $mdDialog) {
+  .run(['$rootScope', 'auth', 'aeData', '$mdDialog', '$mdToast',
+    function($rootScope, auth, aeData, $mdDialog, $mdToast) {
       $rootScope.loading = true;
       $rootScope.$on("$routeChangeStart", function() {
         $rootScope.loading = true;
@@ -145,6 +145,36 @@ angular
         });
       };
 
+      $rootScope.showAlert = function(errorText){
+        $mdDialog.show(
+        $mdDialog.alert()
+          .parent(angular.element(document.querySelector('#popupContainer')))
+          .clickOutsideToClose(true)
+          .title('Error')
+          .textContent(errorText)
+          .ariaLabel('Alert Dialog')
+          .ok('OK')
+        );
+      };
+
+      $rootScope.showActionToast = function(text, ev, scope){
+        var toast = $mdToast.simple()
+      .textContent(text)
+      .action('VER')
+      .highlightAction(true)
+      .highlightClass('md-primary')
+      .position('bottom right');
+
+      $mdToast.show(toast).then(function(response) {
+        if ( response === 'ok' ) {
+          if(ev === 'error'){
+            $rootScope.showAlert(scope);
+          }else{
+            $rootScope.showDialog(ev,scope);
+          }
+        }
+      });
+      };
     }
   ])
   .config(function($mdThemingProvider) {
