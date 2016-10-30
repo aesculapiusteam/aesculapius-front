@@ -56,13 +56,13 @@ angular.module('aesculapiusFrontApp')
         'items':finalItems
       };
       Restangular.all('movements').post(finalDic).then(
-        function(){
-          $mdToast.show(
-            $mdToast.simple()
-            .textContent('Todas las acciones se han completado')
-            .position('bottom right')
-            .hideDelay(3000)
-          );
+        function(postData){
+          aeData.movement = postData;
+          Restangular.all('movements').getList().then(function(movements){
+            aeData.movements = movements;
+            $rootScope.showActionToast('Todas las acciones se han completado',
+             {'currentTarget':{'id':'movement'}}, {'value':aeData.movement.id});
+          });
           $scope.cancel();
         },
         function(error){
