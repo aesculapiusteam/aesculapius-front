@@ -1,0 +1,87 @@
+<md-toolbar layout="row">
+  <div class="md-toolbar-tools">Movimientos
+    <span flex></span>
+    <md-button md-ink-ripple="true" ng-click="goToRegister()">
+      <span>Volver a la caja</span>
+      <md-icon>arrow_forward</md-icon>
+    </md-button>
+  </div>
+</md-toolbar>
+<md-content>
+  <md-card layout="column">
+    <md-input-container layout="row">
+      <md-icon>person</md-icon>
+      <label>Filtrar por Empleado / Paciente / Donador</label>
+      <input flex ng-model="filterText" type="text">
+    </md-input-container>
+    <div layout="row">
+      <md-select ng-model="dateFilterSelect" placeholder="Filtro por fecha" class="md-no-underline" multiple>
+        <md-option value="1">Fecha</md-option>
+        <md-option value="2">Año</md-option>
+        <md-option value="3">Mes</md-option>
+      </md-select>
+      <md-input-container ng-show="dateFilterSelect.includes('2') && !dateFilterSelect.includes('1')">
+        <label>Año</label>
+        <input type="number" ng-model="yearFilter">
+      </md-input-container>
+      <md-input-container ng-show="dateFilterSelect.includes('3') && !dateFilterSelect.includes('1')">
+        <label>Mes</label>
+        <input type="number" ng-model="monthFilter">
+      </md-input-container>
+      <md-datepicker style="margin-top:20px;" ng-show="dateFilterSelect.includes('1')"
+      md-open-on-focus ng-model="dateFilter" md-placeholder="Ingrese la fecha"></md-datepicker>
+    </div>
+  </md-card>
+  <mdt-table
+    sortable-columns="true"
+    animate-sort-icon="true"
+    paginated-rows="{isEnabled: true, rowsPerPageValues: [5,10,20,50]}"
+    mdt-row-paginator="refreshTable(page, pageSize)"
+    mdt-row-paginator-error-message="Hubo un error al cargar los movimientos."
+    mdt-row-paginator-no-results-message="No hubo resultados de la busqueda."
+    mdt-trigger-request="getLoadResultsCallback(loadPageCallback)"
+    mdt-row="{
+      'table-row-id-key': 'id',
+      'column-keys': [
+      'datetime',
+      'employee_name',
+      'profile_name',
+      'totalCashIn',
+      'totalDrugsIn',
+      'totalCashOut',
+      'totalDrugsOut',
+      'id'
+      ],
+    }">
+    <mdt-header-row>
+      <mdt-column align-rule="left">Fecha</mdt-column>
+      <mdt-column align-rule="left">Empleado</mdt-column>
+      <mdt-column align-rule="left">Paciente/Donador</mdt-column>
+      <mdt-column align-rule="left">Ingreso de Dinero(Total)</mdt-column>
+      <mdt-column align-rule="left">Ingreso de Medicamentos(Total)</mdt-column>
+      <mdt-column align-rule="left">Egreso de Dinero(Total)</mdt-column>
+      <mdt-column align-rule="left">Egreso de Medicamenos(Total)</mdt-column>
+      <mdt-column align-rule="left">Detalles</mdt-column>
+    </mdt-header-row>
+    <mdt-custom-cell column-key="datetime">
+      <span style="line-height:48px;">{{value|date: 'dd MMMM yyyy HH:mm'}}</span>
+    </mdt-custom-cell>
+    <mdt-custom-cell column-key="totalCashIn">
+      <span ng-show="{{value}}">$ {{value}}</span>
+    </mdt-custom-cell>
+    <mdt-custom-cell column-key="totalCashOut">
+      <span ng-show="{{value}}">$ {{value}}</span>
+    </mdt-custom-cell>
+    <mdt-custom-cell column-key="employee_name">
+      <ae-profile-icon name={{value}} size=32></ae-profile-icon>
+      <span style="line-height:48px;">{{value}}</span>
+    </mdt-custom-cell>
+    <mdt-custom-cell column-key="profile_name">
+      <ae-profile-icon name={{value}} size=32></ae-profile-icon>
+      <span style="line-height:48px;">{{value}}</span>
+    </mdt-custom-cell>
+    <mdt-custom-cell column-key="id" aria-label="More">
+      <mdt-button id="movement" ng-click="$root.showDialog($event, this)" icon="more"></mdt-button>
+    </mdt-custom-cell>
+  </mdt-table>
+</md-content>

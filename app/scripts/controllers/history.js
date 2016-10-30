@@ -19,7 +19,7 @@ function ($scope, Restangular, aeData, $location, $rootScope) {
   }
 
   Restangular.one('profiles', String(aeData.historyId)).get().then(function(response){
-    $scope.patientName = response.first_name + " " + response.last_name;
+    $scope.patientName = aeData.nameOf(response);
     return $scope.patientName;
   });
 

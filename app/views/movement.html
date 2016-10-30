@@ -1,0 +1,54 @@
+<md-dialog>
+  <div layout="row">
+    <md-toolbar layout="row">
+      <div class="md-toolbar-tools">{{movement.datetime|date: 'dd MMMM yyyy HH:mm'}}</div>
+      <div style="margin-top:10px">
+        <md-button class="md-icon-button">
+          <md-icon ng-click="cancel()">close</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+  </div>
+  <md-divider></md-divider>
+  <md-dialog-content class="md-padding" layout-xs="column" layout="row">
+    <div layout="column" layout-padding ng-cloak>
+      <span>Paciente: <b>{{movement.profile_name}}</b></span>
+      <span>Empleado: <b>{{movement.employee_name}}</b></span>
+      <div layout="row" layout-align="space-around center">
+      </div>
+      <mdt-table mdt-row="{
+                            data: movement.items,
+                            'column-keys': [
+                                'is_donation',
+                                'drug_name',
+                                'drug_quantity',
+                                'cash',
+                                'detail'
+                              ]
+                            }">
+          <mdt-header-row>
+            <mdt-column align-rule="left">Tipo</mdt-column>
+            <mdt-column align-rule="right">Medicamento</mdt-column>
+            <mdt-column align-rule="right">Cantidad</mdt-column>
+            <mdt-column align-rule="right">Dinero</mdt-column>
+            <mdt-column align-rule="left">Detalles</mdt-column>
+          </mdt-header-row>
+          <mdt-row>
+            <mdt-custom-cell column-key="is_donation">
+              <span ng-show="{{value}}">Ingreso</span>
+              <span ng-show="{{!value}}">Egreso</span>
+            </mdt-custom-cell>
+            <mdt-custom-cell column-key="cash">
+              <span ng-show="{{value}}">$ {{value}}</span>
+            </mdt-custom-cell>
+          </mdt-row>
+        </mdt-table>
+    </div>
+  </md-dialog-content>
+  <md-dialog-actions layout="row">
+    <md-button ng-click="cancel()" class="md-raised md-primary" layout-align="end center">
+      <md-icon>done</md-icon>
+      <label>Aceptar</label>
+    </md-button>
+  </md-dialog-actions>
+</md-dialog>
