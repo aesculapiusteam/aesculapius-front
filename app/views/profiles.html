@@ -7,7 +7,7 @@
       <label>Buscar</label>
       <input flex ng-model="filterText" type="text">
     </div>
-    <md-button class="md-primary md-accent" id="profile" ng-click="$root.showDialog($event)">
+    <md-button class="md-fab md-primary md-accent" id="profile" ng-click="$root.showDialog($event)">
       <md-icon>person_add</md-icon>
     </md-button>
   </md-input-container>
@@ -49,7 +49,7 @@
           <mdt-button id="profile" value="{{value}}" ng-click="$root.showDialog($event, this)" icon="edit"></mdt-button>
         </mdt-custom-cell>
         <mdt-custom-cell column-key="hc">
-          <mdt-button id="history" ng-click="clientScope.cHistory($event)" icon="description"></mdt-button>
+          <mdt-button id="history" ng-click="clientScope.cHistory($event, rowId)" icon="description"></mdt-button>
         </mdt-custom-cell>
 
       </mdt-table>
