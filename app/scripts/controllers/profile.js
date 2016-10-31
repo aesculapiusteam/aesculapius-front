@@ -12,6 +12,7 @@ angular.module('aesculapiusFrontApp')
     '$scope', '$mdDialog', '$rootScope', 'aeData', 'Restangular', '$mdToast',
     function($scope, $mdDialog, $rootScope, aeData, Restangular, $mdToast) {
       $scope.person = aeData.getSelected();
+      $scope.nullProfile = $scope.person != null;
       $scope.isEmployeeForm = aeData.selected === "employee";
       if ($scope.isEmployeeForm) {
         $scope.toastId = 'employee';
