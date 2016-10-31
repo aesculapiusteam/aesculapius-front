@@ -44,9 +44,10 @@
 
         $scope.deleteRowCallback = function(rows) {
           for (var row = 0; row < rows.length; row++) {
-            Restangular.one('drugs', rows[row]).remove();
+            Restangular.one('drugs', rows[row]).remove().then(function(){
+              aeData.reloadStockTable();
+            })
           }
-          aeData.reloadStockTable();
         };
 
 
