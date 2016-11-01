@@ -19,7 +19,7 @@ function ($scope, Restangular, aeData, $location, $rootScope) {
   }
 
   Restangular.one('profiles', String(aeData.historyId)).get().then(function(response){
-    $scope.patientName = response.first_name + " " + response.last_name;
+    $scope.patientName = aeData.nameOf(response);
     return $scope.patientName;
   });
 
@@ -28,10 +28,10 @@ function ($scope, Restangular, aeData, $location, $rootScope) {
     aeData.reloadHistoryTable = callback;
   };
 
-//Peticion para setear la info en la tabla. pacient:aeData.historyId es lo que determina el paciente.
+//Peticion para setear la info en la tabla. patient:aeData.historyId es lo que determina el paciente.
   $scope.getData = function (page, pageSize){
     var offset = (page-1) * pageSize;
-    return Restangular.all('visits').getList({pacient:aeData.historyId, limit: pageSize, offset:offset}).then(function(result){
+    return Restangular.all('visits').getList({patient:aeData.historyId, limit: pageSize, offset:offset}).then(function(result){
       return {
         results: result,
         totalResultCount: result.count

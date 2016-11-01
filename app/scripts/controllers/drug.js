@@ -12,6 +12,7 @@
     .controller('DrugCtrl', ['$scope', '$rootScope', '$mdDialog', 'Restangular', 'aeData',
       function($scope, $rootScope, $mdDialog, Restangular, aeData) {
         $scope.drug = aeData.drug;
+        $scope.nullDrug = $scope.drug !== null;
 
         $scope.add = function() {
           Restangular.all('drugs').post($scope.drug).then(

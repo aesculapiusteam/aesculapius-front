@@ -44,7 +44,7 @@ angular.module('aesculapiusFrontApp')
 
       $scope.done = function() {
         var data = {
-          'pacient': $scope.selectedItemPeople.id,
+          'patient': $scope.selectedItemPeople.id,
           'detail': $scope.detail
         };
         allVisits.post(data).then(
