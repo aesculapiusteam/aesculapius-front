@@ -32,15 +32,15 @@ angular.module('aesculapiusFrontApp')
         $scope.selectedItemPeople = "";
       };
 
-      $scope.goToDialog = function(ev, id){
-        var fakeScope = {'value':id};
-        $rootScope.showDialog(ev, fakeScope);
-      };
-
       $scope.$on('profileAdded', function(br, person){
         $scope.peopleList();
         $scope.selectedItemPeople = person.person;
       });
+
+      $scope.goToDialog = function(ev, id){
+        var fakeScope = {'value':id};
+        $rootScope.showDialog(ev, fakeScope);
+      };
 
       $scope.done = function() {
         var data = {
