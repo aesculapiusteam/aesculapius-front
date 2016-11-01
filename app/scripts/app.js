@@ -167,13 +167,14 @@ angular
         );
       };
 
-      $rootScope.showActionToast = function(text, ev, scope){
+      $rootScope.showActionToast = function(text, ev, scope, delay){
         var toast = $mdToast.simple()
       .textContent(text)
       .action('VER')
       .highlightAction(true)
       .highlightClass('md-primary')
-      .position('bottom right');
+      .position('bottom right')
+      .hideDelay(delay || 3000);
 
       $mdToast.show(toast).then(function(response) {
         if ( response === 'ok' ) {
