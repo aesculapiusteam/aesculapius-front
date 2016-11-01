@@ -3,8 +3,8 @@
     <md-toolbar layout="row">
       <div class="md-toolbar-tools">Editar Perfil</div>
       <div style="margin-top:10px">
-        <md-button class="md-icon-button">
-          <md-icon ng-click="cancel()">close</md-icon>
+        <md-button ng-click="cancel()" class="md-icon-button">
+          <md-icon>close</md-icon>
         </md-button>
       </div>
     </md-toolbar>
@@ -78,7 +78,6 @@
               <md-icon class="md-primary">mail</md-icon>
               <input name="email" type="email" ng-model="person.email"/>
             </md-input-container>
-            <!-- <md-datepicker class="md-primary" ng-model="person.birth_date" md-placeholder="Nacimiento" flex="50"></md-datepicker> -->
             <md-datepicker class="md-primary" ng-model="person.birth_date" md-placeholder="Nacimiento" flex="50"></md-datepicker>
           </div>
 
