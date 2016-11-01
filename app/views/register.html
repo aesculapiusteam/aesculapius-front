@@ -10,51 +10,48 @@
 </md-toolbar>
 <md-content layout="column">
   <md-card>
-    <md-card-content flex layout="row">
-      <div>
-        <md-card>
-          <md-card-title>
-            <div layout="column">
-              <span class="md-headline">Introduzca un Nombre</span>
-            </div>
-          </md-card-title>
-          <md-card-content>
-            <ae-profile-icon ng-if="selectedItemPeople.first_name"
-             name="{{selectedItemPeople.first_name}}" size=32></ae-profile-icon>
-            <md-autocomplete required md-selected-item="selectedItemPeople"
-            md-search-text="filterTextP"
-            md-items="item in peopleList()"
-            md-item-text="itemText(item)"
-            md-min-length="0"
-            md-delay="1000"
-            md-no-cache="true"
-            md-floating-label="Persona a tratar">
-            <md-item-template>
-              <div ng-if="item.first_name">
-                <span class="item-title">
-                  <md-icon>person</md-icon>
-                  <span> {{item.first_name}} </span>
-                </span>
-                <span class="item-metadata">
-                  <span class="item-metastat">
-                    <strong>{{item.last_name}}</strong>
-                  </span>
-                  <span class="item-metastat" ng-if="item.dni">
-                    - DNI: <strong>{{item.dni}}</strong>
-                  </span>
-                </span>
-              </div>
-              <div layout="row">
-                <md-button flex id="profile" class="md-primary" aria-label="Person Add" ng-click="$root.showDialog($event, this)">
-                  <md-icon>person_add</md-icon>
-                  <label>Añadir Persona</label>
-                </md-button>
-              </div>
-            </md-item-template>
-          </md-autocomplete>
-        </md-card-content>
-      </md-card>
+    <md-card-title>
+      <div layout="column">
+        <span class="md-headline">Introduzca un Nombre</span>
       </div>
+    </md-card-title>
+    <md-card-content>
+      <ae-profile-icon ng-if="selectedItemPeople.first_name"
+       name="{{selectedItemPeople.first_name}}" size=32></ae-profile-icon>
+      <md-autocomplete required md-selected-item="selectedItemPeople"
+      md-search-text="filterTextP"
+      md-items="item in peopleList()"
+      md-item-text="itemText(item)"
+      md-min-length="0"
+      md-delay="1000"
+      md-no-cache="true"
+      md-floating-label="Persona a tratar">
+      <md-item-template>
+        <div ng-if="item.first_name">
+          <span class="item-title">
+            <md-icon>person</md-icon>
+            <span> {{item.first_name}} </span>
+          </span>
+          <span class="item-metadata">
+            <span class="item-metastat">
+              <strong>{{item.last_name}}</strong>
+            </span>
+            <span class="item-metastat" ng-if="item.dni">
+              - DNI: <strong>{{item.dni}}</strong>
+            </span>
+          </span>
+        </div>
+        <div layout="row">
+          <md-button flex id="profile" class="md-primary" aria-label="Person Add" ng-click="$root.showDialog($event, this)">
+            <md-icon>person_add</md-icon>
+            <label>Añadir Persona</label>
+          </md-button>
+        </div>
+      </md-item-template>
+    </md-autocomplete>
+  </md-card-content>
+</md-card>
+    <md-card-content flex layout="row">
       <md-card flex>
         <md-card-title>
           <div layout="column">
@@ -121,14 +118,14 @@
       </md-card>
     </md-card-content>
     <md-card-actions layout="row" layout-align="end center">
-      <md-button class="md-primary md-raised" ng-click="done()">
-        <md-icon>done</md-icon>
-        Aceptar
-      </md-button>
+
           <md-button class= "md-warn" ng-click="cancel()">
             <md-icon>cancel</md-icon>
             Cancelar
           </md-button>
+          <md-button class="md-primary md-raised" ng-click="done()">
+            <md-icon>done</md-icon>
+            Aceptar
+          </md-button>
         </md-card-actions>
-  </md-card>
 </md-content>
