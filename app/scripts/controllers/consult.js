@@ -18,12 +18,6 @@ angular.module('aesculapiusFrontApp')
     $scope.saveButton = true;
 
     $scope.cancel = function() {
-      $mdToast.show(
-        $mdToast.simple()
-        .textContent('No se han hecho modificaciones')
-        .position('bottom right')
-        .hideDelay(2000)
-      );
       $mdDialog.cancel();
     };
 
