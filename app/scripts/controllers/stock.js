@@ -43,10 +43,9 @@
         };
 
         $scope.deleteRowCallback = function(rows) {
+          function reloadStockTable() {aeData.reloadStockTable();}
           for (var row = 0; row < rows.length; row++) {
-            Restangular.one('drugs', rows[row]).remove().then(function(){
-              aeData.reloadStockTable();
-            })
+            Restangular.one('drugs', rows[row]).remove().then(reloadStockTable);
           }
         };
 
