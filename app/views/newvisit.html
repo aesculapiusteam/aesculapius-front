@@ -4,7 +4,7 @@
 <md-content>
   <md-card>
     <md-card-content flex layout="column">
-      <form name="newVisitForm" ng-submit="done()">
+      <form name="newVisitForm" ng-submit="done()" novalidate>
         <div layout="row">
           <ae-profile-icon ng-if="selectedItemPeople.first_name"
           name="{{selectedItemPeople.first_name}}" size=32></ae-profile-icon>
@@ -66,7 +66,7 @@
       </form>
     </md-card-content>
     <md-card-actions layout="row" layout-align="end center">
-      <md-button ng-disabled="newVisitForm.$invalid" class="md-primary md-raised" ng-click="done()">
+      <md-button ng-disabled="newVisitForm.$invalid || newVisitForm.$pristine" class="md-primary md-raised" ng-click="done()">
         <md-icon>done</md-icon>
         Aceptar
       </md-button>

@@ -15,7 +15,6 @@ angular.module('aesculapiusFrontApp')
     $scope.enable = true;
     $scope.visit = aeData.visitObj;
     $scope.detail = $scope.visit.detail;
-    $scope.saveButton = true;
 
     $scope.cancel = function() {
       $mdDialog.cancel();
@@ -27,10 +26,6 @@ angular.module('aesculapiusFrontApp')
       }else{
         $scope.enable = true;
       }
-    };
-
-    $scope.change = function(){
-      $scope.saveButton = false;
     };
 
     $scope.delete = function(){

@@ -27,7 +27,7 @@
         <md-icon>border_color</md-icon>
       </md-button>
     </div>
-    <form name="visitForm" submit="save()">
+    <form name="visitForm" submit="save()" novalidate>
       <md-input-container class="md-block" style="height: inherit;
     overflow-y: auto;">
         <label></label>
@@ -38,7 +38,6 @@
     </div>
       </md-input-container>
     </form>
-    {{saveButton}}
   </md-dialog-content>
   <md-dialog-actions layout="row">
     <md-button class="md-warn" ng-click="delete()" layout-align="start center">
@@ -49,7 +48,7 @@
       <label>Cancelar</label>
       <md-icon>cancel</md-icon>
     </md-button>
-    <md-button class="md-primary" ng-click="save()" ng-disabled="visitForm.$invalid || saveButton" layout-align="end center">
+    <md-button class="md-primary" ng-click="save()" ng-disabled="visitForm.$invalid || visitForm.$pristine" layout-align="end center">
       <label>Guardar</label>
       <md-icon>save</md-icon>
     </md-button>
