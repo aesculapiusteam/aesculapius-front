@@ -37,7 +37,7 @@ angular.module('aesculapiusFrontApp')
           dic.drug = $scope.nActions[i].drug.id;
           dic.drug_quantity = parseInt($scope.nActions[i].quantity);
         }else{
-          dic.cash = parseFloat($scope.nActions[i].quantity);
+          dic.cash = parseFloat($scope.nActions[i].quantity).toFixed(2);
         }
         dic.is_donation = !!parseInt($scope.nActions[i].type);
         finalItems.push(dic);
