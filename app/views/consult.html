@@ -2,7 +2,7 @@
   <div layout="row">
     <md-toolbar layout="row">
       <div class="md-toolbar-tools">Consulta</div>
-      <div style="margin-top:10px">
+      <div class='dialog-close'>
         <md-button class="md-icon-button">
           <md-icon ng-click="cancel()">close</md-icon>
         </md-button>
@@ -28,8 +28,7 @@
       </md-button>
     </div>
     <div>
-      <md-input-container class="md-block" style="height: inherit;
-    overflow-y: auto;">
+      <md-input-container class="md-block">
         <label></label>
         <textarea ng-model="detail" ng-change="change()" rows="3" ng-disabled="enable" md-no-autogrow></textarea>
       </md-input-container>
