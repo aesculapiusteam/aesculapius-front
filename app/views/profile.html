@@ -77,6 +77,9 @@
               <label>DNI</label>
               <md-icon class="md-primary">chrome_reader_mode</md-icon>
               <input name="dni" type="number" ng-model="person.dni"/>
+              <div ng-messages="profileForm.dni.$error">
+                <div ng-message="number">Ingrese solo números enteros</div>
+              </div>
             </md-input-container>
           </div>
 
@@ -85,6 +88,9 @@
               <label>Email</label>
               <md-icon class="md-primary">mail</md-icon>
               <input name="email" type="email" ng-model="person.email"/>
+              <div ng-messages="profileForm.email.$error">
+                <div ng-message="email">Debe ingresar un mail valido.</div>
+              </div>
             </md-input-container>
             <md-datepicker class="md-primary" ng-model="person.birth_date" md-placeholder="Nacimiento" flex="50"></md-datepicker>
           </div>
@@ -130,7 +136,10 @@
             <md-input-container flex="50">
               <label>DNI</label>
               <md-icon class="md-primary">chrome_reader_mode</md-icon>
-              <input name="dni" ng-model="person.profile.dni"/>
+              <input name="dni" type="number" ng-model="person.profile.dni"/>
+              <div ng-messages="profileForm.dni.$error">
+                <div ng-message="number">Ingrese solo números enteros</div>
+              </div>
             </md-input-container>
           </div>
 
@@ -139,6 +148,9 @@
               <label>Email</label>
               <md-icon class="md-primary">mail</md-icon>
               <input name="email" type="email" ng-model="person.profile.email"/>
+              <div ng-messages="profileForm.email.$error">
+                <div ng-message="email">Debe ingresar un mail valido.</div>
+              </div>
             </md-input-container>
             <md-datepicker class="md-primary" ng-model="person.profile.birth_date" md-placeholder="Nacimiento" flex="50"></md-datepicker>
           </div>

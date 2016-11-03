@@ -28,6 +28,9 @@
             <label>Cantidad</label>
             <md-icon class="md-primary">vertical_align_center</md-icon>
             <input name="quantity" type="number" ng-model="drug.quantity">
+            <div ng-messages="drugForm.quantity.$error">
+              <div ng-message="number">Ingrese solo números enteros</div>
+            </div>
           </md-input-container>
 
           <md-input-container flex="50">
