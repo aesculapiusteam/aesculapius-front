@@ -27,13 +27,17 @@
         <md-icon>border_color</md-icon>
       </md-button>
     </div>
-    <div>
+    <form name="visitForm" submit="save()" novalidate>
       <md-input-container class="md-block" style="height: inherit;
     overflow-y: auto;">
         <label></label>
-        <textarea ng-model="detail" ng-change="change()" rows="3" ng-disabled="enable" md-no-autogrow></textarea>
-      </md-input-container>
+        <textarea name="detail" type="text" ng-model="detail" ng-change="change()"
+        rows="3" ng-disabled="enable" md-no-autogrow required></textarea>
+        <div ng-messages="visitForm.detail.$error">
+        <p ng-message="required">Este campo es obligatorio.</p>
     </div>
+      </md-input-container>
+    </form>
   </md-dialog-content>
   <md-dialog-actions layout="row">
     <md-button class="md-warn" ng-click="delete()" layout-align="start center">
@@ -44,7 +48,7 @@
       <label>Cancelar</label>
       <md-icon>cancel</md-icon>
     </md-button>
-    <md-button class="md-primary" ng-click="save()" ng-disabled="saveButton" layout-align="end center">
+    <md-button class="md-primary" ng-click="save()" ng-disabled="visitForm.$invalid || visitForm.$pristine" layout-align="end center">
       <label>Guardar</label>
       <md-icon>save</md-icon>
     </md-button>
