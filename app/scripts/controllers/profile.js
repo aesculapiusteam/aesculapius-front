@@ -17,8 +17,8 @@ angular.module('aesculapiusFrontApp')
       if ($scope.isEmployeeForm) {
         $scope.toastId = 'employee';
         $scope.allEmployees = Restangular.all('employees').getList().$object; //XXX CODIGO RANCIO, estoy cargando todos los employees cada vez que quiero editar uno
-        $scope.repeatPassword = "";
         $scope.person = $scope.person || {}; //XXX CODIGO RANCIO
+        $scope.person.repeatPassword = "";
         $scope.person.assist_ed = $scope.person.assist_ed || []; //XXX CODIGO RANCIO
         $scope.person.charge = $scope.person.charge || "secretary"; //XXX CODIGO RANCIO
       }else{
@@ -26,7 +26,7 @@ angular.module('aesculapiusFrontApp')
       }
 
       $scope.add = function() {
-        if ($scope.isEmployeeForm && (($scope.person.password && !$scope.repeatPassword) || Boolean($scope.repeatPassword) !== Boolean($scope.person.password))) {
+        if ($scope.isEmployeeForm && (($scope.person.password && !$scope.person.repeatPassword) || Boolean($scope.person.repeatPassword) !== Boolean($scope.person.password))) {
           $mdToast.show( //XXX CODIGO RANCIO MUCHOS MD TOAST QUE HACNE LO MISMO SIMPLIFICAR
             $mdToast.simple()
             .textContent('Debe escribir dos veces su nueva contraseña y deben coincidir.')
@@ -59,7 +59,7 @@ angular.module('aesculapiusFrontApp')
           this.add();
         } else {
           // Must modify an existing person TODO
-          if ($scope.isEmployeeForm && (($scope.person.password && !$scope.repeatPassword) || Boolean($scope.repeatPassword) !== Boolean($scope.person.password))) {//XXX CODIGO RANCIO ESTA ARRIBA IGUAL
+          if ($scope.isEmployeeForm && (($scope.person.password && !$scope.person.repeatPassword) || Boolean($scope.person.repeatPassword) !== Boolean($scope.person.password))) {//XXX CODIGO RANCIO ESTA ARRIBA IGUAL
             $mdToast.show( //XXX CODIGO RANCIO MUCHOS MD TOAST QUE HACNE LO MISMO SIMPLIFICAR
               $mdToast.simple()
               .textContent('Debe escribir dos veces su nueva contraseña y deben coincidir.')
