@@ -11,13 +11,12 @@ angular.module('aesculapiusFrontApp')
   .controller('ProfileCtrl', [
     '$scope', '$mdDialog', '$rootScope', 'aeData', 'Restangular', '$mdToast',
     function($scope, $mdDialog, $rootScope, aeData, Restangular, $mdToast) {
-      $scope.person = aeData.getSelected();
+      $scope.person = aeData.getSelected() || {};
       $scope.nullProfile = $scope.person !== null;
       $scope.isEmployeeForm = aeData.selected === "employee";
       if ($scope.isEmployeeForm) {
         $scope.toastId = 'employee';
         $scope.allEmployees = Restangular.all('employees').getList().$object; //XXX CODIGO RANCIO, estoy cargando todos los employees cada vez que quiero editar uno
-        $scope.person = $scope.person || {}; //XXX CODIGO RANCIO
         $scope.person.repeatPassword = "";
         $scope.person.assist_ed = $scope.person.assist_ed || []; //XXX CODIGO RANCIO
         $scope.person.charge = $scope.person.charge || "secretary"; //XXX CODIGO RANCIO
