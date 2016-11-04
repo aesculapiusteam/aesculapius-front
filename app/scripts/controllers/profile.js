@@ -67,6 +67,9 @@ angular.module('aesculapiusFrontApp')
             );
             return;
           }
+          if (!$scope.person.password) { //XXX CODIGO RANCIO
+            delete $scope.person.password;
+          }
           Restangular.copy($scope.person).save().then(
             function(response) {
               $scope.cancel();
