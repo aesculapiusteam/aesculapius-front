@@ -55,7 +55,6 @@ angular.module('aesculapiusFrontApp')
         'profile':$scope.selectedItemPeople.id,
         'items':finalItems
       };
-      console.log(finalDic);
       Restangular.all('movements').post(finalDic).then(
         function(postData){
           aeData.movement = postData;

@@ -20,6 +20,7 @@
       <ae-profile-icon ng-if="selectedItemPeople.first_name"
        name="{{selectedItemPeople.first_name}}" size=32></ae-profile-icon>
       <md-autocomplete required md-selected-item="selectedItemPeople"
+      md-require-match="true"
       md-input-name="person"
       md-search-text="filterTextP"
       md-items="item in peopleList()"
@@ -51,7 +52,8 @@
         </div>
       </md-item-template>
       <div ng-messages="registerForm.person.$error">
-        <div ng-message="required">Este campo es Obligatorio</div>
+        <div ng-message="required">Este campo es obligatorio</div>
+        <div ng-message="md-require-match">Esta persona no existe.</div>
       </div>
     </md-autocomplete>
   </md-card-content>
@@ -70,11 +72,12 @@
               <md-option value="1">Dinero</md-option>
             </md-select>
             <div ng-messages="registerForm.capital.$error">
-              <div ng-message="required">Este campo es Obligatorio</div>
+              <div ng-message="required">Este campo es obligatorio</div>
             </div>
           </md-input-container>
           <span ng-show="showOrHide(action.capital)">$</span>
           <md-autocomplete required ng-if="!showOrHide(action.capital)"
+          md-require-match="true"
           md-input-name="drug"
           md-selected-item="action.drug"
           md-search-text="filterTextM"
@@ -105,7 +108,8 @@
               </div>
             </md-item-template>
             <div ng-messages="registerForm.drug.$error">
-              <div ng-message="required">Este campo es Obligatorio</div>
+              <div ng-message="required">Este campo es obligatorio</div>
+              <div ng-message="md-require-match">Este medicamento no existe.</div>
             </div>
           </md-autocomplete>
           <md-input-container>

@@ -27,9 +27,10 @@
           <md-input-container class="md-block">
             <label>Cantidad</label>
             <md-icon class="md-primary">vertical_align_center</md-icon>
-            <input name="quantity" type="number" ng-model="drug.quantity">
+            <input name="quantity" type="number" required ng-model="drug.quantity">
             <div ng-messages="drugForm.quantity.$error">
               <div ng-message="number">Ingrese solo números enteros</div>
+              <div ng-message="required">Este campo es obligatorio</div>
             </div>
           </md-input-container>
 

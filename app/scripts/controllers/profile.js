@@ -78,7 +78,7 @@ angular.module('aesculapiusFrontApp')
             },
             function(error) {
               $rootScope.showActionToast('Lamentablemente hubo un error al modificar la informacion.','error',
-               error);
+               error.data.detail);
             }
           );
         }
