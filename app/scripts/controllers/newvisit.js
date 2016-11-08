@@ -18,7 +18,7 @@ angular.module('aesculapiusFrontApp')
     $scope.peopleList = function(){
       return allProfiles.getList({search: $scope.filterTextP, limit:5}).then(
         function(response){
-          response.push('nuevo usuario');
+          response.push(' ');
           return response;
         });
       };

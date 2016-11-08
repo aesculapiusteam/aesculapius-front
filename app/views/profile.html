@@ -50,8 +50,10 @@
           <div layout="row">
             <md-checkbox value="{{e.id}}" class="md-primary"
             ng-checked="isChecked(e.id)" ng-repeat="e in allEmployees" ng-click="assistEdSelection(e.id)">
-              {{ e.profile.first_name + " " + e.profile.last_name }}
+              <span>{{ e.profile.first_name }}</span>
+              <span ng-if="e.profile.last_name">{{ " " + e.profile.last_name }}</span>
             </md-checkbox>
+            
           </div>
         </div>
 
