@@ -37,7 +37,7 @@ angular.module('aesculapiusFrontApp')
           dic.drug = $scope.nActions[i].drug.id;
           dic.drug_quantity = parseInt($scope.nActions[i].quantity);
         }else{
-          dic.cash = parseFloat($scope.nActions[i].quantity);
+          dic.cash = parseFloat($scope.nActions[i].quantity).toFixed(2);
         }
         dic.is_donation = !!parseInt($scope.nActions[i].type);
         finalItems.push(dic);
@@ -55,6 +55,7 @@ angular.module('aesculapiusFrontApp')
         'profile':$scope.selectedItemPeople.id,
         'items':finalItems
       };
+      console.log(finalDic);
       Restangular.all('movements').post(finalDic).then(
         function(postData){
           aeData.movement = postData;
@@ -111,6 +112,13 @@ angular.module('aesculapiusFrontApp')
     };
 
     $scope.cancel = function(){
+      $scope.registerForm.capital.$touched = false;
+      if($scope.registerForm.drug){
+        $scope.registerForm.drug.$touched = false;
+      }
+      $scope.registerForm.person.$touched = false;
+      $scope.registerForm.type.$touched = false;
+      $scope.registerForm.quantity.$touched = false;
       $scope.selectedItemPeople = null;
       $scope.nActions = [{
         'capital':'',

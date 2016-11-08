@@ -9,6 +9,7 @@
   </div>
 </md-toolbar>
 <md-content layout="column">
+  <form name="registerForm" ng-submit="done()" novalidate>
   <md-card>
     <md-card-title>
       <div layout="column">
@@ -19,6 +20,7 @@
       <ae-profile-icon ng-if="selectedItemPeople.first_name"
        name="{{selectedItemPeople.first_name}}" size=32></ae-profile-icon>
       <md-autocomplete required md-selected-item="selectedItemPeople"
+      md-input-name="person"
       md-search-text="filterTextP"
       md-items="item in peopleList()"
       md-item-text="itemText(item)"
@@ -48,6 +50,9 @@
           </md-button>
         </div>
       </md-item-template>
+      <div ng-messages="registerForm.person.$error">
+        <div ng-message="required">Este campo es Obligatorio</div>
+      </div>
     </md-autocomplete>
   </md-card-content>
 </md-card>
@@ -59,12 +64,18 @@
           </div>
         </md-card-title>
         <md-card-content layout-padding layout="row" layout-align="none center" ng-repeat="action in nActions">
-          <md-select required ng-model="action.capital" placeholder="Capital" class="md-no-underline">
-            <md-option value="0">Medicamento</md-option>
-            <md-option value="1">Dinero</md-option>
-          </md-select>
+          <md-input-container>
+            <md-select name="capital" required ng-model="action.capital" placeholder="Capital" class="md-no-underline">
+              <md-option value="0">Medicamento</md-option>
+              <md-option value="1">Dinero</md-option>
+            </md-select>
+            <div ng-messages="registerForm.capital.$error">
+              <div ng-message="required">Este campo es Obligatorio</div>
+            </div>
+          </md-input-container>
           <span ng-show="showOrHide(action.capital)">$</span>
-          <md-autocomplete required ng-hide="showOrHide(action.capital)"
+          <md-autocomplete required ng-if="!showOrHide(action.capital)"
+          md-input-name="drug"
           md-selected-item="action.drug"
           md-search-text="filterTextM"
           md-items="drug in drugList()"
@@ -93,18 +104,32 @@
                 </md-button>
               </div>
             </md-item-template>
+            <div ng-messages="registerForm.drug.$error">
+              <div ng-message="required">Este campo es Obligatorio</div>
+            </div>
           </md-autocomplete>
           <md-input-container>
             <label>Cantidad</label>
-            <input required ng-model="action.quantity">
+            <input name="quantity" required ng-model="action.quantity">
+            <div ng-messages="registerForm.quantity.$error">
+              <div ng-message="required">Este campo es Obligatorio</div>
+            </div>
           </md-input-container>
-          <md-select required ng-model="action.type" placeholder="Tipo" class="md-no-underline">
-            <md-option value="1">Ingreso</md-option>
-            <md-option value="0">Egreso</md-option>
-          </md-select>
+          <md-input-container>
+            <md-select required name="type" ng-model="action.type" placeholder="Tipo" class="md-no-underline">
+              <md-option value="1">Ingreso</md-option>
+              <md-option value="0">Egreso</md-option>
+            </md-select>
+            <div ng-messages="registerForm.type.$error">
+              <div ng-message="required">Este campo es Obligatorio</div>
+            </div>
+          </md-input-container>
           <md-input-container flex>
             <label>Detalles</label>
-            <input ng-model="action.detail" md-maxlength="100">
+            <input name="detail" ng-model="action.detail" md-maxlength="100">
+            <div ng-messages="registerForm.detail.$error">
+              <div ng-message="md-maxlength">La descripción es muy larga.</div>
+            </div>
           </md-input-container>
           <md-button class="md-icon-button" aria-label="deleteRow" ng-click="deleteAction(action)">
             <md-icon>delete</md-icon>
@@ -116,14 +141,14 @@
           </md-button>
         </div>
       </md-card>
+    </form>
     </md-card-content>
     <md-card-actions layout="row" layout-align="end center">
-
           <md-button class= "md-warn" ng-click="cancel()">
             <md-icon>cancel</md-icon>
             Cancelar
           </md-button>
-          <md-button class="md-primary md-raised" ng-click="done()">
+          <md-button class="md-primary md-raised" ng-disabled="registerForm.$invalid||registerForm.$pristine" ng-click="done()">
             <md-icon>done</md-icon>
             Aceptar
           </md-button>
