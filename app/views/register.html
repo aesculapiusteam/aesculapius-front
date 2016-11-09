@@ -17,9 +17,10 @@
       </div>
     </md-card-title>
     <md-card-content>
+      <div layout="row">
       <ae-profile-icon ng-if="selectedItemPeople.first_name"
-       name="{{selectedItemPeople.first_name}}" size=32></ae-profile-icon>
-      <md-autocomplete required md-selected-item="selectedItemPeople"
+       name="{{selectedItemPeople.first_name}}" size=72></ae-profile-icon>
+      <md-autocomplete flex required md-selected-item="selectedItemPeople"
       md-input-name="person"
       md-search-text="filterTextP"
       md-items="item in peopleList()"
@@ -54,6 +55,7 @@
         <div ng-message="required">Este campo es Obligatorio</div>
       </div>
     </md-autocomplete>
+    </div>
   </md-card-content>
 </md-card>
     <md-card-content flex layout="row">
