@@ -119,8 +119,8 @@ angular
         redirectTo: '/login'
       });
   }])
-  .run(['$rootScope', 'auth', 'aeData', '$mdDialog', '$mdToast',
-    function($rootScope, auth, aeData, $mdDialog, $mdToast) {
+  .run(['$rootScope', 'auth', 'aeData', '$mdDialog', '$mdToast', 'Restangular',
+    function($rootScope, auth, aeData, $mdDialog, $mdToast, Restangular) {
       $rootScope.loading = true;
       $rootScope.$on("$routeChangeStart", function() {
         $rootScope.loading = true;
@@ -132,7 +132,12 @@ angular
 
       $rootScope.showDialog = function(ev, scope) {
         if (scope && scope.value && ev.currentTarget.id !== "consult") { //XXX CODIGO RANCIO !==consult, hay que hacer que todos sean iguales no diferenciar para algunos
-          aeData[ev.currentTarget.id] = aeData[ev.currentTarget.id + 's'].get(scope.value).$object;
+          if(aeData[ev.currentTarget.id + 's']){
+            aeData[ev.currentTarget.id] = aeData[ev.currentTarget.id + 's'].get(scope.value).$object;
+          } else {
+            aeData[ev.currentTarget.id] = Restangular.one(ev.currentTarget.id + 's', scope.value).get().$object;
+          }
+
         } else {
           aeData[ev.currentTarget.id] = null;
         }
@@ -167,13 +172,14 @@ angular
         );
       };
 
-      $rootScope.showActionToast = function(text, ev, scope){
+      $rootScope.showActionToast = function(text, ev, scope, delay){
         var toast = $mdToast.simple()
       .textContent(text)
       .action('VER')
       .highlightAction(true)
       .highlightClass('md-primary')
-      .position('bottom right');
+      .position('bottom right')
+      .hideDelay(delay || 3000);
 
       $mdToast.show(toast).then(function(response) {
         if ( response === 'ok' ) {

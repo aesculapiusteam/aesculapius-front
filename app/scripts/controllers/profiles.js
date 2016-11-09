@@ -42,8 +42,8 @@
           });
         };
 
-        $scope.cHistory = function(ev, id) {
-          aeData.historyId = id;
+        $scope.cHistory = function(ev) {
+          aeData.historyId = ev.currentTarget.parentElement.parentElement.parentElement.children[5].children[0].children[0].attributes[1].nodeValue;
           $location.path('history');
         };
 
