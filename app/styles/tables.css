@@ -1,0 +1,35 @@
+.employeesTable table td:nth-child(2) {
+width: 15rem;
+}
+
+.employeesTable table td:nth-child(3) {
+width: 12rem;
+}
+
+.employeesTable table td:nth-child(4) {
+width: 0.6667rem;
+}
+
+.employeesTable table td:nth-child(5) {
+width: 15rem;
+}
+
+.profileTable table td:nth-child(2) {
+width: 12rem;
+}
+
+.profileTable table td:nth-child(3) {
+width: 12rem;
+}
+
+.stockTable table td:nth-child(3) {
+width: 0.6667rem;
+}
+
+.stockTable table td:nth-child(2) {
+width: 0.6667rem;
+}
+
+.stockTable table td:nth-child(4) {
+width: 60rem;
+}
