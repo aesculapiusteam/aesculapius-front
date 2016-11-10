@@ -160,6 +160,47 @@ angular
         });
       };
 
+      $rootScope.showConfirm = function(DiaglogInfo, products, action, okFn, cancelFn) {
+        var text = '';
+        var buttonText = '';
+        switch (action) {
+          case 'close':
+            buttonText = 'Salir';
+            text = '¿Esta seguro que desea salir? Los cambios no seran guardados.';
+            break;
+          case 'delete':
+            buttonText = 'Eliminar';
+            for (var i=0;i<products.length;i++){
+              if(products[i].name){
+                text = '¿Esta seguro que desea eliminar ' + aeData.itemsInText(products) + '?';
+                break;
+              }else if(products[i].first_name || products[i].profile){
+                text = '¿Esta seguro que desea eliminar a ' + aeData.nameOf(products[i]) + '?';
+                break;
+              }else{
+                text = '¿Esta seguro que desea eliminar la visita de ' + products[i].patient_name + '?';
+                break;
+              }
+            }
+            break;
+          default:
+
+        }
+        var confirm = $mdDialog.confirm()
+          .title(text)
+          .textContent('')
+          .ariaLabel('confirm-dialog')
+          .ok(buttonText)
+          .cancel('Cancelar');
+
+        $mdDialog.show(confirm).then(function() {
+          okFn(products);
+        }, function() {
+          cancelFn();
+          console.log("que onda");
+        });
+      };
+
       $rootScope.showAlert = function(errorText){
         $mdDialog.show(
         $mdDialog.alert()

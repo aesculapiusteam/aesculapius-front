@@ -39,6 +39,19 @@ angular.module('aesculapiusFrontApp')
       }
     };
 
+    this.itemsInText = function(items){
+      var lastItem = '';
+      var itemNames = [];
+      if(items.length>1){
+        lastItem = ' y ' + items[items.length-1].name;
+        items = items.slice(0, -1);
+      }
+      for (var i=0;i<items.length;i++){
+        itemNames.push(items[i].name);
+      }
+      return itemNames.join(" ,") + lastItem;
+    };
+
     //A profile can have a last name or not so this will give the full name of the person
     this.nameOf = function(obj){
       if(obj.last_name){
