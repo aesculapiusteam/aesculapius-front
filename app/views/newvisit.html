@@ -9,8 +9,10 @@
           <ae-profile-icon ng-if="selectedItemPeople.first_name"
           name="{{selectedItemPeople.first_name}}" size="72"></ae-profile-icon>
           <md-autocomplete md-input-name="person"
-          flex required md-selected-item="selectedItemPeople"
+          flex required
+          md-selected-item="selectedItemPeople"
           md-search-text="filterTextP"
+          md-require-match="true"
           md-items="item in peopleList()"
           md-item-text="itemText(item)"
           md-min-length="0"
@@ -20,7 +22,7 @@
             <div ng-if="item.first_name">
               <span class="item-title">
                 <md-icon>person</md-icon>
-                <span> {{item.first_name}} </span>
+                <span>{{item.first_name}}</span>
               </span>
               <span class="item-metadata">
                 <span class="item-metastat">
@@ -39,11 +41,12 @@
             </md-button>
           </div>
         </md-item-template>
-        <div ng-messages="newVisitForm.person.$error">
-        <p ng-message="required">Es necesario que elija un paciente.</p>
-    </div>
+      <div ng-messages="newVisitForm.person.$error">
+        <div ng-message="required">Es necesario que elija un paciente.</div>
+        <div ng-message="md-require-match">Esta persona no existe.</div>
+      </div>
       </md-autocomplete>
-      <md-button class="md-icon-button" aria-label="More" id="profile"
+      <md-button ng-disabled="!selectedItemPeople.id" class="md-icon-button md-primary" aria-label="More" id="profile"
       ng-click="goToDialog($event, selectedItemPeople.id)">
       <md-icon>more_vert</md-icon>
     </md-button>
