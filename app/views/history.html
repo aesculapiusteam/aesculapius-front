@@ -29,7 +29,7 @@
       </mdt-header-row>
       <mdt-custom-cell column-key="doctor_name" aria-label="More">
         <ae-profile-icon name={{value}} size=32></ae-profile-icon>
-        <span style="line-height:48px;">{{value}}</span>
+        <span class="height-48">{{value}}</span>
       </mdt-custom-cell>
       <mdt-custom-cell column-key="detail" aria-label="More">
         {{value| limitTo: 97}}{{value.length > 100? '...': ''}}

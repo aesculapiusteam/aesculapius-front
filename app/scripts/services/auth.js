@@ -18,7 +18,7 @@ angular.module('aesculapiusFrontApp')
         $rootScope.$broadcast('setMe');
       },
       function(error){
-        console.error("Hubo un error al carger el perfil del usuario logueado");
+        console.error("Hubo un error al cargar el perfil del usuario logueado");
         console.error(error);
       }
     );
@@ -63,6 +63,7 @@ angular.module('aesculapiusFrontApp')
   this.logout = function(){
     delete window.localStorage.token;
     $rootScope.authenticated = false;
+    Restangular.setDefaultHeaders({});
   };
 
 }]);

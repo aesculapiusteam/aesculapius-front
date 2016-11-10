@@ -2,7 +2,7 @@
   <div layout="row">
     <md-toolbar layout="row">
       <div class="md-toolbar-tools">Editar Perfil</div>
-      <div style="margin-top:10px">
+      <div class="dialog-close">
         <md-button ng-click="cancel()" class="md-icon-button">
           <md-icon>close</md-icon>
         </md-button>
@@ -33,7 +33,7 @@
             <md-input-container flex="50">
               <label>Repita Contraseña</label>
               <md-icon class="md-primary">lock_outline</md-icon>
-              <input name="newPassword" ng-model="repeatPassword" type="password"/>
+              <input name="repeatPassword" ng-model="person.repeatPassword" type="password"/>
             </md-input-container>
           </div>
           <h3 class="md-subhead">Cargo...</h3>
@@ -116,7 +116,7 @@
           </md-input-container>
         </div>
 
-        <!-- TODO BORRAR ESTO ESTA DUPLICANDO LO ANTERIOR PERO CON PERSON.PROFILE -->
+        <!-- XXX CODIG RANCIO BORRAR ESTO ESTA DUPLICANDO LO ANTERIOR PERO CON PERSON.PROFILE -->
         <div ng-if="isEmployeeForm">
           <h2 class="md-title">Información Personal</h2>
           <div layout="row">

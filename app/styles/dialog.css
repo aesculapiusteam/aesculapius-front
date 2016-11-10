@@ -1,0 +1,16 @@
+.dialog-close {
+  align-self: center;
+}
+
+.dialog-text-area {
+  height: inherit;
+  overflow-y: auto;
+}
+
+.height-48 {
+  line-height:48px;
+}
+
+.margin-20 {
+  margin-top:20px;
+}

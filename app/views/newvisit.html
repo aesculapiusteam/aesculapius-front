@@ -7,7 +7,7 @@
       <form name="newVisitForm" ng-submit="done()" novalidate>
         <div layout="row">
           <ae-profile-icon ng-if="selectedItemPeople.first_name"
-          name="{{selectedItemPeople.first_name}}" size=32></ae-profile-icon>
+          name="{{selectedItemPeople.first_name}}" size="72"></ae-profile-icon>
           <md-autocomplete md-input-name="person"
           flex required
           md-selected-item="selectedItemPeople"
@@ -52,7 +52,7 @@
     </md-button>
   </div>
   <div flex layout="row" layout-align="end center">
-    <span>{{date | date: "dd MMMM yyyy HH:mm"}}</span>
+    <i>{{date | date: "dd 'de' MMMM yyyy - HH:mm"}}</i>
   </div>
   <div layout="row">
     <md-input-container flex>
