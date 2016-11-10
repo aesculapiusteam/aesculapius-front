@@ -116,9 +116,10 @@
           </md-autocomplete>
           <md-input-container>
             <label>Cantidad</label>
-            <input name="quantity" required ng-model="action.quantity">
+            <input name="quantity" required ng-model="action.quantity" type="number">
             <div ng-messages="registerForm.quantity.$error">
               <div ng-message="required">Este campo es Obligatorio</div>
+              <div ng-message="number">Introduzca solo números.</div>
             </div>
           </md-input-container>
           <md-input-container>
