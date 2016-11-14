@@ -18,6 +18,7 @@ angular.module('aesculapiusFrontApp')
     this.drug = null; // Current selected restangular drug
     this.drugs = null; // Current displayed restangular drugs in /stock
     this.pos = null; //Current position on an ng-repeat of the actions of register
+    this.dialogInfo = null; //Current dialog information for the confirm dialogInfo
 
     this.visitObj = null; // TODO Document this object
     this.reloadHistoryTable = null; // Execute this function to reload the history table
@@ -39,6 +40,8 @@ angular.module('aesculapiusFrontApp')
       }
     };
 
+    //This will make a cool text with items separated with
+    //commas and the last item separated with an 'y'
     this.itemsInText = function(items){
       var lastItem = '';
       var itemNames = [];

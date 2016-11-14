@@ -51,10 +51,11 @@
           }
         };
 
+
         $scope.delete = function() {
-          $scope.drug.remove();
-          $scope.cancel();
-          aeData.reloadStockTable();
+          $rootScope.showConfirm(['drug', $scope.drug.id],
+          [$scope.drug], 'delete', aeData.reloadStockTable);
+          // aeData.reloadStockTable();
         };
 
         $scope.cancel = function() {

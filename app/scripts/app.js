@@ -160,9 +160,10 @@ angular
         });
       };
 
-      $rootScope.showConfirm = function(DiaglogInfo, products, action, okFn, cancelFn) {
+      $rootScope.showConfirm = function(dialogInfo, products, action, cancelFn) {
         var text = '';
         var buttonText = '';
+        aeData.dialogInfo = dialogInfo;
         switch (action) {
           case 'close':
             buttonText = 'Salir';
@@ -194,10 +195,22 @@ angular
           .cancel('Cancelar');
 
         $mdDialog.show(confirm).then(function() {
-          okFn(products);
+          if(action==='delete'){
+            for (var x = 0; x < products.length; x++) {
+              products[x].remove().then(
+                function(){
+                  if(aeData.dialogInfo){
+                    cancelFn();
+                  }
+                }
+              );
+            }
+          }
         }, function() {
+          if(aeData.dialogInfo){
+            $rootScope.showDialog({'currentTarget':{'id':aeData.dialogInfo[0]}}, {'value':aeData.dialogInfo[1]});
+          }
           cancelFn();
-          console.log("que onda");
         });
       };
 
