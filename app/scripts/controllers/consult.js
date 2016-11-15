@@ -29,23 +29,8 @@ angular.module('aesculapiusFrontApp')
     };
 
     $scope.delete = function(){
-      aeData.visitObj.remove().then(
-        function(){
-          $mdDialog.cancel();
-          $mdToast.show(
-            $mdToast.simple()
-            .textContent('Consulta eliminada con exito!')
-            .position('bottom right')
-            .hideDelay(3000)
-          );
-          aeData.reloadHistoryTable();
-        },
-        function(error){
-          $mdDialog.cancel();
-          $rootScope.showActionToast('Lamentablemente hubo un error al eliminar la consulta.','error',
-           error);
-        }
-      );
+      $rootScope.showConfirm(['consult', $scope.visit.id],
+      [$scope.visit], 'delete', aeData.reloadHistoryTable);
     };
 
     $scope.save = function(){

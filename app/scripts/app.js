@@ -163,6 +163,7 @@ angular
       $rootScope.showConfirm = function(dialogInfo, products, action, cancelFn) {
         var text = '';
         var buttonText = '';
+        var toastConfirmText = '';
         aeData.dialogInfo = dialogInfo;
         switch (action) {
           case 'close':
@@ -171,21 +172,17 @@ angular
             break;
           case 'delete':
             buttonText = 'Eliminar';
-            for (var i=0;i<products.length;i++){
-              if(products[i].name){
-                text = '¿Esta seguro que desea eliminar ' + aeData.itemsInText(products) + '?';
-                break;
-              }else if(products[i].first_name || products[i].profile){
-                text = '¿Esta seguro que desea eliminar a ' + aeData.nameOf(products[i]) + '?';
-                break;
-              }else{
-                text = '¿Esta seguro que desea eliminar la visita de ' + products[i].patient_name + '?';
-                break;
-              }
+            if(products[0].name){
+              text = '¿Esta seguro que desea eliminar ' + aeData.itemsInText(products) + '?';
+              toastConfirmText = aeData.itemsInText(products) + ' eliminados con exito!';
+            }else if(products[0].first_name || products[0].profile){
+              text = '¿Esta seguro que desea eliminar a ' + aeData.nameOf(products[0]) + '?';
+              toastConfirmText = aeData.nameOf(products[0]) + ' eliminado con exito!';
+            }else{
+              text = '¿Esta seguro que desea eliminar la visita de ' + products[0].patient_name + '?';
+              toastConfirmText = 'Visita de ' + products[0].patient_name + ' eliminada con exito!';
             }
             break;
-          default:
-
         }
         var confirm = $mdDialog.confirm()
           .title(text)
@@ -203,14 +200,15 @@ angular
               }
               products[x].remove().then(
                 function(){
+                  aeData.reloadHistoryTable();
                   $mdToast.show(
                     $mdToast.simple()
-                    .textContent('Medicamentos eliminados con exito!')
+                    .textContent(toastConfirmText)
                     .position('bottom right')
                     .hideDelay(3000)
                   );
                 }, function(error){
-                  $rootScope.showActionToast('Lamentablemente hubo un error al eliminar los medicamentos','error',
+                  $rootScope.showActionToast('Lamentablemente hubo un error al eliminar '+ aeData.itemsInText(products),'error',
                    error);
                 }
               );
