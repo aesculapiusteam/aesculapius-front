@@ -55,7 +55,6 @@
         $scope.delete = function() {
           $rootScope.showConfirm(['drug', $scope.drug.id],
           [$scope.drug], 'delete', aeData.reloadStockTable);
-          // aeData.reloadStockTable();
         };
 
         $scope.cancel = function() {

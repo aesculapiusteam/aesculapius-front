@@ -196,14 +196,28 @@ angular
 
         $mdDialog.show(confirm).then(function() {
           if(action==='delete'){
-            for (var x = 0; x < products.length; x++) {
+
+            var removeFn = function(x){
+              if(aeData.dialogInfo){
+                cancelFn();
+              }
               products[x].remove().then(
                 function(){
-                  if(aeData.dialogInfo){
-                    cancelFn();
-                  }
+                  $mdToast.show(
+                    $mdToast.simple()
+                    .textContent('Medicamentos eliminados con exito!')
+                    .position('bottom right')
+                    .hideDelay(3000)
+                  );
+                }, function(error){
+                  $rootScope.showActionToast('Lamentablemente hubo un error al eliminar los medicamentos','error',
+                   error);
                 }
               );
+            };
+
+            for (var x = 0; x < products.length; x++) {
+              removeFn(x);
             }
           }
         }, function() {
