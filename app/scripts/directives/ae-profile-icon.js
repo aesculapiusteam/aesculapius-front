@@ -16,10 +16,7 @@ angular.module('aesculapiusFrontApp')
         scope.letter = (attrs.name + "A").charAt(0);
 
         element.bind('click', function(){
-          console.log(scope.value);
-          console.log("ME Estoy ejecutando");
-          //if es un employee o profile
-          var ev = {currentTarget: {id: 'profile'}};
+          var ev = {currentTarget: {id: attrs.type || 'profile'}};
           var fakeScope = {'value': attrs.id};
           scope.$root.showDialog(ev, fakeScope);
         });
