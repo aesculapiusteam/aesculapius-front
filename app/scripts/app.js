@@ -160,7 +160,7 @@ angular
         });
       };
 
-      $rootScope.showConfirm = function(dialogInfo, products, action, cancelFn) {
+      $rootScope.showConfirm = function(dialogInfo, products, action) {
         var text = '';
         var buttonText = '';
         var toastConfirmText = '';
@@ -196,11 +196,13 @@ angular
 
             var removeFn = function(x){
               if(aeData.dialogInfo){
-                cancelFn();
+                aeData.reloadSelectedTable();
               }
               products[x].remove().then(
                 function(){
-                  aeData.reloadHistoryTable();
+                  if (aeData.selected !== 'drug'){
+                    aeData.reloadSelectedTable();
+                  }
                   $mdToast.show(
                     $mdToast.simple()
                     .textContent(toastConfirmText)
@@ -222,7 +224,7 @@ angular
           if(aeData.dialogInfo){
             $rootScope.showDialog({'currentTarget':{'id':aeData.dialogInfo[0]}}, {'value':aeData.dialogInfo[1]});
           }
-          cancelFn();
+          aeData.reloadSelectedTable();
         });
       };
 

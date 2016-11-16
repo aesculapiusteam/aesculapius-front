@@ -30,7 +30,7 @@ angular.module('aesculapiusFrontApp')
 
     $scope.delete = function(){
       $rootScope.showConfirm(['consult', $scope.visit.id],
-      [$scope.visit], 'delete', aeData.reloadHistoryTable);
+      [$scope.visit], 'delete');
     };
 
     $scope.save = function(){

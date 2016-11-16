@@ -87,22 +87,31 @@ angular.module('aesculapiusFrontApp')
       };
 
       $scope.delete = function() {
-        $scope.person.remove().then(
-          function() {
-            $mdToast.show(
-              $mdToast.simple()
-              .textContent("Eliminado correctamente")
-              .position('bottom right')
-              .hideDelay(2000)
-            );
-            aeData.reloadProfilesTable();
-            $mdDialog.cancel();
-          },
-          function(error) {
-            $rootScope.showActionToast('Lamentablemente hubo un error al borrar el perfil','error',
-             error);
-          }
-        );
+        if ($scope.isEmployeeForm){
+          $scope.id = $scope.person.profile.id;
+          $scope.proOrEm = 'employee';
+        }else{
+          $scope.id = $scope.person.id;
+          $scope.proOrEm = 'profile';
+        }
+        $rootScope.showConfirm([$scope.proOrEm, $scope.id],
+        [$scope.person], 'delete');
+        // $scope.person.remove().then(
+        //   function() {
+        //     $mdToast.show(
+        //       $mdToast.simple()
+        //       .textContent("Eliminado correctamente")
+        //       .position('bottom right')
+        //       .hideDelay(2000)
+        //     );
+        //     aeData.reloadProfilesTable();
+        //     $mdDialog.cancel();
+        //   },
+        //   function(error) {
+        //     $rootScope.showActionToast('Lamentablemente hubo un error al borrar el perfil','error',
+        //      error);
+        //   }
+        // );
       };
 
       $scope.cancel = function() {
