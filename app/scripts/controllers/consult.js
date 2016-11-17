@@ -15,15 +15,8 @@ angular.module('aesculapiusFrontApp')
     $scope.enable = true;
     $scope.visit = aeData.visitObj;
     $scope.detail = $scope.visit.detail;
-    $scope.saveButton = true;
 
     $scope.cancel = function() {
-      $mdToast.show(
-        $mdToast.simple()
-        .textContent('No se han hecho modificaciones')
-        .position('bottom right')
-        .hideDelay(2000)
-      );
       $mdDialog.cancel();
     };
 
@@ -33,10 +26,6 @@ angular.module('aesculapiusFrontApp')
       }else{
         $scope.enable = true;
       }
-    };
-
-    $scope.change = function(){
-      $scope.saveButton = false;
     };
 
     $scope.delete = function(){
@@ -54,7 +43,7 @@ angular.module('aesculapiusFrontApp')
         function(error){
           $mdDialog.cancel();
           $rootScope.showActionToast('Lamentablemente hubo un error al eliminar la consulta.','error',
-           error);
+           error.data.detail);
         }
       );
     };
@@ -76,7 +65,7 @@ angular.module('aesculapiusFrontApp')
           aeData.visitObj.datetime = errorDate;
           $mdDialog.cancel();
           $rootScope.showActionToast('Lamentablemente hubo un error al editar la consulta.','error',
-           error);
+           error.data.detail);
         }
       );
     };

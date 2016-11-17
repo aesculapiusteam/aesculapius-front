@@ -28,7 +28,7 @@
         <label>Mes</label>
         <input type="number" ng-model="monthFilter">
       </md-input-container>
-      <md-datepicker style="margin-top:20px;" ng-show="dateFilterSelect.includes('1')"
+      <md-datepicker class="margin-20" ng-show="dateFilterSelect.includes('1')"
       md-open-on-focus ng-model="dateFilter" md-placeholder="Ingrese la fecha"></md-datepicker>
     </div>
   </md-card>
@@ -64,7 +64,7 @@
       <mdt-column align-rule="left">Detalles</mdt-column>
     </mdt-header-row>
     <mdt-custom-cell column-key="datetime">
-      <span style="line-height:48px;">{{value|date: 'dd MMMM yyyy HH:mm'}}</span>
+      <span class="height-48">{{value|date: 'dd MMMM yyyy HH:mm'}}</span>
     </mdt-custom-cell>
     <mdt-custom-cell column-key="totalCashIn">
       <span ng-show="{{value}}">$ {{value}}</span>
@@ -74,11 +74,11 @@
     </mdt-custom-cell>
     <mdt-custom-cell column-key="employee_name">
       <ae-profile-icon name={{value}} size=32 id={{clientScope.idOfEmployee(rowId)}}></ae-profile-icon>
-      <span style="line-height:48px;">{{value}}</span>
+      <span class="height-48">{{value}}</span>
     </mdt-custom-cell>
     <mdt-custom-cell column-key="profile_name">
       <ae-profile-icon name={{value}} size=32 id={{clientScope.idOfProfile(rowId)}}></ae-profile-icon>
-      <span style="line-height:48px;">{{value}}</span>
+      <span class="height-48">{{value}}</span>
     </mdt-custom-cell>
     <mdt-custom-cell column-key="id" aria-label="More">
       <mdt-button id="movement" ng-click="$root.showDialog($event, this)" icon="more"></mdt-button>

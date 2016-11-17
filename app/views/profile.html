@@ -2,7 +2,7 @@
   <div layout="row">
     <md-toolbar layout="row">
       <div class="md-toolbar-tools">Editar Perfil</div>
-      <div style="margin-top:10px">
+      <div class="dialog-close">
         <md-button ng-click="cancel()" class="md-icon-button">
           <md-icon>close</md-icon>
         </md-button>
@@ -13,48 +13,58 @@
 
   <md-dialog-content class="md-padding" layout-xs="column" layout="row">
     <div layout="column" layout-padding ng-cloak>
-      <form name="profileForm" autocomplete="nope">
-
-        <div ng-show="isEmployeeForm">
+      <form name="profileForm" ng-submit="save()" autocomplete="nope" novalidate>
+        <div ng-if="isEmployeeForm">
           <h2 class="md-title">Información de Cuenta</h2>
           <div layout="row">
             <md-input-container flex="50">
               <label>Nombre de Usuario</label>
               <md-icon class="md-primary">account_circle</md-icon>
-              <input id="autocompleteoff" name="autocompleteoff" autocomplete="off" ng-model="person.username"/>
+              <input name="username" autocomplete="off" ng-model="person.username" required/>
+              <div ng-messages="profileForm.username.$error">
+                <div ng-message="required">Campo obligatorio</div>
+              </div>
             </md-input-container>
             <md-input-container flex="50">
               <label>Nueva Contraseña</label>
               <md-icon class="md-primary">lock</md-icon>
-              <input ng-model="person.password" type="password"/>
+              <input name="password" ng-model="person.password" type="password"/>
             </md-input-container>
             <md-input-container flex="50">
               <label>Repita Contraseña</label>
               <md-icon class="md-primary">lock_outline</md-icon>
-              <input ng-model="repeat_password" type="password"/>
+              <input name="repeatPassword" ng-model="person.repeatPassword" type="password"/>
             </md-input-container>
           </div>
           <h3 class="md-subhead">Cargo...</h3>
-          <md-select required ng-model="person.charge" placeholder="Seleccione cargo">
-            <md-option value="doctor">Doctora</md-option>
-            <md-option value="secretary">Secretaria</md-option>
-          </md-select>
+          <md-input-container>
+            <md-select name="charge" required ng-model="person.charge" placeholder="Seleccione cargo">
+              <md-option value="doctor">Doctora</md-option>
+              <md-option value="secretary">Secretaria</md-option>
+            </md-select>
+            <div ng-messages="profileForm.charge.$error">
+              <div ng-message="required">Este campo es obligatorio</div>
+            </div>
+          </md-input-container>
           <h3 class="md-subhead">Asistido por/Asiste a...</h3>
           <div layout="row">
-            <md-checkbox value="{{e.id}}" class="md-primary" ng-checked="isChecked(e.id)" ng-repeat="e in allEmployees" ng-click="assistEdSelection(e.id)">
-              {{ e.profile.first_name + " " + e.profile.last_name }}
+            <md-checkbox value="{{e.id}}" class="md-primary"
+            ng-checked="isChecked(e.id)" ng-repeat="e in allEmployees" ng-click="assistEdSelection(e.id)">
+              <span>{{ e.profile.first_name }}</span>
+              <span ng-if="e.profile.last_name">{{ " " + e.profile.last_name }}</span>
             </md-checkbox>
+
           </div>
         </div>
 
-        <div ng-hide="isEmployeeForm">
+        <div ng-if="!isEmployeeForm">
           <h2 class="md-title">Información Personal</h2>
           <div layout="row">
             <md-input-container flex="50">
               <label>Nombre</label>
               <md-icon class="md-primary">person</md-icon>
-              <input name="comments" required="" name="name" ng-model="person.first_name" capitalize-first/>
-              <div ng-messages="profileForm.name.$error">
+              <input required name="firstName" ng-model="person.first_name" capitalize-first/>
+              <div ng-messages="profileForm.firstName.$error">
                 <div ng-message="required">Campo obligatorio</div>
               </div>
             </md-input-container>
@@ -62,13 +72,16 @@
             <md-input-container flex="50">
               <label>Apellido</label>
               <md-icon class="md-primary">face</md-icon>
-              <input name="last_name" ng-model="person.last_name"/>
+              <input name="lastName" ng-model="person.last_name"/>
             </md-input-container>
 
             <md-input-container flex="50">
               <label>DNI</label>
               <md-icon class="md-primary">chrome_reader_mode</md-icon>
-              <input name="dni" ng-model="person.dni"/>
+              <input name="dni" type="number" ng-model="person.dni"/>
+              <div ng-messages="profileForm.dni.$error">
+                <div ng-message="number">Ingrese solo números enteros</div>
+              </div>
             </md-input-container>
           </div>
 
@@ -77,6 +90,9 @@
               <label>Email</label>
               <md-icon class="md-primary">mail</md-icon>
               <input name="email" type="email" ng-model="person.email"/>
+              <div ng-messages="profileForm.email.$error">
+                <div ng-message="email">Debe ingresar un mail valido.</div>
+              </div>
             </md-input-container>
             <md-datepicker class="md-primary" ng-model="person.birth_date" md-placeholder="Nacimiento" flex="50"></md-datepicker>
           </div>
@@ -100,15 +116,15 @@
           </md-input-container>
         </div>
 
-        <!-- TODO BORRAR ESTO ESTA DUPLICANDO LO ANTERIOR PERO CON PERSON.PROFILE -->
-        <div ng-show="isEmployeeForm">
+        <!-- XXX CODIG RANCIO BORRAR ESTO ESTA DUPLICANDO LO ANTERIOR PERO CON PERSON.PROFILE -->
+        <div ng-if="isEmployeeForm">
           <h2 class="md-title">Información Personal</h2>
           <div layout="row">
             <md-input-container flex="50">
               <label>Nombre</label>
               <md-icon class="md-primary">person</md-icon>
-              <input name="comments" required="" name="name" ng-model="person.profile.first_name" capitalize-first/>
-              <div ng-messages="profileForm.name.$error">
+              <input required name="firstName" ng-model="person.profile.first_name" capitalize-first/>
+              <div ng-messages="profileForm.firstName.$error">
                 <div ng-message="required">Campo obligatorio</div>
               </div>
             </md-input-container>
@@ -116,13 +132,16 @@
             <md-input-container flex="50">
               <label>Apellido</label>
               <md-icon class="md-primary">face</md-icon>
-              <input name="last_name" ng-model="person.profile.last_name"/>
+              <input name="lastName" ng-model="person.profile.last_name"/>
             </md-input-container>
 
             <md-input-container flex="50">
               <label>DNI</label>
               <md-icon class="md-primary">chrome_reader_mode</md-icon>
-              <input name="dni" ng-model="person.profile.dni"/>
+              <input name="dni" type="number" ng-model="person.profile.dni"/>
+              <div ng-messages="profileForm.dni.$error">
+                <div ng-message="number">Ingrese solo números enteros</div>
+              </div>
             </md-input-container>
           </div>
 
@@ -131,8 +150,10 @@
               <label>Email</label>
               <md-icon class="md-primary">mail</md-icon>
               <input name="email" type="email" ng-model="person.profile.email"/>
+              <div ng-messages="profileForm.email.$error">
+                <div ng-message="email">Debe ingresar un mail valido.</div>
+              </div>
             </md-input-container>
-            <!-- <md-datepicker class="md-primary" ng-model="person.birth_date" md-placeholder="Nacimiento" flex="50"></md-datepicker> -->
             <md-datepicker class="md-primary" ng-model="person.profile.birth_date" md-placeholder="Nacimiento" flex="50"></md-datepicker>
           </div>
 
@@ -154,11 +175,8 @@
             </div>
           </md-input-container>
         </div>
-
       </form>
-
     </div>
-
   </md-dialog-content>
 
   <md-dialog-actions layout="row">
@@ -170,7 +188,7 @@
       <label>Cancelar</label>
       <md-icon>cancel</md-icon>
     </md-button>
-    <md-button class="md-primary" ng-click="save()" layout-align="end center">
+    <md-button ng-disabled="profileForm.$invalid || profileForm.$pristine" class="md-primary" ng-click="save()" layout-align="end center">
       <label>Guardar</label>
       <md-icon>save</md-icon>
     </md-button>

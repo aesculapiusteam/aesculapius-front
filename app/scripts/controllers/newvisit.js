@@ -18,7 +18,7 @@ angular.module('aesculapiusFrontApp')
     $scope.peopleList = function(){
       return allProfiles.getList({search: $scope.filterTextP, limit:5}).then(
         function(response){
-          response.push('necesito esto para el boton añadir en el autocomplete');
+          response.push(' ');
           return response;
         });
       };
@@ -30,6 +30,8 @@ angular.module('aesculapiusFrontApp')
       $scope.cancel = function(){
         $scope.detail = "";
         $scope.selectedItemPeople = "";
+        $scope.newVisitForm.detail.$touched=false;
+        $scope.newVisitForm.person.$touched=false;
       };
 
       $scope.$on('profileAdded', function(br, person){
@@ -52,23 +54,17 @@ angular.module('aesculapiusFrontApp')
             var text = 'Nueva consulta añadida a la Historia Clinica de '+ response.patient_name;
             aeData.visitObj = response;
             $rootScope.showActionToast(text ,
-             {'currentTarget':{'id':'consult'}}, {'value':response.id});
-            // $mdToast.show(
-            //   $mdToast.simple()
-            //   .textContent('Nueva consulta añadida a la Historia Clinica de '+
-            //   $scope.selectedItemPeople.first_name + " " + $scope.selectedItemPeople.last_name)
-            //   .position('bottom right')
-            //   .hideDelay(3000)
-            // );
+             {'currentTarget':{'id':'consult'}}, {'value':response.id}, 5000);
             $scope.cancel();
           },
-          function(){
-            $mdToast.show(
-              $mdToast.simple()
-              .textContent('Hubo un error al realizar la consulta, ¿esta usted logueado?')
-              .position('bottom right')
-              .hideDelay(3000)
-            );
+          function(error){
+            if(error.data.patient){
+              $rootScope.showActionToast('Hubo un error al realizar la consulta','error',
+              'El paciente es inexistente.');
+            }else{
+              $rootScope.showActionToast('Hubo un error al realizar la consulta','error',
+              error);
+            }
             $scope.cancel();
           }
         );
