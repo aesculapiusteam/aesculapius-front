@@ -32,6 +32,7 @@
       md-open-on-focus ng-model="dateFilter" md-placeholder="Ingrese la fecha"></md-datepicker>
     </div>
   </md-card>
+  <md-card class="movementsTable">
   <mdt-table
     sortable-columns="true"
     animate-sort-icon="true"
@@ -64,13 +65,14 @@
       <mdt-column align-rule="left">Detalles</mdt-column>
     </mdt-header-row>
     <mdt-custom-cell column-key="datetime">
-      <span class="height-48">{{value|date: 'dd MMMM yyyy HH:mm'}}</span>
+      <span>{{value|date: 'shortDate'}}</span><br>
+      <span>{{value|date: 'shortTime'}}</span>
     </mdt-custom-cell>
     <mdt-custom-cell column-key="totalCashIn">
-      <span ng-show="{{value}}">$ {{value}}</span>
+      <span ng-show="{{value}}">{{value| currency}}</span>
     </mdt-custom-cell>
     <mdt-custom-cell column-key="totalCashOut">
-      <span ng-show="{{value}}">$ {{value}}</span>
+        <span ng-show="{{value}}">{{value| currency}}</span>
     </mdt-custom-cell>
     <mdt-custom-cell column-key="employee_name">
       <ae-profile-icon name={{value}} size=32></ae-profile-icon>
@@ -84,4 +86,5 @@
       <mdt-button id="movement" ng-click="$root.showDialog($event, this)" icon="more"></mdt-button>
     </mdt-custom-cell>
   </mdt-table>
+  </md-card>
 </md-content>

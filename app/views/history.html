@@ -5,7 +5,7 @@
     </div>
     </md-toolbar>
   </div>
-  <md-content layout="column" layout-padding flex>
+  <md-content class="historyTable" layout="column" layout-padding flex>
     <mdt-table sortable-columns="true" animate-sort-icon="true"
     paginated-rows="{isEnabled: true, rowsPerPageValues: [10,20,50]}"
     mdt-row-paginator="getData(page, pageSize)"
@@ -35,7 +35,7 @@
         {{value| limitTo: 97}}{{value.length > 100? '...': ''}}
       </mdt-custom-cell>
       <mdt-custom-cell column-key="datetime" aria-label="More">
-        {{value|date}}
+        {{value|date: 'shortDate'}}
       </mdt-custom-cell>
       <mdt-custom-cell column-key="id" aria-label="More">
         <mdt-button id="consult" ng-click="clientScope.goToDialog(value, $event, this)" icon="more"></mdt-button>

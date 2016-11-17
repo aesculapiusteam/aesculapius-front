@@ -1,35 +1,161 @@
+/*EMPLOYEE************************************************************************************/
+
+
+/*ICON*/
+.employeesTable table td:nth-child(1) {
+}
+
+/**NAME**/
 .employeesTable table td:nth-child(2) {
-width: 15rem;
+  width: 25%;
 }
 
+/*LASTMNAME*/
 .employeesTable table td:nth-child(3) {
-width: 12rem;
+  width: 25%;
 }
 
+/*CHARCE*/
 .employeesTable table td:nth-child(4) {
-width: 0.6667rem;
+  width: 10%%;
 }
 
+/*MAIL*/
 .employeesTable table td:nth-child(5) {
-width: 15rem;
+  width: 25%;
 }
 
+/*EDIT BUTTON*/
+.employeesTable table td:nth-child(6) {
+  width: 5%;
+}
+
+.employeesTable table tr td {
+    white-space: nowrap;
+}
+
+/*PROFILE***********************************************************************************/
+
+/*NAME*/
 .profileTable table td:nth-child(2) {
-width: 12rem;
+  width: 30%;
 }
 
+/*LASTNAME*/
 .profileTable table td:nth-child(3) {
-width: 12rem;
+  width: 30%;
 }
 
-.stockTable table td:nth-child(3) {
-width: 0.6667rem;
+/*DNI*/
+.profileTable table td:nth-child(4) {
+  width: 10%;
 }
 
+/*MAIL*/
+.profileTable table td:nth-child(5) {
+  width: 10%;
+}
+
+/*EDIT BUTTON*/
+.profileTable table td:nth-child(6) {
+}
+
+/*HISTORY BUTON*/
+.profileTable table td:nth-child(7) {
+}
+
+.profileTable table tr td {
+    white-space: nowrap;
+}
+
+/*STOCK****************************************************************************************/
+
+/*NAME*/
 .stockTable table td:nth-child(2) {
-width: 0.6667rem;
 }
 
-.stockTable table td:nth-child(4) {
-width: 60rem;
+/*QUANTITY*/
+.stockTable table td:nth-child(3) {
 }
+
+/*DETAIL*/
+.stockTable table td:nth-child(4) {
+}
+
+.stockTable table td:nth-child(5) {
+}
+
+.stockTable table tr td {
+    white-space: nowrap;
+}
+
+
+/*/MOVEMENTS****************************************************************************************/
+
+/*DATE*/
+.movementsTable table td:nth-child(2) {
+}
+
+/*EMPLOYEE*/
+.movementsTable table td:nth-child(3) {
+}
+
+/*PACIENT/DONTOR*/
+.movementsTable table td:nth-child(4) {
+}
+
+/*INPUT MONEY*/
+.movementsTable table td:nth-child(5) {
+}
+
+/*INPUT DRUG*/
+.movementsTable table td:nth-child(6) {
+
+}
+
+/*OUTPUT MONEY*/
+.movementsTable table td:nth-child(7) {
+  width: 10px;
+}
+
+/*OUTPUT DRUG*/
+.movementsTable table td:nth-child(8) {
+  width: 10px;
+}
+
+/*DETAIL */
+.movementsTable table td:nth-child(9) {
+  width: 10px;
+}
+
+.movementsTable table tr td {
+    white-space: nowrap;
+}
+
+/*HISTORY**********************************************************************************************/
+
+
+/*DATE*/
+.historyTable table td:nth-child(2) {
+  width: 10%;
+}
+
+/*DOCTOR*/
+.historyTable table td:nth-child(3) {
+  width: 30%;
+}
+
+/*DESCRIPTION*/
+.historyTable table td:nth-child(4) {
+  width: 40%;
+}
+
+/*DETAIL*/
+.historyTable table td:nth-child(5) {
+  width: 5%;
+}
+
+.historyTable table tr td {
+    white-space: nowrap;
+}
+/********************************************************************************************/
