@@ -14,6 +14,10 @@
         $scope.drug = aeData.drug;
         $scope.nullDrug = $scope.drug !== null;
 
+        $scope.$watch('drugForm', function() {
+          aeData.form = $scope.drugForm;
+        });
+
         $scope.add = function() {
           Restangular.all('drugs').post($scope.drug).then(
             function(response) {
@@ -31,6 +35,7 @@
         };
 
         $scope.save = function() {
+          $scope.drugForm.$submitted = true; //for the confirm dialog on close not to open
           if (!aeData.drug) {
             // Must create a new drug
             this.add();

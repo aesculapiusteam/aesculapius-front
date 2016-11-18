@@ -130,12 +130,16 @@ angular
       });
       auth.autoLogin();
 
-      $rootScope.showDialog = function(ev, scope) {
+      $rootScope.showDialog = function(ev, scope, dontFetch) {
         if (scope && scope.value && ev.currentTarget.id !== "consult") { //XXX CODIGO RANCIO !==consult, hay que hacer que todos sean iguales no diferenciar para algunos
-          if(aeData[ev.currentTarget.id + 's']){
-            aeData[ev.currentTarget.id] = aeData[ev.currentTarget.id + 's'].get(scope.value).$object;
-          } else {
-            aeData[ev.currentTarget.id] = Restangular.one(ev.currentTarget.id + 's', scope.value).get().$object;
+          if (!dontFetch){
+            console.log(dontFetch);
+            console.log("WHAT");
+            if(aeData[ev.currentTarget.id + 's']){
+              aeData[ev.currentTarget.id] = aeData[ev.currentTarget.id + 's'].get(scope.value).$object;
+            } else {
+              aeData[ev.currentTarget.id] = Restangular.one(ev.currentTarget.id + 's', scope.value).get().$object;
+            }
           }
 
         } else {
@@ -157,6 +161,9 @@ angular
           targetEvent: ev,
           clickOutsideToClose: true,
           escapeToClose: true,
+          onRemoving: function (){
+            aeData.onDialogClose(aeData[ev.currentTarget.id], ev.currentTarget.id, scope.value);
+          }
         });
       };
 
@@ -222,7 +229,7 @@ angular
           }
         }, function() {
           if(aeData.dialogInfo){
-            $rootScope.showDialog({'currentTarget':{'id':aeData.dialogInfo[0]}}, {'value':aeData.dialogInfo[1]});
+            $rootScope.showDialog({'currentTarget':{'id':aeData.dialogInfo[0]}}, {'value':aeData.dialogInfo[1]}, true);
           }
           aeData.reloadSelectedTable();
         });

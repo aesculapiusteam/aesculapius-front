@@ -96,22 +96,6 @@ angular.module('aesculapiusFrontApp')
         }
         $rootScope.showConfirm([$scope.proOrEm, $scope.id],
         [$scope.person], 'delete');
-        // $scope.person.remove().then(
-        //   function() {
-        //     $mdToast.show(
-        //       $mdToast.simple()
-        //       .textContent("Eliminado correctamente")
-        //       .position('bottom right')
-        //       .hideDelay(2000)
-        //     );
-        //     aeData.reloadProfilesTable();
-        //     $mdDialog.cancel();
-        //   },
-        //   function(error) {
-        //     $rootScope.showActionToast('Lamentablemente hubo un error al borrar el perfil','error',
-        //      error);
-        //   }
-        // );
       };
 
       $scope.cancel = function() {

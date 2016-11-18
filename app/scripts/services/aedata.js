@@ -8,7 +8,7 @@
  * Service in the aesculapiusFrontApp.
  */
 angular.module('aesculapiusFrontApp')
-  .service('aeData', function() {
+  .service('aeData', ['$rootScope', function($rootScope) {
     this.me = null; // Current logged in restangular employee
     this.selected = null; // String, can be profile/employee/drug
     this.profile = null; // Current selected restangular profile
@@ -17,8 +17,10 @@ angular.module('aesculapiusFrontApp')
     this.employees = null; // Current displayed restangular employees in /employees
     this.drug = null; // Current selected restangular drug
     this.drugs = null; // Current displayed restangular drugs in /stock
-    this.pos = null; //Current position on an ng-repeat of the actions of register
-    this.dialogInfo = null; //Current dialog information for the confirm dialogInfo
+    this.pos = null; // Current position on an ng-repeat of the actions of register
+    this.dialogInfo = null; // Current dialog information for the confirm dialogInfo
+    this.form = null; // Current form on use
+    this.formData = null; //  Current data from the current form
 
     this.visitObj = null; // TODO Document this object
     this.reloadHistoryTable = null; // Execute this function to reload the history table
@@ -57,6 +59,13 @@ angular.module('aesculapiusFrontApp')
       return itemNames.join(" ,") + lastItem;
     };
 
+    this.onDialogClose = function(obj, dialogType, id){
+      if (this.form.$dirty && !this.form.$submitted){
+        $rootScope.showConfirm([dialogType, id],
+          obj, 'close');
+      }
+    };
+
     //A profile can have a last name or not so this will give the full name of the person
     this.nameOf = function(obj){
       if(obj.last_name){
@@ -76,4 +85,4 @@ angular.module('aesculapiusFrontApp')
       return this[this.selected];
     };
 
-  });
+  }]);
