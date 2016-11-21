@@ -51,7 +51,7 @@ angular.module('aesculapiusFrontApp')
           aeData.visit.datetime = errorDate;
           $mdDialog.cancel();
           $rootScope.showActionToast('Lamentablemente hubo un error al editar la consulta.','error',
-           error);
+           error.data.detail);
         }
       );
     };

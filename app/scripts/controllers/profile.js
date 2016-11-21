@@ -11,6 +11,8 @@ angular.module('aesculapiusFrontApp')
   .controller('ProfileCtrl', [
     '$scope', '$mdDialog', '$rootScope', 'aeData', 'Restangular', '$mdToast',
     function($scope, $mdDialog, $rootScope, aeData, Restangular, $mdToast) {
+
+
       $scope.person = aeData.getSelected() || {};
       $scope.nullProfile = $scope.person !== null;
       $scope.isEmployeeForm = aeData.selected === "employee";
@@ -23,6 +25,11 @@ angular.module('aesculapiusFrontApp')
       }else{
         $scope.toastId = 'profile';
       }
+
+      $scope.$watch('profileForm', function() {
+        aeData.form = $scope.profileForm;
+        aeData.isDirty($scope.person);
+      });
 
       $scope.add = function() {
         if ($scope.isEmployeeForm && (($scope.person.password && !$scope.person.repeatPassword) || Boolean($scope.person.repeatPassword) !== Boolean($scope.person.password))) {
@@ -53,6 +60,7 @@ angular.module('aesculapiusFrontApp')
       };
 
       $scope.save = function() {
+        $scope.profileForm.$submitted = true; //for the confirm dialog on close not to open
         if (!aeData.getSelected()) {
           // Must create a new person
           this.add();
