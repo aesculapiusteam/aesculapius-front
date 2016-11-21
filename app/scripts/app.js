@@ -141,7 +141,11 @@ angular
           }
 
         } else {
-          aeData[ev.currentTarget.id] = null;
+          if (ev.currentTarget.id === 'consult') {
+            aeData.visit = aeData.visits.get(scope.value).$object;
+          } else {
+            aeData[ev.currentTarget.id] = null;
+          }
         }
 
         //XXX CODIGO RANCIO

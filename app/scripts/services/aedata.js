@@ -20,9 +20,8 @@ angular.module('aesculapiusFrontApp')
     this.pos = null; // Current position on an ng-repeat of the actions of register
     this.dialogInfo = null; // Current dialog information for the confirm dialogInfo
     this.form = null; // Current form on use
-    this.formData = null; //  Current data from the current form
 
-    this.visitObj = null; // TODO Document this object
+    this.visit = null; // TODO Document this object
     this.reloadHistoryTable = null; // Execute this function to reload the history table
     this.reloadEmployeesTable = null; // Execute this function to reload the employees table
     this.reloadProfilesTable = null; // Execute this function to reload the profiles table
@@ -63,6 +62,13 @@ angular.module('aesculapiusFrontApp')
       if (this.form.$dirty && !this.form.$submitted){
         $rootScope.showConfirm([dialogType, id],
           obj, 'close');
+        obj.isDirty = true;
+      }
+    };
+
+    this.isDirty = function(obj){
+      if(obj.isDirty){
+        this.form.$pristine=false;
       }
     };
 

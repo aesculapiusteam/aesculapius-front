@@ -32,6 +32,7 @@ function ($scope, Restangular, aeData, $location, $rootScope) {
   $scope.getData = function (page, pageSize){
     var offset = (page-1) * pageSize;
     return Restangular.all('visits').getList({patient:aeData.historyId, limit: pageSize, offset:offset}).then(function(result){
+      aeData.visits = result;
       return {
         results: result,
         totalResultCount: result.count
@@ -43,7 +44,7 @@ function ($scope, Restangular, aeData, $location, $rootScope) {
   $scope.goToDialog = function (id, ev, that){
     Restangular.one('visits', id).get()
     .then(function(response){
-      aeData.visitObj = response;
+      aeData.visit = response;
       $rootScope.showDialog(ev, that);
       return response;
     });

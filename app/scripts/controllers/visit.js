@@ -13,19 +13,19 @@ angular.module('aesculapiusFrontApp')
   function ($scope, $mdDialog, Restangular, aeData, $mdToast, $rootScope) {
 
     $scope.enable = true;
-    $scope.visit = aeData.visitObj;
-    $scope.detail = $scope.visit.detail;
+    $scope.visit = aeData.visit;
+
+    $scope.$watch('visitForm', function() {
+      aeData.form = $scope.visitForm;
+      aeData.isDirty($scope.visit);
+    });
 
     $scope.cancel = function() {
       $mdDialog.cancel();
     };
 
     $scope.edit = function() {
-      if ($scope.enable === true){
-        $scope.enable = false;
-      }else{
-        $scope.enable = true;
-      }
+      $scope.enable = !$scope.enable;
     };
 
     $scope.delete = function(){
@@ -34,11 +34,12 @@ angular.module('aesculapiusFrontApp')
     };
 
     $scope.save = function(){
-      var errorDetail = aeData.visitObj.detail;
-      var errorDate = aeData.visitObj.datetime;
-      aeData.visitObj.detail = $scope.detail;
-      aeData.visitObj.datetime = Date();
-      aeData.visitObj.put().then(
+      $scope.visitForm.$submitted = true; //for the confirm dialog on close not to open
+      var errorDetail = aeData.visit.detail;
+      var errorDate = aeData.visit.datetime;
+      aeData.visit.detail = $scope.detail;
+      aeData.visit.datetime = Date();
+      aeData.visit.put().then(
         function(response){
           $rootScope.showActionToast('Consulta guardada con exito!',
            {'currentTarget':{'id':'visit'}}, {'value':response.id});
@@ -46,8 +47,8 @@ angular.module('aesculapiusFrontApp')
           aeData.reloadHistoryTable();
         },
         function(error){
-          aeData.visitObj.detail = errorDetail;
-          aeData.visitObj.datetime = errorDate;
+          aeData.visit.detail = errorDetail;
+          aeData.visit.datetime = errorDate;
           $mdDialog.cancel();
           $rootScope.showActionToast('Lamentablemente hubo un error al editar la consulta.','error',
            error);

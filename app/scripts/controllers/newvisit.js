@@ -52,7 +52,7 @@ angular.module('aesculapiusFrontApp')
         allVisits.post(data).then(
           function(response){
             var text = 'Nueva consulta añadida a la Historia Clinica de '+ response.patient_name;
-            aeData.visitObj = response;
+            aeData.visit = response;
             $rootScope.showActionToast(text ,
              {'currentTarget':{'id':'visit'}}, {'value':response.id}, 5000);
             $scope.cancel();

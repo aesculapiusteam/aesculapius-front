@@ -16,6 +16,7 @@
 
         $scope.$watch('drugForm', function() {
           aeData.form = $scope.drugForm;
+          aeData.isDirty($scope.drug);
         });
 
         $scope.add = function() {
@@ -55,7 +56,6 @@
             );
           }
         };
-
 
         $scope.delete = function() {
           $rootScope.showConfirm(['drug', $scope.drug.id],
