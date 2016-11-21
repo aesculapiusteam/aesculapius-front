@@ -73,11 +73,11 @@
       <span ng-show="{{value}}">$ {{value}}</span>
     </mdt-custom-cell>
     <mdt-custom-cell column-key="employee_name">
-      <ae-profile-icon name={{value}} size=32></ae-profile-icon>
+      <ae-profile-icon name={{value}} size=32 id={{clientScope.idOfEmployee(rowId)}}></ae-profile-icon>
       <span class="height-48">{{value}}</span>
     </mdt-custom-cell>
     <mdt-custom-cell column-key="profile_name">
-      <ae-profile-icon name={{value}} size=32></ae-profile-icon>
+      <ae-profile-icon name={{value}} size=32 id={{clientScope.idOfProfile(rowId)}}></ae-profile-icon>
       <span class="height-48">{{value}}</span>
     </mdt-custom-cell>
     <mdt-custom-cell column-key="id" aria-label="More">

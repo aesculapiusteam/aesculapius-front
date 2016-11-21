@@ -53,7 +53,7 @@
               <span>{{ e.profile.first_name }}</span>
               <span ng-if="e.profile.last_name">{{ " " + e.profile.last_name }}</span>
             </md-checkbox>
-            
+
           </div>
         </div>
 
@@ -63,7 +63,7 @@
             <md-input-container flex="50">
               <label>Nombre</label>
               <md-icon class="md-primary">person</md-icon>
-              <input required name="firstName" ng-model="person.first_name"/>
+              <input required name="firstName" ng-model="person.first_name" capitalize-first/>
               <div ng-messages="profileForm.firstName.$error">
                 <div ng-message="required">Campo obligatorio</div>
               </div>
@@ -123,7 +123,7 @@
             <md-input-container flex="50">
               <label>Nombre</label>
               <md-icon class="md-primary">person</md-icon>
-              <input name="comments" required name="firstName" ng-model="person.profile.first_name"/>
+              <input required name="firstName" ng-model="person.profile.first_name" capitalize-first/>
               <div ng-messages="profileForm.firstName.$error">
                 <div ng-message="required">Campo obligatorio</div>
               </div>
