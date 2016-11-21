@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc function
- * @name aesculapiusFrontApp.controller:ConsultCtrl
+ * @name aesculapiusFrontApp.controller:VisitCtrl
  * @description
- * # ConsultCtrl
+ * # VisitCtrl
  * Controller of the aesculapiusFrontApp
  */
 
 angular.module('aesculapiusFrontApp')
-  .controller('ConsultCtrl', ['$scope', '$mdDialog', 'Restangular', 'aeData', '$mdToast', '$rootScope',
+  .controller('VisitCtrl', ['$scope', '$mdDialog', 'Restangular', 'aeData', '$mdToast', '$rootScope',
   function ($scope, $mdDialog, Restangular, aeData, $mdToast, $rootScope) {
 
     $scope.enable = true;
@@ -56,7 +56,7 @@ angular.module('aesculapiusFrontApp')
       aeData.visitObj.put().then(
         function(response){
           $rootScope.showActionToast('Consulta guardada con exito!',
-           {'currentTarget':{'id':'consult'}}, {'value':response.id});
+           {'currentTarget':{'id':'visit'}}, {'value':response.id});
           $mdDialog.cancel();
           aeData.reloadHistoryTable();
         },

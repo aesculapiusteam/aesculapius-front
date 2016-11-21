@@ -90,10 +90,10 @@ angular
         controller: 'DrugCtrl',
         controllerAs: 'drug'
       })
-      .when('/consult', {
-        templateUrl: 'views/consult.html',
-        controller: 'ConsultCtrl',
-        controllerAs: 'consult'
+      .when('/visit', {
+        templateUrl: 'views/visit.html',
+        controller: 'VisitCtrl',
+        controllerAs: 'visit'
       })
       .when('/register', {
         templateUrl: 'views/register.html',
@@ -131,7 +131,7 @@ angular
       auth.autoLogin();
 
       $rootScope.showDialog = function(ev, scope) {
-        if (scope && scope.value && ev.currentTarget.id !== "consult") { //XXX CODIGO RANCIO !==consult, hay que hacer que todos sean iguales no diferenciar para algunos
+        if (scope && scope.value) {
           if(aeData[ev.currentTarget.id + 's']){
             aeData[ev.currentTarget.id] = aeData[ev.currentTarget.id + 's'].get(scope.value).$object;
           } else {
