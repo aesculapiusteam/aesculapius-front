@@ -23,25 +23,17 @@ function ($scope, Restangular, $rootScope, aeData, $location) {
   $scope.fixedFormat;
 
 
-  $scope.idOfProfile = function(rowId, id){
-    
-    for(var i=0;i<rowId;i++){
-      id= aeData.movements[i].profile;
-    }
-    return id;
+  $scope.idOfProfile = function(rowId){
+    return _.find(aeData.movements, {id: rowId}).profile;
   };
-  $scope.idOfEmployee = function(rowId, id){
 
-    for(var i=0;i<rowId;i++){
-      id = aeData.movements[i].employee;
-    }
-    return id;
+  $scope.idOfEmployee = function(rowId){
+    return _.find(aeData.movements, {id: rowId}).employee;
   };
 
   $scope.getTableData = function(result){
     $scope.tableData = result;
     aeData.movements = result;
-    console.log($scope.tableData);
 
     for(var r=0;r<result.length;r++){
       $scope.tableData[r].totalCashIn = null;
