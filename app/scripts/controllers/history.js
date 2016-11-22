@@ -32,6 +32,7 @@ function ($scope, Restangular, aeData, $location, $rootScope) {
   $scope.getData = function (page, pageSize){
     var offset = (page-1) * pageSize;
     return Restangular.all('visits').getList({patient:aeData.historyId, limit: pageSize, offset:offset}).then(function(result){
+      aeData.visits = result;
       return {
         results: result,
         totalResultCount: result.count
@@ -47,5 +48,10 @@ function ($scope, Restangular, aeData, $location, $rootScope) {
       $rootScope.showDialog(ev, that);
       return response;
     });
+  };
+
+  // Devuelve la id del empleado de la visita actual en la tabla
+  $scope.idOfDoctor = function(rowId){
+    return _.find(aeData.visits, {id: rowId}).doctor;
   };
 }]);
