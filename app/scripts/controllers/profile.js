@@ -88,7 +88,7 @@ angular.module('aesculapiusFrontApp')
             },
             function(error) {
               $rootScope.showActionToast('Lamentablemente hubo un error al modificar la informacion.','error',
-               error);
+               error.data.detail);
             }
           );
         }
@@ -111,6 +111,8 @@ angular.module('aesculapiusFrontApp')
       };
 
       $scope.assistEdSelection = function(id) {
+        $scope.profileForm.$pristine = false;
+        console.log($scope.profileForm.$pristine);
         var pos = $scope.person.assist_ed.indexOf(id);
         if (pos > -1) {
           $scope.person.assist_ed.splice(pos, 1);
