@@ -37,11 +37,10 @@ angular.module('aesculapiusFrontApp')
 
     $scope.save = function(){
       $scope.visitForm.$submitted = true; //for the confirm dialog on close not to open
-      var errorDetail = aeData.visit.detail;
-      var errorDate = aeData.visit.datetime;
-      aeData.visit.detail = $scope.detail;
-      aeData.visit.datetime = Date();
-      aeData.visit.put().then(
+      var errorDetail = $scope.visit.detail;
+      var errorDate = $scope.visit.datetime;
+      $scope.visit.datetime = new Date();
+      Restangular.copy($scope.visit).save().then(
         function(response){
           $rootScope.showActionToast('Consulta guardada con exito!',
            {'currentTarget':{'id':'visit'}}, {'value':response.id});
@@ -49,8 +48,8 @@ angular.module('aesculapiusFrontApp')
           aeData.reloadHistoryTable();
         },
         function(error){
-          aeData.visit.detail = errorDetail;
-          aeData.visit.datetime = errorDate;
+          $scope.visit.detail = errorDetail;
+          $scope.visit.datetime = errorDate;
           $mdDialog.cancel();
           $rootScope.showActionToast('Lamentablemente hubo un error al editar la consulta.','error',
            error.data.detail);

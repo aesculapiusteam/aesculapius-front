@@ -36,7 +36,7 @@ angular.module('aesculapiusFrontApp')
           return this.reloadEmployeesTable();
         case "drug":
           return this.reloadStockTable();
-          case "consult":
+          case "visit":
             return this.reloadHistoryTable();
         default:
           return false;
