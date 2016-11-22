@@ -45,7 +45,7 @@ angular.module('aesculapiusFrontApp')
         scope.size = attrs.size || 32;
         scope.letter = (attrs.name + "?").charAt(0).toUpperCase();
         scope.color = attrs.color || palette[Math.floor(Math.random() * palette.length)];
-        scope.name = attrs.name;
+        scope.name = "";
         scope.classes = "";
         scope.ripple = false;
 
