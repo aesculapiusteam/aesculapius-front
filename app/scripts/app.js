@@ -177,8 +177,8 @@ angular
         aeData.dialogInfo = dialogInfo;
         switch (action) {
           case 'close':
-            buttonText = 'Seguir editando';
-            cancelText = 'Salir de todos modos';
+            buttonText = 'Salir de todos modos';
+            cancelText = 'Seguir editando';
             text = 'Hay modificaciones sin guardar. Si sale ahora perderá todos los cambios.';
             break;
           case 'delete':

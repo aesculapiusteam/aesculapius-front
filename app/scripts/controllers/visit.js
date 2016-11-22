@@ -17,7 +17,9 @@ angular.module('aesculapiusFrontApp')
 
     $scope.$watch('visitForm', function() {
       aeData.form = $scope.visitForm;
-      aeData.isDirty($scope.visit);
+      if(aeData.form){//dont do is dirty if undefined because of dialog closed
+        aeData.isDirty($scope.visit);
+      }
     });
 
     $scope.cancel = function() {

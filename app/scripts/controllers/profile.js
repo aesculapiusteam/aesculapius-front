@@ -14,7 +14,7 @@ angular.module('aesculapiusFrontApp')
 
 
       $scope.person = aeData.getSelected() || {};
-      $scope.nullProfile = $scope.person !== null;
+      $scope.nullProfile = !_.isEmpty($scope.person);
       $scope.isEmployeeForm = aeData.selected === "employee";
       if ($scope.isEmployeeForm) {
         $scope.toastId = 'employee';
@@ -28,7 +28,9 @@ angular.module('aesculapiusFrontApp')
 
       $scope.$watch('profileForm', function() {
         aeData.form = $scope.profileForm;
-        aeData.isDirty($scope.person);
+        if(aeData.form){//dont do is dirty if undefined because of dialog closed
+          aeData.isDirty($scope.person);
+        }
       });
 
       $scope.add = function() {
@@ -44,7 +46,6 @@ angular.module('aesculapiusFrontApp')
 
         Restangular.all(aeData.selected + 's').post($scope.person).then( //XXX CODIGO RANCIO la +'s' QUE RANCIO!!!!
           function(response) {
-            console.log($scope.toastId);
             $scope.cancel();
             $scope.personName = aeData.nameOf(response);
             $rootScope.showActionToast($scope.personName + ' ha sido añadido.',
@@ -112,7 +113,6 @@ angular.module('aesculapiusFrontApp')
 
       $scope.assistEdSelection = function(id) {
         $scope.profileForm.$pristine = false;
-        console.log($scope.profileForm.$pristine);
         var pos = $scope.person.assist_ed.indexOf(id);
         if (pos > -1) {
           $scope.person.assist_ed.splice(pos, 1);

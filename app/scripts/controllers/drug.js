@@ -16,7 +16,9 @@
 
         $scope.$watch('drugForm', function() {
           aeData.form = $scope.drugForm;
-          aeData.isDirty($scope.drug);
+          if(aeData.form){//dont do is dirty if undefined because of dialog closed
+            aeData.isDirty($scope.drug);
+          }
         });
 
         $scope.add = function() {
