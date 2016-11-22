@@ -44,12 +44,7 @@
       <span class="height-48">{{value}}</span>
     </mdt-custom-cell>
     <mdt-custom-cell column-key="charge">
-      <i class="material-icons" ng-show="value == 'secretary'">healing</i>
-      <span class="height-48">{{value}}</span>
-    </mdt-custom-cell>
-    <mdt-custom-cell column-key="charge">
-      <div class="material-icons" ng-show="value == 'doctor'"><ae-profile-icon name={{value}} size=32></ae-profile-icon></div>
-      <div class="material-icons" ng-show="value == 'secretary'"><ae-profile-icon name={{value}} size=32></ae-profile-icon></div>
+      <ae-profile-icon name={{value}} size=32></ae-profile-icon>
     </mdt-custom-cell>
     <mdt-custom-cell column-key="id">
       <mdt-button id="employee" value="{{value}}" ng-click="$root.showDialog($event, this)" icon="edit"></mdt-button>

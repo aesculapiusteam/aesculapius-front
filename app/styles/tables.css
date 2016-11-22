@@ -1,11 +1,11 @@
-/*EMPLOYEE************************************************************************************/
+/* EMPLOYEES */
 
 
 /*ICON*/
 .employeesTable table td:nth-child(1) {
 }
 
-/**NAME**/
+/*NAME*/
 .employeesTable table td:nth-child(2) {
   width: 25%;
 }
@@ -34,7 +34,7 @@
     white-space: nowrap;
 }
 
-/*PROFILE***********************************************************************************/
+/* PROFILES */
 
 /*NAME*/
 .profileTable table td:nth-child(2) {
@@ -68,7 +68,7 @@
     white-space: nowrap;
 }
 
-/*STOCK****************************************************************************************/
+/* STOCK */
 
 /*NAME*/
 .stockTable table td:nth-child(2) {
@@ -90,7 +90,8 @@
 }
 
 
-/*/MOVEMENTS****************************************************************************************/
+/* MOVEMENTS */
+
 
 /*DATE*/
 .movementsTable table td:nth-child(2) {
@@ -132,7 +133,7 @@
     white-space: nowrap;
 }
 
-/*HISTORY**********************************************************************************************/
+/* HISTORY */
 
 
 /*DATE*/
@@ -158,4 +159,3 @@
 .historyTable table tr td {
     white-space: nowrap;
 }
-/********************************************************************************************/
