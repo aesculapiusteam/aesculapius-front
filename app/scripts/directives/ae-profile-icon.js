@@ -42,8 +42,14 @@ angular.module('aesculapiusFrontApp')
       restrict: 'E',
       link: function postLink(scope, element, attrs) {
         scope.size = attrs.size || 32;
-        scope.letter = (attrs.name + "A").charAt(0).toUpperCase();
+        scope.letter = (attrs.name + "?").charAt(0).toUpperCase();
         scope.color = palette[Math.floor(Math.random() * palette.length)];
+
+        element.bind('click', function(){
+          var ev = {currentTarget: {id: attrs.type || 'profile'}};
+          var fakeScope = {'value': attrs.id};
+          scope.$root.showDialog(ev, fakeScope);
+        });
       }
     };
   });

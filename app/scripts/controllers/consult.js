@@ -43,7 +43,7 @@ angular.module('aesculapiusFrontApp')
         function(error){
           $mdDialog.cancel();
           $rootScope.showActionToast('Lamentablemente hubo un error al eliminar la consulta.','error',
-           error);
+           error.data.detail);
         }
       );
     };
@@ -65,7 +65,7 @@ angular.module('aesculapiusFrontApp')
           aeData.visitObj.datetime = errorDate;
           $mdDialog.cancel();
           $rootScope.showActionToast('Lamentablemente hubo un error al editar la consulta.','error',
-           error);
+           error.data.detail);
         }
       );
     };
