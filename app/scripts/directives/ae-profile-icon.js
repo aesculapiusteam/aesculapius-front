@@ -38,7 +38,7 @@ angular.module('aesculapiusFrontApp')
         ' font-size:{{size/2}}px; text-align:center; line-height:{{size}}px;">' +
           '{{letter}}' +
         '</div>' +
-        '<md-tooltip>{{name}}</md-tooltip>' +
+        '<md-tooltip md-delay="500">{{name}}</md-tooltip>' +
         '</div>',
       restrict: 'E',
       link: function postLink(scope, element, attrs) {

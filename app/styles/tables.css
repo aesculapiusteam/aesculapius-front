@@ -8,6 +8,10 @@
   text-align: center !important;
 }
 
+.employeesTable table tr td {
+    white-space: nowrap;
+}
+
 /*ICON*/
 .employeesTable table td:nth-child(1) {
 }
@@ -37,56 +41,57 @@
   width: 5%;
 }
 
-.employeesTable table tr td {
-    white-space: nowrap;
-}
 
 /* PROFILES */
 
-.profileTable table td, .profileTable table th {
+.profilesTable table td, .profilesTable table th {
   padding: 0px !important;
 }
 
-.profileTable table th {
+.profilesTable table th {
   text-align: center !important;
 }
 
+.profilesTable table tr td {
+    white-space: nowrap;
+}
+
 /*NAME*/
-.profileTable table td:nth-child(2) {
+.profilesTable table td:nth-child(2) {
   width: 30%;
 }
 
 /*LASTNAME*/
-.profileTable table td:nth-child(3) {
+.profilesTable table td:nth-child(3) {
   width: 30%;
 }
 
 /*DNI*/
-.profileTable table td:nth-child(4) {
+.profilesTable table td:nth-child(4) {
   width: 10%;
 }
 
 /*MAIL*/
-.profileTable table td:nth-child(5) {
+.profilesTable table td:nth-child(5) {
   width: 10%;
 }
 
 /*EDIT BUTTON*/
-.profileTable table td:nth-child(6) {
+.profilesTable table td:nth-child(6) {
 }
 
 /*HISTORY BUTON*/
-.profileTable table td:nth-child(7) {
-}
-
-.profileTable table tr td {
-    white-space: nowrap;
+.profilesTable table td:nth-child(7) {
 }
 
 /* STOCK */
 
 .stockTable table th {
   text-align: center !important;
+}
+
+.stockTable table tr td {
+    white-space: nowrap;
 }
 
 /*NAME*/
@@ -105,13 +110,12 @@
 .stockTable table td:nth-child(5) {
 }
 
-.stockTable table tr td {
-    white-space: nowrap;
-}
-
 
 /* MOVEMENTS */
 
+.movementsTable table tr td {
+    white-space: nowrap;
+}
 
 /*DATE*/
 .movementsTable table td:nth-child(2) {
@@ -149,12 +153,20 @@
   width: 10px;
 }
 
-.movementsTable table tr td {
-    white-space: nowrap;
-}
 
 /* HISTORY */
 
+.historyTable table td, .historyTable table th {
+  padding: 0px !important;
+}
+
+.historyTable table th {
+  text-align: center !important;
+}
+
+.historyTable table tr td {
+    white-space: nowrap;
+}
 
 /*DATE*/
 .historyTable table td:nth-child(2) {
@@ -174,8 +186,4 @@
 /*DETAIL*/
 .historyTable table td:nth-child(5) {
   width: 5%;
-}
-
-.historyTable table tr td {
-    white-space: nowrap;
 }
