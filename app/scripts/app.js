@@ -172,23 +172,29 @@ angular
       $rootScope.showConfirm = function(dialogInfo, products, action) {
         var text = '';
         var buttonText = '';
+        var cancelText = '';
         var toastConfirmText = '';
         aeData.dialogInfo = dialogInfo;
         switch (action) {
           case 'close':
-            buttonText = 'Salir';
-            text = '¿Esta seguro que desea salir? Los cambios no seran guardados.';
+            buttonText = 'Seguir editando';
+            cancelText = 'Salir de todos modos';
+            text = 'Hay modificaciones sin guardar. Si sale ahora perderá todos los cambios.';
             break;
           case 'delete':
             buttonText = 'Eliminar';
+            cancelText = 'Cancelar';
             if(products[0].name){
-              text = '¿Esta seguro que desea eliminar ' + aeData.itemsInText(products) + '?';
+              text = 'Al eliminar ' + aeData.itemsInText(products) +
+              ', este no aparecerá más en el sistema, sin embargo podrá ser restaurado luego.';
               toastConfirmText = aeData.itemsInText(products) + ' eliminados con exito!';
             }else if(products[0].first_name || products[0].profile){
-              text = '¿Esta seguro que desea eliminar a ' + aeData.nameOf(products[0]) + '?';
+              text = 'Al eliminar a ' + aeData.nameOf(products[0]) +
+              ', este no aparecerá más en el sistema, sin embargo podrá ser restaurado luego.';
               toastConfirmText = aeData.nameOf(products[0]) + ' eliminado con exito!';
             }else{
-              text = '¿Esta seguro que desea eliminar la visita de ' + products[0].patient_name + '?';
+              text = 'Al eliminar la visita de ' + products[0].patient_name +
+              ', este no aparecerá más en el sistema, sin embargo podrá ser restaurado luego.';
               toastConfirmText = 'Visita de ' + products[0].patient_name + ' eliminada con exito!';
             }
             break;
@@ -198,7 +204,7 @@ angular
           .textContent('')
           .ariaLabel('confirm-dialog')
           .ok(buttonText)
-          .cancel('Cancelar');
+          .cancel(cancelText);
 
         $mdDialog.show(confirm).then(function() {
           if(action==='delete'){
