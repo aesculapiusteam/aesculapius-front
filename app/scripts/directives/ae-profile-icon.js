@@ -31,25 +31,42 @@ angular.module('aesculapiusFrontApp')
     ];
     return {
       template:
-        '<div md-ink-ripple="{{color}}">' +
-        '<div class="hoverable-shadow hoverable unselectable"' +
+        '<div md-ink-ripple="{{ripple}}">' +
+        '<div class="{{classes}}"' +
         ' style="cursor:pointer; margin:8px; width:{{size}}px; height:{{size}}px;' +
         ' background-color:{{color}}; float:left; border-radius:50%; color:white;' +
         ' font-size:{{size/2}}px; text-align:center; line-height:{{size}}px;">' +
           '{{letter}}' +
         '</div>' +
+        '<md-tooltip md-delay="500">{{name}}</md-tooltip>' +
         '</div>',
       restrict: 'E',
       link: function postLink(scope, element, attrs) {
         scope.size = attrs.size || 32;
         scope.letter = (attrs.name + "?").charAt(0).toUpperCase();
-        scope.color = palette[Math.floor(Math.random() * palette.length)];
+        scope.color = attrs.color || palette[Math.floor(Math.random() * palette.length)];
+        scope.name = "";
+        scope.classes = "";
+        scope.ripple = false;
 
-        element.bind('click', function(){
-          var ev = {currentTarget: {id: attrs.type || 'profile'}};
-          var fakeScope = {'value': attrs.id};
-          scope.$root.showDialog(ev, fakeScope);
-        });
+        if (attrs.type !== "charge") {
+          scope.classes = "hoverable-shadow hoverable unselectable";
+          scope.ripple = scope.color;
+          element.bind('click', function(){
+            var ev = {currentTarget: {id: attrs.type || 'profile'}};
+            var fakeScope = {'value': attrs.id};
+            scope.$root.showDialog(ev, fakeScope);
+          });
+        } else {
+          if (attrs.name === 'doctor') {
+            scope.name = "Doctor/a";
+            scope.color = '#2196f3';
+          }
+          else if (attrs.name === 'secretary') {
+            scope.name = "Secretario/a";
+            scope.color = '#ff9800';
+          }
+        }
       }
     };
   });
