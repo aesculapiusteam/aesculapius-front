@@ -29,6 +29,15 @@ angular.module('aesculapiusFrontApp')
       '#9e9e9e', // Grey
       '#607d8b', // Blue Grey
     ];
+
+    var getColorByString = function(string) {
+      var total = string.length;
+      for (var i = 0; i < string.length; i++) {
+        total += string.charCodeAt(i);
+      }
+      return palette[total % palette.length];
+    };
+
     return {
       template:
         '<div md-ink-ripple="{{ripple}}">' +
@@ -44,7 +53,7 @@ angular.module('aesculapiusFrontApp')
       link: function postLink(scope, element, attrs) {
         scope.size = attrs.size || 32;
         scope.letter = (attrs.name + "?").charAt(0).toUpperCase();
-        scope.color = attrs.color || palette[Math.floor(Math.random() * palette.length)];
+        scope.color = attrs.color || getColorByString(attrs.name);
         scope.name = "";
         scope.classes = "";
         scope.ripple = false;
