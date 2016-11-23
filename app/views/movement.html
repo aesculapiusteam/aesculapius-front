@@ -2,7 +2,7 @@
   <div layout="row">
     <md-toolbar layout="row">
       <div class="md-toolbar-tools">{{movement.datetime|date: 'dd MMMM yyyy HH:mm'}}</div>
-      <div style="margin-top:10px">
+      <div class="dialog-close">
         <md-button ng-click="cancel()" class="md-icon-button">
           <md-icon>close</md-icon>
         </md-button>
@@ -39,7 +39,7 @@
               <span ng-show="{{!value}}">Egreso</span>
             </mdt-custom-cell>
             <mdt-custom-cell column-key="cash">
-              <span ng-show="{{value}}">$ {{value}}</span>
+              <span ng-show="{{value}}">{{value| currency}}</span>
             </mdt-custom-cell>
           </mdt-row>
         </mdt-table>

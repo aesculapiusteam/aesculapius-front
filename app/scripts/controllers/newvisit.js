@@ -18,7 +18,7 @@ angular.module('aesculapiusFrontApp')
     $scope.peopleList = function(){
       return allProfiles.getList({search: $scope.filterTextP, limit:5}).then(
         function(response){
-          response.push('necesito esto para el boton añadir en el autocomplete');
+          response.push(' ');
           return response;
         });
       };
@@ -58,8 +58,13 @@ angular.module('aesculapiusFrontApp')
             $scope.cancel();
           },
           function(error){
-            $rootScope.showActionToast('Hubo un error al realizar la consulta','error',
-             error.data);
+            if(error.data.patient){
+              $rootScope.showActionToast('Hubo un error al realizar la consulta','error',
+              'El paciente es inexistente.');
+            }else{
+              $rootScope.showActionToast('Hubo un error al realizar la consulta','error',
+              error);
+            }
             $scope.cancel();
           }
         );

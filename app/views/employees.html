@@ -13,7 +13,7 @@
   </md-input-container>
 </md-card>
 
-<md-card>
+<md-card class="employeesTable">
   <mdt-table
     sortable-columns="true"
     animate-sort-icon="true"
@@ -40,8 +40,11 @@
       <mdt-column align-rule="left">Editar</mdt-column>
     </mdt-header-row>
     <mdt-custom-cell column-key="profile.first_name">
-      <ae-profile-icon name={{value}} size=32></ae-profile-icon>
-      <span style="line-height:48px;">{{value}}</span>
+      <ae-profile-icon id={{rowId}} name={{value}} type='employee' size=32></ae-profile-icon>
+      <span class="height-48">{{value}}</span>
+    </mdt-custom-cell>
+    <mdt-custom-cell column-key="charge">
+      <ae-profile-icon name={{value}} size=32 type="charge"></ae-profile-icon>
     </mdt-custom-cell>
     <mdt-custom-cell column-key="id">
       <mdt-button id="employee" value="{{value}}" ng-click="$root.showDialog($event, this)" icon="edit"></mdt-button>

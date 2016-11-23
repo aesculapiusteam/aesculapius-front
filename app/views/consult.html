@@ -2,7 +2,7 @@
   <div layout="row">
     <md-toolbar layout="row">
       <div class="md-toolbar-tools">Consulta</div>
-      <div style="margin-top:10px">
+      <div class='dialog-close'>
         <md-button ng-click="cancel()" class="md-icon-button">
           <md-icon>close</md-icon>
         </md-button>
@@ -28,14 +28,13 @@
       </md-button>
     </div>
     <form name="visitForm" submit="save()" novalidate>
-      <md-input-container class="md-block" style="height: inherit;
-    overflow-y: auto;">
+      <md-input-container class="md-block dialog-text-area">
         <label></label>
         <textarea name="detail" type="text" ng-model="detail" ng-change="change()"
         rows="3" ng-disabled="enable" md-no-autogrow required></textarea>
         <div ng-messages="visitForm.detail.$error">
-        <p ng-message="required">Este campo es obligatorio.</p>
-    </div>
+          <p ng-message="required">Este campo es obligatorio.</p>
+        </div>
       </md-input-container>
     </form>
   </md-dialog-content>

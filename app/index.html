@@ -16,10 +16,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,400" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/dialog.css">
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/login.css">
     <link rel="stylesheet" href="styles/loading.css">
     <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/tables.css">
+
     <!-- endbuild -->
   </head>
   <body ng-app="aesculapiusFrontApp" ng-controller="BaseCtrl as base">
@@ -139,7 +142,6 @@
           <md-button class="font-2" target="_blank" ng-href="https://www.facebook.com/Parroquia-Santa-Maria-de-la-Paz-495991100463679/">
             <md-icon md-svg-src="images/facebook.svg"></md-icon>
             <span hide-xs class="pad-0-5 thin-text spacing-1">Parroquia Santa María de la Paz</span>
-            <md-tooltip>Ver Perfil</md-tooltip>
           </md-button>
         </div>
 
@@ -147,7 +149,7 @@
     </md-toolbar>
 
     <!-- Main Content -->
-    <md-content class="with-background full-height">
+    <md-content class="with-background background-height">
       <div ng-view=""></div>
     </md-content>
 
@@ -198,6 +200,7 @@
     <script src="scripts/controllers/newvisit.js"></script>
     <script src="scripts/controllers/movements.js"></script>
     <script src="scripts/controllers/movement.js"></script>
+    <script src="scripts/directives/capitalize-first.js"></script>
     <!-- endbuild -->
   </body>
 </html>
