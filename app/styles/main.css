@@ -16,6 +16,12 @@ md-tooltip .md-content {
   background-color: black;
 }
 
+.md-toolbar-tools {
+  /* Makes the toolbar stay in 64px height, in any resolution */
+  height: 64px;
+  max-height: 64px;
+}
+
 .md-button:not([disabled]):hover {
   background-color: rgba(200, 200, 200, 0.4);
 }
@@ -95,6 +101,6 @@ md-tooltip .md-content {
   background-position: center;
 }
 
-.full-height {
-  height: 100%;
+.background-height {
+  height: calc(100% - 128px);
 }
