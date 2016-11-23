@@ -7,7 +7,7 @@
     </md-button>
   </div>
 </md-toolbar>
-<md-content>
+<md-content class="pad-0-5">
   <md-card layout="column">
     <md-input-container layout="row">
       <md-icon>person</md-icon>
@@ -48,8 +48,8 @@
       'employee_name',
       'profile_name',
       'totalCashIn',
-      'totalDrugsIn',
       'totalCashOut',
+      'totalDrugsIn',
       'totalDrugsOut',
       'id'
       ],
@@ -58,11 +58,11 @@
       <mdt-column align-rule="left">Fecha</mdt-column>
       <mdt-column align-rule="left">Empleado</mdt-column>
       <mdt-column align-rule="left">Paciente/Donador</mdt-column>
-      <mdt-column align-rule="left">Ingreso de Dinero(Total)</mdt-column>
-      <mdt-column align-rule="left">Ingreso de Medicamentos(Total)</mdt-column>
-      <mdt-column align-rule="left">Egreso de Dinero(Total)</mdt-column>
-      <mdt-column align-rule="left">Egreso de Medicamenos(Total)</mdt-column>
-      <mdt-column align-rule="left">Detalles</mdt-column>
+      <mdt-column align-rule="left">+D</mdt-column>
+      <mdt-column align-rule="left">-D</mdt-column>
+      <mdt-column align-rule="left">+M</mdt-column>
+      <mdt-column align-rule="left">-M</mdt-column>
+      <mdt-column align-rule="left">Ver</mdt-column>
     </mdt-header-row>
     <mdt-custom-cell column-key="datetime">
       <span>{{value|date: 'shortDate'}}</span><br>

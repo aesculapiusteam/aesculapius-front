@@ -113,44 +113,65 @@
 
 /* MOVEMENTS */
 
+.movementsTable, .movementsTable mdt-table > md-content > md-content, .movementsTable table td, .movementsTable table th {
+  padding: 0px !important;
+}
+
+.movementsTable table th {
+  text-align: center !important;
+}
+
 .movementsTable table tr td {
     white-space: nowrap;
 }
 
 /*DATE*/
 .movementsTable table td:nth-child(2) {
+  width: 9%;
 }
 
 /*EMPLOYEE*/
 .movementsTable table td:nth-child(3) {
+  width: 27%;
 }
 
 /*PACIENT/DONTOR*/
 .movementsTable table td:nth-child(4) {
+  width: 27%;
 }
 
 /*INPUT MONEY*/
 .movementsTable table td:nth-child(5) {
+  text-align: center;
+  width: 7.4%;
 }
 
 /*INPUT DRUG*/
 .movementsTable table td:nth-child(6) {
-
+  text-align: center;
+  width: 7.4%;
 }
 
 /*OUTPUT MONEY*/
 .movementsTable table td:nth-child(7) {
-  width: 10px;
+  text-align: center;
+  width: 7.4%;
 }
 
 /*OUTPUT DRUG*/
 .movementsTable table td:nth-child(8) {
-  width: 10px;
+  text-align: center;
+  width: 7.4%;
 }
 
 /*DETAIL */
 .movementsTable table td:nth-child(9) {
-  width: 10px;
+  width: 7.4%;
+}
+
+.movementsTable table td:nth-child(9) button {
+  width: 2rem;
+  min-width: 2rem;
 }
 
 

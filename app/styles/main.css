@@ -72,6 +72,10 @@ md-tooltip .md-content {
   align-self: center;
 }
 
+.text-left {
+  text-align: left;
+}
+
 .thin-text {
   font-weight: 100 !important;
 }
