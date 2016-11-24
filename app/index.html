@@ -34,21 +34,12 @@
 
         <a layout="row" href="#" md-ink-ripple class="unselectable hoverable base-link">
           <img class="base-logo center" src="images/logo_nobackground.png"/>
-          <span hide show-gt-md class="base-title">Aesculapius</span>
+          <span hide show-gt-sm class="base-title">Aesculapius</span>
         </a>
 
         <div ng-show="authenticated">
           <span flex="5"></span>
-          <md-button hide show-gt-sm href="#/employees">
-            <md-icon>people</md-icon>
-            <span>Empleados<span>
-            <md-tooltip>Ver Empleados</md-tooltip>
-          </md-button>
-          <md-button hide show-sm show-xs href="#/employees" class="md-icon-button">
-            <md-icon>people</md-icon>
-            <md-tooltip>Ver Empleados</md-tooltip>
-          </md-button>
-          <md-button hide show-gt-sm href="#/profiles">
+          <md-button hide show-gt-sm class="base-button" href="#/profiles">
             <md-icon>local_hospital</md-icon>
             <span>Pacientes<span>
             <md-tooltip>Ver Pacientes</md-tooltip>
@@ -57,7 +48,16 @@
             <md-icon>local_hospital</md-icon>
             <md-tooltip>Ver Pacientes</md-tooltip>
           </md-button>
-          <md-button hide show-gt-sm href="#/stock">
+          <md-button hide show-gt-sm class="base-button" href="#/employees">
+            <md-icon>people</md-icon>
+            <span>Empleados<span>
+            <md-tooltip>Ver Empleados</md-tooltip>
+          </md-button>
+          <md-button hide show-sm show-xs href="#/employees" class="md-icon-button">
+            <md-icon>people</md-icon>
+            <md-tooltip>Ver Empleados</md-tooltip>
+          </md-button>
+          <md-button hide show-gt-sm class="base-button" href="#/stock">
             <md-icon>assignment</md-icon>
             <span>Inventario<span>
             <md-tooltip>Gestionar Inventario</md-tooltip>
@@ -66,7 +66,7 @@
             <md-icon>assignment</md-icon>
             <md-tooltip>Gestionar Inventario</md-tooltip>
           </md-button>
-          <md-button hide show-gt-sm href="#/register">
+          <md-button hide show-gt-sm class="base-button" href="#/register">
             <md-icon>web</md-icon>
             <span>Caja<span>
             <md-tooltip>Ir a la caja</md-tooltip>
@@ -75,7 +75,7 @@
             <md-icon>web</md-icon>
             <md-tooltip>Ir a la caja</md-tooltip>
           </md-button>
-          <md-button hide show-gt-sm href="#/newvisit" ng-if="me.charge==='doctor'">
+          <md-button hide show-gt-sm class="base-button" href="#/newvisit" ng-if="me.charge==='doctor'">
             <md-icon>note_add</md-icon>
             <span>Nueva Consulta<span>
             <md-tooltip>Ir a Nueva Consulta</md-tooltip>
@@ -89,46 +89,21 @@
         <span flex></span>
 
         <div ng-show="authenticated">
-          <md-menu-bar hide show-gt-md>
-            <md-menu>
+          <md-menu-bar>
+            <md-menu md-position-mode="target-right bottom">
               <md-button ng-click="$mdOpenMenu()">
                 <md-icon>person</md-icon>
                 <span hide show-gt-md>{{me.profile.first_name + " " + me.profile.last_name}}</span>
               </md-button>
-              <md-menu-content>
+              <md-menu-content class="base-menu" width="4">
                 <md-menu-item>
                   <md-button id="employee" ng-click="goToDialog($event)">
                     <md-icon>person</md-icon>
-                    <span>Ver perfil</span>
+                    <span>{{me.profile.first_name + " " + me.profile.last_name}}</span>
                   </md-button>
                 </md-menu-item>
-                <md-menu-divider></md-menu-divider>
                 <md-menu-item>
                   <md-button ng-click="logout()">
-                    <md-tooltip>Salir de Aesculapius</md-tooltip>
-                    <md-icon>exit_to_app</md-icon>
-                    <span>Salir de Aesculapius</span>
-                  </md-button>
-                </md-menu-item>
-              </md-menu-content>
-            </md-menu>
-          </md-menu-bar>
-          <md-menu-bar hide show-md	show-sm show-xs>
-            <md-menu>
-              <md-button class="md-icon-button" ng-click="$mdOpenMenu()">
-                <md-icon>person</md-icon>
-              </md-button>
-              <md-menu-content>
-                <md-menu-item>
-                  <md-button id="employee" ng-click="goToDialog($event)">
-                    <md-icon>person</md-icon>
-                    <span>Ver perfil</span>
-                  </md-button>
-                </md-menu-item>
-                <md-menu-divider></md-menu-divider>
-                <md-menu-item>
-                  <md-button ng-click="logout()">
-                    <md-tooltip>Salir de Aesculapius</md-tooltip>
                     <md-icon>exit_to_app</md-icon>
                     <span>Salir de Aesculapius</span>
                   </md-button>
