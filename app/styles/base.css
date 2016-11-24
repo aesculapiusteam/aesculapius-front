@@ -1,5 +1,6 @@
 .base-link {
   border-radius: 5px;
+  padding-right: 1rem;
 }
 
 .base-logo {
@@ -12,4 +13,13 @@
   font-weight: 100 !important;
   letter-spacing: 0.1rem;
   margin-top: 1rem;
+}
+
+.base-button {
+  padding: 0 2px;
+  margin: 0 2px;
+}
+
+.base-menu > md-menu-item, .base-menu > md-menu-item > button {
+  height: 64px !important;
 }

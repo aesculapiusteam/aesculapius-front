@@ -58,7 +58,7 @@ angular.module('aesculapiusFrontApp')
         scope.classes = "";
         scope.ripple = false;
 
-        if (attrs.type !== "charge") {
+        if (attrs.type !== "charge" && attrs.id) { // If any of this happens, the icon will be plane, without click event
           scope.classes = "hoverable-shadow hoverable unselectable";
           scope.ripple = scope.color;
           element.bind('click', function(){
