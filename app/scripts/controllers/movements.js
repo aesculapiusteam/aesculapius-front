@@ -24,10 +24,12 @@ function ($scope, Restangular, $rootScope, aeData, $location) {
 
 
   $scope.idOfProfile = function(rowId){
+    // TODO: This is being executed too many times
     return _.find(aeData.movements, {id: rowId}).profile;
   };
 
   $scope.idOfEmployee = function(rowId){
+    // TODO: This is being executed too many times
     return _.find(aeData.movements, {id: rowId}).employee;
   };
 
