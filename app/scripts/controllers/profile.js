@@ -12,13 +12,17 @@ angular.module('aesculapiusFrontApp')
     '$scope', '$mdDialog', '$rootScope', 'aeData', 'Restangular', '$mdToast',
     function($scope, $mdDialog, $rootScope, aeData, Restangular, $mdToast) {
 
-
-      $scope.person = aeData.getSelected() || {};
-      if(aeData.getSelected()){
-        $scope.nullProfile = false;
-      }else{
+      $scope.person = {};
+      if (aeData[aeData.selected]){
+        $scope.person = aeData[aeData.selected];
+        if(aeData[aeData.selected].id) {
+          $scope.nullProfile = false;
+        }
+      } else {
+        aeData[aeData.selected] = $scope.person;
         $scope.nullProfile = true;
       }
+
       $scope.isEmployeeForm = aeData.selected === "employee";
       if ($scope.isEmployeeForm) {
         $scope.toastId = 'employee';
@@ -32,7 +36,7 @@ angular.module('aesculapiusFrontApp')
 
       $scope.$watch('profileForm', function() {
         aeData.form = $scope.profileForm;
-        if(aeData.form){//dont do is dirty if undefined because of dialog closed
+        if(aeData.form && $scope.person){//dont do is dirty if undefined because of dialog closed
           aeData.isDirty($scope.person);
         }
       });
@@ -66,7 +70,7 @@ angular.module('aesculapiusFrontApp')
 
       $scope.save = function() {
         $scope.profileForm.$submitted = true; //for the confirm dialog on close not to open
-        if (!aeData.getSelected()) {
+        if (!aeData[aeData.selected].id) {
           // Must create a new person
           this.add();
         } else {

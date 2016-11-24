@@ -158,7 +158,7 @@ angular
           clickOutsideToClose: true,
           escapeToClose: true,
           onRemoving: function (){
-            if(!aeData.isConfirmThere){
+            if(!aeData.isConfirmThere){ // If confirm dialog is not there, then open it
               if (scope && (scope.value || scope.value === 0)){
                 aeData.onDialogClose(aeData[ev.currentTarget.id], ev.currentTarget.id, scope.value);
               } else {

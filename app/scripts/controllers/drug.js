@@ -11,10 +11,10 @@
   angular.module('aesculapiusFrontApp')
     .controller('DrugCtrl', ['$scope', '$rootScope', '$mdDialog', 'Restangular', 'aeData',
       function($scope, $rootScope, $mdDialog, Restangular, aeData) {
+
         if (aeData.drug){
           $scope.drug = aeData.drug;
           if (aeData.drug.id){
-            console.log(aeData.drug.id);
             $scope.nullDrug = false;
           }
         } else {
