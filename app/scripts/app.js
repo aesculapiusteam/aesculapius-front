@@ -194,8 +194,30 @@ angular
     }
   ])
   .config(function($mdThemingProvider) {
+
+    $mdThemingProvider.definePalette('orangeModifiedA200', {
+      '50': 'fff3e0',
+      '100': 'ffe0b2',
+      '200': 'ffcc80',
+      '300': 'ffb74d',
+      '400': 'ffa726',
+      '500': 'ff9800',
+      '600': 'fb8c00',
+      '700': 'f57c00',
+      '800': 'ef6c00',
+      '900': 'e65100',
+      'A100': 'ffd180',
+      'A200': 'ff9800', // Button is using this one
+      'A400': 'ff9100',
+      'A700': 'ff6d00',
+      'contrastDefaultColor': 'light',
+      'contrastDarkColors': ['50', '100', //hues which contrast should be 'dark' by default
+       '200', '300', '400', 'A100'],
+      'contrastLightColors': undefined    // could also specify this if default was 'dark'
+    });
+
     $mdThemingProvider.theme('default')
       .primaryPalette('blue')
-      .accentPalette('pink')
+      .accentPalette('orangeModifiedA200')
       .warnPalette('red');
   });
