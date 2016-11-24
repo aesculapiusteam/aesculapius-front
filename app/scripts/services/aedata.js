@@ -20,6 +20,7 @@ angular.module('aesculapiusFrontApp')
     this.pos = null; // Current position on an ng-repeat of the actions of register
     this.dialogInfo = null; // Current dialog information for the confirm dialogInfo
     this.form = null; // Current form on use
+    this.isConfirmThere = null; // Checks if confirm dialog is on
 
     this.visit = null; // TODO Document this object
     this.reloadHistoryTable = null; // Execute this function to reload the history table
@@ -58,7 +59,9 @@ angular.module('aesculapiusFrontApp')
       return itemNames.join(" ,") + lastItem;
     };
 
+    // On closed dialog this will be excecuted
     this.onDialogClose = function(obj, dialogType, id){
+      id = id || 0;
       if (this.form.$dirty && !this.form.$submitted){
         $rootScope.showConfirm([dialogType, id],
           obj, 'close');

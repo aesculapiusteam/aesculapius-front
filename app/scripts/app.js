@@ -131,7 +131,7 @@ angular
       auth.autoLogin();
 
       $rootScope.showDialog = function(ev, scope, dontFetch) {
-        if (scope && scope.value) {
+        if (scope && (scope.value || scope.value === 0)) {
           if (!dontFetch){
             if(aeData[ev.currentTarget.id + 's']){
               aeData[ev.currentTarget.id] = aeData[ev.currentTarget.id + 's'].get(scope.value).$object;
@@ -139,15 +139,9 @@ angular
               aeData[ev.currentTarget.id] = Restangular.one(ev.currentTarget.id + 's', scope.value).get().$object;
             }
           }
-
         } else {
-          if (ev.currentTarget.id === 'consult') {
-            aeData.visit = aeData.visits.get(scope.value).$object;
-          } else {
-            aeData[ev.currentTarget.id] = null;
-          }
+          aeData[ev.currentTarget.id] = null;
         }
-
         //XXX CODIGO RANCIO
         var employeeProfile; //Uses profile.html/ProfileCtrl if is employee because there is not employee.html
         if (ev.currentTarget.id === "employee") {
@@ -164,17 +158,24 @@ angular
           clickOutsideToClose: true,
           escapeToClose: true,
           onRemoving: function (){
-            aeData.onDialogClose(aeData[ev.currentTarget.id], ev.currentTarget.id, scope.value);
+            if(!aeData.isConfirmThere){
+              if (scope && (scope.value || scope.value === 0)){
+                aeData.onDialogClose(aeData[ev.currentTarget.id], ev.currentTarget.id, scope.value);
+              } else {
+                aeData.onDialogClose(aeData[ev.currentTarget.id], ev.currentTarget.id);
+              }
+            }
           }
         });
       };
 
       $rootScope.showConfirm = function(dialogInfo, products, action) {
-        var text = '';
-        var buttonText = '';
-        var cancelText = '';
-        var toastConfirmText = '';
-        aeData.dialogInfo = dialogInfo;
+        var text = ''; // Title of the confirm dialog
+        var buttonText = ''; // Text of the OK button
+        var cancelText = ''; // Text for the cancel button
+        var toastConfirmText = ''; // Text that the toast will have if saved/deleted
+        aeData.dialogInfo = dialogInfo; // Dialog info contains an array with the type of dialog to open and an ID
+        // Example for dialogInfo -> ['drug', 7]
         switch (action) {
           case 'close':
             buttonText = 'Salir de todos modos';
@@ -199,26 +200,23 @@ angular
             }
             break;
         }
-        var confirm = $mdDialog.confirm()
+        aeData.isConfirmThere = true; // the confirm dialog is open
+
+        var confirm = $mdDialog.confirm()//show the dialog!
           .title(text)
           .textContent('')
           .ariaLabel('confirm-dialog')
           .ok(buttonText)
           .cancel(cancelText);
 
-        $mdDialog.show(confirm).then(function() {
+        $mdDialog.show(confirm).then(function() {// If OK
+          aeData.isConfirmThere = false;
           if(action==='delete'){
-
-            var removeFn = function(x){
-              if(aeData.dialogInfo){
-                aeData.reloadSelectedTable();
-              }
+            var removeFn = function(x){// One function to delete them all, one function to rule them all
               products[x].remove().then(
                 function(){
-                  if (aeData.selected !== 'drug'){
-                    aeData.reloadSelectedTable();
-                  }
-                  $mdToast.show(
+                  aeData.reloadSelectedTable();//If the action has succeded reload selected table
+                  $mdToast.show( // and show the toast
                     $mdToast.simple()
                     .textContent(toastConfirmText)
                     .position('bottom right')
@@ -230,12 +228,12 @@ angular
                 }
               );
             };
-
             for (var x = 0; x < products.length; x++) {
-              removeFn(x);
+              removeFn(x);//run function the times needed to delete all products
             }
           }
-        }, function() {
+        }, function() {//If CANCEL
+          aeData.isConfirmThere = false;
           if(aeData.dialogInfo){
             $rootScope.showDialog({'currentTarget':{'id':aeData.dialogInfo[0]}}, {'value':aeData.dialogInfo[1]}, true);
           }

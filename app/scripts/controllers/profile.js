@@ -14,7 +14,11 @@ angular.module('aesculapiusFrontApp')
 
 
       $scope.person = aeData.getSelected() || {};
-      $scope.nullProfile = !_.isEmpty($scope.person);
+      if(aeData.getSelected()){
+        $scope.nullProfile = false;
+      }else{
+        $scope.nullProfile = true;
+      }
       $scope.isEmployeeForm = aeData.selected === "employee";
       if ($scope.isEmployeeForm) {
         $scope.toastId = 'employee';

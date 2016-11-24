@@ -53,7 +53,6 @@
               <span>{{ e.profile.first_name }}</span>
               <span ng-if="e.profile.last_name">{{ " " + e.profile.last_name }}</span>
             </md-checkbox>
-            
           </div>
         </div>
 
@@ -180,7 +179,7 @@
   </md-dialog-content>
 
   <md-dialog-actions layout="row">
-    <md-button class="md-warn" ng-show="nullProfile" ng-click="delete()" layout-align="start center">
+    <md-button class="md-warn" ng-hide="nullProfile" ng-click="delete()" layout-align="start center">
       <label>Eliminar</label>
       <md-icon>delete</md-icon>
     </md-button>
