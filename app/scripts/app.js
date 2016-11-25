@@ -91,10 +91,10 @@ angular
         controller: 'DrugCtrl',
         controllerAs: 'drug'
       })
-      .when('/consult', {
-        templateUrl: 'views/consult.html',
-        controller: 'ConsultCtrl',
-        controllerAs: 'consult'
+      .when('/visit', {
+        templateUrl: 'views/visit.html',
+        controller: 'VisitCtrl',
+        controllerAs: 'visit'
       })
       .when('/register', {
         templateUrl: 'views/register.html',
@@ -131,18 +131,18 @@ angular
       });
       auth.autoLogin();
 
-      $rootScope.showDialog = function(ev, scope) {
-        if (scope && scope.value && ev.currentTarget.id !== "consult") { //XXX CODIGO RANCIO !==consult, hay que hacer que todos sean iguales no diferenciar para algunos
-          if(aeData[ev.currentTarget.id + 's']){
-            aeData[ev.currentTarget.id] = aeData[ev.currentTarget.id + 's'].get(scope.value).$object;
-          } else {
-            aeData[ev.currentTarget.id] = Restangular.one(ev.currentTarget.id + 's', scope.value).get().$object;
+      $rootScope.showDialog = function(ev, scope, dontFetch) {
+        if (scope && (scope.value || scope.value === 0)) {
+          if (!dontFetch){
+            if(aeData[ev.currentTarget.id + 's']){
+              aeData[ev.currentTarget.id] = aeData[ev.currentTarget.id + 's'].get(scope.value).$object;
+            } else {
+              aeData[ev.currentTarget.id] = Restangular.one(ev.currentTarget.id + 's', scope.value).get().$object;
+            }
           }
-
         } else {
           aeData[ev.currentTarget.id] = null;
         }
-
         //XXX CODIGO RANCIO
         var employeeProfile; //Uses profile.html/ProfileCtrl if is employee because there is not employee.html
         if (ev.currentTarget.id === "employee") {
@@ -158,6 +158,87 @@ angular
           targetEvent: ev,
           clickOutsideToClose: true,
           escapeToClose: true,
+          onRemoving: function (){
+            if(!aeData.isConfirmThere){ // If confirm dialog is not there, then open it
+              if (scope && (scope.value || scope.value === 0)){
+                aeData.onDialogClose(aeData[ev.currentTarget.id], ev.currentTarget.id, scope.value);
+              } else {
+                aeData.onDialogClose(aeData[ev.currentTarget.id], ev.currentTarget.id);
+              }
+            }
+          }
+        });
+      };
+
+      $rootScope.showConfirm = function(dialogInfo, products, action) {
+        var text = ''; // Title of the confirm dialog
+        var buttonText = ''; // Text of the OK button
+        var cancelText = ''; // Text for the cancel button
+        var toastConfirmText = ''; // Text that the toast will have if saved/deleted
+        aeData.dialogInfo = dialogInfo; // Dialog info contains an array with the type of dialog to open and an ID
+        // Example for dialogInfo -> ['drug', 7]
+        switch (action) {
+          case 'close':
+            buttonText = 'Salir de todos modos';
+            cancelText = 'Seguir editando';
+            text = 'Hay modificaciones sin guardar. Si sale ahora perderá todos los cambios.';
+            break;
+          case 'delete':
+            buttonText = 'Eliminar';
+            cancelText = 'Cancelar';
+            if(products[0].name){
+              text = 'Al eliminar ' + aeData.itemsInText(products) +
+              ', este no aparecerá más en el sistema, sin embargo podrá ser restaurado luego.';
+              toastConfirmText = aeData.itemsInText(products) + ' eliminados con exito!';
+            }else if(products[0].first_name || products[0].profile){
+              text = 'Al eliminar a ' + aeData.nameOf(products[0]) +
+              ', este no aparecerá más en el sistema, sin embargo podrá ser restaurado luego.';
+              toastConfirmText = aeData.nameOf(products[0]) + ' eliminado con exito!';
+            }else{
+              text = 'Al eliminar la visita de ' + products[0].patient_name +
+              ', este no aparecerá más en el sistema, sin embargo podrá ser restaurado luego.';
+              toastConfirmText = 'Visita de ' + products[0].patient_name + ' eliminada con exito!';
+            }
+            break;
+        }
+        aeData.isConfirmThere = true; // the confirm dialog is open
+
+        var confirm = $mdDialog.confirm()//show the dialog!
+          .title(text)
+          .textContent('')
+          .ariaLabel('confirm-dialog')
+          .ok(buttonText)
+          .cancel(cancelText);
+
+        $mdDialog.show(confirm).then(function() {// If OK
+          aeData.isConfirmThere = false;
+          if(action==='delete'){
+            var removeFn = function(x){// One function to delete them all, one function to rule them all
+              products[x].remove().then(
+                function(){
+                  aeData.reloadSelectedTable();//If the action has succeded reload selected table
+                  $mdToast.show( // and show the toast
+                    $mdToast.simple()
+                    .textContent(toastConfirmText)
+                    .position('bottom right')
+                    .hideDelay(3000)
+                  );
+                }, function(error){
+                  $rootScope.showActionToast('Lamentablemente hubo un error al eliminar '+ aeData.itemsInText(products),'error',
+                   error);
+                }
+              );
+            };
+            for (var x = 0; x < products.length; x++) {
+              removeFn(x);//run function the times needed to delete all products
+            }
+          }
+        }, function() {//If CANCEL
+          aeData.isConfirmThere = false;
+          if(aeData.dialogInfo){
+            $rootScope.showDialog({'currentTarget':{'id':aeData.dialogInfo[0]}}, {'value':aeData.dialogInfo[1]}, true);
+          }
+          aeData.reloadSelectedTable();
         });
       };
 

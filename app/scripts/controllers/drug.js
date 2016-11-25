@@ -11,8 +11,23 @@
   angular.module('aesculapiusFrontApp')
     .controller('DrugCtrl', ['$scope', '$rootScope', '$mdDialog', 'Restangular', 'aeData',
       function($scope, $rootScope, $mdDialog, Restangular, aeData) {
-        $scope.drug = aeData.drug;
-        $scope.nullDrug = $scope.drug !== null;
+
+        if (aeData.drug){
+          $scope.drug = aeData.drug;
+          if (aeData.drug.id){
+            $scope.nullDrug = false;
+          }
+        } else {
+          aeData.drug = $scope.drug;
+          $scope.nullDrug = true;
+        }
+
+        $scope.$watch('drugForm', function() {
+          aeData.form = $scope.drugForm;
+          if(aeData.form && $scope.drug){// dont run isDirty() if undefined because of dialog closed
+            aeData.isDirty($scope.drug);
+          }
+        });
 
         $scope.add = function() {
           Restangular.all('drugs').post($scope.drug).then(
@@ -31,7 +46,8 @@
         };
 
         $scope.save = function() {
-          if (!aeData.drug) {
+          $scope.drugForm.$submitted = true; //for the confirm dialog on close not to open
+          if (!aeData.drug.id) {
             // Must create a new drug
             this.add();
           } else {
@@ -52,9 +68,8 @@
         };
 
         $scope.delete = function() {
-          $scope.drug.remove();
-          $scope.cancel();
-          aeData.reloadStockTable();
+          $rootScope.showConfirm(['drug', $scope.drug.id],
+          [$scope.drug], 'delete');
         };
 
         $scope.cancel = function() {

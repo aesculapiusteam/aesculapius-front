@@ -11,8 +11,18 @@ angular.module('aesculapiusFrontApp')
   .controller('ProfileCtrl', [
     '$scope', '$mdDialog', '$rootScope', 'aeData', 'Restangular', '$mdToast',
     function($scope, $mdDialog, $rootScope, aeData, Restangular, $mdToast) {
-      $scope.person = aeData.getSelected() || {};
-      $scope.nullProfile = $scope.person !== null;
+
+      $scope.person = {};
+      if (aeData[aeData.selected]){
+        $scope.person = aeData[aeData.selected];
+        if(aeData[aeData.selected].id) {
+          $scope.nullProfile = false;
+        }
+      } else {
+        aeData[aeData.selected] = $scope.person;
+        $scope.nullProfile = true;
+      }
+
       $scope.isEmployeeForm = aeData.selected === "employee";
       if ($scope.isEmployeeForm) {
         $scope.toastId = 'employee';
@@ -24,8 +34,12 @@ angular.module('aesculapiusFrontApp')
         $scope.toastId = 'profile';
       }
 
-      // var dateToFormat = $scope.person.birth_date || $scope.person.profile.birth_date;
-      // $scope.birthDate = moment(dateToFormat);
+      $scope.$watch('profileForm', function() {
+        aeData.form = $scope.profileForm;
+        if(aeData.form && $scope.person){//dont do is dirty if undefined because of dialog closed
+          aeData.isDirty($scope.person);
+        }
+      });
 
       $scope.add = function() {
         if ($scope.isEmployeeForm && (($scope.person.password && !$scope.person.repeatPassword) || Boolean($scope.person.repeatPassword) !== Boolean($scope.person.password))) {
@@ -40,7 +54,6 @@ angular.module('aesculapiusFrontApp')
 
         Restangular.all(aeData.selected + 's').post($scope.person).then( //XXX CODIGO RANCIO la +'s' QUE RANCIO!!!!
           function(response) {
-            console.log($scope.toastId);
             $scope.cancel();
             $scope.personName = aeData.nameOf(response);
             $rootScope.showActionToast($scope.personName + ' ha sido añadido.',
@@ -57,7 +70,8 @@ angular.module('aesculapiusFrontApp')
 
       $scope.save = function() {
         $scope.person.birth_date = moment($scope.birthDate).format('YYYY-MM-DD');
-        if (!aeData.getSelected()) {
+        $scope.profileForm.$submitted = true; //for the confirm dialog on close not to open
+        if (!aeData[aeData.selected].id) {
           // Must create a new person
           this.add();
         } else {
@@ -93,22 +107,15 @@ angular.module('aesculapiusFrontApp')
       };
 
       $scope.delete = function() {
-        $scope.person.remove().then(
-          function() {
-            $mdToast.show(
-              $mdToast.simple()
-              .textContent("Eliminado correctamente")
-              .position('bottom right')
-              .hideDelay(2000)
-            );
-            aeData.reloadProfilesTable();
-            $mdDialog.cancel();
-          },
-          function(error) {
-            $rootScope.showActionToast('Lamentablemente hubo un error al borrar el perfil','error',
-             error.data.detail);
-          }
-        );
+        if ($scope.isEmployeeForm){
+          $scope.id = $scope.person.profile.id;
+          $scope.proOrEm = 'employee';
+        }else{
+          $scope.id = $scope.person.id;
+          $scope.proOrEm = 'profile';
+        }
+        $rootScope.showConfirm([$scope.proOrEm, $scope.id],
+        [$scope.person], 'delete');
       };
 
       $scope.cancel = function() {
@@ -117,7 +124,6 @@ angular.module('aesculapiusFrontApp')
 
       $scope.assistEdSelection = function(id) {
         $scope.profileForm.$pristine = false;
-        console.log($scope.profileForm.$pristine);
         var pos = $scope.person.assist_ed.indexOf(id);
         if (pos > -1) {
           $scope.person.assist_ed.splice(pos, 1);
