@@ -185,17 +185,17 @@ angular
           case 'delete':
             buttonText = 'Eliminar';
             cancelText = 'Cancelar';
-            if(products[0].name){
+            if(products[0].name){ // Drug
               text = 'Al eliminar ' + aeData.itemsInText(products) +
               ', este no aparecerá más en el sistema, sin embargo podrá ser restaurado luego.';
               toastConfirmText = aeData.itemsInText(products) + ' eliminados con exito!';
-            }else if(products[0].first_name || products[0].profile){
+            }else if(products[0].first_name || products[0].profile){ // Employees and Profiles
               text = 'Al eliminar a ' + aeData.nameOf(products[0]) +
               ', este no aparecerá más en el sistema, sin embargo podrá ser restaurado luego.';
               toastConfirmText = aeData.nameOf(products[0]) + ' eliminado con exito!';
-            }else{
+            }else{ // Visit
               text = 'Al eliminar la visita de ' + products[0].patient_name +
-              ', este no aparecerá más en el sistema, sin embargo podrá ser restaurado luego.';
+              ', esta no aparecerá más en el sistema, sin embargo podrá ser restaurado luego.';
               toastConfirmText = 'Visita de ' + products[0].patient_name + ' eliminada con exito!';
             }
             break;
