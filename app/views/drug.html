@@ -45,9 +45,9 @@
 
     </div>
   </md-dialog-content>
-
+  
   <md-dialog-actions layout="row">
-    <md-button class="md-warn" ng-show="nullDrug"
+    <md-button class="md-warn" ng-hide="nullDrug || !drug.id"
      ng-click="delete()" layout-align="start center">
       <label>Eliminar</label>
       <md-icon>delete</md-icon>

@@ -44,7 +44,7 @@ function ($scope, Restangular, aeData, $location, $rootScope) {
   $scope.goToDialog = function (id, ev, that){
     Restangular.one('visits', id).get()
     .then(function(response){
-      aeData.visitObj = response;
+      aeData.visit = response;
       $rootScope.showDialog(ev, that);
       return response;
     });
