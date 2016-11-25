@@ -36,6 +36,7 @@ module.exports = function(config) {
       'bower_components/angular-material-icons/angular-material-icons.min.js',
       'bower_components/md-data-table/dist/md-data-table.js',
       'bower_components/md-data-table/dist/md-data-table-templates.js',
+      'bower_components/moment/moment.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

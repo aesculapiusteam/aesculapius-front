@@ -24,6 +24,9 @@ angular.module('aesculapiusFrontApp')
         $scope.toastId = 'profile';
       }
 
+      // var dateToFormat = $scope.person.birth_date || $scope.person.profile.birth_date;
+      // $scope.birthDate = moment(dateToFormat);
+
       $scope.add = function() {
         if ($scope.isEmployeeForm && (($scope.person.password && !$scope.person.repeatPassword) || Boolean($scope.person.repeatPassword) !== Boolean($scope.person.password))) {
           $mdToast.show( //XXX CODIGO RANCIO MUCHOS MD TOAST QUE HACNE LO MISMO SIMPLIFICAR
@@ -53,6 +56,7 @@ angular.module('aesculapiusFrontApp')
       };
 
       $scope.save = function() {
+        $scope.person.birth_date = moment($scope.birthDate).format('YYYY-MM-DD');
         if (!aeData.getSelected()) {
           // Must create a new person
           this.add();
@@ -79,6 +83,8 @@ angular.module('aesculapiusFrontApp')
               aeData.reloadSelectedTable();
             },
             function(error) {
+              console.log($scope.person.birth_date);
+              console.log(error);
               $rootScope.showActionToast('Lamentablemente hubo un error al modificar la informacion.','error',
                error.data.detail);
             }

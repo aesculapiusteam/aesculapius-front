@@ -37,6 +37,7 @@ angular
         }
         return data;
       });
+
       $mdDateLocaleProvider.formatDate = function(date) {
         if (date) {
           var day = date.getDate();
