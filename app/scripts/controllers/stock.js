@@ -42,11 +42,21 @@
           });
         };
 
+        aeData.reloadStockTable = function(){
+          $scope.refreshTable();
+        };
+
         $scope.deleteRowCallback = function(rows) {
-          function reloadStockTable() {aeData.reloadStockTable();}
-          for (var row = 0; row < rows.length; row++) {
-            Restangular.one('drugs', rows[row]).remove().then(reloadStockTable);
+          var products = [];
+          for (var x=0;x<rows.length;x++){
+            for (var i=0;i<aeData.drugs.length;i++){
+              if (aeData.drugs[i].id === rows[x]){
+                products.push(aeData.drugs[i]);
+                break;
+              }
+            }
           }
+          $rootScope.showConfirm(null, products, 'delete', aeData.reloadStockTable);
         };
 
 

@@ -5,3 +5,4 @@
 /bower_components
 /docs
 npm-debug.log
+.DS_Store

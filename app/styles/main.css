@@ -16,6 +16,10 @@ md-tooltip .md-content {
   background-color: black;
 }
 
+button label {
+  cursor: pointer;
+}
+
 .md-toolbar-tools {
   /* Makes the toolbar stay in 64px height, in any resolution */
   height: 64px;
