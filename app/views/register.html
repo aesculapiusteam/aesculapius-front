@@ -19,7 +19,7 @@
     <md-card-content>
       <div layout="row">
       <ae-profile-icon ng-if="selectedItemPeople.first_name"
-      name="{{selectedItemPeople.first_name}}" size=72></ae-profile-icon>
+      name="{{selectedItemPeople.first_name}}" size=72 id={{selectedItemPeople.id}}></ae-profile-icon>
       <md-autocomplete flex required md-selected-item="selectedItemPeople"
       md-require-match="true"
       md-input-name="person"

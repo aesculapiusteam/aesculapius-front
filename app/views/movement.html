@@ -39,7 +39,7 @@
               <span ng-show="{{!value}}">Egreso</span>
             </mdt-custom-cell>
             <mdt-custom-cell column-key="cash">
-              <span ng-show="{{value}}">$ {{value}}</span>
+              <span ng-show="{{value}}">{{value| currency}}</span>
             </mdt-custom-cell>
           </mdt-row>
         </mdt-table>

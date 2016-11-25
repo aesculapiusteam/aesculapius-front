@@ -10,7 +10,7 @@
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
     <link rel="stylesheet" href="bower_components/angular-material-icons/angular-material-icons.css" />
-    <link rel="stylesheet" href="bower_components/mdDataTable/dist/md-data-table-style.css" />
+    <link rel="stylesheet" href="bower_components/md-data-table/dist/md-data-table-style.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,400" rel="stylesheet">
@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="styles/login.css">
     <link rel="stylesheet" href="styles/loading.css">
     <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/tables.css">
+
     <!-- endbuild -->
   </head>
   <body ng-app="aesculapiusFrontApp" ng-controller="BaseCtrl as base">
@@ -32,34 +34,54 @@
 
         <a layout="row" href="#" md-ink-ripple class="unselectable hoverable base-link">
           <img class="base-logo center" src="images/logo_nobackground.png"/>
-          <span class="base-title">Aesculapius</span>
+          <span hide show-gt-sm class="base-title">Aesculapius</span>
         </a>
 
         <div ng-show="authenticated">
           <span flex="5"></span>
-          <md-button href="#/employees">
-            <md-icon>people</md-icon>
-            Empleados
-            <md-tooltip>Ver Empleados</md-tooltip>
-          </md-button>
-          <md-button href="#/profiles">
+          <md-button hide show-gt-sm class="base-button" href="#/profiles">
             <md-icon>local_hospital</md-icon>
-            Pacientes
+            <span>Pacientes<span>
             <md-tooltip>Ver Pacientes</md-tooltip>
           </md-button>
-          <md-button href="#/stock">
+          <md-button hide show-sm show-xs href="#/profiles" class="md-icon-button">
+            <md-icon>local_hospital</md-icon>
+            <md-tooltip>Ver Pacientes</md-tooltip>
+          </md-button>
+          <md-button hide show-gt-sm class="base-button" href="#/employees">
+            <md-icon>people</md-icon>
+            <span>Empleados<span>
+            <md-tooltip>Ver Empleados</md-tooltip>
+          </md-button>
+          <md-button hide show-sm show-xs href="#/employees" class="md-icon-button">
+            <md-icon>people</md-icon>
+            <md-tooltip>Ver Empleados</md-tooltip>
+          </md-button>
+          <md-button hide show-gt-sm class="base-button" href="#/stock">
             <md-icon>assignment</md-icon>
-            Inventario
+            <span>Inventario<span>
             <md-tooltip>Gestionar Inventario</md-tooltip>
           </md-button>
-          <md-button href="#/register">
+          <md-button hide show-sm show-xs href="#/stock" class="md-icon-button">
+            <md-icon>assignment</md-icon>
+            <md-tooltip>Gestionar Inventario</md-tooltip>
+          </md-button>
+          <md-button hide show-gt-sm class="base-button" href="#/register">
             <md-icon>web</md-icon>
-            Caja
+            <span>Caja<span>
             <md-tooltip>Ir a la caja</md-tooltip>
           </md-button>
-          <md-button href="#/newvisit" ng-if="me.charge==='doctor'">
+          <md-button hide show-sm show-xs href="#/register" class="md-icon-button">
+            <md-icon>web</md-icon>
+            <md-tooltip>Ir a la caja</md-tooltip>
+          </md-button>
+          <md-button hide show-gt-sm class="base-button" href="#/newvisit" ng-if="me.charge==='doctor'">
             <md-icon>note_add</md-icon>
-            Nueva Consulta
+            <span>Nueva Consulta<span>
+            <md-tooltip>Ir a Nueva Consulta</md-tooltip>
+          </md-button>
+          <md-button hide show-sm show-xs href="#/newvisit" class="md-icon-button" ng-if="me.charge==='doctor'">
+            <md-icon>note_add</md-icon>
             <md-tooltip>Ir a Nueva Consulta</md-tooltip>
           </md-button>
         </div>
@@ -67,22 +89,34 @@
         <span flex></span>
 
         <div ng-show="authenticated">
-          <md-button id="employee" ng-click="goToDialog($event)">
-            <md-icon>person</md-icon>
-            <span>{{me.profile.first_name + " " + me.profile.last_name}}</span>
-            <md-tooltip>Ver Perfil</md-tooltip>
-          </md-button>
-          <md-button ng-click="logout()">
-            <md-tooltip>Salir de Aesculapius</md-tooltip>
-            <md-icon>close</md-icon>
-          </md-button>
+          <md-menu-bar>
+            <md-menu md-position-mode="target-right bottom">
+              <md-button ng-click="$mdOpenMenu()">
+                <md-icon>person</md-icon>
+                <span hide show-gt-md>{{me.profile.first_name + " " + me.profile.last_name}}</span>
+              </md-button>
+              <md-menu-content class="base-menu" width="4">
+                <md-menu-item>
+                  <md-button id="employee" ng-click="goToDialog($event)">
+                    <md-icon>person</md-icon>
+                    <span>{{me.profile.first_name + " " + me.profile.last_name}}</span>
+                  </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                  <md-button ng-click="logout()">
+                    <md-icon>exit_to_app</md-icon>
+                    <span>Salir de Aesculapius</span>
+                  </md-button>
+                </md-menu-item>
+              </md-menu-content>
+            </md-menu>
+          </md-menu-bar>
         </div>
 
         <div ng-hide="authenticated">
           <md-button class="font-2" target="_blank" ng-href="https://www.facebook.com/Parroquia-Santa-Maria-de-la-Paz-495991100463679/">
             <md-icon md-svg-src="images/facebook.svg"></md-icon>
             <span hide-xs class="pad-0-5 thin-text spacing-1">Parroquia Santa María de la Paz</span>
-            <md-tooltip>Ver Perfil</md-tooltip>
           </md-button>
         </div>
 
@@ -90,7 +124,7 @@
     </md-toolbar>
 
     <!-- Main Content -->
-    <md-content class="with-background full-height">
+    <md-content class="with-background background-height">
       <div ng-view=""></div>
     </md-content>
 
@@ -113,11 +147,11 @@
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-material/angular-material.js"></script>
     <script src="bower_components/lodash/lodash.js"></script>
-    <script src="bower_components/angular-material-icons/angular-material-icons.min.js"></script>
-    <script src="bower_components/mdDataTable/dist/md-data-table.js"></script>
-    <script src="bower_components/mdDataTable/dist/md-data-table-templates.js"></script>
     <script src="bower_components/restangular/dist/restangular.js"></script>
     <script src="bower_components/angular-datetime/dist/datetime.js"></script>
+    <script src="bower_components/angular-material-icons/angular-material-icons.min.js"></script>
+    <script src="bower_components/md-data-table/dist/md-data-table.js"></script>
+    <script src="bower_components/md-data-table/dist/md-data-table-templates.js"></script>
     <!-- endbower -->
     <script src="bower_components/angular-i18n/angular-locale_es-ar.js"></script>
     <!-- endbuild -->
@@ -141,6 +175,7 @@
     <script src="scripts/controllers/newvisit.js"></script>
     <script src="scripts/controllers/movements.js"></script>
     <script src="scripts/controllers/movement.js"></script>
+    <script src="scripts/directives/capitalize-first.js"></script>
     <!-- endbuild -->
   </body>
 </html>

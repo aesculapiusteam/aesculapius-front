@@ -1,0 +1,210 @@
+/* EMPLOYEES */
+
+.employeesTable table td, .employeesTable table th {
+  padding: 0px !important;
+}
+
+.employeesTable table th {
+  text-align: center !important;
+}
+
+.employeesTable table tr td {
+    white-space: nowrap;
+}
+
+/*ICON*/
+.employeesTable table td:nth-child(1) {
+}
+
+/*NAME*/
+.employeesTable table td:nth-child(2) {
+  width: 25%;
+}
+
+/*LASTMNAME*/
+.employeesTable table td:nth-child(3) {
+  width: 25%;
+}
+
+/*CHARGE*/
+.employeesTable table td:nth-child(4) {
+  width: 10%%;
+}
+
+/*MAIL*/
+.employeesTable table td:nth-child(5) {
+  width: 25%;
+}
+
+/*EDIT BUTTON*/
+.employeesTable table td:nth-child(6) {
+  width: 15%;
+}
+
+
+/* PROFILES */
+
+.profilesTable table td, .profilesTable table th {
+  padding: 0px !important;
+}
+
+.profilesTable table th {
+  text-align: center !important;
+}
+
+.profilesTable table tr td {
+    white-space: nowrap;
+}
+
+/*NAME*/
+.profilesTable table td:nth-child(2) {
+  width: 30%;
+}
+
+/*LASTNAME*/
+.profilesTable table td:nth-child(3) {
+  width: 30%;
+}
+
+/*DNI*/
+.profilesTable table td:nth-child(4) {
+  width: 10%;
+}
+
+/*MAIL*/
+.profilesTable table td:nth-child(5) {
+  width: 10%;
+}
+
+/*EDIT BUTTON*/
+.profilesTable table td:nth-child(6) {
+}
+
+/*HISTORY BUTON*/
+.profilesTable table td:nth-child(7) {
+}
+
+/* STOCK */
+
+.stockTable table th {
+  text-align: center !important;
+}
+
+.stockTable table tr td {
+    white-space: nowrap;
+}
+
+/*NAME*/
+.stockTable table td:nth-child(2) {
+}
+
+/*QUANTITY*/
+.stockTable table td:nth-child(3) {
+}
+
+/*DETAIL*/
+.stockTable table td:nth-child(4) {
+}
+
+/* EDIT BUTTON */
+.stockTable table td:nth-child(5) {
+}
+
+
+/* MOVEMENTS */
+
+.movementsTable, .movementsTable mdt-table > md-content > md-content, .movementsTable table td, .movementsTable table th {
+  padding: 0px !important;
+}
+
+.movementsTable table th {
+  text-align: center !important;
+}
+
+.movementsTable table tr td {
+    white-space: nowrap;
+}
+
+/*DATE*/
+.movementsTable table td:nth-child(2) {
+  width: 9%;
+}
+
+/*EMPLOYEE*/
+.movementsTable table td:nth-child(3) {
+  width: 27%;
+}
+
+/*PACIENT/DONTOR*/
+.movementsTable table td:nth-child(4) {
+  width: 27%;
+}
+
+/*INPUT MONEY*/
+.movementsTable table td:nth-child(5) {
+  text-align: center;
+  width: 7.4%;
+}
+
+/*INPUT DRUG*/
+.movementsTable table td:nth-child(6) {
+  text-align: center;
+  width: 7.4%;
+}
+
+/*OUTPUT MONEY*/
+.movementsTable table td:nth-child(7) {
+  text-align: center;
+  width: 7.4%;
+}
+
+/*OUTPUT DRUG*/
+.movementsTable table td:nth-child(8) {
+  text-align: center;
+  width: 7.4%;
+}
+
+/*DETAIL */
+.movementsTable table td:nth-child(9) {
+  width: 7.4%;
+}
+
+.movementsTable table td:nth-child(9) button {
+  width: 2rem;
+  min-width: 2rem;
+}
+
+
+/* HISTORY */
+
+.historyTable table td, .historyTable table th {
+  padding: 0px !important;
+}
+
+.historyTable table th {
+  text-align: center !important;
+}
+
+.historyTable table tr td {
+    white-space: nowrap;
+}
+
+/*DATE*/
+.historyTable table td:nth-child(2) {
+  width: 10%;
+}
+
+/*DOCTOR*/
+.historyTable table td:nth-child(3) {
+  width: 30%;
+}
+
+/*DESCRIPTION*/
+.historyTable table td:nth-child(4) {
+  width: 40%;
+}
+
+/*DETAIL*/
+.historyTable table td:nth-child(5) {
+  width: 5%;
+}

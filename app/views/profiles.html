@@ -13,7 +13,7 @@
   </md-input-container>
 </md-card>
 
-<md-card>
+<md-card class="profilesTable">
   <mdt-table
     sortable-columns="true"
     animate-sort-icon="true"
@@ -28,7 +28,6 @@
     'first_name',
     'last_name',
     'dni',
-    'email',
     'id',
     'hc'
     ],
@@ -37,20 +36,19 @@
       <mdt-column align-rule="left">Nombre</mdt-column>
       <mdt-column align-rule="left">Apellido</mdt-column>
       <mdt-column align-rule="left">DNI</mdt-column>
-      <mdt-column align-rule="left">Email</mdt-column>
       <mdt-column align-rule="left">Editar</mdt-column>
       <mdt-column align-rule="left">H. Clínica</mdt-column>
     </mdt-header-row>
     <mdt-custom-cell column-key="first_name">
-      <ae-profile-icon name={{value}} size=32></ae-profile-icon>
-      <span class="height-48">{{value}}
-        <span></mdt-custom-cell>
-        <mdt-custom-cell column-key="id">
-          <mdt-button id="profile" value="{{value}}" ng-click="$root.showDialog($event, this)" icon="edit"></mdt-button>
-        </mdt-custom-cell>
-        <mdt-custom-cell column-key="hc">
-          <mdt-button id="history" ng-click="clientScope.cHistory($event)" icon="description"></mdt-button>
-        </mdt-custom-cell>
+      <ae-profile-icon id={{rowId}} name={{value}} size=32></ae-profile-icon>
+      <span class="height-48">{{value}}</span>
+    </mdt-custom-cell>
+    <mdt-custom-cell column-key="id">
+      <mdt-button id="profile" value="{{value}}" ng-click="$root.showDialog($event, this)" icon="edit"></mdt-button>
+    </mdt-custom-cell>
+    <mdt-custom-cell column-key="hc">
+      <mdt-button id="history" ng-click="clientScope.cHistory($event)" icon="description"></mdt-button>
+    </mdt-custom-cell>
 
-      </mdt-table>
-    </md-card>
+  </mdt-table>
+</md-card>

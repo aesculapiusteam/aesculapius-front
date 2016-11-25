@@ -5,12 +5,12 @@
     </div>
     </md-toolbar>
   </div>
-  <md-content layout="column" layout-padding flex>
+  <md-content class="historyTable" layout="column" layout-padding flex>
     <mdt-table sortable-columns="true" animate-sort-icon="true"
     paginated-rows="{isEnabled: true, rowsPerPageValues: [10,20,50]}"
     mdt-row-paginator="getData(page, pageSize)"
-    mdt-row-paginator-error-message="Hubo un error al cargar las personas."
-    mdt-row-paginator-no-results-message="No hubo resultados de la busqueda."
+    mdt-row-paginator-error-message="Hubo un error al cargar la historia clínica."
+    mdt-row-paginator-no-results-message="Este paciente no ha realizado ninguna consulta."
     mdt-trigger-request="getLoadResultsCallback(loadPageCallback)"
     mdt-row="{
       'table-row-id-key': 'id',
@@ -22,20 +22,21 @@
       ],
     }">
       <mdt-header-row>
-        <mdt-column align-rule="right">Fecha</mdt-column>
+        <mdt-column align-rule="left">Fecha</mdt-column>
         <mdt-column align-rule="left">Médico</mdt-column>
         <mdt-column align-rule="left">Descripción</mdt-column>
-        <mdt-column align-rule="right">Detalles</mdt-column>
+        <mdt-column align-rule="left">Detalles</mdt-column>
       </mdt-header-row>
       <mdt-custom-cell column-key="doctor_name" aria-label="More">
-        <ae-profile-icon name={{value}} size=32></ae-profile-icon>
+        <ae-profile-icon name={{value}} size=32 id={{clientScope.idOfDoctor(rowId)}}></ae-profile-icon>
         <span class="height-48">{{value}}</span>
       </mdt-custom-cell>
       <mdt-custom-cell column-key="detail" aria-label="More">
-        {{value| limitTo: 97}}{{value.length > 100? '...': ''}}
+        {{value| limitTo: 57}}{{value.length > 60? '...': ''}}
       </mdt-custom-cell>
       <mdt-custom-cell column-key="datetime" aria-label="More">
-        {{value|date}}
+        <span>{{value|date: 'shortDate'}}</span><br>
+        <span>{{value|date: 'shortTime'}}</span>
       </mdt-custom-cell>
       <mdt-custom-cell column-key="id" aria-label="More">
         <mdt-button id="visit" ng-click="clientScope.goToDialog(value, $event, this)" icon="more"></mdt-button>

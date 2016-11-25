@@ -49,4 +49,9 @@ function ($scope, Restangular, aeData, $location, $rootScope) {
       return response;
     });
   };
+
+  // Devuelve la id del empleado de la visita actual en la tabla
+  $scope.idOfDoctor = function(rowId){
+    return _.find(aeData.visits, {id: rowId}).doctor;
+  };
 }]);
