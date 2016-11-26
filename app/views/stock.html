@@ -1,21 +1,22 @@
-<md-card>
-  <md-toolbar layout="row">
-    <div class="md-toolbar-tools">Buscar Medicamentos</div>
-  </md-toolbar>
-  <md-input-container layout="row">
-    <div flex="90">
-      <label>Buscar</label>
-      <input ng-model="filterText" type="text">
+<div class="stockTable">
+  <div class="filter-wrapper">
+    <div layout="row" md-whiteframe="1" class="filter-container">
+      <md-icon class="filter-icon">format_list_bulleted</md-icon>
+      <span class="filter-header">Lista de Medicamentos</span>
+      <div class="filter-search" layout="row">
+        <md-icon class="unselectable">search</md-icon>
+        <md-input-container md-no-float class="md-toolbar-tools">
+          <input flex ng-model="filterText" placeholder="Comience a escribir aquí" type="text">
+        </md-input-container>
+      </div>
+      <md-button class="filter-button md-primary" id="drug" ng-click="$root.showDialog($event)">
+        <md-icon>add</md-icon>
+      </md-button>
     </div>
-    <md-button class="md-fab md-primary md-accent" id="drug" ng-click="$root.showDialog($event)">
-      <md-icon>add</md-icon>
-    </md-button>
-  </md-input-container>
-</md-card>
+  </div>
 
-<md-card class="stockTable">
   <mdt-table
-    table-card="{visible: true, title: 'Inventario'}"
+    table-card="{visible: false, title: 'Inventario'}"
     selectable-rows="true"
     alternate-headers="'contextual'"
     delete-row-callback="deleteRowCallback(rows)"

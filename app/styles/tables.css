@@ -1,3 +1,37 @@
+/* FILTERS */
+
+.filter-wrapper {
+  padding: 1rem 0;
+}
+
+.filter-container {
+  padding:1rem;
+  background-color: #FAFAFA;
+}
+
+.filter-header {
+  color: #2196F3;
+  font-size: 1.4rem;
+  align-self: center;
+  white-space: nowrap;
+  padding: 0 1rem;
+}
+
+.filter-icon {
+  padding: 0 0 0 1rem;
+  color: #2196F3 !important;
+}
+
+.filter-search {
+  width: 100%;
+  padding: 0 0 0 1rem;
+}
+
+.filter-button {
+  width: 1rem;
+}
+
+
 /* EMPLOYEES */
 
 .employeesTable table td, .employeesTable table th {
