@@ -57,7 +57,7 @@ angular.module('aesculapiusFrontApp')
       for (var i=0;i<items.length;i++){
         itemNames.push(items[i].name);
       }
-      return itemNames.join(" ,") + lastItem;
+      return itemNames.join(", ") + lastItem;
     };
 
     // On closed dialog this will be excecuted

@@ -174,6 +174,7 @@ angular
         var buttonText = ''; // Text of the OK button
         var cancelText = ''; // Text for the cancel button
         var toastConfirmText = ''; // Text that the toast will have if saved/deleted
+        var nexus = ''; // Text for joining sentences, with plural or singular nexus
         aeData.dialogInfo = dialogInfo; // Dialog info contains an array with the type of dialog to open and an ID
         // Example for dialogInfo -> ['drug', 7]
         switch (action) {
@@ -186,8 +187,9 @@ angular
             buttonText = 'Eliminar';
             cancelText = 'Cancelar';
             if(products[0].name){ // Drug
+              nexus = products.length === 1 ? ' este será removido' : ', estos serán removidos';
               text = 'Al eliminar ' + aeData.itemsInText(products) +
-              ', este no aparecerá más en el sistema, sin embargo podrá ser restaurado luego.';
+                nexus + ' permanentemente del sistema.';
               toastConfirmText = aeData.itemsInText(products) + ' eliminados con exito!';
             }else if(products[0].first_name || products[0].profile){ // Employees and Profiles
               text = 'Al eliminar a ' + aeData.nameOf(products[0]) +
