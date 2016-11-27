@@ -56,6 +56,7 @@
           </div>
         </div>
 
+        <!-- PROFILE FORM -->
         <div ng-if="!isEmployeeForm">
           <h2 class="md-title">Información Personal</h2>
           <div layout="row">
@@ -93,7 +94,9 @@
                 <div ng-message="email">Debe ingresar un mail valido.</div>
               </div>
             </md-input-container>
-            <md-datepicker class="md-primary" ng-model="birthDate" md-placeholder="Nacimiento" flex="50"></md-datepicker>
+            <md-datepicker class="md-primary" name="birthDate" type="date"
+              md-max-date="today"
+            ng-model="$parent.birthDate" md-placeholder="Nacimiento" flex="50"></md-datepicker>
           </div>
 
           <md-input-container class="md-block">
@@ -153,7 +156,9 @@
                 <div ng-message="email">Debe ingresar un mail valido.</div>
               </div>
             </md-input-container>
-            <md-datepicker class="md-primary" ng-model="birthDate" md-placeholder="Nacimiento" flex="50"></md-datepicker>
+            <md-datepicker name="birthDate" type="date"
+              md-max-date="today"
+            class="md-primary" ng-model="$parent.birthDate" md-placeholder="Nacimiento" flex="50"></md-datepicker>
           </div>
 
           <md-input-container class="md-block">
