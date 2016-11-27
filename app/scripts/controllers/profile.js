@@ -133,5 +133,9 @@ angular.module('aesculapiusFrontApp')
         return $scope.person.assist_ed.indexOf(id) > -1;
       };
 
+      $scope.shouldBeAssistedBy = function(type) {
+        return type === 'doctor' ? 'secretary' : 'doctor';
+      };
+
     }
   ]);

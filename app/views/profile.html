@@ -39,21 +39,23 @@
           <h3 class="md-subhead">Cargo...</h3>
           <md-input-container>
             <md-select name="charge" required ng-model="person.charge" placeholder="Seleccione cargo">
-              <md-option value="doctor">Doctora</md-option>
-              <md-option value="secretary">Secretaria</md-option>
+              <md-option value="doctor">Doctor/a</md-option>
+              <md-option value="secretary">Secretario/a</md-option>
             </md-select>
             <div ng-messages="profileForm.charge.$error">
               <div ng-message="required">Este campo es obligatorio</div>
             </div>
           </md-input-container>
-          <h3 class="md-subhead">Asistido por/Asiste a...</h3>
+          <h3 class="md-subhead">{{person.charge === 'doctor' ? 'Asistido por' : 'Asiste a'}}</h3>
           <div layout="row">
             <md-checkbox value="{{e.id}}" class="md-primary"
-            ng-checked="isChecked(e.id)" ng-repeat="e in allEmployees" ng-click="assistEdSelection(e.id)">
+            ng-checked="isChecked(e.id)" ng-repeat="e in allEmployees | filter: {charge: shouldBeAssistedBy(person.charge)}" ng-click="assistEdSelection(e.id)">
               <span>{{ e.profile.first_name }}</span>
               <span ng-if="e.profile.last_name">{{ " " + e.profile.last_name }}</span>
             </md-checkbox>
           </div>
+          <span md-colors="{color:'accent'}" ng-show="person.charge === 'doctor' && (allEmployees | filter: {charge: 'secretary'}).length === 0">{{(allEmployees | filter: {charge: 'secretary'}).length}}No hay ningún/a secretario/a que le pueda asistir.</span>
+          <span md-colors="{color:'accent'}" ng-show="person.charge === 'secretary' && (allEmployees | filter: {charge: 'doctor'}).length === 0">No hay ningún/a doctor/a a quién asistir.</span>
         </div>
 
         <div ng-if="!isEmployeeForm">
