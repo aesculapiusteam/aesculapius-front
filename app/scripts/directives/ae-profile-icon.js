@@ -26,22 +26,24 @@ angular.module('aesculapiusFrontApp')
       '#ff9800', // Orange
       '#ff5722', // Deep Orange
       '#795548', // Brown
-      '#9e9e9e', // Grey
+      // '#9e9e9e', // Grey
       '#607d8b', // Blue Grey
     ];
 
     var getColorByString = function(string) {
-      var total = string.length;
-      for (var i = 0; i < string.length; i++) {
-        total += string.charCodeAt(i);
+      if (string) {
+        var total = string.length;
+        for (var i = 0; i < string.length; i++) {
+          total += string.charCodeAt(i);
+        }
+        return palette[total % palette.length];
       }
-      return palette[total % palette.length];
     };
 
     return {
       template:
         '<div md-ink-ripple="{{ripple}}">' +
-        '<div class="{{classes}}"' +
+        '<div class="unselectable {{classes}}"' +
         ' style="cursor:pointer; margin:8px; width:{{size}}px; height:{{size}}px;' +
         ' background-color:{{color}}; float:left; border-radius:50%; color:white;' +
         ' font-size:{{size/2}}px; text-align:center; line-height:{{size}}px;">' +
@@ -50,10 +52,13 @@ angular.module('aesculapiusFrontApp')
         '<md-tooltip md-delay="500">{{name}}</md-tooltip>' +
         '</div>',
       restrict: 'E',
+      scope: {
+        letter: '@'
+      },
       link: function postLink(scope, element, attrs) {
         scope.size = attrs.size || 32;
-        scope.letter = (attrs.name + "?").charAt(0).toUpperCase();
-        scope.color = attrs.color || getColorByString(attrs.name);
+        scope.letter = attrs.letter || (attrs.name + "?").charAt(0).toUpperCase();
+        scope.color = attrs.color || getColorByString(attrs.name || attrs.letter);
         scope.name = "";
         scope.classes = "";
         scope.ripple = false;

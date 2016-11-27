@@ -9,8 +9,8 @@
  */
 angular.module('aesculapiusFrontApp')
   .controller('RegisterCtrl', ['$scope', 'Restangular', '$mdToast', 'aeData',
-    '$rootScope', '$location',
-    function($scope, Restangular, $mdToast, aeData, $rootScope, $location) {
+    '$rootScope', '$location', '$timeout', '$anchorScroll',
+    function($scope, Restangular, $mdToast, aeData, $rootScope, $location, $timeout, $anchorScroll) {
       $scope.detail = '';
       $scope.selectedItemPeople = '';
       $scope.nActions = [{
@@ -111,10 +111,16 @@ angular.module('aesculapiusFrontApp')
           'detail': '',
           'type': ''
         });
+        $timeout(function() {
+          $location.hash('bottom');
+          $anchorScroll();
+        });
       };
 
       $scope.deleteAction = function(pos) {
-        $scope.nActions.splice($scope.nActions.indexOf(pos), 1);
+        if ($scope.nActions.length > 1) {
+          $scope.nActions.splice($scope.nActions.indexOf(pos), 1);
+        }
       };
 
       $scope.cancel = function() {

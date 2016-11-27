@@ -1,163 +1,170 @@
-<md-toolbar layout="row">
-  <div class="md-toolbar-tools">
-    <span>Caja Registradora</span>
-    <span flex></span>
-    <md-button md-ink-ripple="true" ng-click="goToMovements()">
-      <span>Mostrar Todo</span>
-      <md-icon>arrow_forward</md-icon>
-    </md-button>
-  </div>
-</md-toolbar>
-<md-content layout="column">
-  <form name="registerForm" ng-submit="done()" novalidate>
-  <md-card>
+<div layout="row" md-whiteframe="1" class="filter-container">
+  <md-icon class="filter-icon">web</md-icon>
+  <span class="filter-header filter-full-header">Caja Registradora</span>
+  <md-button class="md-primary filter-text-button-2" ng-click="goToMovements()">
+    <span>Mostrar Transacciones</span>
+    <md-icon>arrow_forward</md-icon>
+    <md-tooltip md-delay="500">Vea el histórico de todos los movimientos de la caja</md-tooltip>
+  </md-button>
+</div>
+
+<form name="registerForm" ng-submit="done()" novalidate>
+  <md-card class="vertical-marg-0-5">
     <md-card-title>
       <div layout="column">
         <span class="md-headline">Introduzca un Nombre</span>
       </div>
     </md-card-title>
     <md-card-content>
-      <div layout="row">
-      <ae-profile-icon ng-if="selectedItemPeople.first_name"
-      name="{{selectedItemPeople.first_name}}" size=72 id={{selectedItemPeople.id}}></ae-profile-icon>
-      <md-autocomplete flex required md-selected-item="selectedItemPeople"
-      md-require-match="true"
-      md-input-name="person"
-      md-search-text="filterTextP"
-      md-items="item in peopleList()"
-      md-item-text="itemText(item)"
-      md-min-length="0"
-      md-delay="1000"
-      md-no-cache="true"
-      md-floating-label="Persona a tratar">
-      <md-item-template>
-        <div ng-if="item.first_name">
-          <span class="item-title">
-            <md-icon>person</md-icon>
-            <span> {{item.first_name}} </span>
-          </span>
-          <span class="item-metadata">
-            <span class="item-metastat">
-              <strong>{{item.last_name}}</strong>
+      <ae-profile-icon ng-if="selectedItemPeople.first_name" name="{{selectedItemPeople.first_name}}" size=72 id={{selectedItemPeople.id}}></ae-profile-icon>
+      <md-autocomplete
+        flex
+        required
+        md-selected-item="selectedItemPeople"
+        md-require-match="true"
+        md-input-name="person"
+        md-search-text="filterTextP"
+        md-items="item in peopleList()"
+        md-item-text="itemText(item)"
+        md-min-length="0"
+        md-delay="1000"
+        md-no-cache="true"
+        md-floating-label="Persona a tratar">
+        <md-item-template>
+          <div ng-if="item.first_name">
+            <span class="item-title">
+              <md-icon>person</md-icon>
+              <span>{{item.first_name}}</span>
             </span>
-            <span class="item-metastat" ng-if="item.dni">
-              - DNI: <strong>{{item.dni}}</strong>
+            <span class="item-metadata">
+              <span class="item-metastat">
+                <strong>{{item.last_name}}</strong>
+              </span>
+              <span class="item-metastat" ng-if="item.dni">
+                - DNI:
+                <strong>{{item.dni}}</strong>
+              </span>
             </span>
-          </span>
-        </div>
-        <div layout="row">
-          <md-button flex id="profile" class="md-primary" aria-label="Person Add" ng-click="$root.showDialog($event, this)">
-            <md-icon>person_add</md-icon>
-            <label>Añadir Persona</label>
-          </md-button>
-        </div>
-      </md-item-template>
-      <div ng-messages="registerForm.person.$error">
-        <div ng-message="required">Este campo es obligatorio</div>
-        <div ng-message="md-require-match">Esta persona no existe.</div>
-      </div>
-    </md-autocomplete>
-    </div>
-  </md-card-content>
-</md-card>
-    <md-card-content flex layout="row">
-      <md-card flex>
-        <md-card-title>
-          <div layout="column">
-            <span class="md-headline">Introduzca el capital y el tipo de acción</span>
           </div>
-        </md-card-title>
-        <md-card-content layout-padding layout="row" layout-align="none center" ng-repeat="action in nActions">
-          <md-input-container>
-            <md-select name="capital" required ng-model="action.capital" placeholder="Capital" class="md-no-underline">
-              <md-option value="0">Medicamento</md-option>
-              <md-option value="1">Dinero</md-option>
-            </md-select>
-            <div ng-messages="registerForm.capital.$error">
-              <div ng-message="required">Este campo es obligatorio</div>
-            </div>
-          </md-input-container>
-          <span ng-show="showOrHide(action.capital)">$</span>
-          <md-autocomplete required ng-if="!showOrHide(action.capital)"
-          md-require-match="true"
-          md-input-name="drug"
-          md-selected-item="action.drug"
-          md-search-text="filterTextM"
-          md-items="drug in drugList()"
-          md-item-text="drug.name"
-          md-min-length="0"
-          md-delay="1000"
-          md-no-cache="true"
-          md-floating-label="Nombre del Medicamento">
-            <md-item-template>
-              <div ng-if="drug.name">
-                <span class="drug-title">
-                  <md-icon>healing</md-icon>
-                  <span>{{drug.name}}</span>
-                </span>
-                <span class="drug-metadata">
-                  <span class="drug-metastat">
-                    - <strong>{{drug.quantity}}</strong>
-                  </span>
-                </span>
-              </div>
-              <div layout="row">
-                <md-button id="drug" flex class="md-primary" aria-label="Drug Add"
-                ng-click="goToDialog($event, nActions.indexOf(action))">
-                  <md-icon>add_box</md-icon>
-                  <label>Añadir</label>
-                </md-button>
-              </div>
-            </md-item-template>
-            <div ng-messages="registerForm.drug.$error">
-              <div ng-message="required">Este campo es obligatorio</div>
-              <div ng-message="md-require-match">Este medicamento no existe.</div>
-            </div>
-          </md-autocomplete>
-          <md-input-container>
-            <label>Cantidad</label>
-            <input name="quantity" required ng-model="action.quantity" type="number">
-            <div ng-messages="registerForm.quantity.$error">
-              <div ng-message="required">Este campo es Obligatorio</div>
-              <div ng-message="number">Introduzca solo números.</div>
-            </div>
-          </md-input-container>
-          <md-input-container>
-            <md-select required name="type" ng-model="action.type" placeholder="Tipo" class="md-no-underline">
-              <md-option value="1">Ingreso</md-option>
-              <md-option value="0">Egreso</md-option>
-            </md-select>
-            <div ng-messages="registerForm.type.$error">
-              <div ng-message="required">Este campo es Obligatorio</div>
-            </div>
-          </md-input-container>
-          <md-input-container flex>
-            <label>Detalles</label>
-            <input name="detail" ng-model="action.detail" md-maxlength="100">
-            <div ng-messages="registerForm.detail.$error">
-              <div ng-message="md-maxlength">La descripción es muy larga.</div>
-            </div>
-          </md-input-container>
-          <md-button class="md-icon-button" aria-label="deleteRow" ng-click="deleteAction(action)">
-            <md-icon>delete</md-icon>
-          </md-button>
-        </md-card-content>
-        <div layout="row" layout-align="end center" layout-padding>
-          <md-button class="md-fab" aria-label="more" ng-click="addAction()">
-            <md-icon>add</md-icon>
-          </md-button>
+          <div layout="row">
+            <md-button flex id="profile" class="md-primary" aria-label="Person Add" ng-click="$root.showDialog($event, this)">
+              <md-icon>person_add</md-icon>
+              <label>Añadir Persona</label>
+            </md-button>
+          </div>
+        </md-item-template>
+        <div ng-messages="registerForm.person.$error">
+          <div ng-message="required">Este campo es obligatorio</div>
+          <div ng-message="md-require-match">Esta persona no existe.</div>
         </div>
-      </md-card>
-    </form>
+      </md-autocomplete>
     </md-card-content>
-    <md-card-actions layout="row" layout-align="end center">
-          <md-button class= "md-warn" ng-click="cancel()">
-            <md-icon>cancel</md-icon>
-            Cancelar
-          </md-button>
-          <md-button class="md-primary md-raised" ng-disabled="registerForm.$invalid||registerForm.$pristine" ng-click="done()">
-            <md-icon>done</md-icon>
-            Aceptar
-          </md-button>
-        </md-card-actions>
-</md-content>
+  </md-card>
+
+  <md-card class="vertical-marg-0-5 no-padding" ng-repeat="action in nActions">
+    <md-card-content layout-padding layout="row" layout-align="none center">
+      <md-button class="md-fab stick-button" aria-label="more" ng-click="addAction()" ng-show="$last">
+        <md-icon>add</md-icon>
+        <md-tooltip md-delay="500">Agregar un nuevo item a la transacción</md-tooltip>
+      </md-button>
+      <ae-profile-icon letter="{{$index + 1}}" size=56></ae-profile-icon>
+      <md-input-container>
+        <md-select name="capital" required ng-model="action.capital" placeholder="Capital" class="md-no-underline">
+          <md-option value="0">Medicamento</md-option>
+          <md-option value="1">Dinero</md-option>
+        </md-select>
+        <div ng-messages="registerForm.capital.$error">
+          <div ng-message="required">Este campo es obligatorio</div>
+        </div>
+      </md-input-container>
+      <span ng-show="showOrHide(action.capital)">$</span>
+      <md-autocomplete
+        required
+        ng-if="!showOrHide(action.capital)"
+        md-require-match="true"
+        md-input-name="drug"
+        md-selected-item="action.drug"
+        md-search-text="filterTextM"
+        md-items="drug in drugList()"
+        md-item-text="drug.name"
+        md-min-length="0"
+        md-delay="1000"
+        md-no-cache="true"
+        md-floating-label="Nombre del Medicamento">
+        <md-item-template>
+          <div ng-if="drug.name">
+            <span class="drug-title">
+              <md-icon>healing</md-icon>
+              <span>{{drug.name}}</span>
+            </span>
+            <span class="drug-metadata">
+              <span class="drug-metastat">
+                <strong>({{drug.quantity}})</strong>
+              </span>
+            </span>
+          </div>
+          <div layout="row">
+            <md-button id="drug" flex class="md-primary" aria-label="Drug Add" ng-click="goToDialog($event, nActions.indexOf(action))">
+              <md-icon>add_box</md-icon>
+              <label>Añadir</label>
+            </md-button>
+          </div>
+        </md-item-template>
+        <div ng-messages="registerForm.drug.$error">
+          <div ng-message="required">Este campo es obligatorio</div>
+          <div ng-message="md-require-match">Este medicamento no existe.</div>
+        </div>
+      </md-autocomplete>
+      <md-input-container style="width: 6rem">
+        <label>Cantidad</label>
+        <input name="quantity" required ng-model="action.quantity" type="number" min="0">
+        <div ng-messages="registerForm.quantity.$error">
+          <div ng-message="required">Este campo es Obligatorio</div>
+          <div ng-message="number">Introduzca sólo números.</div>
+          <div ng-message="min">Introduzca sólo números positivos.</div>
+        </div>
+      </md-input-container>
+      <md-input-container style="width: 7rem">
+        <md-select required name="type" ng-model="action.type" placeholder="Tipo" class="md-no-underline">
+          <md-option value="1">Ingreso</md-option>
+          <md-option value="0">Egreso</md-option>
+        </md-select>
+        <div ng-messages="registerForm.type.$error">
+          <div ng-message="required">Este campo es Obligatorio</div>
+        </div>
+      </md-input-container>
+      <md-input-container flex>
+        <label>Detalles</label>
+        <input name="detail" ng-model="action.detail" md-maxlength="100">
+        <div ng-messages="registerForm.detail.$error">
+          <div ng-message="md-maxlength">La descripción es muy larga.</div>
+        </div>
+      </md-input-container>
+      <md-button class="md-icon-button md-warn" aria-label="deleteRow" ng-click="deleteAction(action)">
+        <md-icon>close</md-icon>
+        <md-tooltip md-delay="500">Elimine este item</md-tooltip>
+      </md-button>
+    </md-card-content>
+  </md-card>
+
+  <div layout="row">
+    <span flex></span>
+    <md-card class="register-menu" md-whiteframe="4">
+      <md-card-actions layout-align="end center">
+        <md-button class="md-warn" ng-click="cancel()">
+          <md-icon>refresh</md-icon>
+          <md-tooltip md-delay="500">Cancelar transacción y empezar de nuevo</md-tooltip>
+          Cancelar
+        </md-button>
+        <md-button class="md-primary" ng-disabled="registerForm.$invalid||registerForm.$pristine" ng-click="done()">
+          <md-icon>done</md-icon>
+          <md-tooltip md-delay="500">Proceder a guardar la transacción</md-tooltip>
+          Aceptar
+        </md-button>
+      </md-card-actions>
+    </md-card>
+    <span flex></span>
+  </div>
+</form>
+
+<div id="bottom"></div>
