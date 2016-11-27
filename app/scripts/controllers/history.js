@@ -54,4 +54,8 @@ function ($scope, Restangular, aeData, $location, $rootScope) {
   $scope.idOfDoctor = function(rowId){
     return _.find(aeData.visits, {id: rowId}).doctor;
   };
+
+  $scope.goToProfiles = function() {
+    $location.path('profiles');
+  };
 }]);
