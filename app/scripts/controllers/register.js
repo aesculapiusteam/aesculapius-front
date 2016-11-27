@@ -114,7 +114,9 @@ angular.module('aesculapiusFrontApp')
       };
 
       $scope.deleteAction = function(pos) {
-        $scope.nActions.splice($scope.nActions.indexOf(pos), 1);
+        if ($scope.nActions.length > 1) {
+          $scope.nActions.splice($scope.nActions.indexOf(pos), 1);
+        }
       };
 
       $scope.cancel = function() {

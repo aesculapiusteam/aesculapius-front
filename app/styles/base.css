@@ -21,6 +21,7 @@
 }
 
 .base-menu > md-menu-item, .base-menu > md-menu-item > button {
+  display: block !important;
   height: 64px !important;
 }
 
