@@ -23,3 +23,10 @@
 .base-menu > md-menu-item, .base-menu > md-menu-item > button {
   height: 64px !important;
 }
+
+md-menu-bar.md-default-theme md-menu.md-open > button,
+md-menu-bar md-menu.md-open > button,
+md-menu-bar.md-default-theme md-menu > button:focus,
+md-menu-bar md-menu > button:focus { /* This prevents profile icon from being whited */
+  background-color: rgba(255, 255, 255, 0.3);
+}
