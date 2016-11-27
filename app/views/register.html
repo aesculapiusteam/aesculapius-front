@@ -115,7 +115,7 @@
           <div ng-message="md-require-match">Este medicamento no existe.</div>
         </div>
       </md-autocomplete>
-      <md-input-container>
+      <md-input-container style="width: 6rem">
         <label>Cantidad</label>
         <input name="quantity" required ng-model="action.quantity" type="number" min="0">
         <div ng-messages="registerForm.quantity.$error">
@@ -124,7 +124,7 @@
           <div ng-message="min">Introduzca sólo números positivos.</div>
         </div>
       </md-input-container>
-      <md-input-container>
+      <md-input-container style="width: 7rem">
         <md-select required name="type" ng-model="action.type" placeholder="Tipo" class="md-no-underline">
           <md-option value="1">Ingreso</md-option>
           <md-option value="0">Egreso</md-option>
