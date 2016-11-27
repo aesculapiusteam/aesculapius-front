@@ -67,6 +67,10 @@ button label {
   padding: 2rem;
 }
 
+.vertical-marg-0-5 {
+  margin: 0.5rem 0;
+}
+
 .row-4 {
   height: 4rem;
 }
