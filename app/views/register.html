@@ -1,4 +1,5 @@
-<div> <!-- This simple div is needed -->
+<div>
+  <!-- This simple div is needed -->
   <div class="filter-wrapper">
     <div layout="row" md-whiteframe="1" class="filter-container">
       <md-icon class="filter-icon">web</md-icon>
@@ -18,56 +19,61 @@
   </div>
 
   <form name="registerForm" ng-submit="done()" novalidate>
-  <md-card class="vertical-marg-0-5">
-    <md-card-title>
-      <div layout="column">
-        <span class="md-headline">Introduzca un Nombre</span>
-      </div>
-    </md-card-title>
-    <md-card-content>
-      <div layout="row">
-      <ae-profile-icon ng-if="selectedItemPeople.first_name"
-      name="{{selectedItemPeople.first_name}}" size=72 id={{selectedItemPeople.id}}></ae-profile-icon>
-      <md-autocomplete flex required md-selected-item="selectedItemPeople"
-      md-require-match="true"
-      md-input-name="person"
-      md-search-text="filterTextP"
-      md-items="item in peopleList()"
-      md-item-text="itemText(item)"
-      md-min-length="0"
-      md-delay="1000"
-      md-no-cache="true"
-      md-floating-label="Persona a tratar">
-      <md-item-template>
-        <div ng-if="item.first_name">
-          <span class="item-title">
-            <md-icon>person</md-icon>
-            <span> {{item.first_name}} </span>
-          </span>
-          <span class="item-metadata">
-            <span class="item-metastat">
-              <strong>{{item.last_name}}</strong>
-            </span>
-            <span class="item-metastat" ng-if="item.dni">
-              - DNI: <strong>{{item.dni}}</strong>
-            </span>
-          </span>
+    <md-card class="vertical-marg-0-5">
+      <md-card-title>
+        <div layout="column">
+          <span class="md-headline">Introduzca un Nombre</span>
         </div>
+      </md-card-title>
+      <md-card-content>
         <div layout="row">
-          <md-button flex id="profile" class="md-primary" aria-label="Person Add" ng-click="$root.showDialog($event, this)">
-            <md-icon>person_add</md-icon>
-            <label>Añadir Persona</label>
-          </md-button>
+          <ae-profile-icon ng-if="selectedItemPeople.first_name" name="{{selectedItemPeople.first_name}}" size=72 id={{selectedItemPeople.id}}></ae-profile-icon>
+          <md-autocomplete
+            flex
+            required
+            md-selected-item="selectedItemPeople"
+            md-require-match="true"
+            md-input-name="person"
+            md-search-text="filterTextP"
+            md-items="item in peopleList()"
+            md-item-text="itemText(item)"
+            md-min-length="0"
+            md-delay="1000"
+            md-no-cache="true"
+            md-floating-label="Persona a tratar">
+            <md-item-template>
+              <div ng-if="item.first_name">
+                <span class="item-title">
+                  <md-icon>person</md-icon>
+                  <span>
+                    {{item.first_name}}
+                  </span>
+                </span>
+                <span class="item-metadata">
+                  <span class="item-metastat">
+                    <strong>{{item.last_name}}</strong>
+                  </span>
+                  <span class="item-metastat" ng-if="item.dni">
+                    - DNI:
+                    <strong>{{item.dni}}</strong>
+                  </span>
+                </span>
+              </div>
+              <div layout="row">
+                <md-button flex id="profile" class="md-primary" aria-label="Person Add" ng-click="$root.showDialog($event, this)">
+                  <md-icon>person_add</md-icon>
+                  <label>Añadir Persona</label>
+                </md-button>
+              </div>
+            </md-item-template>
+            <div ng-messages="registerForm.person.$error">
+              <div ng-message="required">Este campo es obligatorio</div>
+              <div ng-message="md-require-match">Esta persona no existe.</div>
+            </div>
+          </md-autocomplete>
         </div>
-      </md-item-template>
-      <div ng-messages="registerForm.person.$error">
-        <div ng-message="required">Este campo es obligatorio</div>
-        <div ng-message="md-require-match">Esta persona no existe.</div>
-      </div>
-    </md-autocomplete>
-    </div>
-  </md-card-content>
-</md-card>
+      </md-card-content>
+    </md-card>
     <md-card-content flex layout="column">
       <md-card class="no-margin">
         <md-card-title>
@@ -86,17 +92,19 @@
             </div>
           </md-input-container>
           <span ng-show="showOrHide(action.capital)">$</span>
-          <md-autocomplete required ng-if="!showOrHide(action.capital)"
-          md-require-match="true"
-          md-input-name="drug"
-          md-selected-item="action.drug"
-          md-search-text="filterTextM"
-          md-items="drug in drugList()"
-          md-item-text="drug.name"
-          md-min-length="0"
-          md-delay="1000"
-          md-no-cache="true"
-          md-floating-label="Nombre del Medicamento">
+          <md-autocomplete
+            required
+            ng-if="!showOrHide(action.capital)"
+            md-require-match="true"
+            md-input-name="drug"
+            md-selected-item="action.drug"
+            md-search-text="filterTextM"
+            md-items="drug in drugList()"
+            md-item-text="drug.name"
+            md-min-length="0"
+            md-delay="1000"
+            md-no-cache="true"
+            md-floating-label="Nombre del Medicamento">
             <md-item-template>
               <div ng-if="drug.name">
                 <span class="drug-title">
@@ -105,13 +113,13 @@
                 </span>
                 <span class="drug-metadata">
                   <span class="drug-metastat">
-                    - <strong>{{drug.quantity}}</strong>
+                    -
+                    <strong>{{drug.quantity}}</strong>
                   </span>
                 </span>
               </div>
               <div layout="row">
-                <md-button id="drug" flex class="md-primary" aria-label="Drug Add"
-                ng-click="goToDialog($event, nActions.indexOf(action))">
+                <md-button id="drug" flex class="md-primary" aria-label="Drug Add" ng-click="goToDialog($event, nActions.indexOf(action))">
                   <md-icon>add_box</md-icon>
                   <label>Añadir</label>
                 </md-button>
@@ -168,4 +176,4 @@
         </md-card-actions>
       </md-card>
     </md-card-content>
-    </form>
+  </form>
