@@ -1,14 +1,22 @@
-<md-toolbar layout="row">
-  <div class="md-toolbar-tools">Movimientos
-    <span flex></span>
-    <md-button md-ink-ripple="true" ng-click="goToRegister()">
-      <span>Volver a la caja</span>
-      <md-icon>arrow_forward</md-icon>
-    </md-button>
+<div class="movementsTable">
+  <div class="filter-wrapper">
+    <div layout="row" md-whiteframe="1" class="filter-container">
+      <md-icon class="filter-icon">format_list_bulleted</md-icon>
+      <span class="filter-header">Movimientos</span>
+      <div class="filter-search" layout="row">
+        <md-icon class="unselectable">search</md-icon>
+        <md-input-container md-no-float class="md-toolbar-tools">
+          <input flex ng-model="filterText" placeholder="Filtrar por Empleado / Paciente / Donador / Fecha" type="text">
+        </md-input-container>
+      </div>
+      <md-button class="filter-button md-primary" ng-click="goToRegister()">
+        <md-icon>arrow_back</md-icon>
+        <md-tooltip md-delay="500">Volver a la caja</md-tooltip>
+      </md-button>
+    </div>
   </div>
-</md-toolbar>
-<md-content class="pad-0-5">
-  <md-card layout="column">
+
+  <!-- <md-card class="no-margin" layout="column">
     <md-input-container layout="row">
       <md-icon>person</md-icon>
       <label>Filtrar por Empleado / Paciente / Donador</label>
@@ -31,8 +39,8 @@
       <md-datepicker class="margin-20" ng-show="dateFilterSelect.includes('1')"
       md-open-on-focus ng-model="dateFilter" md-placeholder="Ingrese la fecha"></md-datepicker>
     </div>
-  </md-card>
-  <md-card class="movementsTable">
+  </md-card> -->
+
   <mdt-table
     sortable-columns="true"
     animate-sort-icon="true"
@@ -75,7 +83,7 @@
       <span ng-show="{{value}}">{{value| currency}}</span>
     </mdt-custom-cell>
     <mdt-custom-cell column-key="totalCashOut">
-        <span ng-show="{{value}}">{{value| currency}}</span>
+      <span ng-show="{{value}}">{{value| currency}}</span>
     </mdt-custom-cell>
     <mdt-custom-cell column-key="employee_name">
       <ae-profile-icon name={{value}} size=32 id={{::clientScope.idOfEmployee(rowId)}}></ae-profile-icon>
@@ -89,5 +97,3 @@
       <mdt-button id="movement" ng-click="$root.showDialog($event, this)" icon="more"></mdt-button>
     </mdt-custom-cell>
   </mdt-table>
-  </md-card>
-</md-content>

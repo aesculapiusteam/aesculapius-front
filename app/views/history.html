@@ -1,13 +1,20 @@
-<div>
-  <div layout="row">
-    <md-toolbar layout="row">
-      <div class="md-toolbar-tools">Historia Clínica de {{patientName}}</div>
+<div class="historyTable">
+  <div class="filter-wrapper">
+    <div layout="row" md-whiteframe="1" class="filter-container">
+      <md-icon class="filter-icon">format_list_bulleted</md-icon>
+      <span class="filter-header filter-full-header">Historia Clínica de
+        {{patientName}}</span>
+      <md-button class="filter-button md-primary" ng-click="goToProfiles()">
+        <md-icon>arrow_back</md-icon>
+        <md-tooltip md-delay="500">Volver la lista de pacientes</md-tooltip>
+      </md-button>
     </div>
-    </md-toolbar>
   </div>
-  <md-content class="historyTable" layout="column" layout-padding flex>
-    <mdt-table sortable-columns="true" animate-sort-icon="true"
-    paginated-rows="{isEnabled: true, rowsPerPageValues: [10,20,50]}"
+
+  <mdt-table
+    sortable-columns="true"
+    animate-sort-icon="true"
+    paginated-rows="{isEnabled: true, rowsPerPageValues: [5, 10,20,50]}"
     mdt-row-paginator="getData(page, pageSize)"
     mdt-row-paginator-error-message="Hubo un error al cargar la historia clínica."
     mdt-row-paginator-no-results-message="Este paciente no ha realizado ninguna consulta."
@@ -24,27 +31,26 @@
       'id'
       ],
     }">
-      <mdt-header-row>
-        <mdt-column align-rule="left">Fecha</mdt-column>
-        <mdt-column align-rule="left">Médico</mdt-column>
-        <mdt-column align-rule="left">Descripción</mdt-column>
-        <mdt-column align-rule="left">Detalles</mdt-column>
-      </mdt-header-row>
-      <mdt-custom-cell column-key="doctor_name" aria-label="More">
-        <ae-profile-icon name={{value}} size=32 id={{clientScope.idOfDoctor(rowId)}}></ae-profile-icon>
-        <span class="height-48">{{value}}</span>
-      </mdt-custom-cell>
-      <mdt-custom-cell column-key="detail" aria-label="More">
-        {{value| limitTo: 57}}{{value.length > 60? '...': ''}}
-      </mdt-custom-cell>
-      <mdt-custom-cell column-key="datetime" aria-label="More">
-        <span>{{value|date: 'shortDate'}}</span><br>
-        <span>{{value|date: 'shortTime'}}</span>
-      </mdt-custom-cell>
-      <mdt-custom-cell column-key="id" aria-label="More">
-        <mdt-button id="visit" ng-click="clientScope.goToDialog(value, $event, this)" icon="more"></mdt-button>
-      </mdt-custom-cell>
-    </mdt-table>
-  </md-content>
+    <mdt-header-row>
+      <mdt-column align-rule="left">Fecha</mdt-column>
+      <mdt-column align-rule="left">Médico</mdt-column>
+      <mdt-column align-rule="left">Descripción</mdt-column>
+      <mdt-column align-rule="left">Detalles</mdt-column>
+    </mdt-header-row>
+    <mdt-custom-cell column-key="doctor_name" aria-label="More">
+      <ae-profile-icon name={{value}} size=32 id={{clientScope.idOfDoctor(rowId)}}></ae-profile-icon>
+      <span class="height-48">{{value}}</span>
+    </mdt-custom-cell>
+    <mdt-custom-cell column-key="detail" aria-label="More">
+      {{value| limitTo: 57}}{{value.length > 60? '...': ''}}
+    </mdt-custom-cell>
+    <mdt-custom-cell column-key="datetime" aria-label="More">
+      <span>{{value|date: 'shortDate'}}</span><br>
+      <span>{{value|date: 'shortTime'}}</span>
+    </mdt-custom-cell>
+    <mdt-custom-cell column-key="id" aria-label="More">
+      <mdt-button id="visit" ng-click="clientScope.goToDialog(value, $event, this)" icon="more"></mdt-button>
+    </mdt-custom-cell>
+  </mdt-table>
 
 </div>
