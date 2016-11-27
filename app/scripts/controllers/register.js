@@ -9,8 +9,8 @@
  */
 angular.module('aesculapiusFrontApp')
   .controller('RegisterCtrl', ['$scope', 'Restangular', '$mdToast', 'aeData',
-    '$rootScope', '$location',
-    function($scope, Restangular, $mdToast, aeData, $rootScope, $location) {
+    '$rootScope', '$location', '$timeout', '$anchorScroll',
+    function($scope, Restangular, $mdToast, aeData, $rootScope, $location, $timeout, $anchorScroll) {
       $scope.detail = '';
       $scope.selectedItemPeople = '';
       $scope.nActions = [{
@@ -110,6 +110,10 @@ angular.module('aesculapiusFrontApp')
           'quantity': '',
           'detail': '',
           'type': ''
+        });
+        $timeout(function() {
+          $location.hash('bottom');
+          $anchorScroll();
         });
       };
 

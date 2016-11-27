@@ -43,7 +43,7 @@ angular.module('aesculapiusFrontApp')
     return {
       template:
         '<div md-ink-ripple="{{ripple}}">' +
-        '<div class="{{classes}}"' +
+        '<div class="unselectable {{classes}}"' +
         ' style="cursor:pointer; margin:8px; width:{{size}}px; height:{{size}}px;' +
         ' background-color:{{color}}; float:left; border-radius:50%; color:white;' +
         ' font-size:{{size/2}}px; text-align:center; line-height:{{size}}px;">' +
