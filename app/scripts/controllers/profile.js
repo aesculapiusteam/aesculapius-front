@@ -13,9 +13,9 @@ angular.module('aesculapiusFrontApp')
     function($scope, $mdDialog, $rootScope, aeData, Restangular, $mdToast) {
 
       $scope.person = {};
-      if (aeData[aeData.selected]){
+      if (aeData[aeData.selected]) {
         $scope.person = aeData[aeData.selected];
-        if(aeData[aeData.selected].id) {
+        if (aeData[aeData.selected].id) {
           $scope.nullProfile = false;
         }
       } else {
@@ -30,13 +30,13 @@ angular.module('aesculapiusFrontApp')
         $scope.person.repeatPassword = "";
         $scope.person.assist_ed = $scope.person.assist_ed || []; //XXX CODIGO RANCIO
         $scope.person.charge = $scope.person.charge || "secretary"; //XXX CODIGO RANCIO
-      }else{
+      } else {
         $scope.toastId = 'profile';
       }
 
       $scope.$watch('profileForm', function() {
         aeData.form = $scope.profileForm;
-        if(aeData.form && $scope.person){//dont do is dirty if undefined because of dialog closed
+        if (aeData.form && $scope.person) { //dont do is dirty if undefined because of dialog closed
           aeData.isDirty($scope.person);
         }
       });
@@ -56,14 +56,21 @@ angular.module('aesculapiusFrontApp')
           function(response) {
             $scope.cancel();
             $scope.personName = aeData.nameOf(response);
-            $rootScope.showActionToast($scope.personName + ' ha sido añadido.',
-             {'currentTarget':{'id':$scope.toastId}}, {'value':response.id});
-            $rootScope.$broadcast('profileAdded', {person:response});
+            $rootScope.showActionToast($scope.personName + ' ha sido añadido.', {
+              'currentTarget': {
+                'id': $scope.toastId
+              }
+            }, {
+              'value': response.id
+            });
+            $rootScope.$broadcast('profileAdded', {
+              person: response
+            });
             aeData.reloadSelectedTable();
           },
           function(error) {
-            $rootScope.showActionToast('Lamentablemente hubo un error al añadir la pesona.','error',
-             error);
+            $rootScope.showActionToast('Lamentablemente hubo un error al añadir la pesona.', 'error',
+              error);
           }
         );
       };
@@ -75,7 +82,7 @@ angular.module('aesculapiusFrontApp')
           this.add();
         } else {
           // Must modify an existing person TODO
-          if ($scope.isEmployeeForm && (($scope.person.password && !$scope.person.repeatPassword) || Boolean($scope.person.repeatPassword) !== Boolean($scope.person.password))) {//XXX CODIGO RANCIO ESTA ARRIBA IGUAL
+          if ($scope.isEmployeeForm && (($scope.person.password && !$scope.person.repeatPassword) || Boolean($scope.person.repeatPassword) !== Boolean($scope.person.password))) { //XXX CODIGO RANCIO ESTA ARRIBA IGUAL
             $mdToast.show( //XXX CODIGO RANCIO MUCHOS MD TOAST QUE HACNE LO MISMO SIMPLIFICAR
               $mdToast.simple()
               .textContent('Debe escribir dos veces su nueva contraseña y deben coincidir.')
@@ -91,28 +98,32 @@ angular.module('aesculapiusFrontApp')
             function(response) {
               $scope.cancel();
               $scope.personName = aeData.nameOf(response);
-              $rootScope.showActionToast($scope.personName + ' ha sido modificado.',
-               {'currentTarget':{'id':$scope.toastId}}, {'value':response.id});
+              $rootScope.showActionToast($scope.personName + ' ha sido modificado.', {
+                'currentTarget': {
+                  'id': $scope.toastId
+                }
+              }, {
+                'value': response.id
+              });
               aeData.reloadSelectedTable();
             },
             function(error) {
-              $rootScope.showActionToast('Lamentablemente hubo un error al modificar la informacion.','error',
-               error.data.detail);
+              $rootScope.showActionToast('Lamentablemente hubo un error al modificar la informacion.', 'error',
+                error.data.detail);
             }
           );
         }
       };
 
       $scope.delete = function() {
-        if ($scope.isEmployeeForm){
+        if ($scope.isEmployeeForm) {
           $scope.id = $scope.person.profile.id;
           $scope.proOrEm = 'employee';
-        }else{
+        } else {
           $scope.id = $scope.person.id;
           $scope.proOrEm = 'profile';
         }
-        $rootScope.showConfirm([$scope.proOrEm, $scope.id],
-        [$scope.person], 'delete');
+        $rootScope.showConfirm([$scope.proOrEm, $scope.id], [$scope.person], 'delete');
       };
 
       $scope.cancel = function() {
@@ -135,6 +146,10 @@ angular.module('aesculapiusFrontApp')
 
       $scope.shouldBeAssistedBy = function(type) {
         return type === 'doctor' ? 'secretary' : 'doctor';
+      };
+
+      $scope.isNew = function() {
+        return $scope.nullProfile || !$scope.person.id;
       };
 
     }

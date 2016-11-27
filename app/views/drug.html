@@ -1,7 +1,9 @@
 <md-dialog>
   <div layout="row">
     <md-toolbar layout="row">
-      <div class="md-toolbar-tools">Agregar Medicamento</div>
+      <div class="md-toolbar-tools">
+        {{isNew() ? 'Agregar Medicamento' : 'Editar Medicamento'}}
+      </div>
       <div class='dialog-close'>
         <md-button ng-click="cancel()" class="md-icon-button">
           <md-icon>close</md-icon>
@@ -45,10 +47,9 @@
 
     </div>
   </md-dialog-content>
-  
+
   <md-dialog-actions layout="row">
-    <md-button class="md-warn" ng-hide="nullDrug || !drug.id"
-     ng-click="delete()" layout-align="start center">
+    <md-button class="md-warn" ng-hide="isNew()" ng-click="delete()" layout-align="start center">
       <label>Eliminar</label>
       <md-icon>delete</md-icon>
     </md-button>
@@ -56,8 +57,7 @@
       <label>Cancelar</label>
       <md-icon>cancel</md-icon>
     </md-button>
-    <md-button class="md-primary" ng-click="save()"
-    ng-disabled="drugForm.$invalid||drugForm.$pristine" layout-align="end center">
+    <md-button class="md-primary" ng-click="save()" ng-disabled="drugForm.$invalid||drugForm.$pristine" layout-align="end center">
       <label>Guardar</label>
       <md-icon>save</md-icon>
     </md-button>
