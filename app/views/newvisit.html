@@ -1,8 +1,23 @@
-<md-toolbar layout="row">
-  <div class="md-toolbar-tools">Nueva Consulta</div>
-</md-toolbar>
-<md-content>
-  <md-card>
+<div> <!-- This simple div is needed -->
+  <div class="filter-wrapper">
+    <div layout="row" md-whiteframe="1" class="filter-container">
+      <md-icon class="filter-icon">format_list_bulleted</md-icon>
+      <span class="filter-header filter-full-header">Nueva Consulta</span>
+      <md-button class="filter-text-button md-warn" ng-click="cancel()">
+        <md-icon>refresh</md-icon>
+        Cancelar
+        <md-tooltip>Borrar todos los campos</md-tooltip>
+      </md-button>
+      <md-button class="filter-text-button md-primary" ng-disabled="newVisitForm.$invalid || newVisitForm.$pristine" ng-click="done()">
+        <md-icon>done</md-icon>
+        Guardar
+        <md-tooltip>Guarda la consulta</md-tooltip>
+      </md-button>
+    </div>
+  </div>
+</div>
+
+  <md-card class="no-margin">
     <md-card-content flex layout="column">
       <form name="newVisitForm" ng-submit="done()" novalidate>
         <div layout="row">
@@ -57,26 +72,27 @@
   <div layout="row">
     <md-input-container flex>
       <label>Detalles</label>
-      <textarea name="detail" type="text" required ng-model="detail" rows="5"></textarea>
+      <textarea name="detail" type="text" required ng-model="detail" rows="7"></textarea>
       <div ng-messages="newVisitForm.detail.$error">
         <p ng-message="required">Este campo es requerido.</p>
       </div>
 
       </div>
     </md-input-container>
+    <md-card-actions layout="row" layout-align="end center">
+      <md-button class="md-warn" ng-click="cancel()">
+        <md-icon>refresh</md-icon>
+        Cancelar
+        <md-tooltip>Borrar todos los campos</md-tooltip>
+      </md-button>
+      <md-button ng-disabled="newVisitForm.$invalid || newVisitForm.$pristine" class="md-primary" ng-click="done()">
+        <md-icon>done</md-icon>
+        Guardar
+        <md-tooltip>Guarda la consulta</md-tooltip>
+      </md-button>
+    </md-card-actions>
   </div>
 
       </form>
     </md-card-content>
-    <md-card-actions layout="row" layout-align="end center">
-      <md-button ng-disabled="newVisitForm.$invalid || newVisitForm.$pristine" class="md-primary md-raised" ng-click="done()">
-        <md-icon>done</md-icon>
-        Aceptar
-      </md-button>
-      <md-button class="md-warn" ng-click="cancel()">
-        <md-icon>cancel</md-icon>
-        Cancelar
-      </md-button>
-    </md-card-actions>
   </md-card>
-</md-content>

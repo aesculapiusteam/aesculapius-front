@@ -17,6 +17,11 @@
   padding: 0 1rem;
 }
 
+.filter-full-header { /* For headers without search bar */
+  width: 100%;
+  padding: 1rem;
+}
+
 .filter-icon {
   padding: 0 0 0 1rem;
   color: #2196F3 !important;
@@ -29,6 +34,10 @@
 
 .filter-button {
   width: 1rem;
+}
+
+.filter-text-button { /* For buttons with text */
+  width: 10rem;
 }
 
 
