@@ -2,7 +2,8 @@
   <div class="filter-wrapper">
     <div layout="row" md-whiteframe="1" class="filter-container">
       <md-icon class="filter-icon">format_list_bulleted</md-icon>
-      <span class="filter-header filter-full-header">Historia Clínica de
+      <ae-profile-icon style="padding-left:1rem" ng-if="patientName" name={{patientName}} size=64 id={{patientId}}></ae-profile-icon>
+      <span style="padding: 1rem 0" class="filter-header filter-full-header">Historia Clínica de
         {{patientName}}</span>
       <md-button class="filter-button md-primary" ng-click="goToProfiles()">
         <md-icon>arrow_back</md-icon>
@@ -38,7 +39,7 @@
       <mdt-column align-rule="left">Detalles</mdt-column>
     </mdt-header-row>
     <mdt-custom-cell column-key="doctor_name" aria-label="More">
-      <ae-profile-icon name={{value}} size=32 id={{clientScope.idOfDoctor(rowId)}}></ae-profile-icon>
+      <ae-profile-icon name={{value}} size=32 id={{::clientScope.idOfDoctor(rowId)}}></ae-profile-icon>
       <span class="height-48">{{value}}</span>
     </mdt-custom-cell>
     <mdt-custom-cell column-key="detail" aria-label="More">
