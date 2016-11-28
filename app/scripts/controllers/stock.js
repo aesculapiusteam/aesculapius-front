@@ -12,6 +12,7 @@
     .controller('StockCtrl', [
       '$scope', '$rootScope', '$mdDialog', 'Restangular', 'aeData',
       function($scope, $rootScope, $mdDialog, Restangular, aeData) {
+        aeData.selected = 'drug';
         $scope.filterText = "";
         var allDrugs = Restangular.all('drugs');
         var loadPageCallbackWithDebounce;
