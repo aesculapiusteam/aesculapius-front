@@ -43,19 +43,19 @@ angular.module('aesculapiusFrontApp')
         $scope.person.repeatPassword = "";
         $scope.person.assist_ed = $scope.person.assist_ed || []; //XXX CODIGO RANCIO
         $scope.person.charge = $scope.person.charge || "secretary"; //XXX CODIGO RANCIO
-      }else{
+      } else {
         $scope.toastId = 'profile';
       }
 
       $scope.$watch('profileForm', function() {
         aeData.form = $scope.profileForm;
-        if(aeData.form && $scope.person){//dont do is dirty if undefined because of dialog closed
+        if (aeData.form && $scope.person) { //dont do is dirty if undefined because of dialog closed
           aeData.isDirty($scope.person);
         }
       });
 
       $scope.add = function() {
-        if ($scope.isEmployeeForm && (($scope.person.password && !$scope.person.repeatPassword) || Boolean($scope.person.repeatPassword) !== Boolean($scope.person.password))) {
+        if ($scope.isEmployeeForm && !$scope.passwordsMatch()) {
           $mdToast.show( //XXX CODIGO RANCIO MUCHOS MD TOAST QUE HACNE LO MISMO SIMPLIFICAR
             $mdToast.simple()
             .textContent('Debe escribir dos veces su nueva contraseña y deben coincidir.')
@@ -69,27 +69,30 @@ angular.module('aesculapiusFrontApp')
           function(response) {
             $scope.cancel();
             $scope.personName = aeData.nameOf(response);
-            $rootScope.showActionToast($scope.personName + ' ha sido añadido.',
-             {'currentTarget':{'id':$scope.toastId}}, {'value':response.id});
-            $rootScope.$broadcast('profileAdded', {person:response});
+            $rootScope.showActionToast($scope.personName + ' ha sido añadido.', {
+              'currentTarget': {
+                'id': $scope.toastId
+              }
+            }, {
+              'value': response.id
+            });
+            $rootScope.$broadcast('profileAdded', {
+              person: response
+            });
             aeData.reloadSelectedTable();
           },
           function(error) {
-            $rootScope.showActionToast('Lamentablemente hubo un error al añadir la pesona.','error',
-             error);
+            $rootScope.showActionToast('Lamentablemente hubo un error al añadir la pesona.', 'error',
+              error);
           }
         );
       };
 
       $scope.save = function() {
         if ($scope.person.profile) {
-          if ($scope.person.profile.birth_date){
             $scope.person.profile.birth_date = moment($scope.birthDate).format('YYYY-MM-DD');
-          }
         } else {
-          if ($scope.person.birth_date){
             $scope.person.birth_date = moment($scope.birthDate).format('YYYY-MM-DD');
-          }
         }
         $scope.profileForm.$submitted = true; //for the confirm dialog on close not to open
         if (!aeData[aeData.selected].id) {
@@ -97,7 +100,7 @@ angular.module('aesculapiusFrontApp')
           this.add();
         } else {
           // Must modify an existing person TODO
-          if ($scope.isEmployeeForm && (($scope.person.password && !$scope.person.repeatPassword) || Boolean($scope.person.repeatPassword) !== Boolean($scope.person.password))) {//XXX CODIGO RANCIO ESTA ARRIBA IGUAL
+          if ($scope.isEmployeeForm && !$scope.passwordsMatch(true)) { //XXX CODIGO RANCIO ESTA ARRIBA IGUAL
             $mdToast.show( //XXX CODIGO RANCIO MUCHOS MD TOAST QUE HACNE LO MISMO SIMPLIFICAR
               $mdToast.simple()
               .textContent('Debe escribir dos veces su nueva contraseña y deben coincidir.')
@@ -113,29 +116,31 @@ angular.module('aesculapiusFrontApp')
             function(response) {
               $scope.cancel();
               $scope.personName = aeData.nameOf(response);
-              $rootScope.showActionToast($scope.personName + ' ha sido modificado.',
-               {'currentTarget':{'id':$scope.toastId}}, {'value':response.id});
+              $rootScope.showActionToast($scope.personName + ' ha sido modificado.', {
+                'currentTarget': {
+                  'id': $scope.toastId
+                }
+              }, {
+                'value': response.id
+              });
               aeData.reloadSelectedTable();
             },
             function(error) {
-              console.log(error);
-              $rootScope.showActionToast('Lamentablemente hubo un error al modificar la informacion.','error',
-               error.data.detail);
-            }
+              $rootScope.showActionToast('Lamentablemente hubo un error al modificar la informacion.', 'error',
+                error);            }
           );
         }
       };
 
       $scope.delete = function() {
-        if ($scope.isEmployeeForm){
+        if ($scope.isEmployeeForm) {
           $scope.id = $scope.person.profile.id;
           $scope.proOrEm = 'employee';
-        }else{
+        } else {
           $scope.id = $scope.person.id;
           $scope.proOrEm = 'profile';
         }
-        $rootScope.showConfirm([$scope.proOrEm, $scope.id],
-        [$scope.person], 'delete');
+        $rootScope.showConfirm([$scope.proOrEm, $scope.id], [$scope.person], 'delete');
       };
 
       $scope.cancel = function() {
@@ -156,5 +161,25 @@ angular.module('aesculapiusFrontApp')
         return $scope.person.assist_ed.indexOf(id) > -1;
       };
 
+      $scope.shouldBeAssistedBy = function(type) {
+        return type === 'doctor' ? 'secretary' : 'doctor';
+      };
+
+      $scope.isNew = function() {
+        return $scope.nullProfile || !$scope.person.id;
+      };
+
+      $scope.passwordsMatch = function(forEdit) {
+        var repeatPassword = $scope.person.repeatPassword;
+        var passwordsExistsAndMatch = $scope.person.password &&
+          $scope.person.repeatPassword && $scope.person.repeatPassword === $scope.person.password;
+        if (forEdit) {
+          if (!repeatPassword) { // If there is no repeat password, the password will not change, but the other properties will
+            $scope.person.password = "";
+          }
+          return !repeatPassword || passwordsExistsAndMatch;
+        }
+        return passwordsExistsAndMatch;
+      };
     }
   ]);

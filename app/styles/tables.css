@@ -1,3 +1,50 @@
+/* FILTERS */
+
+.filter-wrapper {
+  padding: 1rem 0;
+}
+
+.filter-container {
+  padding:1rem;
+  background-color: #FAFAFA;
+}
+
+.filter-header {
+  color: #2196F3;
+  font-size: 1.4rem;
+  align-self: center;
+  white-space: nowrap;
+  padding: 0 1rem;
+}
+
+.filter-full-header { /* For headers without search bar */
+  width: 100%;
+  padding: 1rem;
+}
+
+.filter-icon {
+  padding: 0 0 0 1rem;
+  color: #2196F3 !important;
+}
+
+.filter-search {
+  width: 100%;
+  padding: 0 0 0 1rem;
+}
+
+.filter-button {
+  width: 1rem;
+}
+
+.filter-text-button { /* For buttons with text */
+  width: 10rem;
+}
+
+.filter-text-button-2 { /* For buttons with more text */
+  width: 20rem;
+}
+
+
 /* EMPLOYEES */
 
 .employeesTable table td, .employeesTable table th {

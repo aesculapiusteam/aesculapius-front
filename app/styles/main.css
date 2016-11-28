@@ -4,6 +4,7 @@ md-content {
 
 md-card {
   padding: 20px;
+  border-radius: 5px;
 }
 
 footer {
@@ -16,10 +17,35 @@ md-tooltip .md-content {
   background-color: black;
 }
 
+button label {
+  cursor: pointer;
+}
+
 .md-toolbar-tools {
   /* Makes the toolbar stay in 64px height, in any resolution */
   height: 64px;
   max-height: 64px;
+}
+
+.register-menu {
+  border-radius: 5px;
+  margin-top: 2rem;
+}
+
+
+.stick-button {
+  position: absolute;
+  margin-top: 60px;
+  -moz-margin: 30px 0 0 0;
+  margin-left: calc(100% - 10rem);
+}
+
+@-moz-document url-prefix() { /* Firefox hack, position absolute works different on chrome and firefox*/
+  .stick-button {
+    position: absolute;
+    margin-top: 30px;
+    margin-left: calc(100% - 10rem);
+  }
 }
 
 .md-button:not([disabled]):hover {
@@ -63,6 +89,18 @@ md-tooltip .md-content {
   padding: 2rem;
 }
 
+.vertical-marg-0-5 {
+  margin: 0.5rem 0;
+}
+
+.vertical-marg-1 {
+  margin: 1rem 0;
+}
+
+.vertical-marg-2 {
+  margin: 2rem 0;
+}
+
 .row-4 {
   height: 4rem;
 }
@@ -99,6 +137,22 @@ md-tooltip .md-content {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.no-padding {
+  padding: 0;
 }
 
 .background-height {

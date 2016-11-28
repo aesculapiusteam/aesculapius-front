@@ -20,6 +20,7 @@ function ($scope, Restangular, aeData, $location, $rootScope) {
 
   Restangular.one('profiles', String(aeData.historyId)).get().then(function(response){
     $scope.patientName = aeData.nameOf(response);
+    $scope.patientId = response.id;
     return $scope.patientName;
   });
 
@@ -53,5 +54,9 @@ function ($scope, Restangular, aeData, $location, $rootScope) {
   // Devuelve la id del empleado de la visita actual en la tabla
   $scope.idOfDoctor = function(rowId){
     return _.find(aeData.visits, {id: rowId}).doctor;
+  };
+
+  $scope.goToProfiles = function() {
+    $location.path('profiles');
   };
 }]);

@@ -9,8 +9,8 @@
  */
 angular.module('aesculapiusFrontApp')
   .controller('RegisterCtrl', ['$scope', 'Restangular', '$mdToast', 'aeData',
-    '$rootScope', '$location',
-    function($scope, Restangular, $mdToast, aeData, $rootScope, $location) {
+    '$rootScope', '$location', '$timeout', '$anchorScroll',
+    function($scope, Restangular, $mdToast, aeData, $rootScope, $location, $timeout, $anchorScroll) {
       $scope.detail = '';
       $scope.selectedItemPeople = '';
       $scope.nActions = [{
@@ -84,7 +84,7 @@ angular.module('aesculapiusFrontApp')
       $scope.peopleList = function() {
         return allProfiles.getList({
           search: $scope.filterTextP,
-          limit: 5
+          limit: 3
         }).then(
           function(response) {
             response.push(' '); //necesito esto para el boton añadir en el autocomplete
@@ -95,7 +95,7 @@ angular.module('aesculapiusFrontApp')
       $scope.drugList = function() {
         return allDrugs.getList({
           search: this.filterTextM,
-          limit: 5
+          limit: 3
         }).then(
           function(response) {
             response.push(' '); //necesito esto para el boton añadir en el autocomplete
@@ -111,10 +111,15 @@ angular.module('aesculapiusFrontApp')
           'detail': '',
           'type': ''
         });
+        $timeout(function() {
+          $anchorScroll('bottom');
+        });
       };
 
       $scope.deleteAction = function(pos) {
-        $scope.nActions.splice($scope.nActions.indexOf(pos), 1);
+        if ($scope.nActions.length > 1) {
+          $scope.nActions.splice($scope.nActions.indexOf(pos), 1);
+        }
       };
 
       $scope.cancel = function() {

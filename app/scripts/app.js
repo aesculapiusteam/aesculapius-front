@@ -10,17 +10,11 @@
  */
 angular
   .module('aesculapiusFrontApp', [
-    'ngAnimate',
-    'ngAria',
-    'ngCookies',
     'ngMessages',
-    'ngResource',
     'ngRoute',
-    'ngSanitize',
     'ngMaterial',
     'mdDataTable',
-    'restangular',
-    'datetime'
+    'restangular'
   ])
   .config(['$httpProvider', 'RestangularProvider', '$mdDateLocaleProvider',
     function($httpProvider, RestangularProvider, $mdDateLocaleProvider) {
@@ -172,6 +166,7 @@ angular
         var buttonText = ''; // Text of the OK button
         var cancelText = ''; // Text for the cancel button
         var toastConfirmText = ''; // Text that the toast will have if saved/deleted
+        var nexus = ''; // Text for joining sentences, with plural or singular nexus
         aeData.dialogInfo = dialogInfo; // Dialog info contains an array with the type of dialog to open and an ID
         // Example for dialogInfo -> ['drug', 7]
         switch (action) {
@@ -183,17 +178,18 @@ angular
           case 'delete':
             buttonText = 'Eliminar';
             cancelText = 'Cancelar';
-            if(products[0].name){
+            if(products[0].name){ // Drug
+              nexus = products.length === 1 ? ' este será removido' : ', estos serán removidos';
               text = 'Al eliminar ' + aeData.itemsInText(products) +
-              ', este no aparecerá más en el sistema, sin embargo podrá ser restaurado luego.';
+                nexus + ' permanentemente del sistema.';
               toastConfirmText = aeData.itemsInText(products) + ' eliminados con exito!';
-            }else if(products[0].first_name || products[0].profile){
+            }else if(products[0].first_name || products[0].profile){ // Employees and Profiles
               text = 'Al eliminar a ' + aeData.nameOf(products[0]) +
               ', este no aparecerá más en el sistema, sin embargo podrá ser restaurado luego.';
               toastConfirmText = aeData.nameOf(products[0]) + ' eliminado con exito!';
-            }else{
+            }else{ // Visit
               text = 'Al eliminar la visita de ' + products[0].patient_name +
-              ', este no aparecerá más en el sistema, sin embargo podrá ser restaurado luego.';
+              ', esta no aparecerá más en el sistema, sin embargo podrá ser restaurado luego.';
               toastConfirmText = 'Visita de ' + products[0].patient_name + ' eliminada con exito!';
             }
             break;
@@ -263,7 +259,7 @@ angular
       $mdToast.show(toast).then(function(response) {
         if ( response === 'ok' ) {
           if(ev === 'error'){
-            $rootScope.showAlert(scope);
+            $rootScope.showAlert((scope.data && scope.data.detail) || scope);
           }else{
             $rootScope.showDialog(ev,scope);
           }
@@ -273,8 +269,30 @@ angular
     }
   ])
   .config(function($mdThemingProvider) {
+
+    $mdThemingProvider.definePalette('orangeModifiedA200', {
+      '50': 'fff3e0',
+      '100': 'ffe0b2',
+      '200': 'ffcc80',
+      '300': 'ffb74d',
+      '400': 'ffa726',
+      '500': 'ff9800',
+      '600': 'fb8c00',
+      '700': 'f57c00',
+      '800': 'ef6c00',
+      '900': 'e65100',
+      'A100': 'ffd180',
+      'A200': 'ff9800', // Button is using this one
+      'A400': 'ff9100',
+      'A700': 'ff6d00',
+      'contrastDefaultColor': 'light',
+      'contrastDarkColors': ['50', '100', //hues which contrast should be 'dark' by default
+       '200', '300', '400', 'A100'],
+      'contrastLightColors': undefined    // could also specify this if default was 'dark'
+    });
+
     $mdThemingProvider.theme('default')
       .primaryPalette('blue')
-      .accentPalette('pink')
+      .accentPalette('orangeModifiedA200')
       .warnPalette('red');
   });
