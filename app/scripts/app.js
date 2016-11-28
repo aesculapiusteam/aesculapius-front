@@ -10,17 +10,11 @@
  */
 angular
   .module('aesculapiusFrontApp', [
-    'ngAnimate',
-    'ngAria',
-    'ngCookies',
     'ngMessages',
-    'ngResource',
     'ngRoute',
-    'ngSanitize',
     'ngMaterial',
     'mdDataTable',
-    'restangular',
-    'datetime'
+    'restangular'
   ])
   .config(['$httpProvider', 'RestangularProvider', '$mdDateLocaleProvider',
     function($httpProvider, RestangularProvider, $mdDateLocaleProvider) {
