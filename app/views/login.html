@@ -1,6 +1,6 @@
 <div layout="row" flex layout-align="center">
 
-  <form ng-submit="logIn()" class="login-form pad-2" md-whiteframe="3" layout="column" layout-fill>
+  <form name="loginForm" ng-submit="logIn()" class="login-form pad-2" md-whiteframe="3" layout="column" layout-fill>
 
     <div layout="column" layout-align="center center">
       <img src="images/logo_circle_shadow.png" class="login-logo"/>
@@ -9,12 +9,18 @@
 
     <md-input-container class="md-block">
       <md-icon class="md-primary">person</md-icon>
-      <input ng-model="credentials.username" placeholder="Nombre de Usuario">
+      <input name="username" ng-model="credentials.username" placeholder="Nombre de Usuario" required>
+      <div ng-messages="loginForm.username.$error">
+        <div ng-message="required">Tu nombre de usuario es necesario.</div>
+      </div>
     </md-input-container>
 
     <md-input-container class="md-block">
       <md-icon class="md-primary">lock</md-icon>
-      <input type="password" ng-model="credentials.password" placeholder="Contraseña">
+      <input name="password" type="password" ng-model="credentials.password" placeholder="Contraseña" required>
+      <div ng-messages="loginForm.password.$error">
+        <div ng-message="required">Te olvidaste de rellenar la contraseña.</div>
+      </div>
     </md-input-container>
 
     <md-button type="submit" class="md-primary md-raised row-4" layout="row">
