@@ -54,7 +54,7 @@
           </div>
         </md-item-template>
         <div ng-messages="registerForm.person.$error">
-          <div ng-message="required">Este campo es obligatorio</div>
+          <div ng-message="required">Seleccione o agregue a la persona a tratar.</div>
           <div ng-message="md-require-match">Esta persona no existe.</div>
         </div>
       </md-autocomplete>
@@ -74,7 +74,7 @@
           <md-option value="1">Dinero</md-option>
         </md-select>
         <div ng-messages="registerForm.capital.$error">
-          <div ng-message="required">Este campo es obligatorio</div>
+          <div ng-message="required">Tipo de intercambio</div>
         </div>
       </md-input-container>
       <span ng-show="showOrHide(action.capital)">$</span>
@@ -111,7 +111,7 @@
           </div>
         </md-item-template>
         <div ng-messages="registerForm.drug.$error">
-          <div ng-message="required">Este campo es obligatorio</div>
+          <div ng-message="required">Seleccione o agregue el medicamento</div>
           <div ng-message="md-require-match">Este medicamento no existe.</div>
         </div>
       </md-autocomplete>
@@ -119,7 +119,7 @@
         <label>Cantidad</label>
         <input name="quantity" required ng-model="action.quantity" type="number" min="0">
         <div ng-messages="registerForm.quantity.$error">
-          <div ng-message="required">Este campo es Obligatorio</div>
+          <div ng-message="required">¿Cuanto/s?</div>
           <div ng-message="number">Introduzca sólo números.</div>
           <div ng-message="min">Introduzca sólo números positivos.</div>
         </div>
@@ -130,7 +130,7 @@
           <md-option value="0">Egreso</md-option>
         </md-select>
         <div ng-messages="registerForm.type.$error">
-          <div ng-message="required">Este campo es Obligatorio</div>
+          <div ng-message="required">Ingreso/Egreso</div>
         </div>
       </md-input-container>
       <md-input-container flex>

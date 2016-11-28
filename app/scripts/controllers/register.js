@@ -84,7 +84,7 @@ angular.module('aesculapiusFrontApp')
       $scope.peopleList = function() {
         return allProfiles.getList({
           search: $scope.filterTextP,
-          limit: 5
+          limit: 3
         }).then(
           function(response) {
             response.push(' '); //necesito esto para el boton añadir en el autocomplete
@@ -95,7 +95,7 @@ angular.module('aesculapiusFrontApp')
       $scope.drugList = function() {
         return allDrugs.getList({
           search: this.filterTextM,
-          limit: 5
+          limit: 3
         }).then(
           function(response) {
             response.push(' '); //necesito esto para el boton añadir en el autocomplete

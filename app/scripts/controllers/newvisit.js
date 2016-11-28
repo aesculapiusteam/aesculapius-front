@@ -16,7 +16,7 @@ angular.module('aesculapiusFrontApp')
     $scope.date = new Date();
 
     $scope.peopleList = function(){
-      return allProfiles.getList({search: $scope.filterTextP, limit:5}).then(
+      return allProfiles.getList({search: $scope.filterTextP, limit:3}).then(
         function(response){
           response.push(' ');
           return response;

@@ -42,7 +42,7 @@ angular.module('aesculapiusFrontApp')
       });
 
       $scope.add = function() {
-        if (!$scope.passwordsMatch()) {
+        if ($scope.isEmployeeForm && !$scope.passwordsMatch()) {
           $mdToast.show( //XXX CODIGO RANCIO MUCHOS MD TOAST QUE HACNE LO MISMO SIMPLIFICAR
             $mdToast.simple()
             .textContent('Debe escribir dos veces su nueva contraseña y deben coincidir.')
@@ -82,7 +82,7 @@ angular.module('aesculapiusFrontApp')
           this.add();
         } else {
           // Must modify an existing person TODO
-          if (!$scope.passwordsMatch(true)) { //XXX CODIGO RANCIO ESTA ARRIBA IGUAL
+          if ($scope.isEmployeeForm && !$scope.passwordsMatch(true)) { //XXX CODIGO RANCIO ESTA ARRIBA IGUAL
             $mdToast.show( //XXX CODIGO RANCIO MUCHOS MD TOAST QUE HACNE LO MISMO SIMPLIFICAR
               $mdToast.simple()
               .textContent('Debe escribir dos veces su nueva contraseña y deben coincidir.')
@@ -156,14 +156,13 @@ angular.module('aesculapiusFrontApp')
         var repeatPassword = $scope.person.repeatPassword;
         var passwordsExistsAndMatch = $scope.person.password &&
           $scope.person.repeatPassword && $scope.person.repeatPassword === $scope.person.password;
-
         if (forEdit) {
           if (!repeatPassword) { // If there is no repeat password, the password will not change, but the other properties will
             $scope.person.password = "";
           }
-          return $scope.isEmployeeForm && (!repeatPassword || passwordsExistsAndMatch);
+          return !repeatPassword || passwordsExistsAndMatch;
         }
-        return $scope.isEmployeeForm && passwordsExistsAndMatch;
+        return passwordsExistsAndMatch;
       };
     }
   ]);

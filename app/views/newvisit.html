@@ -6,12 +6,12 @@
       <md-button class="filter-text-button md-warn" ng-click="cancel()">
         <md-icon>refresh</md-icon>
         Cancelar
-        <md-tooltip>Borrar todos los campos</md-tooltip>
+        <md-tooltip md-delay="500">Borrar todos los campos</md-tooltip>
       </md-button>
       <md-button class="filter-text-button md-primary" ng-disabled="newVisitForm.$invalid || newVisitForm.$pristine" ng-click="done()">
         <md-icon>done</md-icon>
         Guardar
-        <md-tooltip>Guarda la consulta</md-tooltip>
+        <md-tooltip md-delay="500">Guarda la consulta</md-tooltip>
       </md-button>
     </div>
   </div>
@@ -64,6 +64,7 @@
       <md-button ng-disabled="!selectedItemPeople.id" class="md-icon-button md-primary" aria-label="More" id="profile"
       ng-click="goToDialog($event, selectedItemPeople.id)">
       <md-icon>more_vert</md-icon>
+      <md-tooltip>Detalles del paciente</md-tooltip>
     </md-button>
   </div>
   <div flex layout="row" layout-align="end center">
