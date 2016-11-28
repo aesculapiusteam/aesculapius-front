@@ -112,8 +112,7 @@ angular.module('aesculapiusFrontApp')
           'type': ''
         });
         $timeout(function() {
-          $location.hash('bottom');
-          $anchorScroll();
+          $anchorScroll('bottom');
         });
       };
 
