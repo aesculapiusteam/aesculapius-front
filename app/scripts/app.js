@@ -220,7 +220,7 @@ angular
                   );
                 }, function(error){
                   $rootScope.showActionToast('Lamentablemente hubo un error al eliminar '+ aeData.itemsInText(products),'error',
-                   error);
+                   error.data.detail);
                 }
               );
             };
