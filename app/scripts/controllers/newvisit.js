@@ -30,6 +30,7 @@ angular.module('aesculapiusFrontApp')
       $scope.cancel = function(){
         $scope.detail = "";
         $scope.selectedItemPeople = "";
+        $scope.filterTextP = "";
         $scope.newVisitForm.detail.$touched=false;
         $scope.newVisitForm.person.$touched=false;
       };
