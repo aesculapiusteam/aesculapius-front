@@ -31,14 +31,12 @@ angular
         }
         return data;
       });
+
       $mdDateLocaleProvider.formatDate = function(date) {
         if (date) {
-          var day = date.getDate();
-          var monthIndex = date.getMonth();
-          var year = date.getFullYear();
-          return ("0" + day).slice(-2) + '/' + ("0" + (monthIndex + 1)).slice(-2) + '/' + year;
+          return moment(date).format('DD/MM/YYYY');
         }
-        return "";
+        return '';
       };
     }
   ])

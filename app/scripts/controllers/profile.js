@@ -12,10 +12,23 @@ angular.module('aesculapiusFrontApp')
     '$scope', '$mdDialog', '$rootScope', 'aeData', 'Restangular', '$mdToast',
     function($scope, $mdDialog, $rootScope, aeData, Restangular, $mdToast) {
 
+      $scope.today = new Date();
       $scope.person = {};
-      if (aeData[aeData.selected]) {
+
+      if (aeData[aeData.selected]){
         $scope.person = aeData[aeData.selected];
-        if (aeData[aeData.selected].id) {
+        setTimeout(function() {
+          if ($scope.person.profile){
+            if ($scope.person.profile.birth_date) {
+              $scope.birthDate = new Date(moment($scope.person.profile.birth_date));
+            }
+          } else {
+            if ($scope.person.birth_date){
+              $scope.birthDate = new Date(moment($scope.person.birth_date));
+            }
+          }
+        }, 0);
+        if(aeData[aeData.selected].id) {
           $scope.nullProfile = false;
         }
       } else {
@@ -76,6 +89,11 @@ angular.module('aesculapiusFrontApp')
       };
 
       $scope.save = function() {
+        if ($scope.person.profile) {
+            $scope.person.profile.birth_date = moment($scope.birthDate).format('YYYY-MM-DD');
+        } else {
+            $scope.person.birth_date = moment($scope.birthDate).format('YYYY-MM-DD');
+        }
         $scope.profileForm.$submitted = true; //for the confirm dialog on close not to open
         if (!aeData[aeData.selected].id) {
           // Must create a new person
@@ -109,8 +127,7 @@ angular.module('aesculapiusFrontApp')
             },
             function(error) {
               $rootScope.showActionToast('Lamentablemente hubo un error al modificar la informacion.', 'error',
-                error);
-            }
+                error);            }
           );
         }
       };

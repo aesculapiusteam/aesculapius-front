@@ -18,7 +18,7 @@ angular.module('aesculapiusFrontApp')
     this.drug = null; // Current selected restangular drug
     this.drugs = null; // Current displayed restangular drugs in /stock
     this.visits = null; // Current displayed restangular visits in the clinic history
-    this.pos = null; //Current position on an ng-repeat of the actions of register
+    this.pos = null; // Current position on an ng-repeat of the actions of register
     this.dialogInfo = null; // Current dialog information for the confirm dialogInfo
     this.form = null; // Current form on use
     this.isConfirmThere = null; // Checks if confirm dialog is on
