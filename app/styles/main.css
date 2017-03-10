@@ -82,7 +82,7 @@ button label {
 }
 
 .pad-1 {
-  padding: 1rem;
+  padding: 1rem !important;
 }
 
 .pad-2 {
@@ -99,6 +99,10 @@ button label {
 
 .vertical-marg-2 {
   margin: 2rem 0;
+}
+
+.border-radius-5 {
+  border-radius: 5px;
 }
 
 .row-4 {
