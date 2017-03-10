@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon">    
+    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
@@ -31,9 +31,9 @@
 
     <!-- Nav Bar -->
     <md-toolbar class="md-whiteframe-4dp">
-      <div class="md-toolbar-tools">
+      <div class="no-padding md-toolbar-tools">
 
-        <a layout="row" href="#" md-ink-ripple class="unselectable hoverable base-link">
+        <a layout="row" href="#" md-ink-ripple class="no-padding unselectable hoverable base-link">
           <img class="base-logo center" src="images/logo_nobackground.png"/>
           <span hide show-gt-sm class="base-title">Aesculapius</span>
         </a>
@@ -90,7 +90,7 @@
         <span flex></span>
 
         <div ng-show="authenticated">
-          <md-menu-bar>
+          <md-menu-bar class="no-padding">
             <md-menu md-position-mode="target-right bottom">
               <md-button ng-click="$mdOpenMenu()">
                 <md-icon>person</md-icon>
