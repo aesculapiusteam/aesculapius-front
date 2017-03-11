@@ -33,6 +33,7 @@
     <md-toolbar class="md-whiteframe-4dp">
       <div class="no-padding md-toolbar-tools">
 
+        <!-- Aesculapius Title -->
         <a layout="row" href="#" md-ink-ripple class="no-padding unselectable hoverable base-link">
           <img class="base-logo center" src="images/logo_nobackground.png"/>
           <span hide show-gt-sm show-xs class="base-title">Aesculapius</span>
@@ -40,13 +41,33 @@
 
         <div ng-show="authenticated">
           <span flex="5"></span>
+
+          <!-- On small: 600px to 960px -->
+          <md-button hide show-sm href="#/profiles" class="md-icon-button">
+            <md-icon>local_hospital</md-icon>
+            <md-tooltip>Ver Pacientes</md-tooltip>
+          </md-button>
+          <md-button hide show-sm href="#/employees" class="md-icon-button">
+            <md-icon>people</md-icon>
+            <md-tooltip>Ver Empleados</md-tooltip>
+          </md-button>
+          <md-button hide show-sm href="#/stock" class="md-icon-button">
+            <md-icon>assignment</md-icon>
+            <md-tooltip>Gestionar Inventario</md-tooltip>
+          </md-button>
+          <md-button hide show-sm href="#/register" class="md-icon-button">
+            <md-icon>web</md-icon>
+            <md-tooltip>Ir a la caja</md-tooltip>
+          </md-button>
+          <md-button hide show-sm href="#/newvisit" class="md-icon-button" ng-if="me.charge==='doctor'">
+            <md-icon>note_add</md-icon>
+            <md-tooltip>Ir a Nueva Consulta</md-tooltip>
+          </md-button>
+
+          <!-- On greater than small: >= 960px -->
           <md-button hide show-gt-sm class="base-button" href="#/profiles">
             <md-icon>local_hospital</md-icon>
             <span>Pacientes<span>
-            <md-tooltip>Ver Pacientes</md-tooltip>
-          </md-button>
-          <md-button hide show-sm href="#/profiles" class="md-icon-button">
-            <md-icon>local_hospital</md-icon>
             <md-tooltip>Ver Pacientes</md-tooltip>
           </md-button>
           <md-button hide show-gt-sm class="base-button" href="#/employees">
@@ -54,17 +75,9 @@
             <span>Empleados<span>
             <md-tooltip>Ver Empleados</md-tooltip>
           </md-button>
-          <md-button hide show-sm href="#/employees" class="md-icon-button">
-            <md-icon>people</md-icon>
-            <md-tooltip>Ver Empleados</md-tooltip>
-          </md-button>
           <md-button hide show-gt-sm class="base-button" href="#/stock">
             <md-icon>assignment</md-icon>
             <span>Inventario<span>
-            <md-tooltip>Gestionar Inventario</md-tooltip>
-          </md-button>
-          <md-button hide show-sm href="#/stock" class="md-icon-button">
-            <md-icon>assignment</md-icon>
             <md-tooltip>Gestionar Inventario</md-tooltip>
           </md-button>
           <md-button hide show-gt-sm class="base-button" href="#/register">
@@ -72,24 +85,18 @@
             <span>Caja<span>
             <md-tooltip>Ir a la caja</md-tooltip>
           </md-button>
-          <md-button hide show-sm href="#/register" class="md-icon-button">
-            <md-icon>web</md-icon>
-            <md-tooltip>Ir a la caja</md-tooltip>
-          </md-button>
           <md-button hide show-gt-sm class="base-button" href="#/newvisit" ng-if="me.charge==='doctor'">
             <md-icon>note_add</md-icon>
             <span>Nueva Consulta<span>
             <md-tooltip>Ir a Nueva Consulta</md-tooltip>
           </md-button>
-          <md-button hide show-sm href="#/newvisit" class="md-icon-button" ng-if="me.charge==='doctor'">
-            <md-icon>note_add</md-icon>
-            <md-tooltip>Ir a Nueva Consulta</md-tooltip>
-          </md-button>
+
         </div>
 
         <span flex></span>
 
         <div ng-show="authenticated">
+          <!-- On Extra small: < 600px -->
           <md-menu-bar hide show-xs class="no-padding">
             <md-menu md-position-mode="target-right bottom">
               <md-button ng-click="$mdOpenMenu()">
@@ -139,10 +146,12 @@
                     <span>Salir de Aesculapius</span>
                   </md-button>
                 </md-menu-item>
+                <md-menu-divider></md-menu-divider>
               </md-menu-content>
             </md-menu>
           </md-menu-bar>
 
+          <!-- On greater than extra small: >= 600px -->
           <md-menu-bar hide-xs class="no-padding">
             <md-menu md-position-mode="target-right bottom">
               <md-button ng-click="$mdOpenMenu()">

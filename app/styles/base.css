@@ -20,10 +20,15 @@
   margin: 0 2px;
 }
 
+.base-menu {
+  max-height: 80vh !important;
+}
+
 .base-menu > md-menu-item, .base-menu > md-menu-item > button, .base-menu > md-menu-item > a{
   display: block !important;
   height: 64px !important;
   line-height: 64px;
+  min-height: 64px !important;
   padding-top: 0;
   border-radius: 5px;
 }
