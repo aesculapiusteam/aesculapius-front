@@ -7,15 +7,14 @@
       <p class="thin-text">Ingresa a Aesculapius <span hide-xs>- Santa María</span></p>
     </div>
 
-    <md-input-container class="md-block">
+    <md-input-container class="md-block no-margin-xs">
       <md-icon class="md-primary">person</md-icon>
       <input name="username" ng-model="credentials.username" placeholder="Nombre de Usuario" required>
       <div ng-messages="loginForm.username.$error">
         <div ng-message="required">El nombre de usuario es necesario</div>
       </div>
     </md-input-container>
-
-    <md-input-container class="md-block">
+    <md-input-container class="md-block no-margin-xs">
       <md-icon class="md-primary">lock</md-icon>
       <input name="password" type="password" ng-model="credentials.password" placeholder="Contraseña" required>
       <div ng-messages="loginForm.password.$error">

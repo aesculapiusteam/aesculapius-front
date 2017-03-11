@@ -2,8 +2,15 @@
   width: 24rem;
   height: 32rem;
   background-color: white;
-}
+  margin-bottom: 2rem;
+  border-radius: 5px; }
+  @media only screen and (max-width : 599px) {
+    .login-form {
+      height: 24.5rem;
+      padding: 1rem 2rem; } }
 
 .login-logo {
-  width: 8rem;
-}
+  width: 8rem; }
+  @media only screen and (max-width : 599px) {
+     .login-logo {
+        width: 6rem; } }

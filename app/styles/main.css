@@ -155,6 +155,11 @@ button label {
   margin: 0;
 }
 
+@media only screen and (max-width: 599px){
+  .no-margin-xs {
+    margin: 0; }
+}
+
 .no-padding {
   padding: 0;
 }

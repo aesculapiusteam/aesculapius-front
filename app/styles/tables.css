@@ -1,12 +1,13 @@
 /* FILTERS */
 
 .filter-wrapper {
-  padding: 1rem 0;
+  padding-bottom: 1rem;
 }
 
 .filter-container {
   padding:1rem;
   background-color: #FAFAFA;
+  border-radius: 5px;
 }
 
 .filter-header {
@@ -44,6 +45,13 @@
   width: 20rem;
 }
 
+
+/* TABLES IN GENERAL */
+
+.mdtTableContainer {
+  border-radius: 5px;
+  margin-bottom: 2rem;
+}
 
 /* EMPLOYEES */
 
