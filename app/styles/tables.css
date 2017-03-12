@@ -1,12 +1,17 @@
 /* FILTERS */
 
+md-input-container {
+  overflow: auto;
+}
+
 .filter-wrapper {
-  padding: 1rem 0;
+  padding-bottom: 1rem;
 }
 
 .filter-container {
   padding:1rem;
   background-color: #FAFAFA;
+  border-radius: 5px;
 }
 
 .filter-header {
@@ -27,6 +32,11 @@
   color: #2196F3 !important;
 }
 
+.filter-search-icon {
+  padding: 0 12px 0 12px;
+  color: #2196F3 !important;
+}
+
 .filter-search {
   width: 100%;
   padding: 0 0 0 1rem;
@@ -44,6 +54,35 @@
   width: 20rem;
 }
 
+@media only screen and (max-width: 728px){
+  .filter-button {
+    margin: 0;
+    padding: 0;
+    min-width: 3rem; }
+
+  .filter-icon {
+    margin: auto 0; }
+
+  .md-input-container-xs {
+    height: 36px;
+    padding: 0;
+    overflow: auto; }
+}
+
+@media only screen and (max-width: 359px){
+  .filter-button {
+    min-width: 2rem; }
+
+  .filter-icon {
+    padding: 0; }
+}
+
+/* TABLES IN GENERAL */
+
+.mdtTableContainer {
+  border-radius: 5px;
+  margin-bottom: 2rem;
+}
 
 /* EMPLOYEES */
 

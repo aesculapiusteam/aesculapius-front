@@ -13,6 +13,7 @@
       '$scope', '$location', 'Restangular', 'aeData',
       function($scope, $location, Restangular, aeData) {
         $scope.filterText = "";
+        $scope.showMobileSearch = false;
         var allProfiles = Restangular.all('profiles');
         var loadPageCallbackWithDebounce;
 
@@ -45,6 +46,11 @@
         $scope.cHistory = function(ev) {
           aeData.historyId = ev.currentTarget.parentElement.parentElement.parentElement.children[4].children[0].children[0].attributes[1].nodeValue;
           $location.path('history');
+        };
+
+        $scope.toggleMobileSearch = function() {
+          this.showMobileSearch = !this.showMobileSearch;
+          this.filterText = "";
         };
 
       }

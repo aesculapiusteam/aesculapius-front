@@ -68,7 +68,7 @@ button label {
   box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.2), 0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 3px 3px -2px rgba(0, 0, 0, 0.12);
 }
 
-.unselectable {
+.unselectable, md-icon {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -82,7 +82,7 @@ button label {
 }
 
 .pad-1 {
-  padding: 1rem;
+  padding: 1rem !important;
 }
 
 .pad-2 {
@@ -99,6 +99,10 @@ button label {
 
 .vertical-marg-2 {
   margin: 2rem 0;
+}
+
+.border-radius-5 {
+  border-radius: 5px;
 }
 
 .row-4 {
@@ -157,4 +161,36 @@ button label {
 
 .background-height {
   height: calc(100% - 128px);
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+}
+
+.truncate-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media only screen and (max-width: 728px){
+  .truncate-xs {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+  }
+
+  .truncate-ellipsis-xs {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .no-margin-xs {
+    margin: 0; }
+
+  .no-pad-xs {
+    padding: 0 !important; }
 }

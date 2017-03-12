@@ -1,20 +1,39 @@
 <div class="employeesTable">
-  <div class="filter-wrapper">
+  <div ng-hide="showMobileSearch" class="filter-wrapper">
     <div layout="row" md-whiteframe="1" class="filter-container">
       <md-icon class="filter-icon">format_list_bulleted</md-icon>
-      <span class="filter-header">Lista de Empleados</span>
-      <div class="filter-search" layout="row">
-        <md-icon class="unselectable">search</md-icon>
+      <span class="truncate-xs filter-header"><span hide show-gt-xs>Lista de</span> Empleados</span>
+      <span flex></span>
+      <div class="filter-search" layout="row" hide show-gt-xs>
+        <md-icon>search</md-icon>
         <md-input-container md-no-float class="md-toolbar-tools">
           <input flex ng-model="filterText" placeholder="Comience a escribir aquí" type="text">
         </md-input-container>
       </div>
+      <md-button hide show-xs class="filter-button md-primary" ng-click="toggleMobileSearch()">
+        <md-icon>search</md-icon>
+        <md-tooltip md-delay="500">Busca un empleado</md-tooltip>
+      </md-button>
       <md-button class="filter-button md-primary" id="employee" ng-click="$root.showDialog($event)">
         <md-icon>person_add</md-icon>
         <md-tooltip md-delay="500">Agrega un nuevo empleado</md-tooltip>
       </md-button>
     </div>
   </div>
+
+  <div ng-show="showMobileSearch" class="filter-wrapper">
+    <div layout="row" md-whiteframe="1" class="filter-container">
+      <md-icon class="filter-search-icon">search</md-icon>
+      <md-input-container md-no-float class="md-toolbar-tools md-input-container-xs">
+        <input flex ng-model="filterText" placeholder="Buscar" type="text">
+      </md-input-container>
+      <md-button class="filter-button md-primary" ng-click="toggleMobileSearch()">
+        <md-icon>close</md-icon>
+        <md-tooltip md-delay="500">Cancelar busqueda</md-tooltip>
+      </md-button>
+    </div>
+  </div>
+
 
   <mdt-table
     sortable-columns="true"
