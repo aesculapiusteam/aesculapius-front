@@ -50,6 +50,7 @@
 
         $scope.toggleMobileSearch = function() {
           this.showMobileSearch = !this.showMobileSearch;
+          this.filterText = "";
         };
 
       }
