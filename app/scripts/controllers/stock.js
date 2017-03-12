@@ -60,6 +60,10 @@
           $rootScope.showConfirm(null, products, 'delete', aeData.reloadStockTable);
         };
 
+        $scope.toggleMobileSearch = function() {
+          this.showMobileSearch = !this.showMobileSearch;
+          this.filterText = "";
+        };
 
       }
     ]);

@@ -170,3 +170,15 @@ button label {
 .background-height {
   height: calc(100% - 128px);
 }
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+}
+
+.truncate-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
