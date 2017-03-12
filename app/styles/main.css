@@ -155,14 +155,6 @@ button label {
   margin: 0;
 }
 
-@media only screen and (max-width: 599px){
-  .no-margin-xs {
-    margin: 0; }
-
-  .no-pad-xs {
-    padding: 0 !important; }
-}
-
 .no-padding {
   padding: 0;
 }
@@ -181,4 +173,24 @@ button label {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+@media only screen and (max-width: 728px){
+  .truncate-xs {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+  }
+
+  .truncate-ellipsis-xs {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .no-margin-xs {
+    margin: 0; }
+
+  .no-pad-xs {
+    padding: 0 !important; }
 }

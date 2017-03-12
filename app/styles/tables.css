@@ -1,5 +1,9 @@
 /* FILTERS */
 
+md-input-container {
+  overflow: auto;
+}
+
 .filter-wrapper {
   padding-bottom: 1rem;
 }
@@ -50,7 +54,7 @@
   width: 20rem;
 }
 
-@media only screen and (max-width: 599px){
+@media only screen and (max-width: 728px){
   .filter-button {
     margin: 0;
     padding: 0;
