@@ -112,7 +112,9 @@ md-input-container {
 /* EMPLOYEES */
 
 .employeesTable table td, .employeesTable table th {
-  padding: 0px !important;
+  padding: 0 0.25rem !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .employeesTable table th {
@@ -129,27 +131,34 @@ md-input-container {
 
 /*NAME*/
 .employeesTable table td:nth-child(2) {
-  width: 25%;
+  min-width: 136px;
+  max-width: 144px;
 }
 
 /*LASTMNAME*/
 .employeesTable table td:nth-child(3) {
-  width: 25%;
+  min-width: 136px;
+  max-width: 24vw;
 }
 
 /*CHARGE*/
 .employeesTable table td:nth-child(4) {
-  width: 10%;
+  min-width: 56px;
+  max-width: 14vw;
+  overflow: visible;
 }
 
 /*MAIL*/
 .employeesTable table td:nth-child(5) {
-  width: 25%;
+  min-width: 256px;
+  max-width: 14vw;
 }
 
 /*EDIT BUTTON*/
 .employeesTable table td:nth-child(6) {
-  width: 15%;
+  min-width: 56px;
+  max-width: 14vw;
+  overflow: visible;
 }
 
 
