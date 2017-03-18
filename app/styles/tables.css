@@ -84,6 +84,31 @@ md-input-container {
   margin-bottom: 2rem;
 }
 
+.mdtTable table {
+  min-width: 0;
+}
+
+@media only screen and (max-width: 599px){
+  .mdtTableContainer {
+    padding: 0.25rem 1rem; }
+
+  .mdtTable {
+    padding: 0; }
+
+
+  .mdt-pagination {
+    line-height: 12px; }
+
+  .mdt-pagination span {
+    margin: 0; }
+
+  .mdtTable td button {
+    margin: 0;
+    padding: 0;
+    width: 3rem;
+    min-width: 3rem; }
+}
+
 /* EMPLOYEES */
 
 .employeesTable table td, .employeesTable table th {
@@ -114,7 +139,7 @@ md-input-container {
 
 /*CHARGE*/
 .employeesTable table td:nth-child(4) {
-  width: 10%%;
+  width: 10%;
 }
 
 /*MAIL*/
@@ -131,7 +156,9 @@ md-input-container {
 /* PROFILES */
 
 .profilesTable table td, .profilesTable table th {
-  padding: 0px !important;
+  padding: 0 0.25rem !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .profilesTable table th {
@@ -144,30 +171,34 @@ md-input-container {
 
 /*NAME*/
 .profilesTable table td:nth-child(2) {
-  width: 30%;
+  min-width: 136px;
+  max-width: 144px;
 }
 
 /*LASTNAME*/
 .profilesTable table td:nth-child(3) {
-  width: 30%;
+  min-width: 136px;
+  max-width: 24vw;
 }
 
 /*DNI*/
 .profilesTable table td:nth-child(4) {
-  width: 10%;
-}
-
-/*MAIL*/
-.profilesTable table td:nth-child(5) {
-  width: 10%;
+  min-width: 80px;
+  max-width: 20vw;
 }
 
 /*EDIT BUTTON*/
-.profilesTable table td:nth-child(6) {
+.profilesTable table td:nth-child(5) {
+  min-width: 56px;
+  max-width: 14vw;
+  overflow: visible;
 }
 
 /*HISTORY BUTON*/
-.profilesTable table td:nth-child(7) {
+.profilesTable table td:nth-child(6) {
+  min-width: 56px;
+  max-width: 14vw;
+  overflow: visible;
 }
 
 /* STOCK */
