@@ -213,15 +213,21 @@ md-input-container {
 /* STOCK */
 
 .stockTable table th {
+  padding: 0 0.25rem !important;
   text-align: center !important;
 }
 
 .stockTable table tr td {
+    padding: 0 0.25rem !important;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /*NAME*/
 .stockTable table td:nth-child(2) {
+  min-width: 160px;
+  max-width: 160px;
 }
 
 /*QUANTITY*/

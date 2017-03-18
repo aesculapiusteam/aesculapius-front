@@ -20,7 +20,7 @@
           <md-input-container flex="50">
             <label>Nombre del Medicamento</label>
             <md-icon class="md-primary">healing</md-icon>
-            <input name="name" ng-model="drug.name" required/>
+            <input name="name" ng-model="drug.name" required md-maxlength="256"/>
             <div ng-messages="drugForm.name.$error">
               <div ng-message="required">Este campo es obligatorio.</div>
             </div>
