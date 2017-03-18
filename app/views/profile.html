@@ -66,7 +66,7 @@
             <md-input-container flex="50">
               <label>Nombre</label>
               <md-icon class="md-primary">person</md-icon>
-              <input required name="firstName" ng-model="person.first_name" capitalize-first/>
+              <input required name="firstName" ng-model="person.first_name" md-maxlength="128" capitalize-first/>
               <div ng-messages="profileForm.firstName.$error">
                 <div ng-message="required">Campo obligatorio</div>
               </div>
@@ -75,13 +75,13 @@
             <md-input-container flex="50">
               <label>Apellido</label>
               <md-icon class="md-primary">face</md-icon>
-              <input name="lastName" ng-model="person.last_name"/>
+              <input name="lastName" ng-model="person.last_name" md-maxlength="128"/>
             </md-input-container>
 
             <md-input-container flex="50">
               <label>DNI</label>
               <md-icon class="md-primary">chrome_reader_mode</md-icon>
-              <input name="dni" type="number" ng-model="person.dni"/>
+              <input name="dni" type="number" ng-model="person.dni" max="2147483648" min="0"/>
               <div ng-messages="profileForm.dni.$error">
                 <div ng-message="number">Ingrese solo números enteros</div>
               </div>
@@ -105,18 +105,18 @@
           <md-input-container class="md-block">
             <label>Dirección</label>
             <md-icon class="md-primary">location_on</md-icon>
-            <input name="address" ng-model="person.address"/>
+            <input name="address" ng-model="person.address" md-maxlength="256"/>
           </md-input-container>
           <div layout="row">
             <md-input-container class="md-block" flex="50">
               <label>Número de teléfono</label>
               <md-icon class="md-primary">phone</md-icon>
-              <input name="phone" ng-model="person.phone"/>
+              <input name="phone" ng-model="person.phone" md-maxlength="50"/>
             </md-input-container>
             <md-input-container class="md-block" flex="50">
               <label>Número de celular</label>
               <md-icon class="md-primary">phone</md-icon>
-              <input name="cellphone" ng-model="person.cellphone"/>
+              <input name="cellphone" ng-model="person.cellphone" md-maxlength="50"/>
             </div>
           </md-input-container>
         </div>
@@ -128,7 +128,7 @@
             <md-input-container flex="50">
               <label>Nombre</label>
               <md-icon class="md-primary">person</md-icon>
-              <input required name="firstName" ng-model="person.profile.first_name" capitalize-first/>
+              <input required name="firstName" ng-model="person.profile.first_name" md-maxlength="128" capitalize-first/>
               <div ng-messages="profileForm.firstName.$error">
                 <div ng-message="required">Campo obligatorio</div>
               </div>
@@ -137,13 +137,13 @@
             <md-input-container flex="50">
               <label>Apellido</label>
               <md-icon class="md-primary">face</md-icon>
-              <input name="lastName" ng-model="person.profile.last_name"/>
+              <input name="lastName" ng-model="person.profile.last_name" md-maxlength="128"/>
             </md-input-container>
 
             <md-input-container flex="50">
               <label>DNI</label>
               <md-icon class="md-primary">chrome_reader_mode</md-icon>
-              <input name="dni" type="number" ng-model="person.profile.dni"/>
+              <input name="dni" type="number" ng-model="person.profile.dni" max="2147483648" min="0"/>
               <div ng-messages="profileForm.dni.$error">
                 <div ng-message="number">Ingrese solo números enteros</div>
               </div>
@@ -167,18 +167,18 @@
           <md-input-container class="md-block">
             <label>Dirección</label>
             <md-icon class="md-primary">location_on</md-icon>
-            <input name="address" ng-model="person.profile.address"/>
+            <input name="address" ng-model="person.profile.address" md-maxlength="256"/>
           </md-input-container>
           <div layout="row">
             <md-input-container class="md-block" flex="50">
               <label>Número de teléfono</label>
               <md-icon class="md-primary">phone</md-icon>
-              <input name="phone" ng-model="person.profile.phone"/>
+              <input name="phone" ng-model="person.profile.phone" md-maxlength="50"/>
             </md-input-container>
             <md-input-container class="md-block" flex="50">
               <label>Número de celular</label>
               <md-icon class="md-primary">phone</md-icon>
-              <input name="cellphone" ng-model="person.profile.cellphone"/>
+              <input name="cellphone" ng-model="person.profile.cellphone" md-maxlength="50"/>
             </div>
           </md-input-container>
         </div>
