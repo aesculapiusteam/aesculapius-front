@@ -107,6 +107,9 @@ md-input-container {
     padding: 0;
     width: 3rem;
     min-width: 3rem; }
+
+  .mdtTableContainer tr td {
+    border: 0; }
 }
 
 /* EMPLOYEES */
