@@ -35,11 +35,11 @@
 
     <!-- endbuild -->
   </head>
-  <body ng-app="aesculapiusFrontApp" ng-controller="BaseCtrl as base">
+  <body ng-app="aesculapiusFrontApp" ng-controller="BaseCtrl as base" class="with-background">
     <!--[if lte IE 8]> <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p> <![endif]-->
 
     <!-- Nav Bar -->
-    <md-toolbar class="md-whiteframe-4dp">
+    <md-toolbar class="md-whiteframe-4dp main-toolbar">
       <div class="no-padding md-toolbar-tools">
 
         <!-- Aesculapius Title -->
@@ -155,7 +155,6 @@
                     <span>Salir de Aesculapius</span>
                   </md-button>
                 </md-menu-item>
-                <md-menu-divider></md-menu-divider>
               </md-menu-content>
             </md-menu>
           </md-menu-bar>
@@ -195,10 +194,14 @@
       </div>
     </md-toolbar>
 
+    <!-- Empty space for fixed toolbar -->
+    <div class="row-4"></div>
+
     <!-- Main Content -->
-    <md-content class="with-background background-height">
+    <md-content class="main-content">
       <div ng-view=""></div>
     </md-content>
+
 
     <!-- Loading Spinner -->
     <div layout="column" class="loading-container" ng-show="loading">

@@ -1,3 +1,7 @@
+body {
+  height: initial;
+}
+
 md-content {
   padding: 2rem;
 }
@@ -19,6 +23,10 @@ md-tooltip .md-content {
 
 button label {
   cursor: pointer;
+}
+
+.main-toolbar {
+  position: fixed !important;
 }
 
 .md-toolbar-tools {
@@ -141,6 +149,7 @@ button label {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  background-attachment: fixed;
 }
 
 .full-width {
@@ -159,10 +168,6 @@ button label {
   padding: 0;
 }
 
-.background-height {
-  height: calc(100% - 128px);
-}
-
 .truncate {
   white-space: nowrap;
   overflow: hidden;
@@ -176,6 +181,10 @@ button label {
 }
 
 @media only screen and (max-width: 728px){
+  md-content {
+    padding: 0.75rem;
+  }
+
   .truncate-xs {
     white-space: nowrap;
     overflow: hidden;
