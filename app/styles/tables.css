@@ -93,6 +93,7 @@ md-input-container {
     padding: 0.25rem 1rem; }
 
   .mdtTable {
+    border-bottom: solid 1px #DDDDDD;
     padding: 0; }
 
 
@@ -101,6 +102,17 @@ md-input-container {
 
   .mdt-pagination span {
     margin: 0; }
+
+  /* X-X of X table footer span */
+  .mdt-pagination > span:last-of-type {
+    min-width: 6rem;
+    text-align: right; }
+
+  .md-select-value {
+    min-width: 2rem; }
+
+  .md-select-value span {
+    width: 2rem; }
 
   .mdtTable td button {
     margin: 0;
