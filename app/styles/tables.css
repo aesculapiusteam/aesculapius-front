@@ -3,6 +3,11 @@
 md-input-container {
   overflow: auto;
 }
+.mdtTableContainer .loading-indicator {
+  position: fixed;
+  top: 64px;
+  z-index: 2;
+}
 
 .filter-wrapper {
   padding-bottom: 1rem;
