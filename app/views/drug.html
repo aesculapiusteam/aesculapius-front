@@ -13,11 +13,11 @@
   </div>
   <md-divider></md-divider>
 
-  <md-dialog-content class="md-padding" layout-xs="column" layout="row">
+  <md-dialog-content class="md-padding" layout="column">
     <div layout="column" layout-padding ng-cloak>
       <form name="drugForm" ng-submit="save()" novalidate>
-        <div layout="row">
-          <md-input-container flex="50">
+        <div layout="column">
+          <md-input-container>
             <label>Nombre del Medicamento</label>
             <md-icon class="md-primary">healing</md-icon>
             <input name="name" ng-model="drug.name" required md-maxlength="256"/>
@@ -36,7 +36,7 @@
             </div>
           </md-input-container>
 
-          <md-input-container flex="50">
+          <md-input-container>
             <label>Detalle</label>
             <md-icon class="md-primary">content_paste</md-icon>
             <textarea name="description" ng-model="drug.description"></textarea>

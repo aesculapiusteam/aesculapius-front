@@ -1,8 +1,5 @@
 /* FILTERS */
 
-md-input-container {
-  overflow: auto;
-}
 .mdtTableContainer .loading-indicator {
   position: fixed;
   top: 64px;
@@ -103,6 +100,9 @@ md-input-container {
 
   .mdt-pagination {
     line-height: 12px; }
+
+  .mdt-pagination md-input-container {
+    overflow: auto; }
 
   .mdt-pagination span {
     margin: 0; }
