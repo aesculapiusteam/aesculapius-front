@@ -13,17 +13,20 @@
   <md-divider></md-divider>
   <md-dialog-content layout="column" layout-padding flex>
     <div layout="row">
-      <p> Paciente: <b ng-bind="visit.patient_name"></b></p>
+      <p><b>Paciente: </b>
+      <i ng-bind="visit.patient_name"></i></p>
     </div>
     <div layout="row">
-      <p> Médico: <b ng-bind="visit.doctor_name"></b></p>
+      <p><b>Profesional: </b>
+      <i ng-bind="visit.doctor_name"></i></p>
     </div>
     <div layout="row">
-      <p>Fecha: <b ng-bind="visit.datetime|date: 'dd MMMM yyyy HH:mm'"></b></p>
+      <p><b>Fecha: </b>
+      <i ng-bind="visit.datetime|date: 'dd MMMM yyyy HH:mm'"></i></p>
     </div>
     <div layout="row" layout-align="space-between center">
-      <p>Detalles: </p>
-      <md-button class="md-icon-button md-primary" ng-click="edit()">
+      <p><b>Detalles: </b></p>
+      <md-button class="filter-button md-primary" ng-click="edit()">
         <md-icon>border_color</md-icon>
       </md-button>
     </div>
