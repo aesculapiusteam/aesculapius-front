@@ -8,6 +8,7 @@
     <meta name="theme-color" content="#2196F3" />
     <meta http-equiv="content-language" content="es"/>
 
+    <link rel="manifest" href="manifest.json">
     <meta name="apple-mobile-web-app-title" content="Aesculapius">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -44,7 +45,7 @@
 
         <!-- Aesculapius Title -->
         <a layout="row" href="#" md-ink-ripple class="no-padding unselectable hoverable base-link">
-          <img class="base-logo center" src="images/logo_nobackground.png"/>
+          <img class="base-logo center" alt="" src="images/logo_nobackground.png"/>
           <span hide show-gt-sm show-xs class="base-title">Aesculapius</span>
         </a>
 
@@ -185,7 +186,7 @@
         </div>
 
         <div ng-hide="authenticated">
-          <md-button class="font-2" target="_blank" ng-href="https://www.facebook.com/Parroquia-Santa-Maria-de-la-Paz-495991100463679/">
+          <md-button class="font-2" target="_blank" rel="noopener" ng-href="https://www.facebook.com/Parroquia-Santa-Maria-de-la-Paz-495991100463679/">
             <md-icon md-svg-src="images/facebook.svg"></md-icon>
             <span hide-xs class="pad-0-5 thin-text spacing-1">Parroquia Santa María de la Paz</span>
           </md-button>
