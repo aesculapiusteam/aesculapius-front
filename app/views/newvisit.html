@@ -1,16 +1,17 @@
 <div> <!-- This simple div is needed -->
   <div class="filter-wrapper">
     <div layout="row" md-whiteframe="1" class="filter-container">
-      <md-icon class="filter-icon">format_list_bulleted</md-icon>
-      <span class="filter-header filter-full-header">Nueva Consulta</span>
-      <md-button class="filter-text-button md-warn" ng-click="cancel()">
+      <md-icon class="filter-icon">local_hospital</md-icon>
+      <span class="truncate-ellipsis-xs filter-header pad-1 no-pad-xs"><span hide show-gt-xs>Nueva </span>Consulta</span>
+      <span flex></span>
+      <md-button class="filter-button-xs md-warn" ng-click="cancel()">
         <md-icon>refresh</md-icon>
-        Cancelar
+        <span hide show-gt-xs>Cancelar</span>
         <md-tooltip md-delay="500">Borrar todos los campos</md-tooltip>
       </md-button>
-      <md-button class="filter-text-button md-primary" ng-disabled="newVisitForm.$invalid || newVisitForm.$pristine" ng-click="done()">
+      <md-button class="filter-button-xs md-primary" ng-disabled="newVisitForm.$invalid || newVisitForm.$pristine" ng-click="done()">
         <md-icon>done</md-icon>
-        Guardar
+        <span hide show-gt-xs>Guardar</span>
         <md-tooltip md-delay="500">Guarda la consulta</md-tooltip>
       </md-button>
     </div>
@@ -18,7 +19,7 @@
 </div>
 
   <md-card class="no-margin">
-    <md-card-content flex layout="column">
+    <md-card-content flex layout="column" class="no-pad-xs">
       <form name="newVisitForm" ng-submit="done()" novalidate>
         <div layout="row">
           <ae-profile-icon ng-if="selectedItemPeople.first_name"
@@ -61,7 +62,7 @@
         <div ng-message="md-require-match">Esta persona no existe.</div>
       </div>
       </md-autocomplete>
-      <md-button ng-disabled="!selectedItemPeople.id" class="md-icon-button md-primary" aria-label="More" id="profile"
+      <md-button ng-disabled="!selectedItemPeople.id" class="md-icon-button md-primary height-auto" aria-label="More" id="profile"
       ng-click="goToDialog($event, selectedItemPeople.id)">
       <md-icon>more_vert</md-icon>
       <md-tooltip>Detalles del paciente</md-tooltip>

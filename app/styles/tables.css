@@ -90,6 +90,11 @@
 }
 
 @media only screen and (max-width: 599px){
+  .filter-button-xs {
+    margin: 0;
+    padding: 0;
+    min-width: 3rem; }
+
   .mdtTableContainer {
     padding: 0.25rem 1rem; }
 
