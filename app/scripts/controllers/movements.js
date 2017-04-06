@@ -45,9 +45,9 @@ function ($scope, Restangular, $rootScope, aeData, $location) {
       for (var i=0;i<result[r].items.length;i++){
         if(!!result[r].items[i].movement_type){
           if(result[r].items[i].is_donation){
-            $scope.tableData[r].totalCashIn += result[r].items[i].cash;
+            $scope.tableData[r].totalCashIn += parseFloat(result[r].items[i].cash);
           }else{
-            $scope.tableData[r].totalCashOut += result[r].items[i].cash;
+            $scope.tableData[r].totalCashOut += parseFloat(result[r].items[i].cash);
           }
         }else{
           if(result[r].items[i].is_donation){
@@ -56,6 +56,13 @@ function ($scope, Restangular, $rootScope, aeData, $location) {
             $scope.tableData[r].totalDrugsOut += result[r].items[i].drug_quantity;
           }
         }
+      }
+      // Check if total cashes to show are not empty, if so, set them toFixed(2) (round to 2)
+      if ($scope.tableData[r].totalCashIn) {
+        $scope.tableData[r].totalCashIn =  $scope.tableData[r].totalCashIn.toFixed(2);
+      }
+      if ($scope.tableData[r].totalCashOut) {
+        $scope.tableData[r].totalCashOut = $scope.tableData[r].totalCashOut.toFixed(2);
       }
     }
     return $scope.tableData;
