@@ -10,6 +10,7 @@
 angular.module('aesculapiusFrontApp')
   .service('aeData', ['$rootScope', function($rootScope) {
     this.me = null; // Current logged in restangular employee
+    this.aesculapius = null; // Current aesculapius global data /aesculapius/current
     this.selected = null; // String, can be profile/employee/drug
     this.profile = null; // Current selected restangular profile
     this.profiles = null; // Current displayed restangular profiles in /profiles
