@@ -22,6 +22,8 @@ function ($scope, Restangular, $rootScope, aeData, $location) {
   $scope.monthFilter + " " +
   $scope.fixedFormat;
 
+  $scope.aesculapius = aeData.aesculapius = Restangular.one('aesculapius', 'current').get().$object;
+
 
   $scope.idOfProfile = function(rowId){
     // TODO: This is being executed too many times

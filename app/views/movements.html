@@ -9,6 +9,11 @@
           <input flex ng-model="filterText" placeholder="Filtrar por Empleado / Paciente / Donador / Fecha" type="text">
         </md-input-container>
       </div>
+      <md-button class="filter-button md-primary">
+          <span ng-if="aesculapius.balance">${{aesculapius.balance}}</span>
+          <md-icon ng-if="!aesculapius.balance">autorenew</md-icon>
+          <md-tooltip md-delay="500">{{aesculapius.balance ? 'Dinero en caja' : 'Obteniendo dinero en caja...'}}</md-tooltip>
+      </md-button>
       <md-button class="filter-button md-primary" ng-click="goToRegister()">
         <md-icon>arrow_back</md-icon>
         <md-tooltip md-delay="500">Volver a la caja</md-tooltip>
