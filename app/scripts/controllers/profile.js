@@ -12,7 +12,6 @@ angular.module('aesculapiusFrontApp')
     '$scope', '$mdDialog', '$rootScope', 'aeData', 'Restangular', '$mdToast',
     function($scope, $mdDialog, $rootScope, aeData, Restangular, $mdToast) {
 
-      $scope.today = new Date();
       $scope.person = {};
 
       if (aeData[aeData.selected]){
