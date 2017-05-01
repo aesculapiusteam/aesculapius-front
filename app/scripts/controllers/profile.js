@@ -20,11 +20,11 @@ angular.module('aesculapiusFrontApp')
         setTimeout(function() {
           if ($scope.person.profile){
             if ($scope.person.profile.birth_date) {
-              $scope.birthDate = new Date(moment($scope.person.profile.birth_date));
+              $scope.person.profile.age = moment().diff($scope.person.profile.birth_date, 'years');
             }
           } else {
             if ($scope.person.birth_date){
-              $scope.birthDate = new Date(moment($scope.person.birth_date));
+              $scope.person.age = moment().diff($scope.person.birth_date, 'years');
             }
           }
         }, 0);
@@ -90,9 +90,9 @@ angular.module('aesculapiusFrontApp')
 
       $scope.save = function() {
         if ($scope.person.profile) {
-            $scope.person.profile.birth_date = moment($scope.birthDate).format('YYYY-MM-DD');
+            $scope.person.profile.birth_date = moment().subtract($scope.person.profile.age, "years").format("YYYY-MM-DD");
         } else {
-            $scope.person.birth_date = moment($scope.birthDate).format('YYYY-MM-DD');
+            $scope.person.birth_date = moment().subtract($scope.person.age, "years").format("YYYY-MM-DD");
         }
         $scope.profileForm.$submitted = true; //for the confirm dialog on close not to open
         if (!aeData[aeData.selected].id) {

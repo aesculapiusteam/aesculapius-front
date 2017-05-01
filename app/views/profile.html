@@ -90,7 +90,7 @@
           </div>
 
           <div layout="column" layout-gt-xs="row">
-            <md-input-container class="md-block" flex="50">
+            <md-input-container class="md-block" flex="100">
               <label>Email</label>
               <md-icon class="md-primary">mail</md-icon>
               <input name="email" type="email" ng-model="person.email"/>
@@ -98,9 +98,18 @@
                 <div ng-message="email">Debe ingresar un mail valido.</div>
               </div>
             </md-input-container>
-            <md-datepicker class="md-primary" name="birthDate" type="date"
+            <md-input-container class="md-block" flex="50">
+              <label>Edad</label>
+              <md-icon class="md-primary">date_range</md-icon>
+              <input name="age" type="number" ng-model="person.age" pattern="[0-9]+"/>
+              <div ng-messages="profileForm.age.$error">
+                <div ng-message="number">Debe ingresar una edad valida.</div>
+                <div ng-message="pattern">Debe ingresar números enteros sin letras o comas</div>
+              </div>
+            </md-input-container>
+            <!-- <md-datepicker class="md-primary" name="birthDate" type="date"
               md-max-date="today"
-            ng-model="$parent.birthDate" md-placeholder="Nacimiento" flex="50"></md-datepicker>
+            ng-model="$parent.birthDate" md-placeholder="Nacimiento" flex="50"></md-datepicker> -->
             <br>
           </div>
 
