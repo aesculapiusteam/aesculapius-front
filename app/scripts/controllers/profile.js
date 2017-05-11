@@ -16,17 +16,6 @@ angular.module('aesculapiusFrontApp')
 
       if (aeData[aeData.selected]){
         $scope.person = aeData[aeData.selected];
-        setTimeout(function() {
-          if ($scope.person.profile){
-            if ($scope.person.profile.birth_date) {
-              $scope.person.profile.age = moment().diff($scope.person.profile.birth_date, 'years');
-            }
-          } else {
-            if ($scope.person.birth_date){
-              $scope.person.age = moment().diff($scope.person.birth_date, 'years');
-            }
-          }
-        }, 0);
         if(aeData[aeData.selected].id) {
           $scope.nullProfile = false;
         }
@@ -52,6 +41,27 @@ angular.module('aesculapiusFrontApp')
           aeData.isDirty($scope.person);
         }
       });
+
+      var stopPersonWatcher = $scope.$watch('person', function(person) {
+        // This watcher is executed until the the person is loaded from the api.
+        // It ends with the call to stopPersonWatcher function.
+
+        // XXX Questionable: We are setting a watcher here because there is no signal
+        // when a profile is completely loaded from the api. This shuld be executed
+        // after a proper signal.
+
+        // Transforms the api birth_date property into the ui age property.
+        if (_.isEmpty(person)) {
+          return;
+        } else {
+          if ($scope.person.profile && $scope.person.profile.birth_date) {
+            $scope.person.profile.age = moment().diff($scope.person.profile.birth_date, 'years');
+          } else if ($scope.person.birth_date) {
+            $scope.person.age = moment().diff($scope.person.birth_date, 'years');
+          }
+          stopPersonWatcher();
+        }
+      }, true);
 
       $scope.add = function() {
         if ($scope.isEmployeeForm && !$scope.passwordsMatch()) {

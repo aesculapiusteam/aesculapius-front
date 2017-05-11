@@ -32,6 +32,8 @@ angular
         return data;
       });
 
+      // TODO: decide what to do with this: Unused since we are using age
+      // instead of birth_date, let here for possible future reutilization
       $mdDateLocaleProvider.formatDate = function(date) {
         if (date) {
           return moment(date).format('DD/MM/YYYY');
