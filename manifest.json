@@ -6,5 +6,12 @@
   "start_url": "/#/login",
   "background_color": "#3C4252",
   "theme_color": "#2196F3",
-  "display": "standalone"
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "images/logo_square_shadow.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
 }
