@@ -9,7 +9,7 @@
   "display": "standalone",
   "icons": [
     {
-      "src": "images/logo_square_shadow.png",
+      "src": "images/logo_square_shadow.7c91c7a3.png",
       "type": "image/png",
       "sizes": "512x512"
     }
