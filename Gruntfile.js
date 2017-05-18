@@ -230,7 +230,7 @@ module.exports = function (grunt) {
         src: [
           '<%= yeoman.dist %>/scripts/{,*/}*.js',
           '<%= yeoman.dist %>/styles/{,*/}*.css',
-          '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}', //TODO Removed svg from the list
+          '<%= yeoman.dist %>/images/{,*/}*.{jpg,jpeg,gif,webp}', //TODO Removed svg and png from the list because of not knowing how to get the name of those files in other files
           '<%= yeoman.dist %>/styles/fonts/*'
         ]
       }
