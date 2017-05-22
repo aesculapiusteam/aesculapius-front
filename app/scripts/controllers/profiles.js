@@ -10,8 +10,8 @@
 (function() {
   angular.module('aesculapiusFrontApp')
     .controller('ProfilesCtrl', [
-      '$scope', '$location', 'Restangular', 'aeData',
-      function($scope, $location, Restangular, aeData) {
+      '$scope', '$location', '$timeout', 'Restangular', 'aeData',
+      function($scope, $location, $timeout, Restangular, aeData) {
         $scope.filterText = "";
         $scope.showMobileSearch = false;
         var allProfiles = Restangular.all('profiles');
@@ -50,6 +50,9 @@
 
         $scope.toggleMobileSearch = function() {
           this.showMobileSearch = !this.showMobileSearch;
+          if (this.showMobileSearch) {
+            $timeout(function() {angular.element("#mobileSearch").focus();});
+          }
           this.filterText = "";
         };
 

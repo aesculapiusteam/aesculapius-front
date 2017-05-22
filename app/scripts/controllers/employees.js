@@ -10,8 +10,8 @@
 (function() {
   angular.module('aesculapiusFrontApp')
     .controller('EmployeesCtrl', [
-      '$scope', 'Restangular', 'aeData',
-      function($scope, Restangular, aeData) {
+      '$scope', '$timeout', 'Restangular', 'aeData',
+      function($scope, $timeout, Restangular, aeData) {
         $scope.filterText = "";
         var allEmployees = Restangular.all('employees');
         var loadPageCallbackWithDebounce;
@@ -44,6 +44,9 @@
 
         $scope.toggleMobileSearch = function() {
           this.showMobileSearch = !this.showMobileSearch;
+          if (this.showMobileSearch) {
+            $timeout(function() {angular.element("#mobileSearch").focus();});
+          }
           this.filterText = "";
         };
 

@@ -10,8 +10,8 @@
 (function() {
   angular.module('aesculapiusFrontApp')
     .controller('StockCtrl', [
-      '$scope', '$rootScope', '$mdDialog', 'Restangular', 'aeData',
-      function($scope, $rootScope, $mdDialog, Restangular, aeData) {
+      '$scope', '$rootScope', '$mdDialog', '$timeout', 'Restangular', 'aeData',
+      function($scope, $rootScope, $mdDialog, $timeout, Restangular, aeData) {
         aeData.selected = 'drug';
         $scope.filterText = "";
         var allDrugs = Restangular.all('drugs');
@@ -62,6 +62,9 @@
 
         $scope.toggleMobileSearch = function() {
           this.showMobileSearch = !this.showMobileSearch;
+          if (this.showMobileSearch) {
+            $timeout(function() {angular.element("#mobileSearch").focus();});
+          }
           this.filterText = "";
         };
 
