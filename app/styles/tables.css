@@ -47,14 +47,13 @@
 .filter-button {
   width: 1rem;
 }
+.filter-text-button {
+  margin: 0;
+  min-width: 3rem;
+  width: auto;}
 
-.filter-text-button { /* For buttons with text */
-  width: 10rem;
-}
-
-.filter-text-button-2 { /* For buttons with more text */
-  width: 20rem;
-}
+.filter-text-button md-icon{
+  font-size: 21px;}
 
 @media only screen and (max-width: 728px){
   .filter-button {
@@ -74,6 +73,9 @@
 @media only screen and (max-width: 359px){
   .filter-button {
     min-width: 2rem; }
+
+  .filter-text-button {
+    width: 1rem; }
 
   .filter-icon {
     padding: 0; }

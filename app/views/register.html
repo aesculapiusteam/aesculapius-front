@@ -1,11 +1,14 @@
-<div layout="row" md-whiteframe="1" class="filter-container">
-  <md-icon class="filter-icon">web</md-icon>
-  <span class="filter-header filter-full-header">Caja Registradora</span>
-  <md-button class="md-primary filter-text-button-2" ng-click="goToMovements()">
-    <span>Mostrar Transacciones</span>
-    <md-icon>arrow_forward</md-icon>
-    <md-tooltip md-delay="500">Vea el histórico de todos los movimientos de la caja</md-tooltip>
-  </md-button>
+<div class="filter-wrapper">
+  <div layout="row" md-whiteframe="1" class="filter-container">
+    <md-icon class="filter-icon">web</md-icon>
+    <span class="truncate-ellipsis-xs filter-header">Caja Registradora</span>
+    <span class="row-4-gt-xs" flex></span>
+    <md-button class="filter-text-button md-primary" ng-click="goToMovements()">
+      <span hide show-gt-xs>Mostrar Transacciones</span>
+      <md-icon>arrow_forward</md-icon>
+      <md-tooltip md-delay="500">Transacciones</md-tooltip>
+    </md-button>
+  </div>
 </div>
 
 <form name="registerForm" ng-submit="done()" novalidate>

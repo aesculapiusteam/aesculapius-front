@@ -126,8 +126,10 @@ button label {
 }
 
 .row-4 {
-  height: 4rem;
-}
+  height: 4rem; }
+
+.row-4-gt-xs {
+  height: 4rem; }
 
 .icon-valign {
   vertical-align: middle;
@@ -226,6 +228,9 @@ button label {
 }
 
 @media only screen and (max-width: 600px){
+  .row-4-gt-xs {
+    height: auto; }
+
   .no-pad-xs {
     padding: 0 !important; }
 }
