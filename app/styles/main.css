@@ -47,12 +47,6 @@ button label {
   max-height: 64px;
 }
 
-.register-menu {
-  border-radius: 5px;
-  margin-top: 2rem;
-}
-
-
 .stick-button {
   position: absolute;
   margin-top: 60px;
