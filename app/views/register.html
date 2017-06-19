@@ -15,7 +15,7 @@
   <md-card class="vertical-marg-0-5 no-margin-xs">
     <md-card-title>
       <div layout="column">
-        <span class="md-headline">Introduzca un Nombre</span>
+        <span class="md-headline">Ingrese un Nombre</span>
       </div>
     </md-card-title>
     <md-card-content>
@@ -64,14 +64,14 @@
     </md-card-content>
   </md-card>
 
-  <md-card class="vertical-marg-0-5 no-padding" ng-repeat="action in nActions">
+  <md-card class="vertical-marg-0-5 no-padding item-card" ng-repeat="action in nActions">
     <md-card-content layout-padding layout="row" layout-align="none center">
       <md-button class="md-fab stick-button" aria-label="more" ng-click="addAction()" ng-show="$last">
         <md-icon>add</md-icon>
         <md-tooltip md-delay="500">Agregar un nuevo item a la transacción</md-tooltip>
       </md-button>
       <ae-profile-icon letter="{{$index + 1}}" size=56></ae-profile-icon>
-      <md-input-container>
+      <md-input-container class="item-capital">
         <md-select name="capital" required ng-model="action.capital" placeholder="Capital" class="md-no-underline">
           <md-option value="0">Medicamento</md-option>
           <md-option value="1">Dinero</md-option>
@@ -82,6 +82,7 @@
       </md-input-container>
       <span ng-show="showOrHide(action.capital)">$</span>
       <md-autocomplete
+        class="item-drug-name"
         required
         ng-if="!showOrHide(action.capital)"
         md-require-match="true"
@@ -118,7 +119,7 @@
           <div ng-message="md-require-match">Este medicamento no existe.</div>
         </div>
       </md-autocomplete>
-      <md-input-container style="width: 6rem">
+      <md-input-container class="item-quantity">
         <label>Cantidad</label>
         <input name="quantity" required ng-model="action.quantity" type="number" min="0">
         <div ng-messages="registerForm.quantity.$error">
@@ -127,7 +128,7 @@
           <div ng-message="min">Introduzca sólo números positivos.</div>
         </div>
       </md-input-container>
-      <md-input-container style="width: 7rem">
+      <md-input-container class="item-type">
         <md-select required name="type" ng-model="action.type" placeholder="Tipo" class="md-no-underline">
           <md-option value="1">Ingreso</md-option>
           <md-option value="0">Egreso</md-option>
@@ -136,14 +137,14 @@
           <div ng-message="required">Ingreso/Egreso</div>
         </div>
       </md-input-container>
-      <md-input-container flex>
+      <md-input-container class="item-details" flex>
         <label>Detalles</label>
         <input name="detail" ng-model="action.detail" md-maxlength="100">
         <div ng-messages="registerForm.detail.$error">
           <div ng-message="md-maxlength">La descripción es muy larga.</div>
         </div>
       </md-input-container>
-      <md-button class="md-icon-button md-warn" aria-label="deleteRow" ng-click="deleteAction(action)">
+      <md-button class="item-delete md-icon-button md-warn" aria-label="deleteRow" ng-click="deleteAction(action)">
         <md-icon>close</md-icon>
         <md-tooltip md-delay="500">Elimine este item</md-tooltip>
       </md-button>

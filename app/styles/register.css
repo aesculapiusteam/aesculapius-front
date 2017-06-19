@@ -1,3 +1,57 @@
 .register-menu {
   border-radius: 5px;
-  margin-top: 2rem; }
+  margin-top: 2rem;
+}
+
+.stick-button {
+  position: absolute;
+  margin-top: 60px;
+  -moz-margin: 30px 0 0 0;
+  margin-left: calc(100% - 10rem);
+}
+
+@-moz-document url-prefix() {
+  /* Firefox hack, position absolute works different on chrome and firefox */
+  .stick-button {
+    margin-top: 120px;
+  }
+}
+
+@media only screen and (max-width: 728px) {
+  .stick-button {
+    margin-left: calc(100% - 7.25rem);
+  }
+
+  .item-card {
+    overflow: scroll;
+  }
+
+  .register-menu {
+    margin-top: 0.75rem;
+  }
+}
+
+.item-capital {
+  min-width: 6rem;
+}
+
+.item-drug-name {
+  min-width: 11rem;
+}
+
+.item-quantity {
+  min-width: 6rem;
+}
+
+.item-type {
+  min-width: 7rem;
+}
+
+.item-details {
+  min-width: 8rem !important;
+}
+
+.item-delete {
+  min-width: 56px !important;
+  min-height: 56px;
+}
