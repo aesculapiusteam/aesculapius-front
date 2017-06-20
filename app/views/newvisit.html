@@ -37,7 +37,7 @@
           <md-item-template>
             <div ng-if="item.first_name">
               <span class="item-title">
-                <md-icon>person</md-icon>
+                <ae-profile-icon ng-if="item.first_name" name="{{item.first_name}}" size=32 id={{item.id}}></ae-profile-icon>
                 <span>{{item.first_name}}</span>
               </span>
               <span class="item-metadata">

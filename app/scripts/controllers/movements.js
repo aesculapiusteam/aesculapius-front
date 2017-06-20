@@ -8,8 +8,8 @@
 * Controller of the aesculapiusFrontApp
 */
 angular.module('aesculapiusFrontApp')
-.controller('MovementsCtrl',['$scope', 'Restangular', '$rootScope', 'aeData', '$location',
-function ($scope, Restangular, $rootScope, aeData, $location) {
+.controller('MovementsCtrl',['$scope', '$timeout', 'Restangular', '$rootScope', 'aeData', '$location',
+function ($scope, $timeout, Restangular, $rootScope, aeData, $location) {
   var allMovements = Restangular.all('movements');
   var loadPageCallbackWithDebounce;
   $scope.filterText = '';
@@ -130,4 +130,13 @@ function ($scope, Restangular, $rootScope, aeData, $location) {
       };
     });
   };
+
+  $scope.toggleMobileSearch = function() {
+    this.showMobileSearch = !this.showMobileSearch;
+    if (this.showMobileSearch) {
+      $timeout(function() {angular.element("#mobileSearch").focus();});
+    }
+    this.filterText = "";
+  };
+
 }]);

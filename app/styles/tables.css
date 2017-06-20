@@ -270,9 +270,10 @@
 
 
 /* MOVEMENTS */
-
-.movementsTable, .movementsTable mdt-table > md-content > md-content, .movementsTable table td, .movementsTable table th {
-  padding: 0px !important;
+.movementsTable table td, .movementsTable table th {
+  padding: 0 0.25rem !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .movementsTable table th {
@@ -324,12 +325,9 @@
 
 /*DETAIL */
 .movementsTable table td:nth-child(9) {
-  width: 7.4%;
-}
-
-.movementsTable table td:nth-child(9) button {
-  width: 2rem;
-  min-width: 2rem;
+  min-width: 56px;
+  max-width: 14vw;
+  overflow: visible;
 }
 
 

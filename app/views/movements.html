@@ -1,22 +1,40 @@
 <div class="movementsTable">
-  <div class="filter-wrapper">
+  <div ng-hide="showMobileSearch" class="filter-wrapper">
     <div layout="row" md-whiteframe="1" class="filter-container">
       <md-icon class="filter-icon">format_list_bulleted</md-icon>
-      <span class="filter-header">Movimientos</span>
-      <div class="filter-search" layout="row">
-        <md-icon class="unselectable">search</md-icon>
+      <span class="truncate-ellipsis-xs filter-header">Movimientos</span>
+      <span flex></span>
+      <div class="filter-search" layout="row" hide show-gt-xs>
+        <md-icon>search</md-icon>
         <md-input-container md-no-float class="md-toolbar-tools">
-          <input flex ng-model="filterText" placeholder="Filtrar por Empleado / Paciente / Donador / Fecha" type="text">
+          <input flex ng-model="filterText" placeholder="Buscar movimientos..." type="text">
         </md-input-container>
       </div>
-      <md-button class="filter-button md-primary">
-          <span ng-if="aesculapius.balance">${{aesculapius.balance}}</span>
-          <md-icon ng-if="!aesculapius.balance">autorenew</md-icon>
-          <md-tooltip md-delay="500">{{aesculapius.balance ? 'Dinero en caja' : 'Obteniendo dinero en caja...'}}</md-tooltip>
+      <md-button hide show-xs class="filter-button md-primary" ng-click="toggleMobileSearch()">
+        <md-icon>search</md-icon>
+        <md-tooltip md-delay="500">Buscar movimientos</md-tooltip>
+      </md-button>
+      <md-button class="movements-money filter-button md-primary">
+        <span ng-if="aesculapius.balance">${{aesculapius.balance}}</span>
+        <md-icon ng-if="!aesculapius.balance">autorenew</md-icon>
+        <md-tooltip md-delay="500">{{aesculapius.balance ? 'Dinero en caja' : 'Obteniendo dinero en caja...'}}</md-tooltip>
       </md-button>
       <md-button class="filter-button md-primary" ng-click="goToRegister()">
         <md-icon>arrow_back</md-icon>
         <md-tooltip md-delay="500">Volver a la caja</md-tooltip>
+      </md-button>
+    </div>
+  </div>
+
+  <div ng-show="showMobileSearch" class="filter-wrapper">
+    <div layout="row" md-whiteframe="1" class="filter-container">
+      <md-icon class="filter-search-icon">search</md-icon>
+      <md-input-container md-no-float class="md-toolbar-tools md-input-container-xs">
+        <input id="mobileSearch" flex ng-model="filterText" placeholder="Buscar" type="text">
+      </md-input-container>
+      <md-button class="filter-button md-primary" ng-click="toggleMobileSearch()">
+        <md-icon>close</md-icon>
+        <md-tooltip md-delay="500">Cancelar busqueda</md-tooltip>
       </md-button>
     </div>
   </div>
