@@ -213,3 +213,7 @@ button label {
   .no-pad-xs {
     padding: 0 !important; }
 }
+
+.ae-icon-me {
+  margin: 20px 20px 0 0 !important;
+}

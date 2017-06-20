@@ -60,17 +60,20 @@ angular.module('aesculapiusFrontApp')
         scope.letter = attrs.letter || (attrs.name + "?").charAt(0).toUpperCase();
         scope.color = attrs.color || getColorByString(attrs.name || attrs.letter);
         scope.name = "";
-        scope.classes = "";
+        scope.classes = "" || attrs.classes;
         scope.ripple = false;
+        scope.nonclick = attrs.nonclick || false;
 
         if (attrs.type !== "charge" && attrs.id) { // If any of this happens, the icon will be plane, without click event
-          scope.classes = "hoverable-shadow hoverable unselectable";
+          scope.classes = "hoverable-shadow hoverable unselectable " + scope.classes;
           scope.ripple = scope.color;
-          element.bind('click', function(){
-            var ev = {currentTarget: {id: attrs.type || 'profile'}};
-            var fakeScope = {'value': attrs.id};
-            scope.$root.showDialog(ev, fakeScope);
-          });
+          if (!scope.nonclick) {
+            element.bind('click', function(){
+              var ev = {currentTarget: {id: attrs.type || 'profile'}};
+              var fakeScope = {'value': attrs.id};
+              scope.$root.showDialog(ev, fakeScope);
+            });
+          }
         } else {
           if (attrs.name === 'doctor') {
             scope.name = "Doctor/a";

@@ -22,6 +22,7 @@
 
 .base-menu {
   max-height: 80vh !important;
+  min-width: 260px !important
 }
 
 .base-menu > md-menu-item, .base-menu > md-menu-item > button, .base-menu > md-menu-item > a{

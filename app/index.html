@@ -146,7 +146,7 @@
                 <md-menu-divider></md-menu-divider>
                 <md-menu-item>
                   <md-button id="employee" ng-click="goToDialog($event)">
-                    <md-icon>person</md-icon>
+                    <ae-profile-icon ng-if="me.profile.first_name" name="{{me.profile.first_name}}" size=24 nonclick="true" classes="ae-icon-me"></ae-profile-icon>
                     <span>{{me.profile.first_name + " " + me.profile.last_name}}</span>
                   </md-button>
                 </md-menu-item>
@@ -170,7 +170,7 @@
               <md-menu-content class="border-radius-5 pad-1 base-menu" width="4">
                 <md-menu-item>
                   <md-button id="employee" ng-click="goToDialog($event)">
-                    <md-icon>person</md-icon>
+                    <ae-profile-icon ng-if="me.profile.first_name" name="{{me.profile.first_name}}" size=24 nonclick="true" classes="ae-icon-me"></ae-profile-icon>
                     <span>{{me.profile.first_name + " " + me.profile.last_name}}</span>
                   </md-button>
                 </md-menu-item>
