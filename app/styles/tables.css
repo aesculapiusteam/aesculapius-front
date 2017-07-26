@@ -334,11 +334,19 @@
 /* HISTORY */
 
 .historyTable table td, .historyTable table th {
-  padding: 0px !important;
+  padding: 0 0.25rem !important;
+  text-align: center !important;
 }
 
 .historyTable table th {
-  text-align: center !important;
+  text-align: center;
+}
+
+.historyTable table tr td {
+    padding: 0 0.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .historyTable table tr td {
@@ -358,6 +366,7 @@
 /*DESCRIPTION*/
 .historyTable table td:nth-child(4) {
   width: 40%;
+  text-align: inherit !important;
 }
 
 /*DETAIL*/

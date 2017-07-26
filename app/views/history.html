@@ -2,9 +2,9 @@
   <div class="filter-wrapper">
     <div layout="row" md-whiteframe="1" class="filter-container">
       <md-icon class="filter-icon">format_list_bulleted</md-icon>
-      <ae-profile-icon style="padding-left:1rem" ng-if="patientName" name={{patientName}} size=64 id={{patientId}}></ae-profile-icon>
-      <span style="padding: 1rem 0" class="filter-header filter-full-header">Historia Clínica de
-        {{patientName}}</span>
+      <ae-profile-icon hide show-gt-xs style="padding-left:1rem" ng-if="patientName" name={{patientName}} size=64 id={{patientId}}></ae-profile-icon>
+      <span class="truncate-ellipsis-xs filter-header"><span hide show-gt-xs>Historia Clínica de </span>{{patientName}}</span>
+      <span flex></span>
       <md-button class="filter-button md-primary" ng-click="goToProfiles()">
         <md-icon>arrow_back</md-icon>
         <md-tooltip md-delay="500">Volver la lista de pacientes</md-tooltip>
