@@ -125,6 +125,10 @@ button label {
   text-align: left;
 }
 
+.blue-grey-text {
+  color: #607D8B !important;
+}
+
 .thin-text {
   font-weight: 100 !important;
 }

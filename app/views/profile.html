@@ -19,6 +19,8 @@
         <div ng-if="isEmployeeForm">
           <br>
           <h2 class="md-title">Información de Cuenta</h2>
+          <small class="blue-grey-text">ID #{{person.id}}</small>
+          <br><br>
           <div layout="column" layout-gt-xs="row">
             <md-input-container flex="50">
               <label>Nombre de Usuario</label>
@@ -62,7 +64,10 @@
 
         <!-- PROFILE FORM -->
         <div ng-if="!isEmployeeForm">
+          <br>
           <h2 class="md-title">Información Personal</h2>
+          <small class="blue-grey-text">ID #{{person.id}} - Creado el {{person.creation_datetime|date:"dd/MM/yyyy 'a las' hh:mm"}}.</small>
+          <br><br>
           <div layout="column" layout-gt-xs="row">
             <md-input-container flex="50">
               <label>Nombre</label>
@@ -141,6 +146,8 @@
         <!-- XXX CODIG RANCIO BORRAR ESTO ESTA DUPLICANDO LO ANTERIOR PERO CON PERSON.PROFILE -->
         <div ng-if="isEmployeeForm">
           <h2 class="md-title">Información Personal</h2>
+          <small class="blue-grey-text">ID #{{person.profile.id}} - Creado el {{person.profile.creation_datetime|date:"dd/MM/yyyy 'a las' hh:mm"}}.</small>
+          <br><br>
           <div layout="column" layout-gt-xs="row">
             <md-input-container flex="50">
               <label>Nombre</label>
