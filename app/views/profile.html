@@ -110,11 +110,20 @@
             <br>
           </div>
 
-          <md-input-container class="md-block">
-            <label>Dirección</label>
-            <md-icon class="md-primary">location_on</md-icon>
-            <input name="address" ng-model="person.address" md-maxlength="256"/>
-          </md-input-container>
+          <div layout="column" layout-gt-xs="row">
+            <md-input-container class="md-block" flex="100">
+              <label>Dirección</label>
+              <md-icon class="md-primary">location_on</md-icon>
+              <input name="address" ng-model="person.address" md-maxlength="256"/>
+            </md-input-container>
+            <md-input-container class="md-block" flex="50">
+              <label>Mutual</label>
+              <md-icon class="md-primary">local_hospital</md-icon>
+              <input name="healthcare" ng-model="person.healthcare" md-maxlength="256"/>
+            </md-input-container>
+            <br>
+          </div>
+
           <div layout="column" layout-gt-xs="row">
             <md-input-container class="md-block" flex="50">
               <label>Número de teléfono</label>
@@ -179,11 +188,20 @@
             <br>
           </div>
 
-          <md-input-container class="md-block">
-            <label>Dirección</label>
-            <md-icon class="md-primary">location_on</md-icon>
-            <input name="address" ng-model="person.profile.address" md-maxlength="256"/>
-          </md-input-container>
+          <div layout="column" layout-gt-xs="row">
+            <md-input-container class="md-block" flex="100">
+              <label>Dirección</label>
+              <md-icon class="md-primary">location_on</md-icon>
+              <input name="address" ng-model="person.profile.address" md-maxlength="256"/>
+            </md-input-container>
+            <md-input-container class="md-block" flex="50">
+              <label>Mutual</label>
+              <md-icon class="md-primary">local_hospital</md-icon>
+              <input name="healthcare" ng-model="person.profile.healthcare" md-maxlength="256"/>
+            </md-input-container>
+            <br>
+          </div>
+
           <div layout="column" layout-gt-xs="row">
             <md-input-container class="md-block" flex="50">
               <label>Número de teléfono</label>
