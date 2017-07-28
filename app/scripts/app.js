@@ -249,10 +249,10 @@ angular
         );
       };
 
-      $rootScope.showActionToast = function(text, ev, scope, delay){
+      $rootScope.showActionToast = function(text, ev, scope, delay, notModal){
         var toast = $mdToast.simple()
       .textContent(text)
-      .action('VER')
+      .action(notModal || 'VER')
       .highlightAction(true)
       .highlightClass('md-primary')
       .position('bottom right')

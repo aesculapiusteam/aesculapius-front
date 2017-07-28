@@ -1,0 +1,42 @@
+<md-dialog>
+  <div layout="row">
+    <md-toolbar layout="row">
+      <div class="md-toolbar-tools">Nueva Sugerencia</div>
+      <div class='dialog-close'>
+        <md-button ng-click="cancel()" class="md-icon-button">
+          <md-icon>close</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+  </div>
+  <md-divider></md-divider>
+  <md-dialog-content layout="column" layout-padding flex>
+    <form name="issueForm" submit="save()" novalidate>
+      <md-input-container clasS="full-width">
+        <label>Título</label>
+        <input name="title" type="text" ng-model="issue.title" required>
+        <div ng-messages="issueForm.title.$error">
+          <p ng-message="required">Este campo es obligatorio.</p>
+        </div>
+      </md-input-container>
+      <md-input-container class="full-width">
+        <label>Contenido</label>
+        <textarea name="content" type="text" ng-model="issue.content" required></textarea>
+        <div ng-messages="issueForm.content.$error">
+          <p ng-message="required">Este campo es obligatorio.</p>
+        </div>
+      </md-input-container>
+    </form>
+  </md-dialog-content>
+  <md-dialog-actions layout="row">
+    <md-button ng-click="cancel()" layout-align="end center">
+      <label>Cancelar</label>
+      <md-icon>cancel</md-icon>
+    </md-button>
+    <md-button class="md-primary" ng-click="save()" ng-disabled="issueForm.$invalid || visissueForm.$pristine" layout-align="end center">
+      <label>Guardar</label>
+      <md-icon>save</md-icon>
+    </md-button>
+  </md-dialog-actions>
+</md-dialog>

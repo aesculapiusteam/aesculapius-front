@@ -13,8 +13,8 @@ angular.module('aesculapiusFrontApp')
 
       $scope.me = aeData.me;
 
-      $scope.goToDialog = function(ev){
-        $rootScope.showDialog(ev, {'value':$scope.me.id});
+      $scope.goToDialog = function(ev, dontFetch){
+        $rootScope.showDialog(ev, {'value':$scope.me.id}, dontFetch);
       };
 
       $scope.$on('setMe', function() {

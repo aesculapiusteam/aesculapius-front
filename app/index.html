@@ -151,6 +151,12 @@
                   </md-button>
                 </md-menu-item>
                 <md-menu-item>
+                  <md-button id="issue" ng-click="goToDialog($event, true)">
+                    <md-icon>send</md-icon>
+                    <span>Sugerencia</span>
+                  </md-button>
+                </md-menu-item>
+                <md-menu-item>
                   <md-button ng-click="logout()">
                     <md-icon>exit_to_app</md-icon>
                     <span>Salir de Aesculapius</span>
@@ -172,6 +178,12 @@
                   <md-button id="employee" ng-click="goToDialog($event)">
                     <ae-profile-icon ng-if="me.profile.first_name" name="{{me.profile.first_name}}" size=24 nonclick="true" classes="ae-icon-me"></ae-profile-icon>
                     <span>{{me.profile.first_name + " " + me.profile.last_name}}</span>
+                  </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                  <md-button id="issue" ng-click="goToDialog($event, true)">
+                    <md-icon>send</md-icon>
+                    <span>Sugerencia</span>
                   </md-button>
                 </md-menu-item>
                 <md-menu-item>
@@ -250,6 +262,7 @@
     <script src="scripts/controllers/movements.js"></script>
     <script src="scripts/controllers/movement.js"></script>
     <script src="scripts/directives/capitalize-first.js"></script>
+    <script src="scripts/controllers/issue.js"></script>
     <!-- endbuild -->
   </body>
 </html>
