@@ -24,7 +24,7 @@ footer {
 }
 
 body.md-dialog-is-showing md-tooltip {
-  display: none; // hide tooltip when md-dialog is open due to bug on mobile devices
+  display: none; /* hide tooltip when md-dialog is open due to bug on mobile devices */
 }
 
 md-tooltip .md-content {
