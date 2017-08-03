@@ -13,9 +13,9 @@
   <md-divider></md-divider>
   <md-dialog-content layout="column" layout-padding flex>
     <form name="issueForm" submit="save()" novalidate>
-      <md-input-container clasS="full-width">
+      <md-input-container class="full-width">
         <label>Título</label>
-        <input name="title" type="text" ng-model="issue.title" required>
+        <input name="title" type="text" ng-model="issue.title" md-maxlength="256" required>
         <div ng-messages="issueForm.title.$error">
           <p ng-message="required">Este campo es obligatorio.</p>
         </div>
