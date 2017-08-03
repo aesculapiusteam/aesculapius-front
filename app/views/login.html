@@ -4,7 +4,8 @@
 
     <div layout="column" layout-align="center center">
       <img src="images/logo_circle_shadow.png" alt="Aesculapius" class="login-logo"/>
-      <p class="thin-text">Ingresa a Aesculapius <span hide-xs>- Santa María</span></p>
+      <p ng-if="!isTesting" class="thin-text">Ingresa a Aesculapius <span hide-xs>- Santa María</span></p>
+      <p ng-if="isTesting" class="thin-text center">Prueba Aesculapius<br>Como <a class="md-primary md-body-2 cursor-pointer" ng-click="testAs('doctor')">doctor</a> o como <a class="md-primary md-body-2 cursor-pointer" ng-click="testAs('secretary')">secretaria</a></p>
     </div>
 
     <md-input-container class="md-block no-margin-xs">

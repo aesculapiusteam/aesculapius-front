@@ -37,6 +37,10 @@ button label {
   cursor: pointer;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .main-toolbar {
   position: fixed !important;
 }
