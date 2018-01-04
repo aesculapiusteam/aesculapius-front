@@ -11,6 +11,7 @@ angular.module('aesculapiusFrontApp')
   .controller('RegisterCtrl', ['$scope', 'Restangular', '$mdToast', 'aeData',
     '$rootScope', '$location', '$timeout', '$anchorScroll',
     function($scope, Restangular, $mdToast, aeData, $rootScope, $location, $timeout, $anchorScroll) {
+      $scope.saving = false; // Will be true after pressing the save button
       $scope.detail = '';
       $scope.selectedItemPeople = '';
       $scope.nActions = [{
@@ -28,6 +29,7 @@ angular.module('aesculapiusFrontApp')
       };
 
       $scope.done = function() {
+        $scope.saving = true;
         var finalItems = [];
         for (var i = 0; i < $scope.nActions.length; i++) {
           var dic = {};
@@ -70,7 +72,7 @@ angular.module('aesculapiusFrontApp')
             $rootScope.showActionToast('Hubo un error al intentar completar el proceso.', 'error',
               error);
           }
-        );
+        ).then(function() { $scope.saving = false; });
       };
 
       $scope.showOrHide = function(select) {

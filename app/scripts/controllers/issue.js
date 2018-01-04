@@ -10,10 +10,14 @@
 angular.module('aesculapiusFrontApp')
   .controller('IssueCtrl', ['$scope', '$rootScope', '$mdDialog', 'Restangular', 'aeData',
     function($scope, $rootScope, $mdDialog, Restangular) {
+
+      $scope.saving = false; // Will be true after pressing the save button
+
       $scope.cancel = function() {
         $mdDialog.cancel();
       };
       $scope.save = function() {
+        $scope.saving = true;
         $scope.issueForm.$submitted = true; //for the confirm dialog on close not to open
         Restangular.all('issues').post($scope.issue).then(
           function(response) {
@@ -28,10 +32,9 @@ angular.module('aesculapiusFrontApp')
           },
           function(error) {
             $mdDialog.cancel();
-            $rootScope.showActionToast('Lamentablemente hubo un error al editar la consulta.', 'error',
-              error);
+            $rootScope.showActionToast('Lamentablemente hubo un error al editar la consulta.', 'error', error);
           }
-        );
+        ).then(function() { $scope.saving = false; });
       };
     }
   ]);

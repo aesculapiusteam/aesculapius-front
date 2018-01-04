@@ -12,6 +12,7 @@ angular.module('aesculapiusFrontApp')
     '$scope', '$mdDialog', '$rootScope', 'aeData', 'Restangular', '$mdToast',
     function($scope, $mdDialog, $rootScope, aeData, Restangular, $mdToast) {
 
+      $scope.saving = false; // Will be true after pressing the save button
       $scope.person = {};
 
       if (aeData[aeData.selected]){
@@ -64,6 +65,7 @@ angular.module('aesculapiusFrontApp')
       }, true);
 
       $scope.add = function() {
+        $scope.saving = true;
         if ($scope.isEmployeeForm && !$scope.passwordsMatch()) {
           $mdToast.show( //XXX CODIGO RANCIO MUCHOS MD TOAST QUE HACNE LO MISMO SIMPLIFICAR
             $mdToast.simple()
@@ -71,6 +73,7 @@ angular.module('aesculapiusFrontApp')
             .position('bottom right')
             .hideDelay(2000)
           );
+          $scope.saving = false;
           return;
         }
 
@@ -89,15 +92,17 @@ angular.module('aesculapiusFrontApp')
               person: response
             });
             aeData.reloadSelectedTable();
+            $scope.saving = false;
           },
           function(error) {
-            $rootScope.showActionToast('Lamentablemente hubo un error al añadir la pesona.', 'error',
-              error);
+            $rootScope.showActionToast('Lamentablemente hubo un error al añadir la pesona.', 'error', error);
+            $scope.saving = false;
           }
-        );
+        ).then(function() { $scope.saving = false; });
       };
 
       $scope.save = function() {
+        $scope.saving = true;
         if ($scope.person.profile) {
             $scope.person.profile.birth_date = moment().subtract($scope.person.profile.age, "years").format("YYYY-MM-DD");
         } else {
@@ -116,6 +121,7 @@ angular.module('aesculapiusFrontApp')
               .position('bottom right')
               .hideDelay(2000)
             );
+            $scope.saving = false;
             return;
           }
           if (!$scope.person.password) { //XXX CODIGO RANCIO
@@ -133,11 +139,13 @@ angular.module('aesculapiusFrontApp')
                 'value': response.id
               });
               aeData.reloadSelectedTable();
+              $scope.saving = false;
             },
             function(error) {
-              $rootScope.showActionToast('Lamentablemente hubo un error al modificar la informacion.', 'error',
-                error);            }
-          );
+              $rootScope.showActionToast('Lamentablemente hubo un error al modificar la informacion.', 'error', error);
+              $scope.saving = false;
+            }
+          ).then(function() { $scope.saving = false; });
         }
       };
 

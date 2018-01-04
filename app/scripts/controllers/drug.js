@@ -12,6 +12,8 @@
     .controller('DrugCtrl', ['$scope', '$rootScope', '$mdDialog', 'Restangular', 'aeData',
       function($scope, $rootScope, $mdDialog, Restangular, aeData) {
 
+        $scope.saving = false; // Will be true after pressing the save button
+
         if (aeData.drug) {
           $scope.drug = aeData.drug;
           if (aeData.drug.id) {
@@ -30,6 +32,7 @@
         });
 
         $scope.add = function() {
+          $scope.saving = true;
           Restangular.all('drugs').post($scope.drug).then(
             function(response) {
               $scope.cancel();
@@ -46,13 +49,13 @@
               aeData.reloadStockTable();
             },
             function(error) {
-              $rootScope.showActionToast('Lamentablemente hubo un error al añadir el Medicamento.', 'error',
-                error);
+              $rootScope.showActionToast('Lamentablemente hubo un error al añadir el Medicamento.', 'error', error);
             }
-          );
+          ).then(function() { $scope.saving = false; });
         };
 
         $scope.save = function() {
+          $scope.saving = true;
           $scope.drugForm.$submitted = true; //for the confirm dialog on close not to open
           if (!aeData.drug.id) {
             // Must create a new drug
@@ -72,10 +75,9 @@
                 aeData.reloadStockTable();
               },
               function(error) {
-                $rootScope.showActionToast('Lamentablemente hubo un error al editar el Medicamento.', 'error',
-                  error);
+                $rootScope.showActionToast('Lamentablemente hubo un error al editar el Medicamento.', 'error', error);
               }
-            );
+            ).then(function() { $scope.saving = false; });
           }
         };
 

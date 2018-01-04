@@ -99,14 +99,14 @@
         md-floating-label="Nombre del Medicamento">
         <md-item-template>
           <div ng-if="drug.name">
-            <span class="drug-title">
-              <md-icon>healing</md-icon>
-              <span>{{drug.name}}</span>
-            </span>
+            <md-icon>healing</md-icon>
             <span class="drug-metadata">
               <span class="drug-metastat">
                 <strong>({{drug.quantity}})</strong>
               </span>
+            </span>
+            <span class="drug-title">
+              <span>{{drug.name}}</span>
             </span>
           </div>
           <div layout="row">
@@ -162,10 +162,11 @@
           <md-tooltip md-delay="500">Cancelar transacción y empezar de nuevo</md-tooltip>
           Cancelar
         </md-button>
-        <md-button class="md-primary" ng-disabled="registerForm.$invalid||registerForm.$pristine" ng-click="done()">
+        <md-button class="md-primary save-button" ng-disabled="registerForm.$invalid || registerForm.$pristine || saving" ng-click="done()">
           <md-icon>done</md-icon>
           <md-tooltip md-delay="500">Proceder a guardar la transacción</md-tooltip>
           Aceptar
+          <md-progress-linear ng-show="saving" md-mode="indeterminate"></md-progress-linear>
         </md-button>
       </md-card-actions>
     </md-card>

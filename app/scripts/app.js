@@ -184,15 +184,15 @@ angular
               nexus = products.length === 1 ? ' este será removido' : ', estos serán removidos';
               text = 'Al eliminar ' + aeData.itemsInText(products) +
                 nexus + ' permanentemente del sistema.';
-              toastConfirmText = aeData.itemsInText(products) + ' eliminados con exito!';
+              toastConfirmText = aeData.itemsInText(products) + ' eliminados con éxito!';
             } else if (products[0].first_name || products[0].profile) { // Employees and Profiles
               text = 'Al eliminar a ' + aeData.nameOf(products[0]) +
                 ', este no aparecerá más en el sistema, sin embargo podrá ser restaurado luego.';
-              toastConfirmText = aeData.nameOf(products[0]) + ' eliminado con exito!';
+              toastConfirmText = aeData.nameOf(products[0]) + ' eliminado con éxito!';
             } else { // Visit
               text = 'Al eliminar la visita de ' + products[0].patient_name +
                 ', esta no aparecerá más en el sistema, sin embargo podrá ser restaurado luego.';
-              toastConfirmText = 'Visita de ' + products[0].patient_name + ' eliminada con exito!';
+              toastConfirmText = 'Visita de ' + products[0].patient_name + ' eliminada con éxito!';
             }
             break;
         }

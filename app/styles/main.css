@@ -37,6 +37,20 @@ button label {
   cursor: pointer;
 }
 
+.save-button {
+  overflow: visible;
+}
+
+.save-button md-progress-linear {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+}
+
+.save-button md-progress-linear .md-container{
+  height: 2px;
+}
+
 .cursor-pointer {
   cursor: pointer;
 }

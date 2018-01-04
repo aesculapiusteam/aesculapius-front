@@ -9,10 +9,11 @@
         <span hide show-gt-xs>Cancelar</span>
         <md-tooltip md-delay="500">Borrar todos los campos</md-tooltip>
       </md-button>
-      <md-button class="filter-button-xs md-primary" ng-disabled="newVisitForm.$invalid || newVisitForm.$pristine" ng-click="done()">
+      <md-button class="filter-button-xs md-primary save-button" ng-disabled="newVisitForm.$invalid || newVisitForm.$pristine || saving" ng-click="done()">
         <md-icon>done</md-icon>
         <span hide show-gt-xs>Guardar</span>
         <md-tooltip md-delay="500">Guarda la consulta</md-tooltip>
+        <md-progress-linear ng-show="saving" md-mode="indeterminate"></md-progress-linear>
       </md-button>
     </div>
   </div>
@@ -87,10 +88,11 @@
         Cancelar
         <md-tooltip>Borrar todos los campos</md-tooltip>
       </md-button>
-      <md-button ng-disabled="newVisitForm.$invalid || newVisitForm.$pristine" class="md-primary" ng-click="done()">
+      <md-button class="md-primary save-button" ng-disabled="newVisitForm.$invalid || newVisitForm.$pristine || saving" ng-click="done()">
         <md-icon>done</md-icon>
         Guardar
         <md-tooltip>Guarda la consulta</md-tooltip>
+        <md-progress-linear ng-show="saving" md-mode="indeterminate"></md-progress-linear>
       </md-button>
     </md-card-actions>
   </div>

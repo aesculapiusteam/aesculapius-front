@@ -57,9 +57,10 @@
       <label>Cancelar</label>
       <md-icon>cancel</md-icon>
     </md-button>
-    <md-button class="md-primary" ng-click="save()" ng-disabled="drugForm.$invalid||drugForm.$pristine" layout-align="end center">
+    <md-button class="md-primary save-button" ng-click="save()" ng-disabled="drugForm.$invalid || drugForm.$pristine || saving" layout-align="end center">
       <label>Guardar</label>
       <md-icon>save</md-icon>
+      <md-progress-linear ng-show="saving" md-mode="indeterminate"></md-progress-linear>
     </md-button>
   </md-dialog-actions>
 

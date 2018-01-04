@@ -11,6 +11,8 @@ angular.module('aesculapiusFrontApp')
   .controller('NewvisitCtrl', ['$scope','Restangular', '$mdToast', '$rootScope', 'aeData',
    function ($scope, Restangular, $mdToast, $rootScope, aeData){
 
+     $scope.saving = false; // Will be true after pressing the save button
+
     var allProfiles = Restangular.all('profiles');
     var allVisits = Restangular.all('visits');
     $scope.date = new Date();
@@ -46,6 +48,7 @@ angular.module('aesculapiusFrontApp')
       };
 
       $scope.done = function() {
+        $scope.saving = true;
         var data = {
           'patient': $scope.selectedItemPeople.id,
           'detail': $scope.detail
@@ -68,6 +71,6 @@ angular.module('aesculapiusFrontApp')
             }
             $scope.cancel();
           }
-        );
+        ).then(function() { $scope.saving = false; });
       };
   }]);
