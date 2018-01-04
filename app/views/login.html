@@ -10,7 +10,7 @@
 
     <md-input-container class="md-block no-margin-xs">
       <md-icon class="md-primary">person</md-icon>
-      <input name="username" ng-model="credentials.username" placeholder="Nombre de Usuario" required>
+      <input name="username" ng-model="credentials.username" placeholder="Nombre de Usuario" required autocapitalize="none">
       <div ng-messages="loginForm.username.$error">
         <div ng-message="required">El nombre de usuario es necesario</div>
       </div>
