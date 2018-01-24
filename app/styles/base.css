@@ -20,6 +20,28 @@
   margin: 0 2px;
 }
 
+.base-button.selected {
+  padding: 0 0.5rem;
+  border-bottom: solid;
+}
+
+.base-icon-button.selected {
+  background-color: white;
+}
+
+.base-icon-button.selected * {
+  color: #2196F3;
+}
+
+.base-grid-button.selected {
+  border-left: solid #2196F3 4px;
+  background-color: #EEEEEE;
+}
+
+.base-grid-button.selected * {
+  color: #2196F3;
+}
+
 .base-menu {
   max-height: 80vh !important;
   min-width: 260px !important

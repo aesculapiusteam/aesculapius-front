@@ -12,6 +12,7 @@ angular.module('aesculapiusFrontApp')
     function($scope, $location, auth, aeData, $rootScope, $mdMenu) {
 
       $scope.me = aeData.me;
+      $scope.currentView = "profiles";
 
       $scope.goToDialog = function(ev, dontFetch){
         $rootScope.showDialog(ev, {'value':$scope.me.id}, dontFetch);
@@ -30,6 +31,11 @@ angular.module('aesculapiusFrontApp')
         if (isOpen) {
           $mdMenu.hide();
         }
+      };
+
+      $scope.setCurrentView = function(viewName) {
+        $location.path(viewName);
+        $scope.currentView = viewName;
       };
 
     }
