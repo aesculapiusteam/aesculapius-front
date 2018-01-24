@@ -16,7 +16,7 @@
       <span>Colaborador: <b>{{movement.employee_name}}</b></span>
       <div layout="row" layout-align="space-around center">
       </div>
-      <mdt-table mdt-row="{
+      <mdt-table class="movementTable" mdt-row="{
                             data: movement.items,
                             'column-keys': [
                                 'is_donation',
@@ -46,7 +46,7 @@
     </div>
   </md-dialog-content>
   <md-dialog-actions layout="row">
-    <md-button ng-click="cancel()" class="md-raised md-primary" layout-align="end center">
+    <md-button ng-click="cancel()" class="md-primary" layout-align="end center">
       <md-icon>done</md-icon>
       <label>Aceptar</label>
     </md-button>

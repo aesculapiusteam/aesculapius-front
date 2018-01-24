@@ -330,6 +330,12 @@
   overflow: visible;
 }
 
+/* MOVEMENT DETAIL - A little different from the rest */
+.movementTable md-content {
+  padding: 0;
+  background-color: white !important;
+  box-shadow: none;
+}
 
 /* HISTORY */
 
