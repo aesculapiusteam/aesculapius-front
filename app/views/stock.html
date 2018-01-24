@@ -34,9 +34,10 @@
     </div>
   </div>
 
+  <!-- Change slectable-rows to true for reactivating bulk deletion after solving db issue with movements table -->
   <mdt-table
     table-card="{visible: false, title: 'Inventario'}"
-    selectable-rows="true"
+    selectable-rows="false"
     alternate-headers="'contextual'"
     delete-row-callback="deleteRowCallback(rows)"
     sortable-columns="true"
