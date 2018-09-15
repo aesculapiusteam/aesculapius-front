@@ -24,6 +24,7 @@ angular.module('aesculapiusFrontApp')
     this.form = null; // Current form on use
     this.isConfirmThere = null; // Checks if confirm dialog is on
 
+    this.currentView = null; // Points to current system view
     this.visit = null; // TODO Document this object
     this.reloadHistoryTable = null; // Execute this function to reload the history table
     this.reloadEmployeesTable = null; // Execute this function to reload the employees table

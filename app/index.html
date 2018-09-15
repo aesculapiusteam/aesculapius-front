@@ -44,7 +44,7 @@
       <div class="no-padding md-toolbar-tools">
 
         <!-- Aesculapius Title -->
-        <a layout="row" ng-click="setCurrentView('profiles')" md-ink-ripple class="no-padding unselectable hoverable base-link">
+        <a layout="row" href="#/profiles" md-ink-ripple class="no-padding unselectable hoverable base-link">
           <img class="base-logo center" alt="" src="images/logo_nobackground.png"/>
           <span hide show-gt-sm show-xs class="base-title">Aesculapius</span>
         </a>
@@ -53,49 +53,49 @@
           <span flex="5"></span>
 
           <!-- On small: 600px to 960px -->
-          <md-button hide show-sm ng-click="setCurrentView('profiles')" class="md-icon-button base-icon-button" ng-class="{'selected': currentView === 'profiles'}">
+          <md-button hide show-sm href="#/profiles" class="md-icon-button base-icon-button" ng-class="{'selected': getCurrentView() === 'profiles'}">
             <md-icon>local_hospital</md-icon>
             <md-tooltip>Ver Pacientes</md-tooltip>
           </md-button>
-          <md-button hide show-sm ng-click="setCurrentView('employees')" class="md-icon-button base-icon-button" ng-class="{'selected': currentView === 'employees'}">
+          <md-button hide show-sm href="#/employees" class="md-icon-button base-icon-button" ng-class="{'selected': getCurrentView() === 'employees'}">
             <md-icon>people</md-icon>
             <md-tooltip>Ver Colaboradores</md-tooltip>
           </md-button>
-          <md-button hide show-sm ng-click="setCurrentView('stock')" class="md-icon-button base-icon-button" ng-class="{'selected': currentView === 'stock'}">
+          <md-button hide show-sm href="#/stock" class="md-icon-button base-icon-button" ng-class="{'selected': getCurrentView() === 'stock'}">
             <md-icon>assignment</md-icon>
             <md-tooltip>Gestionar Inventario</md-tooltip>
           </md-button>
-          <md-button hide show-sm ng-click="setCurrentView('register')" class="md-icon-button base-icon-button" ng-class="{'selected': currentView === 'register'}">
+          <md-button hide show-sm href="#/register" class="md-icon-button base-icon-button" ng-class="{'selected': getCurrentView() === 'register'}">
             <md-icon>web</md-icon>
             <md-tooltip>Ir a la caja</md-tooltip>
           </md-button>
-          <md-button hide show-sm ng-click="setCurrentView('newvisit')" class="md-icon-button base-icon-button" ng-show="me.charge==='doctor'" ng-class="{'selected': currentView === 'newvisit'}">
+          <md-button hide show-sm href="#/newvisit" class="md-icon-button base-icon-button" ng-show="me.charge==='doctor'" ng-class="{'selected': getCurrentView() === 'newvisit'}">
             <md-icon>note_add</md-icon>
             <md-tooltip>Ir a Nueva Consulta</md-tooltip>
           </md-button>
 
           <!-- On greater than small: >= 960px -->
-          <md-button hide show-gt-sm class="base-button" ng-class="{'selected': currentView === 'profiles'}" ng-click="setCurrentView('profiles')">
+          <md-button hide show-gt-sm class="base-button" ng-class="{'selected': getCurrentView() === 'profiles'}" href="#/profiles">
             <md-icon>local_hospital</md-icon>
             <span>Pacientes<span>
             <md-tooltip>Ver Pacientes</md-tooltip>
           </md-button>
-          <md-button hide show-gt-sm class="base-button" ng-class="{'selected': currentView === 'employees'}" ng-click="setCurrentView('employees')">
+          <md-button hide show-gt-sm class="base-button" ng-class="{'selected': getCurrentView() === 'employees'}" href="#/employees">
             <md-icon>people</md-icon>
             <span>Colaboradores<span>
             <md-tooltip>Ver Colaboradores</md-tooltip>
           </md-button>
-          <md-button hide show-gt-sm class="base-button" ng-class="{'selected': currentView === 'stock'}" ng-click="setCurrentView('stock')">
+          <md-button hide show-gt-sm class="base-button" ng-class="{'selected': getCurrentView() === 'stock'}" href="#/stock">
             <md-icon>assignment</md-icon>
             <span>Inventario<span>
             <md-tooltip>Gestionar Inventario</md-tooltip>
           </md-button>
-          <md-button hide show-gt-sm class="base-button" ng-class="{'selected': currentView === 'register'}" ng-click="setCurrentView('register')">
+          <md-button hide show-gt-sm class="base-button" ng-class="{'selected': getCurrentView() === 'register'}" href="#/register">
             <md-icon>web</md-icon>
             <span>Caja<span>
             <md-tooltip>Ir a la caja</md-tooltip>
           </md-button>
-          <md-button hide show-gt-sm class="base-button" ng-show="me.charge==='doctor'" ng-class="{'selected': currentView === 'newvisit'}" ng-click="setCurrentView('newvisit')">
+          <md-button hide show-gt-sm class="base-button" ng-show="me.charge==='doctor'" ng-class="{'selected': getCurrentView() === 'newvisit'}" href="#/newvisit">
             <md-icon>note_add</md-icon>
             <span>Consulta<span>
             <md-tooltip>Ir a Nueva Consulta</md-tooltip>
@@ -114,31 +114,31 @@
               </md-button>
               <md-menu-content class="border-radius-5 pad-1 base-menu" width="4">
                 <md-menu-item>
-                  <md-button class="base-grid-button" ng-click="setCurrentView('profiles')" ng-class="{'selected': currentView === 'profiles'}">
+                  <md-button class="base-grid-button" href="#/profiles" ng-class="{'selected': getCurrentView() === 'profiles'}">
                     <md-icon>local_hospital</md-icon>
                     <span>Ver Pacientes</span>
                   </md-button>
                 </md-menu-item>
                 <md-menu-item>
-                  <md-button class="base-grid-button" ng-click="setCurrentView('employees')" ng-class="{'selected': currentView === 'employees'}">
+                  <md-button class="base-grid-button" href="#/employees" ng-class="{'selected': getCurrentView() === 'employees'}">
                     <md-icon>people</md-icon>
                     <span>Ver Colaboradores</span>
                   </md-button>
                 </md-menu-item>
                 <md-menu-item>
-                  <md-button class="base-grid-button" ng-click="setCurrentView('stock')" ng-class="{'selected': currentView === 'stock'}">
+                  <md-button class="base-grid-button" href="#/stock" ng-class="{'selected': getCurrentView() === 'stock'}">
                     <md-icon>assignment</md-icon>
                     <span>Gestionar Inventario</span>
                   </md-button>
                 </md-menu-item>
                 <md-menu-item>
-                  <md-button class="base-grid-button" ng-click="setCurrentView('register')" ng-class="{'selected': currentView === 'register'}">
+                  <md-button class="base-grid-button" href="#/register" ng-class="{'selected': getCurrentView() === 'register'}">
                     <md-icon>web</md-icon>
                     <span>Ir a la caja</span>
                   </md-button>
                 </md-menu-item>
                 <md-menu-item ng-show="me.charge==='doctor'">
-                  <md-button class="base-grid-button" ng-click="setCurrentView('newvisit')" ng-class="{'selected': currentView === 'newvisit'}">
+                  <md-button class="base-grid-button" href="#/newvisit" ng-class="{'selected': getCurrentView() === 'newvisit'}">
                     <md-icon>note_add</md-icon>
                     <span>Ir a Nueva Consulta</span>
                   </md-button>

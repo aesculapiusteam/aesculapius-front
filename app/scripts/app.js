@@ -44,11 +44,6 @@ angular
   ])
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
-      })
       .when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
@@ -113,13 +108,34 @@ angular
         redirectTo: '/login'
       });
   }])
-  .run(['$rootScope', 'auth', 'aeData', '$mdDialog', '$mdToast', 'Restangular',
-    function($rootScope, auth, aeData, $mdDialog, $mdToast, Restangular) {
+  .run(['$rootScope', 'auth', 'aeData', '$mdDialog', '$mdToast', 'Restangular', '$location',
+    function($rootScope, auth, aeData, $mdDialog, $mdToast, Restangular, $location) {
       $rootScope.loading = true;
       $rootScope.$on("$routeChangeStart", function() {
         $rootScope.loading = true;
       });
       $rootScope.$on('$routeChangeSuccess', function() {
+        switch ($location.path()) {
+          case "/profiles":
+          case "/history":
+            aeData.currentView = "profiles";
+            break;
+          case "/employees":
+            aeData.currentView = "employees";
+            break;
+          case "/stock":
+            aeData.currentView = "stock";
+            break;
+          case "/register":
+          case "/movements":
+            aeData.currentView = "register";
+            break;
+          case "/newvisit":
+            aeData.currentView = "newvisit";
+            break;
+          default:
+            aeData.currentView = "profiles";
+        }
         $rootScope.loading = false;
       });
       auth.autoLogin();
